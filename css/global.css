@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --primary-color: #fff;
+    --secondary-color: #AEC8A4;
+    --contrast-color: #333;
+    --font-main: 'Sour Gummy', sans-serif;
+}
+
+/* 
+    --primary-color: #E7EFC7;
+    --secondary-color: #AEC8A4;
+    --contrast-color: #3B3B1A;
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background: var(--primary-color);
+}
+
+button {
+    font-family: inherit; /* Some browsers don't inherit fonts correctly */
+}
+
+.side-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    z-index: 1;
+    background: var(--contrast-color);
+    overflow-x: hidden;
+    padding-top: 10px;
+    transition: 0.6s ease;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.side-bar ul {
+    /*position: relative;*/
+    height: 97vh;
+}
+
+.side-bar ul li {
+    list-style: none;
+    margin: 5px 0;
+}
+
+.side-bar ul li:hover {
+    background: var(--secondary-color);
+    transition: 0.3s ease;
+}
+
+.side-bar ul li a,
+.side-bar ul li button {
+    /*position: relative;*/
+    display: flex;
+    white-space: nowrap;
+    text-decoration: none;
+    color: var(--primary-color);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.side-bar ul li .menu-icon {
+    margin-bottom: 120px;
+}
+
+.side-bar ul li .menu-icon .text {
+    font-size: 1.4rem;
+}
+
+.side-bar ul li:last-child {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.side-bar ul li .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 75px;
+    height: 60px;
+    font-size: 2rem;
+}
