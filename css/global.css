@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
 
+/* Global CSS Variables */
+
 :root {
     --primary-color: #fff;
     --secondary-color: #AEC8A4;
@@ -13,6 +15,8 @@
     --contrast-color: #3B3B1A;
 */
 
+/* Reset CSS */
+
 * {
     margin: 0;
     padding: 0;
@@ -24,72 +28,93 @@ body {
     background: var(--primary-color);
 }
 
+/* Some browsers don't inherit fonts correctly */
+/* Added width to ensure all buttons fill the sidebar width for consistency */
+
 button {
-    font-family: inherit; /* Some browsers don't inherit fonts correctly */
+    font-family: inherit; 
+    width: 100%;
 }
 
-.side-bar {
+/* Sidebar */
+
+.sidebar {
     position: fixed;
     top: 0;
     left: 0;
     height: 100%;
-    width: 250px;
+    width: 75px;
     z-index: 1;
     background: var(--contrast-color);
     overflow-x: hidden;
-    padding-top: 10px;
     transition: 0.6s ease;
+    padding-top: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
-.side-bar ul {
-    /*position: relative;*/
+.sidebar.expanded {
+    width: 250px;
+}
+
+/* Sidebar List */
+
+.sidebar ul {
+    position: relative;
     height: 97vh;
 }
 
-.side-bar ul li {
+.sidebar ul li {
     list-style: none;
     margin: 5px 0;
 }
 
-.side-bar ul li:hover {
+.sidebar ul li:hover {
     background: var(--secondary-color);
     transition: 0.3s ease;
 }
 
-.side-bar ul li a,
-.side-bar ul li button {
-    /*position: relative;*/
+.sidebar ul li a,
+.sidebar ul li button {
+    position: relative;
     display: flex;
     white-space: nowrap;
     text-decoration: none;
-    color: var(--primary-color);
     background: transparent;
+    color: var(--primary-color);
     border: none;
     cursor: pointer;
     text-decoration: none;
-    font-size: 1rem;
 }
 
-.side-bar ul li .menu-icon {
-    margin-bottom: 120px;
+.sidebar ul li .menu-icon {
+    margin-bottom: 140px;
 }
 
-.side-bar ul li .menu-icon .text {
+.sidebar ul li .menu-icon .text {
     font-size: 1.4rem;
 }
 
-.side-bar ul li:last-child {
+.sidebar ul li:last-child {
     position: absolute;
     bottom: 0;
     width: 100%;
 }
 
-.side-bar ul li .icon {
+.sidebar ul li .icon {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 75px;
+    min-width: 75px;
     height: 60px;
     font-size: 2rem;
+}
+
+.sidebar ul li .text {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
