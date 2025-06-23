@@ -3,3 +3,4 @@
 - *Created a basic project structure, with some HTML,JS & CSS files.*
 - *Started building a simple sidebar, to ensure a clean navigation throughout the website.*
 - *Sidebar is completed; now I'll build the main content.*
+- *The index page is done, as well as my chosen color palette for the application.*

@@ -3,17 +3,12 @@
 /* Global CSS Variables */
 
 :root {
-    --primary-color: #fff;
-    --secondary-color: #AEC8A4;
-    --contrast-color: #333;
+    --primary-color: #F9F7F7;
+    --secondary-color: #DBE2EF;
+    --contrast-color: #3F72AF;
+    --support-color: #112D4E;
     --font-main: 'Sour Gummy', sans-serif;
 }
-
-/* 
-    --primary-color: #E7EFC7;
-    --secondary-color: #AEC8A4;
-    --contrast-color: #3B3B1A;
-*/
 
 /* Reset CSS */
 
@@ -25,7 +20,7 @@
 
 body {
     font-family: var(--font-main);
-    background: var(--primary-color);
+    background: var(--secondary-color);
 }
 
 /* Some browsers don't inherit fonts correctly */
