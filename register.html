@@ -6,7 +6,7 @@
     <title>Task Manager</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/register.css">
 </head>
     <body>
         <div class="sidebar" id="sidebar">
@@ -47,14 +47,20 @@
             <header class="title-header">
                 <h1>GERENCIADOR DE TAREFAS</h1>
             </header>
-            <section>
-                <h2>LOGIN</h2>
-                <div class="login-user">
-
-                </div>
-                <div class="register-user">
-                    <p>Não tem uma conta? <a href="register.html">Registre-se</a></p>
-                </div>
+            <section class="register-section">
+                <form id="register-form">
+                    <h3>Registrar Usuário</h3>
+                    <input class="input" type="text" id="first-name" placeholder="Nome" required>
+                    <input class="input" type="text" id="last-name" placeholder="Sobrenome">
+                    <input class="input" type="text" id="register-username" placeholder="Nome de usuário" required>
+                    <input class="input" type="password" id="register-password" placeholder="Senha" required>
+                    <button id="register-btn" type="submit">Registrar</button>
+                </form>
+                <p id="redirect-text">Já possui uma conta? <a href="login.html">Faça login</a></p>
+                <dialog id="modal" class="modal">
+                    <p id="modal-message">Usuário registrado com sucesso</p>
+                    <button id="close-modal-btn">OK</button>
+                </dialog>
             </section>
             <footer class="footer">
                 <p>Made by Lucas</p>
@@ -63,4 +69,5 @@
         </div>
     </body>
     <script src="js/main.js"></script>
+    <script src="js/api.js"></script>
 </html>
