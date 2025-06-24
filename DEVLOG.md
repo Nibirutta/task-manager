@@ -5,3 +5,4 @@
 - *Sidebar is completed; now I'll build the main content.*
 - *The index page is done, as well as my chosen color palette for the application.*
 - *User registration is working correctly, and the page for that is also done.*
+- *User login is now complete. I had some issues with cookies, but after a code breakdown and some research, I got everything working perfectly. I also made some changes to the project structure to improve organization.*

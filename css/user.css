@@ -1,4 +1,4 @@
-.main-content .register-section {
+.main-content .user-section {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,19 +6,19 @@
     gap: 40px;
 }
 
-.main-content .register-section form {
+.main-content .user-section form {
     display: flex;
     flex-direction: column;
     gap: 25px;
     width: 100%;
 }
 
-.main-content .register-section form h3 {
+.main-content .user-section form h3 {
     font-size: 1.75rem;
     text-align: center;
 }
 
-.main-content .register-section form button {
+.main-content .user-section form button {
     margin: 0px auto;
     padding: 10px;
     font-size: 1.2rem;
@@ -31,20 +31,24 @@
     transition: 0.3s ease;
 }
 
-.main-content .register-section form button:hover {
+.main-content .user-section form button:hover {
     background-color: var(--contrast-color);
     color: var(--primary-color);
     transition: 0.3s ease;
 }
 
-.main-content .register-section form input {
+.main-content .user-section form input {
     padding: 6px;
     font-size: 1.2rem;
     border: 2px solid var(--support-color);
     border-radius: 10px;
 }
 
-.main-content .register-section #redirect-text {
+.main-content .user-section form input::placeholder {
+    font-family: var(--font-main);
+}
+
+.main-content .user-section #redirect-text {
     font-size: 1.2rem;
     text-align: center;
     margin-top: 20px;

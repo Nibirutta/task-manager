@@ -6,7 +6,7 @@
     <title>Task Manager</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/user.css">
 </head>
     <body>
         <div class="sidebar" id="sidebar">
@@ -47,14 +47,18 @@
             <header class="title-header">
                 <h1>GERENCIADOR DE TAREFAS</h1>
             </header>
-            <section>
-                <h2>LOGIN</h2>
-                <div class="login-user">
-
-                </div>
-                <div class="register-user">
-                    <p>Não tem uma conta? <a href="register.html">Registre-se</a></p>
-                </div>
+            <section class="user-section">
+                <form id="login-form">
+                    <h3>Login</h3>
+                    <input class="input" type="text" id="login-username" placeholder="Nome de usuário" required>
+                    <input class="input" type="password" id="login-password" placeholder="Senha" required>
+                    <button id="login-btn" type="submit">Login</button>
+                </form>
+                <p id="redirect-text">Não tem uma conta? <a href="register.html">Registre-se</a></p>
+                <dialog id="modal" class="modal">
+                    <p id="modal-message">Usuário registrado com sucesso</p>
+                    <button id="close-modal-btn">OK</button>
+                </dialog>
             </section>
             <footer class="footer">
                 <p>Made by Lucas</p>
@@ -63,4 +67,5 @@
         </div>
     </body>
     <script src="js/main.js"></script>
+    <script src="js/api/login.js"></script>
 </html>
