@@ -1,9 +1,5 @@
 const loginForm = document.querySelector('#login-form');
 
-const modal = document.querySelector('#modal');
-const modalMessage = document.querySelector('#modal-message');
-const closeModalBtn = document.querySelector('#close-modal-btn');
-
 let accessToken = null;
 
 loginForm.addEventListener('submit', async (event) => {
@@ -28,23 +24,17 @@ loginForm.addEventListener('submit', async (event) => {
             const data = await response.json();
             accessToken = data.accessToken; // Store the access token
 
-            modalMessage.textContent = 'Login bem-sucedido!';
+            showModal("Login realizado com sucesso!", redirectToManager);
         } else {
-            modalMessage.textContent = 'Falha ao fazer login. Tente novamente.';
+            showModal("Falha ao fazer login, verifique suas credenciais e tente novamente.",
+                 () => {loginForm.reset()});
         }
-
-        modal.showModal();
     } catch (error) {
         console.error('Error logging in:', error);
     }
 });
 
-closeModalBtn.addEventListener('click', () => {
-    modal.close();
+function redirectToManager() {
     loginForm.reset(); // Reset the form fields
-    
-    if (accessToken) {
-        // Redirect to the main page or perform any other action
-        window.location.href = 'manager.html';
-    }
-});
+    window.location.href = 'manager.html'; // Redirect to the manager page
+}
