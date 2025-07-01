@@ -1,7 +1,5 @@
 const loginForm = document.querySelector('#login-form');
 
-let accessToken = null;
-
 loginForm.addEventListener('submit', async (event) => {
     event.preventDefault(); // Prevent the default form submission
 
@@ -21,9 +19,6 @@ loginForm.addEventListener('submit', async (event) => {
         });
 
         if (response.ok) {
-            const data = await response.json();
-            accessToken = data.accessToken; // Store the access token
-
             showModal("Login realizado com sucesso!", redirectToManager);
         } else {
             showModal("Falha ao fazer login, verifique suas credenciais e tente novamente.",

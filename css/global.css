@@ -78,7 +78,6 @@ button {
     color: var(--primary-color);
     border: none;
     cursor: pointer;
-    text-decoration: none;
 }
 
 .sidebar ul li .menu-icon {

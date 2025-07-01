@@ -9,6 +9,7 @@
 .main-content .user-section form {
     display: flex;
     flex-direction: column;
+    min-width: 300px;
     gap: 25px;
     width: 100%;
 }
@@ -40,6 +41,7 @@
 .main-content .user-section form input {
     padding: 6px;
     font-size: 1.2rem;
+    font-family: var(--font-main);
     border: 2px solid var(--support-color);
     border-radius: 10px;
 }
@@ -48,8 +50,26 @@
     font-family: var(--font-main);
 }
 
-.main-content .user-section #redirect-text {
+.main-content .user-section .redirect-links {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
     font-size: 1.2rem;
     text-align: center;
-    margin-top: 20px;
+    gap: 10px;
+}
+
+.main-content .user-section .redirect-links a {
+    text-decoration: none;
+    transition: 0.2s ease;
+    color: var(--contrast-color);
+}
+
+.main-content .user-section .redirect-links a:visited {
+    color: var(--contrast-color);
+}
+
+.main-content .user-section .redirect-links a:hover {
+    color: var(--primary-color);
+    transition: 0.2s ease;
 }

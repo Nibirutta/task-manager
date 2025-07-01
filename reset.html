@@ -55,16 +55,18 @@
                 <h1>GERENCIADOR DE TAREFAS</h1>
             </header>
             <section class="user-section">
-                <form id="login-form">
-                    <h3>Login</h3>
-                    <input class="input" type="text" id="login-username" placeholder="Nome de usuário" required>
-                    <input class="input" type="password" id="login-password" placeholder="Senha" required>
-                    <button id="login-btn" type="submit">Login</button>
+                <form id="reset-request-form">
+                    <h3>Insira seu email:</h3>
+                    <input class="input" type="email" id="reset-email" placeholder="Email" required>
+                    <button id="reset-btn" type="submit">Enviar</button>
                 </form>
-                <div class="redirect-links">
-                    <p class="redirect-text">Não tem uma conta? <a href="register.html">Registre-se</a></p>
-                    <p class="redirect-text"><a href="reset.html">Esqueceu sua senha?</a></p>
-                </div>
+                <form id="reset-password-form">
+                    <h3>Insira a nova senha:</h3>
+                    <input type="password" id="reset-password" class="input" placeholder="Nova senha" required>
+                    <h3>Confirme a nova senha:</h3>
+                    <input type="password" id="reset-confirm-password" class="input" placeholder="Confirme senha" required>
+                    <button id="confirm-reset-btn" type="submit">Confirmar</button>
+                </form>
             </section>
             <dialog id="modal" class="modal">
                 <p id="modal-message">Usuário registrado com sucesso</p>
@@ -77,5 +79,5 @@
         </div>
     </body>
     <script src="js/main.js"></script>
-    <script src="js/api/login.js"></script>
+    <script src="js/api/reset.js"></script>
 </html>
