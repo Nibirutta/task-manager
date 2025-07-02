@@ -9,3 +9,4 @@
 - *User can now log out from the application, but I still need to implement redirects if they try to access certain pages, like the register and login pages. I also cannot forget to implement the reset password feature.*
 - *At first, I struggled a bit to find the safest way to send a custom email template to the client with my currently knowledge. In the end, I decided to move this responsibility to the back end. For now, I have fully implemented only the send reset email request. Next, I'll add a spinner for a better user experience and implement the reset password feature itself.*
 - *Added a loading spinner to all pages to improve the user experience when making requests to the API.*
+- *All the pages and functions required for a complete user flow are implemented and working nicely, such as login, logout, reset password, and register.*
