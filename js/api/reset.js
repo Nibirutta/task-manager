@@ -21,6 +21,8 @@ resetRequest.addEventListener('submit', async (event) => {
         email: document.querySelector('#reset-email').value
     };
 
+    loadingOverlay.classList.remove('hidden'); // Show loading overlay
+
     try {
         const response = await fetch('http://localhost:3000/user/reset/request', {
             method: 'POST',
@@ -29,6 +31,8 @@ resetRequest.addEventListener('submit', async (event) => {
             },
             body: JSON.stringify(formData)
         });
+
+        loadingOverlay.classList.add('hidden'); // Hide loading overlay
 
         if (response.ok) {
             showModal("Email enviado com sucesso! Verifique sua caixa de entrada.", redirectToLogin);

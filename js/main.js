@@ -3,6 +3,8 @@ const sidebar = document.querySelector('#sidebar');
 
 const logoutBtn = document.querySelector('#logout-btn');
 
+const loadingOverlay = document.querySelector('.loading-overlay');
+
 const modal = document.querySelector('#modal');
 const modalMessage = document.querySelector('#modal-message');
 const closeModalBtn = document.querySelector('#close-modal-btn');

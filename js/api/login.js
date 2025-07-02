@@ -3,6 +3,8 @@ const loginForm = document.querySelector('#login-form');
 loginForm.addEventListener('submit', async (event) => {
     event.preventDefault(); // Prevent the default form submission
 
+    loadingOverlay.classList.remove('hidden'); // Show loading overlay
+
     const formData = {
         username: document.querySelector('#login-username').value,
         password: document.querySelector('#login-password').value
@@ -17,6 +19,8 @@ loginForm.addEventListener('submit', async (event) => {
             credentials: 'include',
             body: JSON.stringify(formData)
         });
+
+        loadingOverlay.classList.add('hidden'); // Hide loading overlay
 
         if (response.ok) {
             showModal("Login realizado com sucesso!", redirectToManager);

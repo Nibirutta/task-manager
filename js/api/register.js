@@ -11,6 +11,8 @@ registerForm.addEventListener('submit', async (event) => {
         password: document.querySelector('#register-password').value
     };
 
+    loadingOverlay.classList.remove('hidden'); // Show loading overlay
+
     try {
         const response = await fetch('http://localhost:3000/user/register', {
             method: 'POST',
@@ -19,6 +21,8 @@ registerForm.addEventListener('submit', async (event) => {
             },
             body: JSON.stringify(formData)
         });
+
+        loadingOverlay.classList.add('hidden'); // Hide loading overlay
 
         if (response.ok) {
             showModal("Usuário registrado com sucesso!",
