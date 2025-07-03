@@ -1,3 +1,5 @@
+/* BACKGROUND ICON */
+
 .main-content .background-icon {
     position: absolute;
     top: 0;
@@ -26,6 +28,8 @@
     font-size: 400px;
     color: var(--contrast-color);
 }
+
+/* WELCOME SECTION */
 
 .main-content .welcome-section {
     display: flex;

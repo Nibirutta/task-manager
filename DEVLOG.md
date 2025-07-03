@@ -11,3 +11,4 @@
 - *Added a loading spinner to all pages to improve the user experience when making requests to the API.*
 - *All the pages and functions required for a complete user flow are implemented and working nicely, such as login, logout, reset password, and register.*
 - *I created the about page, where the viewer can see about us and how we developed the project, with a few links to redirect them to our portfolios and the project GitHub page.*
+- *Created a CSS file to improve the visuals for the about page.*

@@ -1,3 +1,5 @@
+/* ALIGNING USER INTERFACE */
+
 .main-content .user-section {
     display: flex;
     flex-direction: column;
@@ -5,6 +7,8 @@
     margin: 60px 0;
     gap: 40px;
 }
+
+/* FORMS */
 
 .main-content .user-section form {
     display: flex;
@@ -49,6 +53,8 @@
 .main-content .user-section form input::placeholder {
     font-family: var(--font-main);
 }
+
+/* REDIRECT LINKS */
 
 .main-content .user-section .redirect-links {
     display: flex;
