@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,78 +10,80 @@
     <link rel="stylesheet" href="css/user.css">
     <link rel="stylesheet" href="css/mediaqueries.css">
 </head>
-    <body>
-        <div class="loading-overlay hidden">
-            <div class="loading-spinner"></div>
-        </div>
-        <div class="sidebar" id="sidebar">
-            <ul>
-                <li>
-                    <button id="sidebar-btn" class="menu-icon">
-                        <span class="icon"><i class="fa-solid fa-bars"></i></span>
-                        <span class="text">Task Manager</span>
-                    </button>
-                </li>
-                <li>
-                    <a href="index.html">
-                        <span class="icon"><i class="fa-solid fa-house"></i></span>
-                        <span class="text">Home</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="login.html">
-                        <span class="icon"><i class="fa-solid fa-right-to-bracket"></i></span>
-                        <span class="text">Login</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="manager.html">
-                        <span class="icon"><i class="fa-solid fa-tasks"></i></span>
-                        <span class="text">Manager</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="about.html">
-                        <span class="icon"><i class="fa-solid fa-book"></i></span>
-                        <span class="text">About Me</span>
-                    </a>
-                </li>
-                <li>
-                    <button id="logout-btn">
-                        <span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span>
-                        <span class="text">Logout</span>
-                    </button>
-                </li>
-            </ul>
-        </div>
-        <div class="main-content">
-            <header class="title-header">
-                <h1>GERENCIADOR DE TAREFAS</h1>
-            </header>
-            <section class="user-section">
-                <form id="register-form">
-                    <h3>Registrar Usuário</h3>
-                    <input class="input" type="text" id="first-name" placeholder="Nome" required>
-                    <input class="input" type="text" id="last-name" placeholder="Sobrenome">
-                    <input class="input" type="email" id="email" placeholder="Email" required>
-                    <input class="input" type="text" id="register-username" placeholder="Nome de usuário" required>
-                    <input class="input" type="password" id="register-password" placeholder="Senha" required>
-                    <button id="register-btn" type="submit">Registrar</button>
-                </form>
-                <div class="redirect-links">
-                    <p id="redirect-text">Já possui uma conta? <a href="login.html">Faça login</a></p>
-                </div>
-            </section>
-            <dialog id="modal" class="modal">
-                <p id="modal-message">Usuário registrado com sucesso</p>
-                <button id="close-modal-btn">OK</button>
-            </dialog>
-            <footer class="footer">
-                <p>Made by Lucas</p>
-                <p>Copyright © 2025</p>
-            </footer>
-        </div>
-    </body>
-    <script src="js/main.js"></script>
-    <script src="js/api/register.js"></script>
+
+<body>
+    <div class="loading-overlay hidden">
+        <div class="loading-spinner"></div>
+    </div>
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li>
+                <button id="sidebar-btn" class="menu-icon">
+                    <span class="icon"><i class="fa-solid fa-bars"></i></span>
+                    <span class="text">Task Manager</span>
+                </button>
+            </li>
+            <li>
+                <a href="index.html">
+                    <span class="icon"><i class="fa-solid fa-house"></i></span>
+                    <span class="text">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="login.html">
+                    <span class="icon"><i class="fa-solid fa-right-to-bracket"></i></span>
+                    <span class="text">Login</span>
+                </a>
+            </li>
+            <li>
+                <a href="manager.html">
+                    <span class="icon"><i class="fa-solid fa-tasks"></i></span>
+                    <span class="text">Manager</span>
+                </a>
+            </li>
+            <li>
+                <a href="about.html">
+                    <span class="icon"><i class="fa-solid fa-book"></i></span>
+                    <span class="text">About Me</span>
+                </a>
+            </li>
+            <li>
+                <button id="logout-btn">
+                    <span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+                    <span class="text">Logout</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <header class="title-header">
+            <h1>GERENCIADOR DE TAREFAS</h1>
+        </header>
+        <section class="user-section">
+            <form id="register-form">
+                <h3>Registrar Usuário</h3>
+                <input class="input" type="text" id="first-name" placeholder="Nome" required>
+                <input class="input" type="text" id="last-name" placeholder="Sobrenome">
+                <input class="input" type="email" id="email" placeholder="Email" required>
+                <input class="input" type="text" id="register-username" placeholder="Nome de usuário" required>
+                <input class="input" type="password" id="register-password" placeholder="Senha" required>
+                <button id="register-btn" type="submit">Registrar</button>
+            </form>
+            <div class="redirect-links">
+                <p id="redirect-text">Já possui uma conta? <a href="login.html">Faça login</a></p>
+            </div>
+        </section>
+        <dialog id="modal" class="modal">
+            <p id="modal-message">Usuário registrado com sucesso</p>
+            <button id="close-modal-btn">OK</button>
+        </dialog>
+        <footer class="footer">
+            <p>Made by Lucas</p>
+            <p>Copyright © 2025</p>
+        </footer>
+    </div>
+</body>
+<script src="js/main.js"></script>
+<script src="js/api/register.js"></script>
+
 </html>

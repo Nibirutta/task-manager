@@ -10,3 +10,4 @@
 - *At first, I struggled a bit to find the safest way to send a custom email template to the client with my currently knowledge. In the end, I decided to move this responsibility to the back end. For now, I have fully implemented only the send reset email request. Next, I'll add a spinner for a better user experience and implement the reset password feature itself.*
 - *Added a loading spinner to all pages to improve the user experience when making requests to the API.*
 - *All the pages and functions required for a complete user flow are implemented and working nicely, such as login, logout, reset password, and register.*
+- *I created the about page, where the viewer can see about us and how we developed the project, with a few links to redirect them to our portfolios and the project GitHub page.*

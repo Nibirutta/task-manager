@@ -1,20 +1,122 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/mediaqueries.css">
 </head>
-    <body>
-        <header>
-            <h1>HEADER</h1>
+
+<body>
+    <div class="loading-overlay hidden">
+        <div class="loading-spinner"></div>
+    </div>
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li>
+                <button id="sidebar-btn" class="menu-icon">
+                    <span class="icon"><i class="fa-solid fa-bars"></i></span>
+                    <span class="text">Task Manager</span>
+                </button>
+            </li>
+            <li>
+                <a href="index.html">
+                    <span class="icon"><i class="fa-solid fa-house"></i></span>
+                    <span class="text">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="login.html">
+                    <span class="icon"><i class="fa-solid fa-right-to-bracket"></i></span>
+                    <span class="text">Login</span>
+                </a>
+            </li>
+            <li>
+                <a href="manager.html">
+                    <span class="icon"><i class="fa-solid fa-tasks"></i></span>
+                    <span class="text">Manager</span>
+                </a>
+            </li>
+            <li>
+                <a href="about.html">
+                    <span class="icon"><i class="fa-solid fa-book"></i></span>
+                    <span class="text">About Me</span>
+                </a>
+            </li>
+            <li>
+                <button id="logout-btn">
+                    <span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+                    <span class="text">Logout</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <header class="title-header">
+            <h1>GERENCIADOR DE TAREFAS</h1>
         </header>
-        <section>
-            <h2>ABOUT ME</h2>
+        <section class="about-section">
+            <div class="background-icon">
+                <span id="handshake-icon" class="icon"><i class="fa-solid fa-handshake"></i></span>
+            </div>
+            <h2>Sobre o projeto</h2>
+            <div class="about-content">
+                <p>
+                    Este é um projeto de gerenciamento de tarefas desenvolvido em dupla. O objetivo é fornecer uma
+                    interface simples e intuitiva para gerenciar suas tarefas diárias. Você pode adicionar, editar e
+                    excluir tarefas, além de marcar as concluídas.
+                </p>
+                <p>
+                    O projeto foi desenvolvido utilizando HTML, CSS e JavaScript, com foco na responsividade e
+                    usabilidade. A ideia é que você possa acessar suas tarefas de qualquer dispositivo, seja um
+                    computador, tablet ou smartphone.
+                </p>
+                <p>
+                    Além disso, a API utilizada para o gerenciamento de usuários e tarefas foi construída com Node.js e
+                    Express, garantindo uma comunicação eficiente entre o front-end e o back-end. A autenticação é feita
+                    através de tokens JWT, proporcionando segurança no acesso às funcionalidades.
+                </p>
+                <p>
+                    Por fim, esse projeto foi construído com o intuito de praticar e aprimorar habilidades em
+                    desenvolvimento web, além de ser uma ferramenta útil para o dia a dia. Espero que você goste e
+                    encontre valor na aplicação!
+                </p>
+            </div>
+            <div class="about-links">
+                <p>Para mais informações, visite os links abaixo:</p>
+                <ul>
+                    <a href="https://github.com/Nibirutta/task-manager">
+                        <span class="icon"><i class="fa-solid fa-desktop"></i></span>
+                        <span>FRONT</span>
+                    </a>
+                    <a href="https://github.com/Nibirutta/task-api">
+                        <span class="icon"><i class="fa-solid fa-database"></i></span>
+                        <span>BACK</span>
+                    </a>
+                    <a href="#">
+                        <span class="icon"><i class="fa-solid fa-external-link-alt"></i></span>
+                        <span>NIBIRUTTA PAGE</span>
+                    </a>
+                    <a href="#">
+                        <span class="icon"><i class="fa-solid fa-external-link-alt"></i></span>
+                        <span>ALUCINADO PAGE</span>
+                    </a>
+                </ul>
+            </div>
         </section>
-        <footer>
-            <p>FOOTER</p>
+        <dialog id="modal" class="modal">
+            <p id="modal-message">Usuário registrado com sucesso</p>
+            <button id="close-modal-btn">OK</button>
+        </dialog>
+        <footer class="footer">
+            <p>Made by Lucas</p>
             <p>Copyright © 2025</p>
         </footer>
-    </body>
+    </div>
+</body>
+<script src="js/main.js"></script>
+
 </html>
