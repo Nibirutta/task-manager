@@ -3,7 +3,11 @@ const resetPassword = document.querySelector('#reset-password-form');
 
 const params = new URLSearchParams(window.location.search);
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    if (await checkIfUserIsLoggedIn()) {
+        window.location.href = 'manager.html'; // Redirect to manager page if already logged in
+    }
+    
     const token = params.get('token');
     if (token) {
         resetRequest.classList.add('hidden'); // Hide the request form

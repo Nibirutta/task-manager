@@ -18,6 +18,10 @@ sidebarBtn.addEventListener('click', () => {
 });
 
 logoutBtn.addEventListener('click', async () => {
+    if (!await checkIfUserIsLoggedIn()) {
+        return; // If the user is not logged in, do not proceed with logout
+    }
+
     try {
         const response = await fetch('http://localhost:3000/user/logout', {
             method: 'GET',
@@ -44,4 +48,21 @@ function showModal(message, onClose) {
         modal.close();
         if (onClose) onClose();
     }, { once: true }); // Ensure the event listener is removed after execution
+}
+
+async function checkIfUserIsLoggedIn() {
+    loadingOverlay.classList.remove('hidden'); // Show loading overlay
+
+    const response = await fetch('http://localhost:3000/user/refresh', {
+        method: 'GET',
+        credentials: 'include' // Include cookies in the request
+    });
+
+    loadingOverlay.classList.add('hidden'); // Hide loading overlay
+
+    if (response.status === 200) {
+        return true; // User is logged in
+    } else {
+        return false;
+    }
 }

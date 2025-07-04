@@ -8,6 +8,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         const data = await response.json();
         console.log('Manager Data:', data);
     } else {
-        console.error('Failed to fetch manager data');
+        window.location.href = 'login.html'; // Redirect to login if not logged in
     }
 });

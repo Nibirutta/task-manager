@@ -1,5 +1,11 @@
 const loginForm = document.querySelector('#login-form');
 
+document.addEventListener('DOMContentLoaded', async () => {
+    if (await checkIfUserIsLoggedIn()) {
+        window.location.href = 'manager.html'; // Redirect to manager page if already logged in
+    }
+});
+
 loginForm.addEventListener('submit', async (event) => {
     event.preventDefault(); // Prevent the default form submission
 

@@ -12,3 +12,4 @@
 - *All the pages and functions required for a complete user flow are implemented and working nicely, such as login, logout, reset password, and register.*
 - *I created the about page, where the viewer can see about us and how we developed the project, with a few links to redirect them to our portfolios and the project GitHub page.*
 - *Created a CSS file to improve the visuals for the about page.*
+- *I finally implemented redirects: users without login are redirected away from the manager page, while logged-in users are redirected away from the login, register, and reset pages.*
