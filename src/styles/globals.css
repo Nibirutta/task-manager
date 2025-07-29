@@ -1,0 +1,29 @@
+
+@font-face {
+    font-family: 'Tech';
+    src: url('../assets/fonts/Share_Tech_Mono/ShareTechMono-Regular.ttf');
+}
+
+
+:root{
+
+    /* input */
+    --input-field-bg-color: #012326;
+    --input-field-text-color: #cccccc;
+    --input-field-label-color: #dddddd;
+    --input-field-border-color-default: #025373;
+    --input-field-border-color-active: #05f2db;
+    --input-field-border-color-filled: #00ff00;
+    --input-field-border-color-error: #d9048e;
+    
+
+
+    /* Footer */
+    --logo1: #FF00FF;
+    --logo2: #00FFFF;
+    --logo3: #0600ab;
+    --text-color-footer: #bacfdd;
+    --tech: "Tech", monospace;
+    --logo-gradient: linear-gradient(180deg,var(--logo1) 30%,  var(--logo2) 70%);
+    --logo-shadow: 0px 0px 10px var(--logo3);
+}

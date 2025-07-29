@@ -1,87 +1,13 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
-    <!-- metadata -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Manager</title>
-    <script src="https://cdn.counter.dev/script.js" data-id="33f78ff6-536a-45bc-92b9-1b262ec69e8d" data-utcoffset="-3"></script>
-
-</head>
-
-<body>
-    <div class="loading-overlay hidden">
-        <div class="loading-spinner"></div>
-    </div>
-    <div class="sidebar" id="sidebar">
-        <ul>
-            <li>
-                <button id="sidebar-btn" class="menu-icon">
-                    <span class="icon"><i class="fa-solid fa-bars"></i></span>
-                    <span class="text">Task Manager</span>
-                </button>
-            </li>
-            <li>
-                <a href="index.html">
-                    <span class="icon"><i class="fa-solid fa-house"></i></span>
-                    <span class="text">Home</span>
-                </a>
-            </li>
-            <li>
-                <a href="login.html">
-                    <span class="icon"><i class="fa-solid fa-right-to-bracket"></i></span>
-                    <span class="text">Login</span>
-                </a>
-            </li>
-            <li>
-                <a href="manager.html">
-                    <span class="icon"><i class="fa-solid fa-tasks"></i></span>
-                    <span class="text">Manager</span>
-                </a>
-            </li>
-            <li>
-                <a href="about.html">
-                    <span class="icon"><i class="fa-solid fa-book"></i></span>
-                    <span class="text">About Me</span>
-                </a>
-            </li>
-            <li>
-                <button id="logout-btn">
-                    <span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span>
-                    <span class="text">Logout</span>
-                </button>
-            </li>
-        </ul>
-    </div>
-    <div class="main-content">
-        <div class="background-icon">
-            <span id="calendar-icon" class="icon"><i class="fa-solid fa-calendar-days"></i></span>
-            <span id="check-icon" class="icon"><i class="fa-solid fa-check"></i></span>
-        </div>
-        <header class="title-header">
-            <h1>GERENCIADOR DE TAREFAS</h1>
-        </header>
-        <section class="welcome-section">
-            <h2>Bem vindo a minha aplicação web para gerenciamento de tarefas</h2>
-            <p>Aqui a sua agenda estará sob controle, graças as seguintes funcionalidades:</p>
-            <ul>
-                <li>Interface amigável, fácil de usar e o melhor de tudo: responsiva!</li>
-                <li>Você terá total controle sobre as tarefas, graças ao sistema de status e urgência</li>
-                <li>Organização de acordo com o calendário, aqui você decidirá quando será feito</li>
-                <li>Segurança e privacidade, as tarefas são suas e somente suas, ninguém além de você terá acesso</li>
-            </ul>
-        </section>
-        <dialog id="modal" class="modal">
-            <p id="modal-message">Usuário registrado com sucesso</p>
-            <button id="close-modal-btn">OK</button>
-        </dialog>
-        <footer class="footer">
-            <p>Made by Lucas</p>
-            <p>Copyright © 2025</p>
-        </footer>
-    </div>
-</body>
-<script src="js/main.js"></script>
-
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React + TS</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
