@@ -20,6 +20,8 @@ function InputField(props: IinputField) {
 	const handleBlur = () => setIsFocused(false);
 
 	let borderColor;
+
+	
 	if (!isValid) {
 		borderColor = "var(--input-field-border-color-error)";
 	} else if (isFocused) {
@@ -31,7 +33,7 @@ function InputField(props: IinputField) {
 	}
 
 	return (
-		<div className="flex flex-col gap-4 relative">
+		<div className="flex gap-3 w-full p-2.5 border border-amber-400 rounded-lg relative" >
 			<label
 				htmlFor={id}
 				className=" bg-[var(--input-field-bg-color)] text-sm text-[var(--input-field-label-color)] absolute  left-2"

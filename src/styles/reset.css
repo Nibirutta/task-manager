@@ -62,3 +62,10 @@ a, button{
     --desktop: 1280px;
     --large-desktop: 1440px;
 }
+
+body {
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}

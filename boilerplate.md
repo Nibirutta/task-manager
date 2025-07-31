@@ -4,7 +4,7 @@
 
 ### Criar projeto react + Vite  
 
-npx  create-vite@latest ComponentesReact  --template react-ts
+npx  create-vite@latest .  --template react-ts
      *entrar no arquivo criado
 npm install
 npm run dev
