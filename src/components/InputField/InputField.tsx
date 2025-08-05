@@ -14,8 +14,10 @@ function InputField(props: IinputField) {
 		isValid,
 		errorMessage,
 		onChange,
+		type = 'text', // Define 'text' como padrão se nenhum tipo for passado
+		...rest // Captura todas as outras props de input
 	} = props;
-
+	const errorId = `error-${id}`;
 	return (
 		<div  className="flex flex-col justify-evenly gap-1 w-full p-2.5 rounded-lg relative" >
 			<label
@@ -37,17 +39,19 @@ function InputField(props: IinputField) {
 				
 				<input
 					id={id}
-					type="text"
+					type={type}
 					className={styles.input}
 					placeholder={placeholder}
 					value={value}
 					onChange={onChange}
+					aria-invalid={!isValid}
+					aria-describedby={!isValid ? errorId : undefined}
+					{...rest} // Passa todas as props restantes (name, disabled, etc.)
 				/>
 			</div>
 
 			{!isValid && errorMessage && (
-				
-				<span className="text-red-500 flex ml-8 items-center gap-1 text-xs">
+				<span id={errorId} role="alert" className="text-red-500 flex ml-8 items-center gap-1 text-xs">
 					<ShieldX size={16} />
 					<span className={styles.errorMessage}> {errorMessage}</span>
 				</span>

@@ -1,6 +1,6 @@
-import type { ChangeEvent, ElementType } from "react"
+import type { ChangeEvent, ElementType, InputHTMLAttributes } from "react"
 
-interface IinputField {
+interface IinputField extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value' | 'id'> {
     id: string,
     value: string,
     label: string,
@@ -8,7 +8,7 @@ interface IinputField {
     Icon?: ElementType,
     errorMessage?: string,
     isValid?: boolean,
-    onChange : (event: ChangeEvent<HTMLInputElement>) => void
+    onChange: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
 export type { IinputField }
