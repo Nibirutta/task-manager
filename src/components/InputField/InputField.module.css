@@ -1,0 +1,79 @@
+/* importar um arquivo css de variaveis globais */
+@import '../../index.css';
+
+.label {
+    font-size: 1.4rem;
+    color: var(--input-field-label-color);
+    text-shadow: 0px 1px 0px var(--input-field-label-color);
+    font-family: var(--input-field-label-font);
+    font-weight: 500;
+    margin: 0 0 1rem 1rem;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background-color: var(--input-field-bg-color);
+  width: 100%;
+  border-radius: 1rem; 
+  border-width: 2px;
+  border-style: solid;
+  padding: 0.5rem; 
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+
+.default {
+  border-color: var(--input-field-border-color-default); 
+  box-shadow: 0 0 4px var(--input-field-border-color-default);
+}
+
+/* classe para quando o campo está preenchido mas não focado */
+.filled {
+  border-color: var(--input-field-border-color-filled); 
+  box-shadow: 0 0 4px var(--input-field-border-color-filled);
+}
+
+
+.inputContainer:focus-within {
+  border-color: var(--input-field-border-color-focus);
+  box-shadow: 0 0 4px var(--input-field-border-color-focus);
+}
+
+
+.error,
+.error:focus-within {
+  border-color: var(--input-field-border-color-error);
+  box-shadow: 0 0 4px var(--input-field-border-color-error) ;
+}
+
+.input {
+  color: var(--input-field-text-color); 
+  outline: none;
+  width: 100%;
+  font-size: 1.2rem;
+  font-family: var(--input-field-input-font);
+  font-weight: 600;
+  border: none;
+  background-color: transparent;
+  
+  &::placeholder {
+    color: var(--input-field-placeholder-color);
+    font-family: var(--input-field-placeholder-font);
+  }
+}
+
+.icon {
+  color: var(--input-field-icon-color);  
+}
+
+.errorMessage{
+    font-family: var(--input-field-error-font);
+    font-size: 0.8rem;
+    color: var(--input-field-error-color);
+    text-shadow: 0px 1px 2px var(--input-field-error-color);
+    font-weight: 700;
+    font-style: italic;
+    
+}

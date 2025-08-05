@@ -4,17 +4,44 @@
     src: url('../assets/fonts/Share_Tech_Mono/ShareTechMono-Regular.ttf');
 }
 
+@font-face {
+    font-family: 'IBM';
+    src: url('../assets/fonts/IBM_Plex_Sans/IBMPlexSans-Italic-VariableFont_wdth,wght.ttf');
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('../assets/fonts/Lato/Lato-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../assets/fonts/Poppins/Poppins-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'RedHat';
+    src: url('../assets/fonts/Red_Hat_Mono/RedHatMono-VariableFont_wght.ttf');
+}
+
+
 
 :root{
 
-    /* input */
+    /* input-field */
     --input-field-bg-color: #012326;
     --input-field-text-color: #cccccc;
+    --input-field-icon-color: #6b7281;
     --input-field-label-color: #dddddd;
+    --input-field-placeholder-color: #6b7281;
     --input-field-border-color-default: #025373;
-    --input-field-border-color-active: #05f2db;
+    --input-field-border-color-focus: #05f2db;
     --input-field-border-color-filled: #00ff00;
     --input-field-border-color-error: #d9048e;
+    --input-field-label-font: 'Poppins', sans-serif;
+    --input-field-placeholder-font: 'IBM', sans-serif;
+    --input-field-input-font: 'Lato', sans-serif;
+    --input-field-error-font: 'RedHat', monospace;
     
 
 

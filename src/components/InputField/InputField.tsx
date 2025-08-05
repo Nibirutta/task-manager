@@ -1,76 +1,55 @@
-import { useState } from "react";
+
 import type { IinputField } from "../../types/IinputField";
 import { ShieldX } from "lucide-react";
+import styles from "./InputField.module.css"; 
+import clsx from "clsx"; 
 
 function InputField(props: IinputField) {
 	const {
 		id,
 		value,
 		label,
-		Icon: Icon,
+		Icon,
 		placeholder,
 		isValid,
 		errorMessage,
 		onChange,
 	} = props;
 
-	const [isFocused, setIsFocused] = useState(false);
-
-	const handleFocus = () => setIsFocused(true);
-	const handleBlur = () => setIsFocused(false);
-
-	let borderColor;
-
-	
-	if (!isValid) {
-		borderColor = "var(--input-field-border-color-error)";
-	} else if (isFocused) {
-		borderColor = "var(--input-field-border-color-active)";
-	} else if (value) {
-		borderColor = "var(--input-field-border-color-filled)";
-	} else {
-		borderColor = "var(--input-field-border-color-default)";
-	}
-
 	return (
-		<div className="flex gap-3 w-full p-2.5 border border-amber-400 rounded-lg relative" >
+		<div  className="flex flex-col justify-evenly gap-1 w-full p-2.5 rounded-lg relative" >
 			<label
 				htmlFor={id}
-				className=" bg-[var(--input-field-bg-color)] text-sm text-[var(--input-field-label-color)] absolute  left-2"
+				className={styles.label}
 			>
 				{label}
 			</label>
 
 			<div
-				className="flex bg-[var(--input-field-bg-color)] w-full rounded-lg border-2 p-2 transition-colors duration-300"
-				style={{
-					borderColor: borderColor,
-					boxShadow: `0 0 4px ${borderColor}`,
-				}}
+				className={clsx(
+					styles.inputContainer,
+					!isValid ? styles.error : value ? styles.filled : styles.default
+				)}
 			>
 				{Icon && (
-					<Icon
-						className="text-[var(--input-field-label-color)]"
-						size={20}
-					/>
+					<Icon className={styles.icon} size={18} />
 				)}
-				|
+				
 				<input
 					id={id}
 					type="text"
-					className=" text-[var(--input-field-text-color)] outline-none w-full text-lg font-normal placeholder:font-light placeholder:text-[var(--input-field-label-color)] placeholder:text-sm"
+					className={styles.input}
 					placeholder={placeholder}
 					value={value}
 					onChange={onChange}
-					onBlur={handleBlur}
-					onFocus={handleFocus}
 				/>
 			</div>
 
 			{!isValid && errorMessage && (
-				<span className="text-red-500 flex items-center gap-1 text-xs mt-1">
+				
+				<span className="text-red-500 flex ml-8 items-center gap-1 text-xs">
 					<ShieldX size={16} />
-					{errorMessage}
+					<span className={styles.errorMessage}> {errorMessage}</span>
 				</span>
 			)}
 		</div>

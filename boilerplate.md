@@ -53,3 +53,7 @@ const root = document.getElementById("root");
 ReactDOM.createRoot(root).render(
   <!-- <RouterProvider router={router} /> -->
 );
+
+## no HTML
+
+<!-- <script src="https://cdn.counter.dev/script.js" data-id="33f78ff6-536a-45bc-92b9-1b262ec69e8d" data-utcoffset="-3"></script> -->

@@ -52,6 +52,8 @@ a, button{
 
 :root{
     box-sizing: border-box;
+    font-size: 62.5%;
+
     /* media queries  */
     --small-mobile: 320px;
     --mobile: 480px;
