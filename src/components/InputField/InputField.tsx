@@ -7,13 +7,11 @@ import clsx from "clsx";
 function InputField(props: IinputField) {
 	const {
 		id,
-		value,
 		label,
 		Icon,
 		placeholder,
 		isValid,
 		errorMessage,
-		onChange,
 		type = 'text', // Define 'text' como padrão se nenhum tipo for passado
 		...rest // Captura todas as outras props de input
 	} = props;
@@ -30,7 +28,7 @@ function InputField(props: IinputField) {
 			<div
 				className={clsx(
 					styles.inputContainer,
-					!isValid ? styles.error : value ? styles.filled : styles.default
+					!isValid && styles.error
 				)}
 			>
 				{Icon && (
@@ -42,8 +40,6 @@ function InputField(props: IinputField) {
 					type={type}
 					className={styles.input}
 					placeholder={placeholder}
-					value={value}
-					onChange={onChange}
 					aria-invalid={!isValid}
 					aria-describedby={!isValid ? errorId : undefined}
 					{...rest} // Passa todas as props restantes (name, disabled, etc.)

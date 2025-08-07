@@ -17,30 +17,22 @@
   background-color: var(--input-field-bg-color);
   width: 100%;
   border-radius: 1rem; 
-  border-width: 2px;
-  border-style: solid;
+  border: 1px solid var(--input-field-border-color-default);
+  box-shadow: 0 0 4px var(--input-field-border-color-default);
   padding: 0.5rem; 
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-
-.default {
-  border-color: var(--input-field-border-color-default); 
-  box-shadow: 0 0 4px var(--input-field-border-color-default);
-}
-
-/* classe para quando o campo está preenchido mas não focado */
-.filled {
-  border-color: var(--input-field-border-color-filled); 
+/* quando o input tem valor (o placeholder não está sendo mostrado) E não está focado */
+.inputContainer:has(input:not(:placeholder-shown)):not(:focus-within) {
+  border-color: var(--input-field-border-color-filled);
   box-shadow: 0 0 4px var(--input-field-border-color-filled);
 }
-
 
 .inputContainer:focus-within {
   border-color: var(--input-field-border-color-focus);
   box-shadow: 0 0 4px var(--input-field-border-color-focus);
 }
-
 
 .error,
 .error:focus-within {
