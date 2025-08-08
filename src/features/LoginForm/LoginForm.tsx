@@ -1,3 +1,4 @@
+import { useId } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -5,8 +6,8 @@ import { Lock, Send, CircleUser } from "lucide-react";
 import style from "./LoginForm.module.css";
 import InputField from "../../components/InputField/InputField";
 import SubmitBtn from "../../components/SubmitBtn/SubmitBtn";
-import idGenerator from "../../utils/idGenerator";
-import sendLogin from "../../api/taskAPI/login";
+import useAuth from "../../hooks/useAuth";
+
 
 const loginSchema = z.object({
 	username: z
@@ -32,25 +33,38 @@ function LoginForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, isValid: isFormValid },
+    setError,
+    formState: { errors, isSubmitting, isValid },
   } = useForm<LoginFormInputs>({
     resolver: zodResolver(loginSchema),
     mode: "onTouched",
   });
 
-  const onSubmit = async (data: LoginFormInputs) => {
-    const token = await sendLogin(data);
-    console.log(token);
+  const { login } = useAuth();
+  const usernameId = useId();
+  const passwordId = useId();
 
-    /* criar uma função que reseta o form */
+  const onSubmit = async (data: LoginFormInputs) => {
+    try {
+      await login(data);
+      // todo redirecionamento pro dashboard
+    } catch (error) {
+      console.error(error);
+      setError("root", {
+        type: "manual",
+        message: "Ocorreu um erro. Tente novamente.",
+      });
+    }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
       <h2 className={style.title}>Login</h2>
 
+      {errors.root && <p className={style.formError}>{errors.root.message}</p>}
+
       <InputField
-        id={idGenerator()}
+        id={usernameId}
         label="Username"
         placeholder="Seu nome de usuário"
         Icon={CircleUser}
@@ -60,7 +74,7 @@ function LoginForm() {
       />
 
       <InputField
-        id={idGenerator()}
+        id={passwordId}
         label="Senha"
         type="password"
         placeholder="••••••••"
@@ -74,7 +88,7 @@ function LoginForm() {
         title="Entrar"
         icon={Send}
         isLoading={isSubmitting}
-        disabled={!isFormValid || isSubmitting}
+        disabled={!isValid || isSubmitting}
       />
 
       <div className={style.redirect}>
