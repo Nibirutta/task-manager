@@ -24,6 +24,15 @@
     src: url('../assets/fonts/Red_Hat_Mono/RedHatMono-VariableFont_wght.ttf');
 }
 
+@font-face {
+    font-family: 'Orbitron';
+    src: url('../assets/fonts/Orbitron/Orbitron-VariableFont_wght.ttf');
+}
+
+@font-face {
+    font-family: 'Electrolize';
+    src: url('../assets/fonts/Electrolize/Electrolize-Regular.ttf');
+}
 
 
 :root{
@@ -43,6 +52,24 @@
     --input-field-input-font: 'Lato', sans-serif;
     --input-field-error-font: 'RedHat', monospace;
     
+    /* submit button */
+
+    --sb-bg-color: ;
+    --sb-border-color: ;
+    --sb-hover-bg-color: ;
+    --sb-hover-border-color: ;
+    --sb-text-color: ;
+    --sb-text-font: 'Electrolize', sans-serif ;
+
+    /* Login Form */
+    --login-bg-color:#025373 ;
+    --border-login-color-one: var(--logo1);
+    --border-login-color-two: var(--logo2);
+    --login-title-font: 'Orbitron', sans-serif;
+    --login-title-color: ;
+    --redirect-color: ;
+    --redirect-hover: ;
+    --error-msg-color: ;
 
 
     /* Footer */

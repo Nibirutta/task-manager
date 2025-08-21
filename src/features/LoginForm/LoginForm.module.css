@@ -1,12 +1,73 @@
+@import '../../index.css';
+
+/* Registra a propriedade customizada para permitir animação suave do ângulo */
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
 .form{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 0.8rem;
+    gap: 1rem;
+    width: 450px;
+    height: 500px;
+    box-sizing: border-box;
+    background-color: var(--login-bg-color);
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.75);
 
+    /* Animação de borda com rotação  */
+    --angle: 0deg; /* Valor inicial do ângulo */
+    border: 5px solid transparent;
+    background-origin: border-box;
+    background-clip: border-box;
+    background-image: 
+        linear-gradient(var(--login-bg-color), var(--login-bg-color)), 
+        conic-gradient(from var(--angle), var(--border-login-color-one), var(--border-login-color-two), var(--border-login-color-one));
+    animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+    to {
+        --angle: 360deg;
+    }
 }
 
 .title{
     text-align: center;
-    
+    font: 800 1.5rem var(--login-title-font);
+    color: var(--login-title-color);
+    margin-bottom: 2rem;
+}
+
+
+.formError{
+    font: 400 0.8rem var(--input-field-error-font);
+    color: var(--error-msg-color);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.redirect{
+    display: flex;
+    gap: 2rem;
+
+    margin-top: 2rem;
+}
+
+.redirect a span{
+    color: var(--redirect-color);
+    text-decoration: none;
+    font: 500 0.7rem var(--input-field-placeholder-font);
+    transition: all 300ms ease;
+    cursor: pointer;
+
+    &:hover, &:focus{
+        color: var(--redirect-hover);
+    }
+
 }

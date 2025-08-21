@@ -1,8 +1,9 @@
 
 import type { IinputField } from "../../types/IinputField";
-import { ShieldX } from "lucide-react";
+import { Eye, EyeOff, ShieldX } from "lucide-react";
 import styles from "./InputField.module.css"; 
 import clsx from "clsx"; 
+import { useState } from "react";
 
 function InputField(props: IinputField) {
 	const {
@@ -12,10 +13,22 @@ function InputField(props: IinputField) {
 		placeholder,
 		isValid,
 		errorMessage,
-		type = 'text', // Define 'text' como padrão se nenhum tipo for passado
+		type = 'text',
 		...rest // Captura todas as outras props de input
 	} = props;
+
 	const errorId = `error-${id}`;
+
+	const [showPassword, setShowPassword] = useState(false);
+	const isPasswordInput = type === 'password';
+
+	let currentType = type;
+	if (!showPassword){
+		currentType = 'password';
+	} else {
+		currentType = 'text';
+	}
+
 	return (
 		<div  className="flex flex-col justify-evenly gap-1 w-full p-2.5 rounded-lg relative" >
 			<label
@@ -37,13 +50,23 @@ function InputField(props: IinputField) {
 				
 				<input
 					id={id}
-					type={type}
+					type={currentType}
 					className={styles.input}
 					placeholder={placeholder}
 					aria-invalid={!isValid}
 					aria-describedby={!isValid ? errorId : undefined}
 					{...rest} // Passa todas as props restantes (name, disabled, etc.)
 				/>
+
+				{isPasswordInput && (
+					<button
+						type="button"
+						onClick={() => setShowPassword(!showPassword)}
+						className={styles.passwordToggle}
+					>
+						{showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
+					</button>
+				)}
 			</div>
 
 			{!isValid && errorMessage && (

@@ -93,7 +93,7 @@ function LoginForm() {
 
       <div className={style.redirect}>
         <a href="http://" target="_blank" rel="noopener noreferrer">
-          <span>Não tem uma conta</span>
+          <span>Não tenho uma conta</span>
         </a>
 
         <a href="http://" target="_blank" rel="noopener noreferrer">
