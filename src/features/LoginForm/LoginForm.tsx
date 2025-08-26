@@ -7,6 +7,10 @@ import style from "./LoginForm.module.css";
 import InputField from "../../components/InputField/InputField";
 import SubmitBtn from "../../components/SubmitBtn/SubmitBtn";
 import useAuth from "../../hooks/useAuth";
+import type { ILoginData } from "../../types/TaskApiTypes";
+
+
+
 
 
 const loginSchema = z.object({
@@ -17,7 +21,7 @@ const loginSchema = z.object({
 		.trim()
 		.min(3, "O nome de usuário deve ter no mínimo 3 caracteres.")
 		.max(30, "O nome de usuário não pode ter mais de 30 caracteres.")
-		.regex(/^[a-zA-Z0-9_]+$/, "Use apenas letras, números e underscore (_)."),
+		.regex(/^[a-zA-Z0-9_]+$/, "Use apenas letras, números e underline (_)."),
 	password: z
 		.string({ error: "A senha é obrigatória." })
 		.min(8, "A senha deve ter no mínimo 8 caracteres.")
@@ -28,6 +32,7 @@ const loginSchema = z.object({
 });
 
 type LoginFormInputs = z.infer<typeof loginSchema>;
+
 
 function LoginForm() {
   const {
@@ -44,15 +49,14 @@ function LoginForm() {
   const usernameId = useId();
   const passwordId = useId();
 
-  const onSubmit = async (data: LoginFormInputs) => {
+  const onSubmit = async (data: ILoginData) => {
     try {
-      await login(data);
-      // todo redirecionamento pro dashboard
+      await login(data)
     } catch (error) {
       console.error(error);
       setError("root", {
         type: "manual",
-        message: "Ocorreu um erro. Tente novamente.",
+        message: "Ocorreu um erro no login. Tente novamente.",
       });
     }
   };

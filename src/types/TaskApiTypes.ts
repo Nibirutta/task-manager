@@ -4,7 +4,8 @@ interface ILoginData {
 }
 
 interface ILoginResponse {
-	token: string;
+	message: string;
+	acessToken: string;
 }
 
 

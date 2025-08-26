@@ -3,7 +3,7 @@ import url from "../../utils/urlApi";
 
 const endpoint = `${url}/user/login`;
 
-const sendLogin = async (loginData: ILoginData): Promise<ILoginResponse> => {
+const requestLogin = async (loginData: ILoginData): Promise<string> => {
 	const requestOptions: RequestInit = {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
@@ -17,19 +17,21 @@ const sendLogin = async (loginData: ILoginData): Promise<ILoginResponse> => {
 			const errorData: IApiError = await response.json();
 			const error = new Error(
 				errorData.message || "Falha no login. Verifique suas credenciais."
-                + errorData.code || "403"
+                + errorData.code || "Credencial inválida"
 			);
 
 			throw error;
 		}
 
-		/* se for bem sucedida a resposta vai ser o token de autorização */
+		/* se for bem sucedida a resposta vai ter o token de autorização */
 		const data: ILoginResponse = await response.json();
-		return data;
+		console.log(data.message)
+
+		return data.acessToken
 	} catch (error) {
 		console.error("Houve um erro ao enviar os dados de login:", error);
 		throw error;
 	}
 };
 
-export default sendLogin;
+export default requestLogin;
