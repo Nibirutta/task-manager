@@ -1,7 +1,7 @@
 import { createContext, useState, type ReactNode } from 'react';
-import sendLoginApi from '../api/taskAPI/requestLogin';
 import type { ILoginData } from '../types/TaskApiTypes';
 import type { IAuthContext } from '../types/IAuthContext';
+import { requestLogin } from '../api/Task API/services/authService';
 
 
 
@@ -24,11 +24,12 @@ function AuthProvider({ children }: { children: ReactNode }) {
 	const login = async (data: ILoginData) => {
 		setIsLoading(true);
 		try {
-			const currentToken = await sendLoginApi(data);
+			const response = await requestLogin(data);
 
 
+			
 			/* armazenando o access token em memória */
-			setAccessToken(currentToken)
+			setAccessToken(response.acessToken)
 			setUser(data.username);
 			// O redirecionamento para o dashboard deve acontecer no componente LoginForm
 			// após a chamada bem-sucedida a esta função `login`.
