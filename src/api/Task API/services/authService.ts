@@ -1,6 +1,6 @@
 
-import type { ILoginData, ILoginResponse } from '../../../types/TaskApiTypes';
-import { loginRoute } from '../../../utils/urlApi';
+import type { ILoginData, ILoginResponse, IRefreshResponse } from '../../../types/TaskApiTypes';
+import { loginRoute, logoutRoute, refreshRoute } from '../../../utils/urlApi';
 import { apiFetch } from '../client/apiClient';
 
 const requestLogin = (loginData: ILoginData): Promise<ILoginResponse> => {
@@ -12,4 +12,21 @@ const requestLogin = (loginData: ILoginData): Promise<ILoginResponse> => {
 	return response
 };
 
-export { requestLogin }
+const requestLogout = (): Promise<void> => {
+	const response: Promise<void> = apiFetch(logoutRoute.route, {
+		method: logoutRoute.method,
+	});
+	
+	return response
+}
+
+const requestRefresh = (): Promise<IRefreshResponse> => {
+	const response: Promise<IRefreshResponse> = apiFetch(refreshRoute.route, {
+		method: refreshRoute.method,
+	});
+	
+	return response
+}
+
+
+export { requestLogin, requestLogout, requestRefresh }

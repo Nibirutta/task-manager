@@ -5,8 +5,13 @@ interface ILoginData {
 
 interface ILoginResponse {
 	message: string;
-	acessToken: string;
+	accessToken: string;
 }
+
+interface IRefreshResponse {
+	accessToken: string;
+}
+
 
 
 interface IApiError {
@@ -14,4 +19,4 @@ interface IApiError {
 	message: string;
 }
 
-export type { ILoginResponse, ILoginData, IApiError }
+export type { ILoginResponse, ILoginData, IRefreshResponse, IApiError }

@@ -1,7 +1,7 @@
-import { createContext, useState, type ReactNode } from 'react';
+import { createContext, useState, type ReactNode, useEffect } from 'react';
 import type { ILoginData } from '../types/TaskApiTypes';
 import type { IAuthContext } from '../types/IAuthContext';
-import { requestLogin } from '../api/Task API/services/authService';
+import { requestLogin, requestRefresh, requestLogout } from '../api/Task API/services/authService';
 
 
 
@@ -9,27 +9,43 @@ import { requestLogin } from '../api/Task API/services/authService';
 // está sendo usado dentro do `AuthProvider`.
 const AuthContext = createContext<IAuthContext | undefined>(undefined);
 
-// --- Passo 3: Criando o Provedor (Provider) ---
+//  Criando o Provedor (Provider) ---
 
 // Este componente vai gerenciar todo o estado de autenticação.
 function AuthProvider({ children }: { children: ReactNode }) {
 	const [user, setUser] = useState<string | null>(null);
 	const [accessToken, setAccessToken] = useState<string | null>(null);
-	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [isLoading, setIsLoading] = useState<boolean>(true); 
 
-	// No futuro, você pode verificar aqui se um token já existe
-	// ao carregar a página para manter o usuário logado.
-	// useEffect(() => { ... }, []);
+	// Ao carregar a aplicação, tenta renovar a sessão usando o refresh token (cookie HttpOnly)
+	useEffect(() => {
+		const checkAuthStatus = async () => {
+			try {
+				const response = await requestRefresh(); // Tenta obter um novo access token
+				setAccessToken(response.accessToken);
+				// A API de refresh precisa retornar os dados do usuário para popularmos o estado.
+			} catch (error) {
+				// Se falhar, significa que não há sessão válida. Não fazemos nada.
+				console.log('Nenhuma sessão ativa encontrada.', error);
+				setUser(null);
+				setAccessToken(null);
+			} finally {
+				// Finaliza o carregamento inicial, permitindo a renderização
+				setIsLoading(false);
+			}
+		};
+
+		checkAuthStatus();
+	}, []);
+
 
 	const login = async (data: ILoginData) => {
 		setIsLoading(true);
 		try {
 			const response = await requestLogin(data);
-
-
 			
 			/* armazenando o access token em memória */
-			setAccessToken(response.acessToken)
+			setAccessToken(response.accessToken)
 			setUser(data.username);
 			// O redirecionamento para o dashboard deve acontecer no componente LoginForm
 			// após a chamada bem-sucedida a esta função `login`.
@@ -48,16 +64,16 @@ function AuthProvider({ children }: { children: ReactNode }) {
 		}
 	};
 
-	const logout = () => {
-		// Aqui você chamaria a API para invalidar o token/sessão no backend.
-		// await api.logout();
-
-		// Limpa o estado localmente.
-		setUser(null);
-		setAccessToken(null);
-
-
-		// O redirecionamento para a página de login acontece no componente que chama o logout.
+	const logout = async () => {
+		try {
+			await requestLogout(); // Chama a API para invalidar a sessão no backend e limpar o cookie
+		} catch (error) {
+			console.error('Erro ao fazer logout no servidor:', error);
+		} finally {
+			// Limpa o estado localmente, independentemente do sucesso da chamada à API.
+			setUser(null);
+			setAccessToken(null);
+		}
 	};
 
 	// O objeto `value` contém tudo que será disponibilizado para os componentes filhos.
@@ -74,6 +90,3 @@ function AuthProvider({ children }: { children: ReactNode }) {
 }
 
 export  {AuthProvider, AuthContext};
-
-
-

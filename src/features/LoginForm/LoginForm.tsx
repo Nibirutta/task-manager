@@ -7,9 +7,7 @@ import style from "./LoginForm.module.css";
 import InputField from "../../components/InputField/InputField";
 import SubmitBtn from "../../components/SubmitBtn/SubmitBtn";
 import useAuth from "../../hooks/useAuth";
-import type { ILoginData } from "../../types/TaskApiTypes";
-
-
+import { Link } from "react-router";
 
 
 
@@ -49,9 +47,9 @@ function LoginForm() {
   const usernameId = useId();
   const passwordId = useId();
 
-  const onSubmit = async (data: ILoginData) => {
+  const onSubmit = async (data: LoginFormInputs) => {
     try {
-      await login(data)
+      await login(data);
     } catch (error) {
       console.error(error);
       setError("root", {
@@ -96,13 +94,13 @@ function LoginForm() {
       />
 
       <div className={style.redirect}>
-        <a href="http://" target="_blank" rel="noopener noreferrer">
+        <Link to="/register">
           <span>Não tenho uma conta</span>
-        </a>
+        </Link>
 
-        <a href="http://" target="_blank" rel="noopener noreferrer">
+        <Link to="/forgot-password">
           <span>Esqueceu sua senha?</span>
-        </a>
+        </Link>
       </div>
     </form>
   );
