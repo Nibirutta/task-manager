@@ -48,6 +48,7 @@ function LoginForm() {
   const passwordId = useId();
 
   const onSubmit = async (data: LoginFormInputs) => {
+    
     try {
       await login(data);
     } catch (error) {
