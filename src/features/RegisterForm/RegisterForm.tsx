@@ -6,6 +6,7 @@ import InputField from "../../components/InputField/InputField";
 import SubmitBtn from "../../components/SubmitBtn/SubmitBtn";
 import { useId } from "react";
 import { AtSign, CircleCheck, IdCard, Shield, ShieldCheck, Tag, UserRound } from "lucide-react";
+import requestRegister from "../../api/Task API/services/registerService";
 
 const registerSchema = z.object({
   username: z
@@ -79,15 +80,16 @@ function Registerform() {
 
     const onSubmit = async (data: RegisterformInputs) => {
         try {
-            console.log(data)
+            await requestRegister(data)
+            /* todo: mostrar um toast de mensagem de sucesso */
+
+            /* todo navigate('/login') */
         } catch (error) {
-            console.error(error)
             setError("root", {
-                type: "manual",
-                message: "Ocorreu um erro inesperado. Por favor, tente novamente mais tarde.",
-            });      
-        }
-            
+               type: "server",
+               message: error instanceof Error ? error.message : "Ocorreu um erro inesperado. Por favor, tente novamente."
+            })
+        };      
     }
 
     return(
