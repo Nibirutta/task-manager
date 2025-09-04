@@ -1,4 +1,4 @@
-const baseURL = 'https://nibirutta-task-api.up.railway.app/'
+const baseURL = 'https://nibirutta-task-api.up.railway.app'
 
 const registerRoute = {
     method: 'POST',

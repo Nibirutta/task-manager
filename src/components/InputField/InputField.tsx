@@ -22,11 +22,9 @@ function InputField(props: IinputField) {
 	const [showPassword, setShowPassword] = useState(false);
 	const isPasswordInput = type === 'password';
 
-	let currentType = type;
-	if (!showPassword){
-		currentType = 'password';
-	} else {
-		currentType = 'text';
+	let currentType = type; // Começa com o tipo padrão passado nas props
+	if (isPasswordInput) { // Apenas modifica o tipo se for um input de senha
+		currentType = showPassword ? 'text' : 'password';
 	}
 
 	return (

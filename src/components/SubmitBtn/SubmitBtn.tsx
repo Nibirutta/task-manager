@@ -28,4 +28,4 @@ function SubmitBtn(props: IsubmitBtn) {
 	);
 }
 
-export default SubmitBtn;
+export default SubmitBtn; 

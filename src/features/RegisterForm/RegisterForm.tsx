@@ -34,9 +34,9 @@ const registerSchema = z.object({
     .string()
     .trim()
     .toLowerCase()
-    .min(1, "O último nome deve ter no mínimo 1 caractere.")
     .max(30, "O último nome não pode ter mais de 30 caracteres.")
-    .regex(/^[a-zA-Z]+$/, "Use apenas letras.").optional(),
+    // *como o lastname é opicional, ele então deve aceitar string vazia, por isso não tem min, e tem * no regex
+    .regex(/^[a-zA-Z]*$/, "Use apenas letras.").optional(),
 
   password: z
     .string({ error: "A senha é obrigatória." })
@@ -67,7 +67,15 @@ function Registerform() {
         formState: { errors, isSubmitting, isValid },
       } = useForm<RegisterformInputs>({
         resolver: zodResolver(registerSchema),
-        mode: "onSubmit",
+        mode: "onTouched",
+        defaultValues: {
+          username: "",
+          email: "",
+          firstname: "",
+          lastname: "",
+          password: "",
+          confirmPassword: "",
+        },
       });
 
     const firstNameID = useId();
@@ -97,7 +105,7 @@ function Registerform() {
 
             <h2 className={style.title}>Registre-se</h2>
             
-            {errors.root && <p className={style.error}>{errors.root.message}</p>}
+            
 
 
             <InputField 
@@ -173,6 +181,8 @@ function Registerform() {
               disabled={!isValid || isSubmitting}
               isLoading={isSubmitting}
             />
+
+            {errors.root && <p className={style.error}>{errors.root.message}</p>}
 
         </form>
     )
