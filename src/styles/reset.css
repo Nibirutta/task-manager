@@ -26,7 +26,7 @@ footer, header, hgroup, menu, nav, section {
  display: block;
 }
 body {
- line-height: 1;
+    line-height: 1;
     box-sizing: border-box;
 }
 ol, ul {
@@ -68,5 +68,5 @@ body {
   display: flex;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  min-height: 100dvh;
 }

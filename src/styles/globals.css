@@ -39,9 +39,9 @@
 
     /* input-field */
     --input-field-bg-color: #012326;
-    --input-field-text-color: #cccccc;
+    --input-field-text-color: #424769;
     --input-field-icon-color: #6b7281;
-    --input-field-label-color: #dddddd;
+    --input-field-label-color: #f9b17a ;
     --input-field-placeholder-color: #6b7281;
     --input-field-border-color-default: #025373;
     --input-field-border-color-focus: #05f2db;
@@ -54,22 +54,28 @@
     
     /* submit button */
 
-    --sb-bg-color: ;
-    --sb-border-color: ;
-    --sb-hover-bg-color: ;
-    --sb-hover-border-color: ;
-    --sb-text-color: ;
+    --sb-bg-color: #424769 ;
+    --sb-border-color: #f9b17a;
+    --sb-hover-bg-color: #f9b17a ;
+    --sb-hover-border-color: #424769 ;
+    --sb-text-color: #83819f;
     --sb-text-font: 'Electrolize', sans-serif ;
 
     /* Login Form */
     --login-bg-color:#025373 ;
-    --border-login-color-one: var(--logo1);
-    --border-login-color-two: var(--logo2);
+    --login-border-color: #05f2c7;
     --login-title-font: 'Orbitron', sans-serif;
-    --login-title-color: ;
-    --redirect-color: ;
-    --redirect-hover: ;
-    --error-msg-color: ;
+    --login-title-color: #5cacab ;
+    --redirect-color: #b4f3fc;
+    --redirect-hover: #0073a5 ;
+    --error-msg-color: #d91604 ;
+
+    /* Register form */
+    --register-bg-color: #2d3250;
+    --register-border-color: #f9b17a;
+    --register-title-font: 'Orbitron', sans-serif;
+    --register-title-color: #676f9d;  
+    
 
 
     /* Footer */

@@ -1,11 +1,6 @@
 @import '../../index.css';
 
-/* Registra a propriedade customizada para permitir animação suave do ângulo */
-@property --angle {
-  syntax: '<angle>';
-  initial-value: 0deg;
-  inherits: false;
-}
+
 .form{
     display: flex;
     flex-direction: column;
@@ -19,23 +14,15 @@
     background-color: var(--login-bg-color);
     border-radius: 1rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.75);
-
-    /* Animação de borda com rotação  */
-    --angle: 0deg; /* Valor inicial do ângulo */
-    border: 5px solid transparent;
-    background-origin: border-box;
-    background-clip: border-box;
-    background-image: 
-        linear-gradient(var(--login-bg-color), var(--login-bg-color)), 
-        conic-gradient(from var(--angle), var(--border-login-color-one), var(--border-login-color-two), var(--border-login-color-one));
-    animation: rotate 10s linear infinite;
-}
-
-@keyframes rotate {
-    to {
-        --angle: 360deg;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid var(--login-border-color);
+    &:hover, &:focus-within {
+        transform: translateY(-5px);
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
     }
 }
+
 
 .title{
     text-align: center;
