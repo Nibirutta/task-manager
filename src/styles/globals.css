@@ -77,15 +77,16 @@
     --register-title-color: #676f9d;  
     
 
+    /* Develpoer Card */
+    --dev-card-bg-color: #001c1c;
+    --dev-card-avatar-border-color: #008e8e;
+    --dev-card-title-font: "Tech", monospace;
+    --dev-card-title-color: #00e3e3;
 
     /* Footer */
-    --logo1: #FF00FF;
-    --logo2: #00FFFF;
     --logo3: #0600ab;
     --text-color-footer: #bacfdd;
-    --tech: "Tech", monospace;
-    --logo-gradient: linear-gradient(180deg,var(--logo1) 30%,  var(--logo2) 70%);
-    --logo-shadow: 0px 0px 10px var(--logo3);
+  
 }
 
 
@@ -254,3 +255,4 @@
 html {
   scroll-behavior: smooth;
 }
+

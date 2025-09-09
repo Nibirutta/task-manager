@@ -2,11 +2,43 @@
 @import './styles/globals.css';
 @import 'tailwindcss';
 
+@import 'tw-animate-css';
 
 
 
+@keyframes float {
+0% {
+transform: translateY(0px);
+}
+50% {
+transform: translateY(-10px);
+}
+100% {
+transform: translateY(0px);
+}
+}
 
+:root{
+    box-sizing: border-box;
+    font-size: 62.5%;
 
+    /* media queries  */
+    --small-mobile: 320px;
+    --mobile: 480px;
+    --small-tablet: 600px;
+    --tablet: 768px;
+    --large-tablet: 964px;
+    --laptop: 1024px;
+    --desktop: 1280px;
+    --large-desktop: 1440px;
+}
+
+body {
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100dvh;
+}
 
 
 
