@@ -11,10 +11,11 @@ interface IProps {
   portfolioImage: string;
   color1: string;
   color2: string;
+  color3: string;
 }
 
 function DevCard (props: IProps) {
-  const { name, avatar, linkedin, github, portfolio, portfolioImage, color1, color2 } = props;
+  const { name, avatar, linkedin, github, portfolio, portfolioImage, color1, color2, color3 } = props;
 
   return (
     <div 
@@ -22,6 +23,7 @@ function DevCard (props: IProps) {
       style={{
         '--color-1': color1,
         '--color-2': color2,
+        '--color-3': color3,
       } as CSSProperties}
     >
 
