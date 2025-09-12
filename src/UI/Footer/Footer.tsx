@@ -1,7 +1,7 @@
 
 import style from './Footer.module.css'
-import ReactIcon from '../../assets/svg/react.svg';
-import NodeIcon from '../../assets/svg/nodedotjs.svg';
+import ReactIcon from '../../assets/svg/react.svg?react';
+import NodeIcon from '../../assets/svg/nodedotjs.svg?react';
 import DevCard from '../../components/DevCard/DevCard';
 import idGenerator from '../../utils/idGenerator';
 
@@ -9,25 +9,28 @@ import idGenerator from '../../utils/idGenerator';
 function Footer() {
 
   return (
-    // Usar 'mt-auto' em um layout flexível (flex-col) no seu App.tsx
-    // é a forma mais robusta de manter o footer no final da página.
-    <footer className="bg-gray-900 text-gray-300 p-8 w-full mt-auto">
-      <div className={style.content}>
-        <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-        
-          <div>
-            <h3 className="font-bold text-white text-xl mb-4">Navegação</h3>
-            <ul className="space-y-2">
-              <li><a href="/" className="hover:text-white hover:underline transition-colors">Home</a></li>
-              <li><a href="/login" className="hover:text-white hover:underline transition-colors">Login</a></li>
-              <li><a href="/register" className="hover:text-white hover:underline transition-colors">Registrar</a></li>
-            </ul>
-          </div>
-  
-          <div>
-            <h3 className="font-bold text-white text-xl mb-4">O Projeto</h3>
-            <ul className="space-y-2">
 
+    <footer className={style.footer}>
+      <div className={style.content}>
+        <div className={style.upcontainer}>
+        
+          <div className={style.navegation}>
+            <h3>Navegação</h3>
+            
+            <nav>
+              <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/login">Login</a></li>
+              <li><a href="/register">Registrar</a></li>
+              </ul>
+            </nav> 
+          </div>
+
+          <hr/>
+
+          <div className={style.repositories}>
+            <h3>O Projeto</h3>
+            <ul>
               <li>
                 <a href="https://github.com/Nibirutta/task-manager" target="_blank" rel="noopener noreferrer" className={style.react}>
                   <ReactIcon/> 
@@ -46,10 +49,11 @@ function Footer() {
 
           </div>
   
-  
-          <div>
-            <h3 className="font-bold text-white text-xl mb-4">Desenvolvedores</h3>
-            <div className="flex flex-col gap-6 items-center md:items-start">
+          <hr/>
+
+          <div className={style.developers}>
+            <h3 >Desenvolvedores</h3>
+            <div className={style.dev}>
               <DevCard
                 key={idGenerator()}
                 avatar='/src/assets/imgs/avatar/20250123_165309.jpg'
@@ -65,7 +69,7 @@ function Footer() {
 
               <DevCard
                 key={idGenerator()}
-                avatar='/src/assets/imgs/avatar/'
+                avatar='/src/assets/imgs/avatar/FotoPerfilLucas.jpg'
                 name='Lucas Silva'
                 github='https://github.com/Nibirutta'
                 linkedin='https://www.linkedin.com/in/lucasaugustodev/'
@@ -79,9 +83,9 @@ function Footer() {
           </div>
         </div>
   
-        <hr className="my-8 border-gray-700" />
+        <hr  />
   
-        <div className="text-center text-gray-500 text-sm">
+        <div className={style.copyright}>
           <p>&copy; {new Date().getFullYear()} Task Manager. Todos os direitos reservados.</p>
         </div>
 
