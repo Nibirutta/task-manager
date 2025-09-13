@@ -3,7 +3,7 @@ import style from './Footer.module.css'
 import ReactIcon from '../../assets/svg/react.svg?react';
 import NodeIcon from '../../assets/svg/nodedotjs.svg?react';
 import DevCard from '../../components/DevCard/DevCard';
-import idGenerator from '../../utils/idGenerator';
+
 
 
 function Footer() {
@@ -26,10 +26,10 @@ function Footer() {
             </nav> 
           </div>
 
-          <hr/>
+
 
           <div className={style.repositories}>
-            <h3>O Projeto</h3>
+            <h3>Projeto</h3>
             <ul>
               <li>
                 <a href="https://github.com/Nibirutta/task-manager" target="_blank" rel="noopener noreferrer" className={style.react}>
@@ -49,13 +49,13 @@ function Footer() {
 
           </div>
   
-          <hr/>
+
 
           <div className={style.developers}>
             <h3 >Desenvolvedores</h3>
             <div className={style.dev}>
               <DevCard
-                key={idGenerator()}
+                key="dev-card-lucino"
                 avatar='/src/assets/imgs/avatar/20250123_165309.jpg'
                 name='Lucino Campos'
                 portfolioImage='/src/assets/favicon/ALucin4do-logo.png'
@@ -68,16 +68,16 @@ function Footer() {
               />
 
               <DevCard
-                key={idGenerator()}
+                key="dev-card-lucas"
                 avatar='/src/assets/imgs/avatar/FotoPerfilLucas.jpg'
                 name='Lucas Silva'
                 github='https://github.com/Nibirutta'
                 linkedin='https://www.linkedin.com/in/lucasaugustodev/'
-                portfolioImage='' 
+
                 portfolio='https://www.artstation.com/lucasaugust'
-                color1='#05f2db'
-                color2='#00ff00'
-                color3='#d9048e'
+                color1='#D9E1E4'
+                color2='#F0D264'
+                color3='#2A4D8C'
               />
             </div>
           </div>

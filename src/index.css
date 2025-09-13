@@ -34,11 +34,11 @@ transform: translateY(0px);
 }
 
 body {
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100dvh;
 }
+
+
 
 
 

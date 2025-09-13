@@ -6,12 +6,14 @@ function App() {
 
 
   return (
-    <>
+    <div className='app'>
+    <main> 
 
+    </main>
 
-    <Footer />
+    <Footer  />
 
-    </>
+    </div>
   )
 }
 
