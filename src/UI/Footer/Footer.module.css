@@ -12,21 +12,20 @@
   flex-direction: column;
   gap: 2rem;
 }
-hr{
-    width: 100%;
-    border: none;
-    display: inline-block;
-    background-color: var(--footer-line-color);
-    height: 5px;
+hr {
+  width: 100%;
+  border: none;
+  display: inline-block;
+  background-color: var(--footer-line-color);
+  height: 5px;
 }
-
-
 
 .upcontainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  padding: 1rem 0 0 0;
 }
 
 .upcontainer h3 {
@@ -37,22 +36,20 @@ hr{
   align-self: center;
 }
 
-.upcontainer div{
-
+.upcontainer div {
   width: auto;
 }
-
 
 .navegation {
   padding: 1rem;
   display: flex;
-  flex-direction: column ;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   height: 180px;
 }
 
-.navegation nav{
+.navegation nav {
   align-self: flex-start;
 }
 
@@ -69,7 +66,7 @@ hr{
   cursor: pointer;
   position: relative;
   width: 100%;
-        &::after {
+  &::after {
     content: "";
     position: absolute;
     bottom: 0;
@@ -85,43 +82,41 @@ hr{
   &:hover::after {
     transform: scaleX(1);
   }
-
 }
 
-.navegation nav ul li a{
-    font: 500 1.4rem/1 var(--footer-info-font);
-    color: var(--footer-info-color);
-
-    &:hover, &:focus, &:active {
-      color: var(--footer-info-hover);
-    }
-
-
+.navegation nav ul li a {
+  font: 500 1.4rem/1 var(--footer-info-font);
+  color: var(--footer-info-color);
 }
 
-.repositories{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 1rem;
-    height: 180px;
+.navegation nav ul li:hover a,
+.navegation nav ul li:focus-visible a,
+.navegation nav ul li:active a,
+.navegation nav ul li:visited a {
+  color: var(--footer-info-hover);
 }
 
-.repositories ul{ 
- display: flex;
+.repositories {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  height: 180px;
+}
+
+.repositories ul {
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-evenly;
   gap: 1rem;
-
 }
 
-.repositories ul li{
+.repositories ul li {
   padding: 2rem;
   cursor: pointer;
   position: relative;
-
 
   &::after {
     content: "";
@@ -140,33 +135,39 @@ hr{
   }
 }
 
-.repositories ul li a{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
+.repositories ul li a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
 }
-.repositories ul li a span{
-    color: var(--footer-info-color);
-    font: 500 1.4rem/1 var(--footer-info-font);
-
-        &:hover, &:focus, &:active, &:visited {
-      color: var(--footer-info-hover);
-    }
+.repositories ul li a span {
+  color: var(--footer-info-color);
+  font: 500 1.4rem/1 var(--footer-info-font);
 }
 
-.developers{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
+.repositories ul li:hover a span,
+.repositories ul li:focus-visible a span,
+.repositories ul li:active a span,
+.repositories ul li:visited a span {
+  color: var(--footer-info-hover);
 }
 
-.developers .dev{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
+
+.developers {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  justify-content: space-between;
+  height: 180px;
+}
+
+.developers .dev {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 .react {
@@ -183,13 +184,91 @@ hr{
   height: 24px;
 }
 
+.copyright {
+  text-align: center;
+  padding: 1rem;
+  color: var(--footer-title-color);
+  font-family: var(--footer-title-font);
+  font-size: 1.6rem;
+  font-weight: 900;
+}
 
-.copyright{
-    text-align: center;
-    padding: 1rem;
-    color: var(--footer-title-color);
-    font-family: var(--footer-title-font);
-    font-size: 1.6rem;
-    font-weight: 900;
 
+
+@media screen and (max-width: 768px) {
+  .content {
+    padding: 0 1rem;
+  }
+  .upcontainer h3 {
+    font-size: 1.4rem;
+  }
+  .navegation nav ul li a {
+    font-size: 1.2rem;
+  }
+  .repositories ul li a span {
+    font-size: 1.2rem;
+  }
+  .copyright {
+    font-size: 1.4rem;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  
+  .developers {
+    height: 271px;
+  }
+  
+  .navegation{
+    height: 271px;
+  }
+  
+  .repositories{
+    height: 271px;
+  }
+  .developers .dev{
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+@media screen and (max-width: 480px) {
+  
+  .upcontainer{
+display: grid;
+    grid-template-areas: 
+    ' nav repo '
+    ' dev dev'
+    ;
+  }
+  .navegation{
+    grid-area: nav;
+    height: 180px;
+  }
+  .repositories{
+    grid-area: repo;
+    height: auto;
+  }
+  .developers{
+    grid-area: dev;
+    height: auto;
+  }
+
+  .developers .dev{
+    gap: 2rem;
+  }
+
+  
+  .upcontainer h3 {
+    font-size: 1.2rem;
+  }
+  .navegation nav ul li a {
+    font-size: 1rem;
+  }
+  .repositories ul li a span {
+    font-size: 1rem;
+  }
+  .copyright {
+    font-size: 1.2rem;
+  }
 }

@@ -158,3 +158,66 @@
     from { --angle: 0deg; }
     to { --angle: 360deg; }
 }
+
+
+@media screen and (max-width: 1024px) {
+    .avatar img {
+        width: 64px;
+        height: 64px;
+    
+    }
+    .title {
+        font-size: 2rem;
+    }
+    .social a img {
+        width: 1.8rem;
+        height: 1.8rem;
+    }
+    .content {
+        gap: 1rem;
+        grid-template-areas: 
+        'avatar titulo'
+        'social social';
+    }
+}
+@media screen and (max-width: 768px) {
+    .card {
+        max-width: 16rem;
+    }
+    .avatar img {
+        width: 48px;
+        height: 48px;
+    }
+    .title {
+        font-size: 1.4rem;
+    }
+    .social a img {
+        width: 1.6rem;
+        height: 1.6rem;
+    }
+    .content {
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .card {
+        max-width: 30rem;
+    }
+    .avatar img {
+        width: 96px;
+        height: 96px;
+    }
+    .title {
+        font-size: 2.4rem;
+    }
+    .social a img {
+        width: 2rem;
+        height: 2rem;
+    }
+    .content {
+        gap: 1rem;
+        padding: 0.5rem;
+    }
+}
