@@ -97,11 +97,16 @@
     --footer-info-hover: #778da9;
     --footer-line-color: #1b263b;
     
-
-
     --logo3: #0600ab;
     --text-color-footer: #bacfdd;
   
+    /* Navbar Customization */
+    --navbar-bg-color: oklch(98.75% 0 0 / 0.95); /* Corresponde a bg-background/95 */
+    --navbar-logo-color: oklch(29.23% 0 0); /* Corresponde a foreground */
+    --navbar-logo-font: 'Orbitron', sans-serif;
+    --navbar-link-color: oklch(58.31% 0.011 263.81); /* Corresponde a muted-foreground */
+    --navbar-link-font: 'Poppins', sans-serif;
+    --navbar-link-hover: oklch(58.52% 0.191 263.81); /* Corresponde a primary */
 }
 
 
@@ -143,6 +148,15 @@
   --ring: var(--color-zinc-400);
   --radius: 0.5rem;
 }
+
+.dark {
+    /* Navbar Customization for Dark Mode */
+    --navbar-bg-color: oklch(19.56% 0.022 273.44 / 0.95); /* Corresponde a dark:bg-background/95 */
+    --navbar-logo-color: oklch(98.75% 0 0); /* Corresponde a dark:foreground */
+    --navbar-link-color: oklch(58.31% 0.011 263.81); /* Corresponde a dark:muted-foreground */
+    --navbar-link-hover: oklch(65.81% 0.223 263.81); /* Corresponde a dark:primary */
+}
+
  
 .dark {
   --background: var(--color-zinc-950);
@@ -270,4 +284,3 @@
 html {
   scroll-behavior: smooth;
 }
-

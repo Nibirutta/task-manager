@@ -8,6 +8,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import DashboardPage from './pages/DashboardPage';
 import NotFoundPage from './pages/NotFoundPage';
+import UserSettingsPage from './pages/UserSettingsPage';
 
 
 
@@ -26,6 +27,7 @@ function App() {
         {/* Rotas Protegidas */}
         <Route element={<ProtectedRoute />}>
           <Route path="dashboard" element={<DashboardPage />} />
+          <Route path="settings" element={<UserSettingsPage />} />
         </Route>
 
         {/* Rota de fallback para 404 */}
@@ -36,4 +38,3 @@ function App() {
 }
 
 export default App;
-
