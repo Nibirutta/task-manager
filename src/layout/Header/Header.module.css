@@ -1,0 +1,22 @@
+
+
+.header{
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  width: 100%;
+  border-bottom: 1px solid var(--header-border-color);
+  background-color: var(--header-bg-color);
+  backdrop-filter: blur(5px); 
+}
+
+
+
+.content{
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+
+}

@@ -1,13 +1,17 @@
-import Navbar from '../../components/Navbar/Navbar';
-
-
-// import ThemeSwitcher from './ThemeSwitcher'; // E este também
+import useAuth from '../../hooks/useAuth';
+import Navbar from '../../features/Navbar/Navbar';
+import Greetings from '../../components/Greetings/Greetings';
+import style from './Header.module.css'
 
 function Header() {
+
+  const { isAuthenticated } = useAuth();
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 items-center justify-between">
+    <header className={style.header}>
+      <div className={style.content}>
         <Navbar />
+        {isAuthenticated && <Greetings />}
       </div>
     </header>
   );

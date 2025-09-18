@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import cn from '../../lib/utils';
 import { Button } from '../../lib/Reui/button/button';
-import UserMenu from '../UserMenu/UserMenu';
+import UserMenu from '../../components/UserMenu/UserMenu';
 
 const navLinkClasses = "text-sm font-medium text-[var(--navbar-link-color)] font-[var(--navbar-link-font)] transition-colors hover:text-[var(--navbar-link-hover)]";
 const activeNavLinkClasses = "text-[var(--navbar-link-hover)] font-semibold";

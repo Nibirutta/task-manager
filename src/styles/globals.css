@@ -99,14 +99,33 @@
     
     --logo3: #0600ab;
     --text-color-footer: #bacfdd;
+
+    /* Header  */
+    --header-border-color: ;
+    --header-bg-color: ;
+
   
-    /* Navbar Customization */
-    --navbar-bg-color: oklch(98.75% 0 0 / 0.95); /* Corresponde a bg-background/95 */
-    --navbar-logo-color: oklch(29.23% 0 0); /* Corresponde a foreground */
+    /* Navbar  */
+    --navbar-bg-color: oklch(98.75% 0 0 / 0.95); 
+    --navbar-logo-color: oklch(29.23% 0 0); 
     --navbar-logo-font: 'Orbitron', sans-serif;
-    --navbar-link-color: oklch(58.31% 0.011 263.81); /* Corresponde a muted-foreground */
+    --navbar-link-color: oklch(58.31% 0.011 263.81);
     --navbar-link-font: 'Poppins', sans-serif;
-    --navbar-link-hover: oklch(58.52% 0.191 263.81); /* Corresponde a primary */
+    --navbar-link-hover: oklch(58.52% 0.191 263.81); 
+
+    /* Dropdown Menu  */
+    --dropdown-bg-color: oklch(100% 0 0); 
+    --dropdown-text-color: oklch(19.56% 0.022 273.44);
+    --dropdown-border-color: oklch(94% 0.004 286.32); 
+    --dropdown-separator-color: oklch(96.52% 0.005 286.32);
+    --dropdown-item-bg-hover: oklch(96.52% 0.005 286.32); 
+    --dropdown-item-text-hover: oklch(29.23% 0.018 273.44);
+    --dropdown-label-color: oklch(58.31% 0.011 263.81); 
+    --dropdown-item-destructive-text-color: oklch(57.8% 0.224 19.86);
+    --dropdown-item-destructive-bg-hover: oklch(57.8% 0.224 19.86 / 0.05);
+
+    /* greetings */
+    --greetings-font: 'IBM', serif;
 }
 
 
@@ -155,6 +174,18 @@
     --navbar-logo-color: oklch(98.75% 0 0); /* Corresponde a dark:foreground */
     --navbar-link-color: oklch(58.31% 0.011 263.81); /* Corresponde a dark:muted-foreground */
     --navbar-link-hover: oklch(65.81% 0.223 263.81); /* Corresponde a dark:primary */
+
+    /* Dropdown Menu Customization for Dark Mode */
+    --dropdown-bg-color: oklch(19.56% 0.022 273.44); /* Corresponde a dark:popover */
+    --dropdown-text-color: oklch(98.75% 0 0); /* Corresponde a dark:popover-foreground */
+    --dropdown-border-color: oklch(34.07% 0.017 273.44); /* Corresponde a dark:border */
+    --dropdown-separator-color: oklch(26.81% 0.019 273.44); /* Corresponde a dark:muted */
+    --dropdown-item-bg-hover: oklch(26.81% 0.019 273.44); /* Corresponde a dark:accent */
+    --dropdown-item-text-hover: oklch(98.75% 0 0); /* Corresponde a dark:accent-foreground */
+    --dropdown-label-color: oklch(58.31% 0.011 263.81); /* Corresponde a dark:muted-foreground */
+    /* A cor destructive geralmente não muda no modo escuro */
+    --dropdown-item-destructive-text-color: oklch(57.8% 0.224 19.86);
+    --dropdown-item-destructive-bg-hover: oklch(57.8% 0.224 19.86 / 0.05);
 }
 
  
