@@ -1,9 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import Footer from './Footer/Footer';
 import style from './Layout.module.css';
-
-
-// import Navbar from '../../features/Navbar/Navbar'; // Futuramente, você irá descomentar e usar isso
+import Header from './Header/Header';
 
 /**
  * O componente de Layout define a estrutura visual comum da aplicação.
@@ -13,7 +11,7 @@ import style from './Layout.module.css';
 const Layout = () => {
   return (
     <div className={style.layout}>
-      {/* <Navbar /> */}
+      <Header />
       <main>
         <Outlet /> {/* O conteúdo da rota filha será renderizado aqui */}
       </main>

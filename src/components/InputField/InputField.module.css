@@ -1,6 +1,3 @@
-/* importar um arquivo css de variaveis globais */
-@import '../../index.css';
-
 .label {
     font-size: 1.2rem;
     color: var(--input-field-label-color);
