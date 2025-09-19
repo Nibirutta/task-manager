@@ -10,7 +10,7 @@ const requestReset = (email: string): Promise<void> => {
   return response;
 };
 
-const requestChangePassword = (resetToken: string, newPassword: string): Promise<void> => {
+const submitNewPassword = (resetToken: string, newPassword: string): Promise<void> => {
 
   const endpoint = `${resetTokenRoute.route}${resetToken}`;
 
@@ -22,4 +22,4 @@ const requestChangePassword = (resetToken: string, newPassword: string): Promise
   return response;
 };
 
-export { requestReset, requestChangePassword };
+export { requestReset, submitNewPassword };
