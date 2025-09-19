@@ -57,12 +57,13 @@ function LoginForm() {
           pending: 'Verificando credenciais...',
           success: 'Login realizado com sucesso! Redirecionando...',
           error: 'Usuário ou senha inválidos. Tente novamente.'
+        },
+
+        {
+          onClose: () => navigate("/dashboard")
         }
       );
-      navigate("/dashboard");
     } catch (error) {
-      // O toast.promise já lida com a exibição do erro.
-      // O console.error é mantido para fins de depuração.
       console.error("Falha no fluxo de login:", error);
     }
   };

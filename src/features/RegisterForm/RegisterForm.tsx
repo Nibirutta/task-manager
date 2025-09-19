@@ -8,6 +8,7 @@ import { useId } from "react";
 import { AtSign, CircleCheck, IdCard, Shield, ShieldCheck, Tag, UserRound } from "lucide-react";
 import requestRegister from "../../api/Task API/services/registerService";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 const registerSchema = z.object({
   username: z
@@ -84,12 +85,15 @@ function Registerform() {
     const emailID = useId();
     const passwordID = useId();
     const confirmPasswordID = useId();
+
+    const navigate = useNavigate();
     
 
     const onSubmit = async (data: RegisterformInputs) => {
         try {
             await  toast.promise(
               requestRegister(data),
+              
               {
                 pending: "Criando sua conta...",
                 success: "Conta criada com sucesso! Redirecionando para o login...",
@@ -97,12 +101,17 @@ function Registerform() {
                   render({ data }: { data: Error }) {
                     return data.message;
                   },
-                },
+                }                
               },
+
               {
-                autoClose: false,
+                autoClose: 10000,
+                onClose: () => navigate("/login")
               }
+              
             )
+
+
         } catch (error) {
            console.error(error) 
         }
