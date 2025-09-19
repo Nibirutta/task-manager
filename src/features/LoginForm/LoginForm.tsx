@@ -7,8 +7,7 @@ import style from "./LoginForm.module.css";
 import InputField from "../../components/InputField/InputField";
 import SubmitBtn from "../../components/SubmitBtn/SubmitBtn";
 import useAuth from "../../hooks/useAuth";
-import { Link } from "react-router";
-
+import { Link, useNavigate } from "react-router-dom";
 
 
 const loginSchema = z.object({
@@ -46,11 +45,13 @@ function LoginForm() {
   const { login } = useAuth();
   const usernameId = useId();
   const passwordId = useId();
+  const navigate = useNavigate();
 
   const onSubmit = async (data: LoginFormInputs) => {
     
     try {
       await login(data);
+      navigate("/dashboard");
     } catch (error) {
       console.error(error);
       setError("root", {
