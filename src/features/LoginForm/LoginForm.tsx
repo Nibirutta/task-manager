@@ -2,12 +2,14 @@ import { useId } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { toast } from "react-toastify";
 import { Lock, Send, CircleUser } from "lucide-react";
 import style from "./LoginForm.module.css";
 import InputField from "../../components/InputField/InputField";
 import SubmitBtn from "../../components/SubmitBtn/SubmitBtn";
 import useAuth from "../../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
+
 
 
 const loginSchema = z.object({
@@ -35,7 +37,6 @@ function LoginForm() {
   const {
     register,
     handleSubmit,
-    setError,
     formState: { errors, isSubmitting, isValid },
   } = useForm<LoginFormInputs>({
     resolver: zodResolver(loginSchema),
@@ -50,22 +51,25 @@ function LoginForm() {
   const onSubmit = async (data: LoginFormInputs) => {
     
     try {
-      await login(data);
+      await toast.promise(
+        login(data),
+        {
+          pending: 'Verificando credenciais...',
+          success: 'Login realizado com sucesso! Redirecionando...',
+          error: 'Usuário ou senha inválidos. Tente novamente.'
+        }
+      );
       navigate("/dashboard");
     } catch (error) {
-      console.error(error);
-      setError("root", {
-        type: "manual",
-        message: "Ocorreu um erro no login. Tente novamente.",
-      });
+      // O toast.promise já lida com a exibição do erro.
+      // O console.error é mantido para fins de depuração.
+      console.error("Falha no fluxo de login:", error);
     }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
       <h2 className={style.title}>Login</h2>
-
-      {errors.root && <p className={style.formError}>{errors.root.message}</p>}
 
       <InputField
         id={usernameId}

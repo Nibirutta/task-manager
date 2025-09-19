@@ -7,6 +7,7 @@ import SubmitBtn from "../../components/SubmitBtn/SubmitBtn";
 import { useId } from "react";
 import { AtSign, CircleCheck, IdCard, Shield, ShieldCheck, Tag, UserRound } from "lucide-react";
 import requestRegister from "../../api/Task API/services/registerService";
+import { toast } from "react-toastify";
 
 const registerSchema = z.object({
   username: z
@@ -63,7 +64,6 @@ function Registerform() {
       const {
         register,
         handleSubmit,
-        setError,
         formState: { errors, isSubmitting, isValid },
       } = useForm<RegisterformInputs>({
         resolver: zodResolver(registerSchema),
@@ -88,17 +88,25 @@ function Registerform() {
 
     const onSubmit = async (data: RegisterformInputs) => {
         try {
-            await requestRegister(data)
-            /* todo: mostrar um toast de mensagem de sucesso */
-
-            /* todo navigate('/login') */
+            await  toast.promise(
+              requestRegister(data),
+              {
+                pending: "Criando sua conta...",
+                success: "Conta criada com sucesso! Redirecionando para o login...",
+                error: {
+                  render({ data }: { data: Error }) {
+                    return data.message;
+                  },
+                },
+              },
+              {
+                autoClose: false,
+              }
+            )
         } catch (error) {
-            setError("root", {
-               type: "server",
-               message: error instanceof Error ? error.message : "Ocorreu um erro inesperado. Por favor, tente novamente."
-            })
-        };      
-    }
+           console.error(error) 
+        }
+    };      
 
     return(
         <form onSubmit={handleSubmit(onSubmit)} className={style.form} >
