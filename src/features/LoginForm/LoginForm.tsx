@@ -9,6 +9,8 @@ import InputField from "../../components/InputField/InputField";
 import SubmitBtn from "../../components/SubmitBtn/SubmitBtn";
 import useAuth from "../../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
+import ForgotPasswordDialog from "../ForgotPasswordForm/ForgotPasswordDialog";
+
 
 
 
@@ -105,9 +107,7 @@ function LoginForm() {
           <span>Não tenho uma conta</span>
         </Link>
 
-        <Link to="/forgot-password">
-          <span>Esqueceu sua senha?</span>
-        </Link>
+        <ForgotPasswordDialog />
       </div>
     </form>
   );
