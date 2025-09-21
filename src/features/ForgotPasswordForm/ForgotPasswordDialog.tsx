@@ -60,15 +60,15 @@ function ForgotPasswordDialog() {
         <span className={style.triggerLink}>Esqueceu sua senha?</span>
       </DialogTrigger>
       <DialogContent>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <DialogHeader>
-            <DialogTitle>Redefinir Senha</DialogTitle>
-            <DialogDescription>
+        <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
+          <DialogHeader className={style.header}>
+            <DialogTitle className={style.title}>Redefinir Senha</DialogTitle>
+            <DialogDescription className={style.description}>
               Insira seu e-mail abaixo. Se ele estiver cadastrado, enviaremos um
               link para você criar uma nova senha.
             </DialogDescription>
           </DialogHeader>
-          <DialogBody>
+          <DialogBody className={style.body}>
             <InputField
               id={emailId}
               label="E-mail"
@@ -80,7 +80,7 @@ function ForgotPasswordDialog() {
               errorMessage={errors.email?.message}
             />
           </DialogBody>
-          <DialogFooter>
+          <DialogFooter className={style.footer}>
             <SubmitBtn
               title="Enviar Link"
               icon={Send}
