@@ -1,79 +1,113 @@
-import { Link, NavLink } from 'react-router-dom';
-import useAuth from '../../hooks/useAuth';
-import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
-import cn from '../../lib/utils';
-import { Button } from '../../lib/Reui/button/button';
-import UserMenu from '../../components/UserMenu/UserMenu';
+import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+import cn from "../../lib/utils";
+import { Button } from "../../lib/Reui/button/button";
+import UserMenu from "../../components/UserMenu/UserMenu";
 
-const navLinkClasses = "text-sm font-medium text-[var(--navbar-link-color)] font-[var(--navbar-link-font)] transition-colors hover:text-[var(--navbar-link-hover)]";
+const navLinkClasses =
+  "text-4x1 font-medium text-[var(--navbar-link-color)] font-[var(--navbar-link-font)] transition-colors hover:text-[var(--navbar-link-hover)]";
 const activeNavLinkClasses = "text-[var(--navbar-link-hover)] font-semibold";
 
 function Navbar() {
-
   const { isAuthenticated } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const commonLinks = (
     <>
-      <NavLink to="/" className={({ isActive }) => cn(navLinkClasses, isActive && activeNavLinkClasses)}>Home</NavLink>
+      <NavLink
+        to="/"
+        className={({ isActive }) =>
+          cn(navLinkClasses, isActive && activeNavLinkClasses)
+        }
+      >
+        Home
+      </NavLink>
     </>
   );
 
   const authLinks = (
     <>
-      <NavLink to="/dashboard" className={({ isActive }) => cn(navLinkClasses, isActive && activeNavLinkClasses)}>Dashboard</NavLink>
+      <NavLink
+        to="/dashboard"
+        className={({ isActive }) =>
+          cn(navLinkClasses, isActive && activeNavLinkClasses)
+        }
+      >
+        Dashboard
+      </NavLink>
     </>
   );
 
   const publicLinks = (
     <>
-      <NavLink to="/login" className={({ isActive }) => cn(navLinkClasses, isActive && activeNavLinkClasses)}>Login</NavLink>
-      <NavLink to="/register" className={({ isActive }) => cn(navLinkClasses, isActive && activeNavLinkClasses)}>Registrar</NavLink>
+      <NavLink
+        to="/login"
+        className={({ isActive }) =>
+          cn(navLinkClasses, isActive && activeNavLinkClasses)
+        }
+      >
+        Login
+      </NavLink>
+      <NavLink
+        to="/register"
+        className={({ isActive }) =>
+          cn(navLinkClasses, isActive && activeNavLinkClasses)
+        }
+      >
+        Registrar
+      </NavLink>
     </>
   );
 
-
-  const handleMobileLinkClick = () => setIsMenuOpen(!isMenuOpen)
-  
+  const handleMobileLinkClick = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    // `relative` é crucial para que o menu móvel (que é `absolute`) se posicione corretamente
     <nav className="relative flex w-full items-center justify-between gap-4">
       <div className="flex items-center gap-6">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 font-bold shrink-0 text-[var(--navbar-logo-color)]" style={{ fontFamily: 'var(--navbar-logo-font)' }}>
+        <Link
+          to="/"
+          className="flex items-center gap-2 p-4 rounded-md font-bold shrink-0 text-[var(--navbar-logo-color)]"
+          style={{ fontFamily: "var(--navbar-logo-font)" }}
+        >
           {/* <img src="/logo.svg" alt="Task Manager Logo" className="h-6 w-6" /> */}
-          <span className="hidden sm:inline-block">Task Manager</span>
+          <span className="inline-block text-4xl font-bold ">Task Manager</span>
         </Link>
-
-        {/* Links de Navegação para Desktop */}
-        <div className="hidden md:flex items-center gap-4">
-          {commonLinks}
-          {isAuthenticated && authLinks}
-        </div>
       </div>
 
       {/* Ações da Direita: UserMenu (logado) ou Links/Botão Hambúrguer (deslogado) */}
-      <div className="flex items-center gap-4">
-        {isAuthenticated ? (
-          // Se estiver logado, mostre o UserMenu
-          <UserMenu />
-        ) : (
-          // Se não estiver logado...
-          <>
-            {/* ...mostre os links públicos no desktop */}
-            <div className="hidden md:flex items-center gap-4">
-              {publicLinks}
-            </div>
-            {/* ...e o botão de menu no mobile */}
-            <div className="md:hidden">
-              <Button variant="ghost" size="icon" onClick= {handleMobileLinkClick} aria-label="Abrir menu">
-                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </Button>
-            </div>
-          </>
-        )}
+      {isAuthenticated ? (
+        <div className="flex justify-between items-center  p-4 gap-16">
+          <div className="hidden md:flex items-center gap-4">
+            {commonLinks}
+            {isAuthenticated && authLinks}
+          </div>
+        </div>
+      ) : (
+        <div className="hidden md:flex items-center gap-4">{publicLinks}</div>
+      )}
+
+      <div className="flex justify-between items-center gap-4">
+
+        <UserMenu />
+
+            <Button
+              className="md:hidden"
+              variant="ghost"
+              size="icon"
+              onClick={handleMobileLinkClick}
+              aria-label="Abrir menu"
+            >
+              {isMenuOpen ? (
+                <X className="h-10 w-10" />
+              ) : (
+                <Menu className="h-16 w-16" />
+              )}
+            </Button>
+
+            
       </div>
 
       {/* Painel do Menu Móvel (apenas para usuários não autenticados) */}

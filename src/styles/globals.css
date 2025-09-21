@@ -1,44 +1,4 @@
 
-@font-face {
-    font-family: 'Tech';
-    src: url('../assets/fonts/Share_Tech_Mono/ShareTechMono-Regular.ttf');
-}
-
-@font-face{
-    font-family: 'Playfair';
-    src: url('../assets/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf');
-}
-
-@font-face {
-    font-family: 'IBM';
-    src: url('../assets/fonts/IBM_Plex_Sans/IBMPlexSans-Italic-VariableFont_wdth,wght.ttf');
-}
-
-@font-face {
-    font-family: 'Lato';
-    src: url('../assets/fonts/Lato/Lato-Regular.ttf');
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../assets/fonts/Poppins/Poppins-Regular.ttf');
-}
-
-@font-face {
-    font-family: 'RedHat';
-    src: url('../assets/fonts/Red_Hat_Mono/RedHatMono-VariableFont_wght.ttf');
-}
-
-@font-face {
-    font-family: 'Orbitron';
-    src: url('../assets/fonts/Orbitron/Orbitron-VariableFont_wght.ttf');
-}
-
-@font-face {
-    font-family: 'Electrolize';
-    src: url('../assets/fonts/Electrolize/Electrolize-Regular.ttf');
-}
-
 
 :root{
 
@@ -110,8 +70,8 @@
     --text-color-footer: #bacfdd;
 
     /* Header  */
-    --header-border-color: ;
-    --header-bg-color: ;
+    --header-border-color:#0d1b2add ;
+    --header-bg-color:#0d1b2aa5 ;
 
   
     /* Navbar  */
@@ -139,11 +99,6 @@
 
 
 
-/* *ReUI integration */
-
-@import 'tailwindcss';
- 
-@import 'tw-animate-css';
  
 /** Dark Mode Variant **/
 @custom-variant dark (&:is(.dark *));
