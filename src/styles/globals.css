@@ -65,22 +65,28 @@
     --footer-info-color: #e0e1dd;
     --footer-info-hover: #778da9;
     --footer-line-color: #1b263b;
-    
-    --logo3: #0600ab;
-    --text-color-footer: #bacfdd;
 
     /* Header  */
-    --header-border-color:#0d1b2add ;
-    --header-bg-color:#0d1b2aa5 ;
+    --header-border-color:#0d1b2a ;
+    --header-bg-color:#0d1b2a ;
+
+    /* Greetings */
+    --greetings-color-1:#00ff00 ;
+    --greetings-color-2: #05f2db;
+    --greetings-color-3: #0600ab;
+    --greetings-color-4: #d9048e ;
+    --greetings-font:  ;
 
   
-    /* Navbar  */
-    --navbar-bg-color: oklch(98.75% 0 0 / 0.95); 
-    --navbar-logo-color: oklch(29.23% 0 0); 
+    /* Navbar  */ 
+    --navbar-logo-color: #ed3f54; 
     --navbar-logo-font: 'Orbitron', sans-serif;
-    --navbar-link-color: oklch(58.31% 0.011 263.81);
+    --navbar-link-color: #e0e1dd;
     --navbar-link-font: 'Poppins', sans-serif;
-    --navbar-link-hover: oklch(58.52% 0.191 263.81); 
+    --navbar-link-hover: #778da9; 
+
+    /* Greetings */
+
 
     /* Dropdown Menu  */
     --dropdown-bg-color: oklch(100% 0 0); 

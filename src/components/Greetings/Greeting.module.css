@@ -1,0 +1,21 @@
+.text{
+    background: linear-gradient(to right, var(--greetings-color-1), var(--greetings-color-2), var(--greetings-color-3), var(--greetings-color-4));
+    background-size: 300% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+    color: transparent;
+    font-family: var(--greetings-font);
+    animation: gradient-move 5s linear alternate infinite;
+    font-size: 2.4rem;
+    padding-inline: 2rem;
+}
+
+
+@keyframes gradient-move {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 100% center; 
+  }
+}

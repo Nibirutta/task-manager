@@ -28,14 +28,14 @@ function UserMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="secondary" size="icon" shape="circle">
-          <User className="h-5 w-5" />
+        <Button variant="secondary" size="lg" shape="circle">
+          <User size={"24"}/>
           <span className="sr-only">Abrir menu do usuário</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-56">
+      <DropdownMenuContent align="end" className="w-72">
         <DropdownMenuItem onSelect={() => navigate('/dashboard')}>
-          <LayoutDashboard className="mr-2 h-4 w-4" />
+          <LayoutDashboard className="mr-2 h-4 w-4" />  
           <span>Dashboard</span>
         </DropdownMenuItem>
         <DropdownMenuItem onSelect={() => navigate('/settings')}>

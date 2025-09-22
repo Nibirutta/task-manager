@@ -1,16 +1,17 @@
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import style from './Greeting.module.css';
+import { toast } from 'react-toastify';
 
-import GradientText from '../../lib/Nurui/gradientText';
-import { Button } from '../../lib/Reui/button/button';
 
 function Greetings() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    toast.info('Você será redirecionado para a página de login.')
     logout();
-    navigate('/');
+    navigate('/login');
   };
 
   if (!user) {
@@ -19,16 +20,12 @@ function Greetings() {
 
   return (
     <div className="flex items-center gap-4">
-      <GradientText
-        className="font-semibold text-[2rem] font-[--greetings-font]"
-        colors={['#a8ff78', '#78ffd6', '#a8ff78']}
-        animationSpeed={10}
-      >
+      <h2 className={style.text}>
         Olá, {user}!
-      </GradientText>
-      <Button variant="outline" size="sm" onClick={handleLogout} className="p-0 h-auto text-muted-foreground hover:text-primary">
+      </h2>
+      <button onClick={handleLogout} className="p-4  text-[var(--navbar-link-color)] rounded-md cursor-pointer  text-2xl font-medium transition-colors  hover:text-[var(--navbar-link-hover)]">
         Não é você? Sair
-      </Button>
+      </button>
     </div>
   );
 }
