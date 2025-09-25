@@ -7,7 +7,7 @@ const RegisterPage = () => {
   }, []);
 
   return (
-    <div className="w-full flex justify-center content-center">
+    <div className="w-full py-64 flex justify-center content-center">
       <RegisterForm />
     </div>
   );

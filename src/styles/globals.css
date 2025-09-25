@@ -1,8 +1,8 @@
 
 
 :root{
-    /* login page */
-    --loginPage-bg-color: #415a77 ;
+    /* Body */
+    --body-bg-color: #415a77 ;
 
     /* Login Form */
     --login-bg-color: #182437 ;
@@ -37,6 +37,12 @@
     --sb-text-color: #acb7c3;
     --sb-text-font: 'Electrolize', sans-serif ;
 
+        /* Register form */
+    --register-bg-color: var(--login-bg-color);
+    --register-border-color: var(--login-border-color);
+    --register-title-font: 'Orbitron', sans-serif;
+    --register-title-color: var(--login-title-color); 
+
     /* Forgot Password Dialog */
     --fgd-link-color: #05f2c7;
     --fpd-link-hover: #0073a5;
@@ -48,11 +54,7 @@
 
 
 
-    /* Register form */
-    --register-bg-color: #2d3250;
-    --register-border-color: #f9b17a;
-    --register-title-font: 'Orbitron', sans-serif;
-    --register-title-color: #676f9d;  
+ 
     
 
     /* Develpoer Card */

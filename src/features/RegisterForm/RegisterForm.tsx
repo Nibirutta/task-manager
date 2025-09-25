@@ -122,8 +122,6 @@ function Registerform() {
 
             <h2 className={style.title}>Registre-se</h2>
             
-            
-
 
             <InputField 
               id={firstNameID}
@@ -134,6 +132,7 @@ function Registerform() {
               isValid={!errors.firstname}
               errorMessage={errors.firstname?.message}
               {...register("firstname")}
+              autoComplete="given-name"
             />
 
             <InputField 
@@ -145,6 +144,7 @@ function Registerform() {
               isValid={!errors.lastname}
               errorMessage={errors.lastname?.message}
               {...register("lastname")}
+              autoComplete="family-name"
             />
             
             <InputField 
@@ -156,6 +156,7 @@ function Registerform() {
               errorMessage={errors.email?.message}
               {...register("email")}
               Icon={AtSign}
+              autoComplete="email"
             />
 
             <InputField 
@@ -167,6 +168,7 @@ function Registerform() {
               errorMessage={errors.username?.message}
               {...register("username")}
               Icon={Tag}
+              autoComplete="username"
             />
             
             <InputField 
@@ -178,6 +180,7 @@ function Registerform() {
               errorMessage={errors.password?.message}
               {...register("password")}
               Icon={Shield}
+              
             />
 
 
