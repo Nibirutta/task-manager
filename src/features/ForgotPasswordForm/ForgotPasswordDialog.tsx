@@ -59,7 +59,7 @@ function ForgotPasswordDialog() {
       <DialogTrigger asChild>
         <span className={style.triggerLink}>Esqueceu sua senha?</span>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className={style.content}>
         <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
           <DialogHeader className={style.header}>
             <DialogTitle className={style.title}>Redefinir Senha</DialogTitle>

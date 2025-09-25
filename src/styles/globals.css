@@ -44,18 +44,14 @@
     --register-title-color: var(--login-title-color); 
 
     /* Forgot Password Dialog */
+    --fpd-bg-color: var(--login-bg-color) ;
     --fgd-link-color: #05f2c7;
     --fpd-link-hover: #0073a5;
-    --fpd-title-font: ;
-    --fpd-title-color: ;
-    --fpd-description-font: ;
-    --fpd-description-color: ;
+    --fpd-title-font: Lato, sans-serif;
+    --fpd-title-color: #c6ccd0 ;
+    --fpd-description-font: RedHat, monospace;
+    --fpd-description-color: #415a77 ;
 
-
-
-
- 
-    
 
     /* Develpoer Card */
     --dev-card-bg-color: #001c1c;
