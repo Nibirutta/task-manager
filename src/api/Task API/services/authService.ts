@@ -1,5 +1,5 @@
 
-import type { ILoginData, ILoginResponse, IRefreshResponse } from '../../../types/TaskApiTypes';
+import type { ILoginData, ILoginResponse, IRefreshResponse } from '../../../types/authServiceTypes';
 import { loginRoute, logoutRoute, refreshRoute } from '../../../utils/urlApi';
 import { apiFetch } from '../client/apiClient';
 

@@ -1,4 +1,4 @@
-import type { ILoginData } from "./TaskApiTypes";
+import type { ILoginData } from "./authServiceTypes";
 
 interface IAuthContext {
 	isAuthenticated: boolean;

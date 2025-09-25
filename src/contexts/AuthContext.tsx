@@ -1,5 +1,5 @@
 import { createContext, useState, type ReactNode, useEffect, useMemo, useCallback } from 'react';
-import type { ILoginData } from '../types/TaskApiTypes';
+import type { ILoginData } from '../types/authServiceTypes';
 import type { IAuthContext } from '../types/IAuthContext';
 import { requestLogin, requestRefresh, requestLogout } from '../api/Task API/services/authService';
 

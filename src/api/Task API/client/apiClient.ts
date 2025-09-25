@@ -1,4 +1,4 @@
-import type { IApiError } from "../../../types/TaskApiTypes";
+import type { IApiError } from "../../../types/authServiceTypes";
 import { baseURL } from "../../../utils/urlApi";
 
 

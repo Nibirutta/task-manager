@@ -1,4 +1,4 @@
-import type { IRegisterData, IRegisterResponse } from "../../../types/TaskApiTypes";
+import type { IRegisterData, IRegisterResponse } from "../../../types/authServiceTypes";
 import { registerRoute } from "../../../utils/urlApi";
 import { apiFetch } from "../client/apiClient";
 
