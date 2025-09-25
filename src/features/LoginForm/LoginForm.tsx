@@ -82,6 +82,7 @@ function LoginForm() {
         {...register("username")}
         isValid={!errors.username}
         errorMessage={errors.username?.message}
+        autoComplete="username"
       />
 
       <InputField

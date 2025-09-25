@@ -1,14 +1,25 @@
 
 
 :root{
+    /* login page */
+    --loginPage-bg-color: #415a77 ;
+
+    /* Login Form */
+    --login-bg-color: #182437 ;
+    --login-border-color: #142133;
+    --login-title-font: 'Orbitron', sans-serif;
+    --login-title-color: #778da9 ;
+    --redirect-color: #b8d0eb;
+    --redirect-hover: #778da9 ;
+    --error-msg-color: #ed3f54 ;
 
     /* input-field */
-    --input-field-bg-color: #012326;
-    --input-field-text-color: #424769;
-    --input-field-icon-color: #6b7281;
-    --input-field-label-color: #f9b17a ;
-    --input-field-placeholder-color: #6b7281;
-    --input-field-border-color-default: #025373;
+    --input-field-bg-color: #0d1b2a;
+    --input-field-text-color: #e0e1dd;
+    --input-field-icon-color: #e0e1dd;
+    --input-field-label-color: #778da9 ;
+    --input-field-placeholder-color: #778da9;
+    --input-field-border-color-default: #1b263b;
     --input-field-border-color-focus: #05f2db;
     --input-field-border-color-filled: #00ff00;
     --input-field-border-color-error: #d9048e;
@@ -19,11 +30,11 @@
     
     /* submit button */
 
-    --sb-bg-color: #424769 ;
-    --sb-border-color: #f9b17a;
-    --sb-hover-bg-color: #f9b17a ;
-    --sb-hover-border-color: #424769 ;
-    --sb-text-color: #83819f;
+    --sb-bg-color: #415a77 ;
+    --sb-border-color: #202d43;
+    --sb-hover-bg-color: #202d43 ;
+    --sb-hover-border-color: #415a77 ;
+    --sb-text-color: #acb7c3;
     --sb-text-font: 'Electrolize', sans-serif ;
 
     /* Forgot Password Dialog */
@@ -35,14 +46,7 @@
     --fpd-description-color: ;
 
 
-    /* Login Form */
-    --login-bg-color:#025373 ;
-    --login-border-color: #05f2c7;
-    --login-title-font: 'Orbitron', sans-serif;
-    --login-title-color: #5cacab ;
-    --redirect-color: #b4f3fc;
-    --redirect-hover: #0073a5 ;
-    --error-msg-color: #d91604 ;
+
 
     /* Register form */
     --register-bg-color: #2d3250;

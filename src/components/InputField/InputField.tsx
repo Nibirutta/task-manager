@@ -14,7 +14,7 @@ function InputField(props: IinputField) {
 		isValid,
 		errorMessage,
 		type = 'text',
-		...rest // Captura todas as outras props de input
+		...rest 
 	} = props;
 
 	const errorId = `error-${id}`;
@@ -68,8 +68,8 @@ function InputField(props: IinputField) {
 			</div>
 
 			{!isValid && errorMessage && (
-				<span id={errorId} role="alert" className="text-red-500 flex ml-8 items-center gap-1 text-xs">
-					<ShieldX size={16} />
+				<span id={errorId} role="alert" className="text-[#ed3f54] flex ml-8 mt-4 items-center gap-1 text-xs">
+					<ShieldX size={20} />
 					<span className={styles.errorMessage}> {errorMessage}</span>
 				</span>
 			)}

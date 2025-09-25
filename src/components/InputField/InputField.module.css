@@ -31,7 +31,7 @@
   box-shadow: 0 0 4px var(--input-field-border-color-focus);
 }
 
-.error,
+.error:has(input:not(:placeholder-shown)):not(:focus-within),
 .error:focus-within {
   border-color: var(--input-field-border-color-error);
   box-shadow: 0 0 4px var(--input-field-border-color-error) ;
@@ -74,7 +74,7 @@
 
 .errorMessage{
     font-family: var(--input-field-error-font);
-    font-size: 0.8rem;
+    font-size: 1.2rem;
     color: var(--input-field-error-color);
     text-shadow: 0px 1px 2px var(--input-field-error-color);
     font-weight: 700;

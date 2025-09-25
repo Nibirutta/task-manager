@@ -7,7 +7,7 @@ const LoginPage = () => {
   }, []);
 
   return (
-    <div className="w-full flex content-center justify-center ">
+    <div className="w-full flex content-center justify-center py-60 bg-[var(--loginPage-bg-color)] ">
       <LoginForm />
     </div>
   );

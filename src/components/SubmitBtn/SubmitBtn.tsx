@@ -19,9 +19,9 @@ function SubmitBtn(props: IsubmitBtn) {
 			{isLoading ? (
 				<LoaderCircle className={style.spinner} size={20} />
 			) : (
-				Icon && <Icon size={20} />
+				Icon && <Icon size={20}  />
 			)}
-			<span className={style.text}> 
+			<span> 
 				{isLoading ? 'Enviando...' : title}
 			</span>
 		</button>
