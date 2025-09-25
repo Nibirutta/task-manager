@@ -58,7 +58,7 @@ function Footer() {
                 key="dev-card-lucino"
                 avatar='/src/assets/imgs/avatar/20250123_165309.jpg'
                 name='Lucino Campos'
-                portfolioImage='/src/assets/favicon/ALucin4do-logo.png'
+                portfolioImage='/src/assets/imgs/icons/ALucin4do-logo.png'
                 portfolio='https://alucinado-dev.vercel.app/'
                 github='https://github.com/Alucinado-dev'
                 linkedin='https://www.linkedin.com/in/lucino-de-campos/'
@@ -73,7 +73,7 @@ function Footer() {
                 name='Lucas Silva'
                 github='https://github.com/Nibirutta'
                 linkedin='https://www.linkedin.com/in/lucasaugustodev/'
-
+                portfolioImage='/src/assets/imgs/icons/NibiruttaPNG.png'
                 portfolio='https://www.artstation.com/lucasaugust'
                 color1='#D9E1E4'
                 color2='#F0D264'

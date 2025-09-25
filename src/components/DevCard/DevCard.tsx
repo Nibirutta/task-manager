@@ -39,11 +39,11 @@ function DevCard (props: IProps) {
 
         <div className={style.social}>
           <a className={style.linkedin} href={linkedin} target="_blank" rel="noopener noreferrer" aria-label={`ir para o perfil do linkedin do ${name}`}>
-            <img src="/src/assets/favicon/linkedin.png" alt="logo do linkedin" />
+            <img src="/src/assets/imgs/icons/linkedin.png" alt="logo do linkedin" />
           </a>
 
           <a className={style.github} href={github} target="_blank" rel="noopener noreferrer" aria-label={`ir para o perfil do github do ${name}`}>
-            <img src="/src/assets/favicon/github.png" alt="logo do github" />
+            <img src="/src/assets/imgs/icons/github.png" alt="logo do github" />
           </a>
           <a className={style.portfolio} href={portfolio} target="_blank" rel="noopener noreferrer" aria-label={`ir para o portfolio do ${name}`} >
             <img src={portfolioImage} alt={`logo do portfolio do ${name}`} />
