@@ -1,0 +1,29 @@
+.dashboardContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--text-color-primary);
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 1.8rem;
+  color: var(--text-color-secondary);
+}

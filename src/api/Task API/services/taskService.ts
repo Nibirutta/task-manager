@@ -1,7 +1,7 @@
 import type {
   IDeleteTask,
+  IGetTasks,
   INewTask,
-  ITask,
   IUpdateTask,
 } from "../../../types/taskServiceTypes";
 import {
@@ -12,7 +12,7 @@ import {
 } from "../../../utils/urlApi";
 import { apiFetch } from "../client/apiClient";
 
-const getTasks = async (params: ITask, acessToken: string) => {
+const getTasks = async (params: IGetTasks, acessToken: string) => {
   const response = await apiFetch(
     `${getTasksRoute.route}?title=${params.title}&status=${params.status}&priority=${params.priority}&from=${params.from}&to=${params.to}`,
     {

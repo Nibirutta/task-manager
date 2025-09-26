@@ -1,4 +1,4 @@
-interface ITask {
+interface IGetTasks {
     title?: string;
     status?: string;
     priority?: 'high' | 'medium' | 'low';
@@ -29,4 +29,4 @@ interface IDeleteTask {
 }
 
 
-export type { ITask, INewTask, IUpdateTask, IDeleteTask }
+export type { IGetTasks, INewTask, IUpdateTask, IDeleteTask }

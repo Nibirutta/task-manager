@@ -3,6 +3,35 @@
 :root{
     /* Body */
     --body-bg-color: #415a77 ;
+        /* Header  */
+    --header-border-color:#0d1b2a ;
+    --header-bg-color:#0d1b2a ;
+
+    /* Greetings */
+    --greetings-color-1:#00ff00 ;
+    --greetings-color-2: #05f2db;
+    --greetings-color-3: #0600ab;
+    --greetings-color-4: #d9048e ;
+    --greetings-font: 'IBM', serif;
+
+  
+    /* Navbar  */ 
+    --navbar-logo-color: #ed3f54; 
+    --navbar-logo-font: 'Orbitron', sans-serif;
+    --navbar-link-color: #e0e1dd;
+    --navbar-link-font: 'Poppins', sans-serif;
+    --navbar-link-hover: #778da9; 
+
+    /* Dropdown Menu  */
+    --dropdown-bg-color: oklch(100% 0 0); 
+    --dropdown-text-color: oklch(19.56% 0.022 273.44);
+    --dropdown-border-color: oklch(94% 0.004 286.32); 
+    --dropdown-separator-color: oklch(96.52% 0.005 286.32);
+    --dropdown-item-bg-hover: oklch(96.52% 0.005 286.32); 
+    --dropdown-item-text-hover: oklch(29.23% 0.018 273.44);
+    --dropdown-label-color: oklch(58.31% 0.011 263.81); 
+    --dropdown-item-destructive-text-color: oklch(57.8% 0.224 19.86);
+    --dropdown-item-destructive-bg-hover: oklch(57.8% 0.224 19.86 / 0.05);
 
     /* Login Form */
     --login-bg-color: #182437 ;
@@ -68,41 +97,19 @@
     --footer-info-hover: #778da9;
     --footer-line-color: #1b263b;
 
-    /* Header  */
-    --header-border-color:#0d1b2a ;
-    --header-bg-color:#0d1b2a ;
-
-    /* Greetings */
-    --greetings-color-1:#00ff00 ;
-    --greetings-color-2: #05f2db;
-    --greetings-color-3: #0600ab;
-    --greetings-color-4: #d9048e ;
-    --greetings-font:  ;
-
-  
-    /* Navbar  */ 
-    --navbar-logo-color: #ed3f54; 
-    --navbar-logo-font: 'Orbitron', sans-serif;
-    --navbar-link-color: #e0e1dd;
-    --navbar-link-font: 'Poppins', sans-serif;
-    --navbar-link-hover: #778da9; 
-
-    /* Greetings */
+    /* Task Card */
+    --card-title-color: #b3c7d6;
+    --card-title-font: 'Lato', sans-serif;
+    --card-priority-color: #e7ebef;
+    --card-priority-font: 'Lato', sans-serif;
+    /* Cores de fundo por prioridade */
+    --card-priority-high-bg: #e17a47;
+    --card-priority-medium-bg: #efc958;
+    --card-priority-low-bg: #41b19d;
+    --card-priority-urgent-bg: #ef3d59;
+    --card-priority-optional-bg: #344e5c;
 
 
-    /* Dropdown Menu  */
-    --dropdown-bg-color: oklch(100% 0 0); 
-    --dropdown-text-color: oklch(19.56% 0.022 273.44);
-    --dropdown-border-color: oklch(94% 0.004 286.32); 
-    --dropdown-separator-color: oklch(96.52% 0.005 286.32);
-    --dropdown-item-bg-hover: oklch(96.52% 0.005 286.32); 
-    --dropdown-item-text-hover: oklch(29.23% 0.018 273.44);
-    --dropdown-label-color: oklch(58.31% 0.011 263.81); 
-    --dropdown-item-destructive-text-color: oklch(57.8% 0.224 19.86);
-    --dropdown-item-destructive-bg-hover: oklch(57.8% 0.224 19.86 / 0.05);
-
-    /* greetings */
-    --greetings-font: 'IBM', serif;
 }
 
 
