@@ -3,7 +3,8 @@ import type {
   IGetTasks,
   INewTask,
   IUpdateTask,
-} from "../../../types/taskServiceTypes";
+} from "../../../types/taskTypes";
+
 import {
   createTaskRoute,
   deleteTaskRoute,

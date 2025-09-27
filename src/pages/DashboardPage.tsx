@@ -1,4 +1,5 @@
-import TaskCard from "../components/TaskCard/TaskCard";
+import TaskColumn from "../components/TaskColumn/TaskColumn";
+
 
 const DashboardPage = () => {
   return (
@@ -8,17 +9,11 @@ const DashboardPage = () => {
         {/* Futuramente, aqui teremos filtros e o botão de "Adicionar Tarefa" */}
       </header>
 
-      <TaskCard
-        key={1}
-        task={{
-          id: '1',
-          title: "Tarefa 1",
-          description: "Descrição da Tarefa 1",
-          status: "in-review",
-          dueDate: "2023-11-30",
-          priority: "Urgent"
-        }}
-        onDetailsClick={() => {}}
+      <TaskColumn
+          title="em progresso"
+          key='1'
+          status="in-progress"
+          children
       />
     </div>
   );
