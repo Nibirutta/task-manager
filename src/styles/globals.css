@@ -98,9 +98,11 @@
     --footer-line-color: #1b263b;
 
     /* Task Card */
-    --card-title-color: #b3c7d6;
+    --card-bg-color: #1f2a36;
+    
+    --card-title-color: #f5f7fa;
     --card-title-font: 'Lato', sans-serif;
-    --card-priority-color: #e7ebef;
+    --card-priority-color: #b0bec5;
     --card-priority-font: 'Lato', sans-serif;
     /* Cores de fundo por prioridade */
     --card-priority-high-bg: #e17a47;

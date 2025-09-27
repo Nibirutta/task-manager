@@ -1,19 +1,20 @@
 .card{
-    border-radius: 0.8rem;
-    padding: 1.2rem 1.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 1.2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100px;
-    height: 80px;
+    width: 200px;
+    height: 120px;
     cursor: grab;
+    background-color: var(--card-bg-color) !important;
+    border: 4px solid #2e3c4a;
 }
 
 .card:active {
     cursor: grabbing;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
 }
 
 .header{
@@ -22,7 +23,6 @@
     align-items: center;
     width: 100%;
     padding: 1rem;
-    margin-bottom: 1rem;
 }
 
 .title{
@@ -36,6 +36,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
 
 .detailsButton {
     background: none;
@@ -54,31 +55,40 @@
 
 
 /* Classes de Prioridade para o fundo do card */
-.priority-high {
+.priority-High {
     background-color: var(--card-priority-high-bg);
-    box-shadow: 0 0 2px var(--card-priority-high-bg), 0 0 4px var(--card-priority-high-bg), 0 0 8px var(--card-priority-high-bg);
+    
+    &:hover, &:focus-within{
+    border-color: var(--card-priority-high-bg);
 }
-
-.priority-medium {
+}
+.priority-Medium {
     background-color: var(--card-priority-medium-bg);
-    box-shadow: 0 0 2px var(--card-priority-medium-bg), 0 0 4px var(--card-priority-medium-bg), 0 0 8px var(--card-priority-medium-bg);
-
+    
+    &:hover, &:focus-within{
+    border-color: var(--card-priority-medium-bg);
+    }
 }
 
-.priority-low {
+.priority-Low {
     background-color: var(--card-priority-low-bg);
-    box-shadow: 0 0 2px var(--card-priority-low-bg), 0 0 4px var(--card-priority-low-bg), 0 0 8px var(--card-priority-low-bg);
-
+    &:hover, &:focus-within{
+    border-color: var(--card-priority-low-bg);
+}
 }
 
-.priority-urgent {
+.priority-Urgent {
     background-color: var(--card-priority-urgent-bg);
-    box-shadow: 0 0 2px var(--card-priority-urgent-bg), 0 0 4px var(--card-priority-urgent-bg), 0 0 8px var(--card-priority-urgent-bg);
+    &:hover, &:focus-within{
+        border-color: var(--card-priority-urgent-bg);
+    }
 }
 
-.priority-optional {
+.priority-Optional {
     background-color: var(--card-priority-optional-bg);
-    box-shadow: 0 0 2px var(--card-priority-optional-bg), 0 0 4px var(--card-priority-optional-bg), 0 0 8px var(--card-priority-optional-bg);
+    &:hover, &:focus-within{
+        border-color: var(--card-priority-optional-bg);
+    }
 }
 
 
@@ -90,16 +100,16 @@
     border-radius: var(--radius-sm);
     font-size: 1.2rem;
     font-weight: 500;
-    background-color: rgba(0, 0, 0, 0.2);
     color: var(--card-priority-color);
     font-family: var(--card-priority-font);
 }
 
 .footer {
+    width: 100%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-top: 0.5rem;
+    padding-right: 1rem;
 }
 
 .footer div{
@@ -114,18 +124,31 @@
     font-family: var(--card-priority-font);
 }
 
-/* Classes de Status de Vencimento para o badge de data */
 .expired {
-    background-color: #8c1c13;
-    color: #000814;
+    background-color: #f94144;
+    
 }
 .deadline {
-    background-color: #f9844a;
-    color: #000814;
+    background-color: #f9c74f;
+    
 }
 .in-time {
-    background-color: #90be6d ;
-    color: #000814;
+    background-color: #43aa8b ;
+    
+}
+
+.badge{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.2rem 0.8rem;
+    border-radius: 1rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #e0e1dd;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
 }
 
 

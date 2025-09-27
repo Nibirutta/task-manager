@@ -36,43 +36,30 @@ function TaskCard({ task, onDetailsClick }: TaskCardProps) {
   };
 
   const priorityObject = {
-      Low: 'Baixa',
-      Medium: 'Média',
-      High: 'Alta',
-      Urgent: 'Urgente',
-      Optional: 'Opcional'
-  }
+      low: 'Baixa',
+      medium: 'Média',
+      high: 'Alta',
+      urgent: 'Urgente',
+      optional: 'Opcional'
+  } as const;
 
   const priorityClass = `priority-${task.priority}`;
   const expirationClass = getExpirationStatus(task.dueDate);
 
+
+  const cardClasses = `${style.card} ${style[priorityClass] || ''}`;
+
   return (
-    // Aplicamos a classe de prioridade diretamente no card principal
-    <div className={`${style.card} ${style[priorityClass]}`}>
+
+    <div className={cardClasses}>
       <header className={style.header}>
-        <h3 className={style.title}>{task.title}</h3>
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onDetailsClick(task);
-          }}
-          className={style.detailsButton}
-          aria-label={`Ver detalhes da tarefa ${task.title}`}
-        >
-          <MoreHorizontal size={18} />
-        </button>
-      </header>
-
-      <main>
-        <div className={style.priority}>
-          <Flag size={14} />
-          <span>{`Prioridade: ${priorityObject[task.priority]}`}</span>
-        </div>
-      </main>
-
-
-      <footer className={style.footer}>
-         <div className={expirationClass}>
+          <div className={`${style.priority} ${style[priorityClass]}}`}>
+            <Flag size={14} />
+            <span>{priorityObject[task.priority]}</span>
+          </div>
+      
+        
+                 <div className={`${style.badge} ${style[expirationClass]}`}>
           {expirationClass === 'expired' ? (
             <ClockAlert size={14} />
           ) : expirationClass === 'in-time' ? (
@@ -83,6 +70,26 @@ function TaskCard({ task, onDetailsClick }: TaskCardProps) {
           }
           <span>{formattedDueDate}</span>
         </div>
+      </header>
+
+      <main>
+        {/* O badge de prioridade agora fica no corpo do card */}
+        <h5 className={style.title}>{task.title}</h5>
+      </main>
+
+      <footer className={style.footer}>
+
+
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onDetailsClick(task);
+          }}
+          className={style.detailsButton}
+          aria-label={`Ver detalhes da tarefa ${task.title}`}
+        >
+          <MoreHorizontal size={18} />
+        </button>
       </footer>
     </div>
   );

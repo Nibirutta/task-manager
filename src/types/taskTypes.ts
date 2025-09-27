@@ -3,7 +3,7 @@ interface ITask {
     title: string;
     description?: string;
     status: 'to-do' | 'in-progress' | 'in-review' | 'done'
-    priority: 'High' | 'Medium' | 'Low' | 'Urgent' | 'Optional';
+    priority: 'high' | 'medium' | 'low' | 'urgent' | 'optional';
     dueDate: string;
 }
 
