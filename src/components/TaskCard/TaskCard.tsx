@@ -1,4 +1,4 @@
-import { ClockAlert, ClockFading, ClockPlus, Flag, MoreHorizontal } from 'lucide-react';
+import { ClockAlert, ClockFading, ClockPlus, FilePenLine, Flag, MoreHorizontal, Trash2 } from 'lucide-react';
 import style from './TaskCard.module.css';
 import type { ITask } from '../../types/taskTypes';
 import formatDate from '../../utils/formatDate';
@@ -7,9 +7,11 @@ import formatDate from '../../utils/formatDate';
 interface TaskCardProps {
   task: ITask;
   onDetailsClick: (task: ITask) => void;
+  onDeleteClick: (task: ITask) => void;
+  onEditClick: (task: ITask) => void;
 }
 
-function TaskCard({ task, onDetailsClick }: TaskCardProps) {
+function TaskCard({ task, onDetailsClick, onDeleteClick, onEditClick}: TaskCardProps) {
   const formattedDueDate = formatDate(task.dueDate);
 
   const getExpirationStatus = (dueDate: string): 'expired' | 'deadline' | 'in-time' => {
@@ -78,6 +80,30 @@ function TaskCard({ task, onDetailsClick }: TaskCardProps) {
       </main>
 
       <footer className={style.footer}>
+
+        <div className={style.leftFooter}>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onDeleteClick(task);
+            }}
+            className={style.deleteButton}
+            aria-label={`Deletar a tarefa ${task.title}`}
+          >
+            <Trash2 size={18} />
+          </button>
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onEditClick(task);
+            }}
+            className={style.editButton}
+            aria-label={`Editar a tarefa ${task.title}`}
+          >
+            <FilePenLine size={18} />
+          </button>
+        </div>
 
 
         <button

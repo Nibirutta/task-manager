@@ -38,20 +38,7 @@
 }
 
 
-.detailsButton {
-    background: none;
-    border: none;
-    color: var(--muted-foreground);
-    cursor: pointer;
-    padding: 0.4rem;
-    border-radius: var(--radius-sm);
-    transition: background-color 0.2s, color 0.2s;
-    
-    &:hover, &:focus {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: var(--foreground);
-    }
-}
+
 
 
 /* Classes de Prioridade para o fundo do card */
@@ -104,25 +91,7 @@
     font-family: var(--card-priority-font);
 }
 
-.footer {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding-right: 1rem;
-}
 
-.footer div{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 0.8rem;
-    border-radius: var(--radius-sm);
-    font-size: 1.2rem;
-    font-weight: 500;
-    font-family: var(--card-priority-font);
-}
 
 .expired {
     background-color: #f94144;
@@ -151,4 +120,62 @@
     box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
 }
 
+.footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+ 
+.leftFooter {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.deleteButton {
+    background: none;
+    border: none;
+    color: #fa3a3a;
+    cursor: pointer;
+    padding: 0.4rem;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    
+    &:hover, &:focus {
+    background-color: #fa3a3a;
+    color: var(--card-bg-color);
+    }
+}
+
+.editButton {
+    background: none;
+    border: none;
+    color: #00cecb;
+    cursor: pointer;
+    padding: 0.4rem;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    
+    &:hover, &:focus {
+    background-color: #00cecb;
+    color: var(--card-bg-color);
+    }
+}
+
+.detailsButton {
+    background: none;
+    border: none;
+    color: #fbf2c0;
+    cursor: pointer;
+    padding: 0.4rem;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    
+    &:hover, &:focus {
+    background-color: #fbf2c0;
+    color: var(--card-bg-color);
+    }
+}
 

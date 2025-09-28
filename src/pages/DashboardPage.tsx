@@ -19,6 +19,8 @@ const DashboardPage = () => {
                 <TaskCard
                   key={'first'}
                   onDetailsClick={() => {}}
+                  onDeleteClick={() => {}}
+                  onEditClick={() => {}}
                   task={{
                     title: 'Primeira tarefa',
                     description: 'Esta é a descrição da primeira tarefa',
@@ -32,6 +34,8 @@ const DashboardPage = () => {
                 <TaskCard
                   key={'second'}
                   onDetailsClick={() => {}}
+                  onDeleteClick={() => {}}
+                  onEditClick={() => {}}
                   task={{
                     title: 'Segunda tarefa',
                     description: 'Esta é a descrição da segunda tarefa',
