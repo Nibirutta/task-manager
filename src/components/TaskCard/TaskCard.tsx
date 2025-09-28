@@ -1,6 +1,7 @@
 import { ClockAlert, ClockFading, ClockPlus, FilePenLine, Flag, MoreHorizontal, Trash2 } from 'lucide-react';
 import style from './TaskCard.module.css';
 import type { ITask } from '../../types/taskTypes';
+import PopoverTaskCard from '../PopoverTaskCard/PopoverTaskCard';
 import formatDate from '../../utils/formatDate';
 
 // As props que o componente espera receber.
@@ -82,40 +83,45 @@ function TaskCard({ task, onDetailsClick, onDeleteClick, onEditClick}: TaskCardP
       <footer className={style.footer}>
 
         <div className={style.leftFooter}>
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onDeleteClick(task);
-            }}
-            className={style.deleteButton}
-            aria-label={`Deletar a tarefa ${task.title}`}
-          >
-            <Trash2 size={18} />
-          </button>
+          <PopoverTaskCard text="Excluir Tarefa">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onDeleteClick(task);
+              }}
+              className={style.deleteButton}
+              aria-label={`Deletar a tarefa ${task.title}`}
+            >
+              <Trash2 size={18} />
+            </button>
+          </PopoverTaskCard>
 
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onEditClick(task);
-            }}
-            className={style.editButton}
-            aria-label={`Editar a tarefa ${task.title}`}
-          >
-            <FilePenLine size={18} />
-          </button>
+          <PopoverTaskCard text="Editar Tarefa">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onEditClick(task);
+              }}
+              className={style.editButton}
+              aria-label={`Editar a tarefa ${task.title}`}
+            >
+              <FilePenLine size={18} />
+            </button>
+          </PopoverTaskCard>
         </div>
 
-
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onDetailsClick(task);
-          }}
-          className={style.detailsButton}
-          aria-label={`Ver detalhes da tarefa ${task.title}`}
-        >
-          <MoreHorizontal size={18} />
-        </button>
+        <PopoverTaskCard text="Ver Detalhes">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onDetailsClick(task);
+            }}
+            className={style.detailsButton}
+            aria-label={`Ver detalhes da tarefa ${task.title}`}
+          >
+            <MoreHorizontal size={18} />
+          </button>
+        </PopoverTaskCard>
       </footer>
     </div>
   );
