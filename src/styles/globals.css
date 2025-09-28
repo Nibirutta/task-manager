@@ -111,6 +111,14 @@
     --card-priority-urgent-bg: #ef3d59;
     --card-priority-optional-bg: #344e5c;
 
+    --column-bg: #14213d;
+    --column-border: transparent;
+    --column-border-hover: #fca311;
+    --column-header-bg: #fca311 ;
+    --column-title-font: 'Lato', sans-serif;
+    --column-title-color: #14213d;
+    --column-empty-color: #e5e5e5;
+    --column-dragging-color: #0a111f ;
 
 }
 

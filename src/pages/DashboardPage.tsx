@@ -1,3 +1,4 @@
+import TaskCard from "../components/TaskCard/TaskCard";
 import TaskColumn from "../components/TaskColumn/TaskColumn";
 
 
@@ -13,8 +14,40 @@ const DashboardPage = () => {
           title="em progresso"
           key='1'
           status="in-progress"
-          children
+          children= 
+          {<>
+                <TaskCard
+                  key={'first'}
+                  onDetailsClick={() => {}}
+                  task={{
+                    title: 'Primeira tarefa',
+                    description: 'Esta é a descrição da primeira tarefa',
+                    status: 'in-progress',
+                    id: '1',
+                    priority: 'low',
+                    dueDate:'2025-09-28' ,
+                  }}
+                />
+
+                <TaskCard
+                  key={'second'}
+                  onDetailsClick={() => {}}
+                  task={{
+                    title: 'Segunda tarefa',
+                    description: 'Esta é a descrição da segunda tarefa',
+                    status: 'in-progress',
+                    id: '2',
+                    priority: 'medium',
+                    dueDate:'2025-09-29' ,
+                  }}
+                />
+          </>
+          }
+          taskCount={2}
+          isDraggingOver={false}
+          onAddTask={() => {}}
       />
+
     </div>
   );
 };

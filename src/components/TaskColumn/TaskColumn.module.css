@@ -1,22 +1,20 @@
 .column {
   display: flex;
   flex-direction: column;
-  width: 320px;
-  /* Garante que a coluna possa crescer para preencher a altura disponível */
+  width: 250px;
   height: 100%; 
-  background-color: #161b22; /* Uma cor de fundo base mais escura */
-  border-radius: var(--border-radius-lg);
-  flex-shrink: 0; /* Impede que a coluna encolha */
-  transition: background-color 0.2s ease-in-out;
-  border: 1px solid #30363d;
+  background-color: var(--column-bg); 
+  border-radius: 1.5rem;
+  flex-shrink: 0;
+  transition: all 0.2s ease-in-out;
 }
-
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem;
-  border-bottom: 1px solid #30363d;
+  background-color: var(--column-header-bg);
+  border-radius: 1.5rem 1.5rem 0 0;
 }
 
 .title {
@@ -25,23 +23,11 @@
   gap: 1rem;
   font-size: 1.4rem;
   font-weight: 600;
-  color: #c9d1d9;
+  font-family: var(--column-title-font);
+  color: var(--column-title-color);
   text-transform: uppercase;
   letter-spacing: 1.2px;
 }
-
-.content {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  /* Permite que a área de conteúdo cresça e role */
-  flex-grow: 1;
-  overflow-y: auto;
-  padding: 1.5rem;
-  min-height: 100px; /* Altura mínima para a área de drop */
-}
-
-/* --- Recursos "Plus" --- */
 
 .taskCount {
   display: flex;
@@ -49,37 +35,50 @@
   justify-content: center;
   font-size: 1.2rem;
   font-weight: 500;
-  color: #8b949e;
-  background-color: #21262d;
+  color: var(--column-header-bg);
+  background-color: var(--column-bg);
   border-radius: 50%;
   min-width: 24px;
   height: 24px;
-  padding: 0 4px;
+  padding: 0.5rem;
 }
 
 .addButton {
   background: none;
   border: none;
-  color: #8b949e;
+  color: var(--column-bg);
   cursor: pointer;
   padding: 0.5rem;
-  border-radius: var(--radius-md);
+  border-radius: 1rem;
   transition: all 0.2s;
+   &:hover, &:focus-within {
+    background-color: var(--column-bg);
+    color: var(--column-header-bg);
+  }
 }
-
-.addButton:hover {
-  background-color: #30363d;
-  color: #c9d1d9;
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+  min-height: 100px; 
 }
 
 .emptyState {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
   text-align: center;
-  color: #8b949e;
+  color: var(--column-empty-color);
   padding: 2rem;
   font-style: italic;
 }
 
-/* Classe que será adicionada via JS quando um card estiver sobre a coluna */
 .is-dragging-over {
-  background-color: #1a2b42; /* Um tom azulado para indicar área de drop */
+  background-color: var(--column-dragging-color);
 }

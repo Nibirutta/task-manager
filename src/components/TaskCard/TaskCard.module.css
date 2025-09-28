@@ -55,14 +55,14 @@
 
 
 /* Classes de Prioridade para o fundo do card */
-.priority-High {
+.priority-high {
     background-color: var(--card-priority-high-bg);
     
     &:hover, &:focus-within{
     border-color: var(--card-priority-high-bg);
 }
 }
-.priority-Medium {
+.priority-medium {
     background-color: var(--card-priority-medium-bg);
     
     &:hover, &:focus-within{
@@ -70,21 +70,21 @@
     }
 }
 
-.priority-Low {
+.priority-low {
     background-color: var(--card-priority-low-bg);
     &:hover, &:focus-within{
     border-color: var(--card-priority-low-bg);
 }
 }
 
-.priority-Urgent {
+.priority-urgent {
     background-color: var(--card-priority-urgent-bg);
     &:hover, &:focus-within{
         border-color: var(--card-priority-urgent-bg);
     }
 }
 
-.priority-Optional {
+.priority-optional {
     background-color: var(--card-priority-optional-bg);
     &:hover, &:focus-within{
         border-color: var(--card-priority-optional-bg);

@@ -30,20 +30,20 @@ function TaskColumn({ title, children, status, taskCount, isDraggingOver, onAddT
           <Plus size={18} />
         </button>
       </header>
-      <div className={style.content}>
+
+      <main className={style.content}>
         {taskCount > 0 ? (
           children
         ) : (
           <div className={style.emptyState}>
-            <p>Nenhuma tarefa aqui.</p>
+            <p>Arraste suas tarefas para cá</p>
+            <p>Ou crie uma nova clicando no "+"</p>
           </div>
         )}
-      </div>
+      </main>
     </section>
   );
 }
 
-// Envolvemos o componente com React.memo.
-// Agora, ele só será re-renderizado se uma de suas props (title, status, taskCount, etc.) mudar.
-// Se você mover um card de outra coluna, esta coluna não será re-renderizada.
+
 export default memo(TaskColumn);
