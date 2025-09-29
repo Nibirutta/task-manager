@@ -28,7 +28,7 @@ const Layout = () => {
         theme={"light"}
       />
       <main>
-        <Outlet /> {/* O conteúdo da rota filha será renderizado aqui */}
+        <Outlet /> 
       </main>
       <Footer />
     </div>
