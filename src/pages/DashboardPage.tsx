@@ -4,18 +4,22 @@ import useAuth from '../hooks/useAuth';
 import { getTasks, deleteTask, newTask, updateTask } from '../api/Task API/services/taskService';
 import type { ITask, TaskStatus, INewTask, IUpdateTask } from '../types/taskTypes';
 import TaskBoard from '../features/TaskBoard/TaskBoard';
-import style from './styles/DashboardPage.module.css';
+import style from './DashboardPage.module.css'
 import Spinner from '../components/Spinner/Spinner';
 import DeleteTaskDialog from '../features/DeleteTaskDialog/DeleteTaskDialog';
+import TaskFormDialog from '../features/TaskFormDialog/TaskFormDialog';
 
 
 const DashboardPage = () => {
   const [tasks, setTasks] = useState<ITask[]>([]);
   const [loading, setLoading] = useState(false);
   const { accessToken } = useAuth();
-  // Estados para controlar o modal de exclusão
+  // Estados para controlar os modais
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState<ITask | null>(null);
+  const [isFormDialogOpen, setIsFormDialogOpen] = useState(false);
+  const [taskToEdit, setTaskToEdit] = useState<ITask | null>(null);
+  const [initialStatusForNewTask, setInitialStatusForNewTask] = useState<TaskStatus | undefined>(undefined);
 
   useEffect(() => {
     if (!accessToken) return;
@@ -44,31 +48,10 @@ const DashboardPage = () => {
     toast.info(`Detalhes: ${task.title}`);
   };
 
-  const handleEditClick = async (task: ITask) => {
-    // Simula a edição abrindo um prompt. No futuro, isso abrirá um modal/formulário.
-    const newTitle = prompt('Digite o novo título da tarefa:', task.title);
-    if (!newTitle || newTitle === task.title) {
-      toast.info('Edição cancelada.');
-      return;
-    }
-
-    const updatedTaskData: IUpdateTask = { id: task.id, title: newTitle };
-
-    try {
-      const response = await toast.promise(
-        updateTask(updatedTaskData, accessToken!),
-        {
-          pending: 'Atualizando tarefa...',
-          success: 'Tarefa atualizada com sucesso!',
-          error: 'Falha ao atualizar a tarefa.',
-        }
-      );
-
-      // Atualiza o estado local com a tarefa retornada pela API
-      setTasks(tasks.map(t => (t.id === task.id ? response.data : t)));
-    } catch (error) {
-      console.error('Erro ao editar tarefa:', error);
-    }
+  // Abre o modal de formulário para edição
+  const handleEditClick = (task: ITask) => {
+    setTaskToEdit(task);
+    setIsFormDialogOpen(true);
   };
 
   // Abre o modal de confirmação
@@ -92,22 +75,39 @@ const DashboardPage = () => {
     }
   };
 
-  const handleAddTask = async (status: TaskStatus) => {
-    // Simula a criação de uma nova tarefa. No futuro, isso abrirá um modal/formulário.
-    const newTaskData: INewTask = {
-      title: `Nova Tarefa em ${status}`,
-      dueDate: new Date(),
-      status: status,
-      priority: 'medium',
-    };
+  // Abre o modal de formulário para criação
+  const handleAddTask = (status: TaskStatus) => {
+    setTaskToEdit(null); // Garante que estamos no modo de criação
+    setInitialStatusForNewTask(status);
+    setIsFormDialogOpen(true);
+  };
 
-    try {
-      const response = await newTask(newTaskData, accessToken!);
-      setTasks([...tasks, response.data]);
-      toast.success('Nova tarefa adicionada!');
-    } catch (error) {
-      console.error('Erro ao adicionar tarefa:', error);
-      toast.error('Falha ao adicionar a nova tarefa.');
+  // Função chamada pelo formulário ao submeter
+  const handleFormSubmit = async (data: INewTask | IUpdateTask) => {
+    const isEditing = 'id' in data;
+
+    if (isEditing) {
+      try {
+        const response = await toast.promise(updateTask(data, accessToken!), {
+          pending: 'Atualizando tarefa...',
+          success: 'Tarefa atualizada com sucesso!',
+          error: 'Falha ao atualizar a tarefa.',
+        });
+        setTasks(tasks.map(t => (t.id === data.id ? response.data : t)));
+      } catch (error) {
+        console.error('Erro ao editar tarefa:', error);
+      }
+    } else {
+      try {
+        const response = await toast.promise(newTask(data, accessToken!), {
+          pending: 'Criando nova tarefa...',
+          success: 'Nova tarefa criada com sucesso!',
+          error: 'Falha ao criar a tarefa.',
+        });
+        setTasks([...tasks, response.data]);
+      } catch (error) {
+        console.error('Erro ao adicionar tarefa:', error);
+      }
     }
   };
 
@@ -134,6 +134,13 @@ const DashboardPage = () => {
         onConfirm={handleConfirmDelete}
       />
 
+      <TaskFormDialog
+        isOpen={isFormDialogOpen}
+        onOpenChange={setIsFormDialogOpen}
+        taskToEdit={taskToEdit}
+        initialStatus={initialStatusForNewTask}
+        onSubmit={handleFormSubmit}
+      />
     </div>
   );
 };

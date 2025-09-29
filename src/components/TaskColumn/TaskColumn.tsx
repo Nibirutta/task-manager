@@ -37,7 +37,9 @@ function TaskColumn({ title, children, status, taskCount, isDraggingOver, onAddT
         ) : (
           <div className={style.emptyState}>
             <p>Arraste suas tarefas para cá</p>
-            <p>Ou crie uma nova clicando no "+"</p>
+            <p>
+              Ou crie uma nova clicando no <Plus size={18} /> 
+            </p>
           </div>
         )}
       </main>

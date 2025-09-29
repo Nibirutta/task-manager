@@ -26,5 +26,5 @@
 }
 
 .confirmButton:hover {
-    background-color: hsl(0, 72%, 45%); /* Um tom de vermelho um pouco mais escuro */
+    background-color: var(--color-red-800);
 }

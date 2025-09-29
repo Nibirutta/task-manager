@@ -1,0 +1,119 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.formRow {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.formRow > .formGroup {
+    flex: 1;
+}
+
+.formGroup label {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--muted-foreground);
+}
+
+.formGroup input,
+.formGroup textarea,
+.formGroup select {
+    background-color: var(--input);
+    border: 1px solid var(--border);
+    color: var(--foreground);
+    border-radius: var(--radius-md);
+    padding: 0.8rem 1.2rem;
+    font-size: 1.4rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.datePickerContainer {
+    position: relative;
+    display: flex;
+}
+
+/* Estilo para o botão que abre o calendário, para se parecer com um input */
+.datePickerTrigger {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: var(--input);
+    border: 1px solid var(--border);
+    color: var(--foreground);
+    border-radius: var(--radius-md);
+    padding: 0.8rem 1.2rem;
+    font-size: 1.4rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    justify-content: flex-start;
+}
+
+.clearDateButton {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--muted-foreground);
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus,
+.formGroup select:focus {
+    outline: none;
+    border-color: var(--ring);
+    box-shadow: 0 0 0 1px var(--ring);
+}
+
+.formGroup textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.cancelButton {
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--radius-md);
+    background-color: transparent;
+    color: var(--muted-foreground);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    font-weight: 500;
+}
+
+.cancelButton:hover {
+    background-color: var(--muted);
+    color: var(--foreground);
+}
+
+.submitButton {
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--radius-md);
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-weight: 600;
+}
+
+.submitButton:hover {
+    background-color: hsl(220, 60%, 55%); /* Um tom de azul um pouco mais escuro */
+}

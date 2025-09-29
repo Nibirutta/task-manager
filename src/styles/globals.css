@@ -116,7 +116,7 @@
     --column-header-bg: #fca311 ;
     --column-title-font: 'Lato', sans-serif;
     --column-title-color: #14213d;
-    --column-empty-color: #e5e5e5;
+    --column-empty-color: rgba(255, 255, 255, 0.2);
     --column-dragging-color: #0a111f ;
 
 }
