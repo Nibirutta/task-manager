@@ -1,0 +1,30 @@
+.cancelButton {
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--radius-md);
+    background-color: transparent;
+    color: var(--muted-foreground);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    font-weight: 500;
+}
+
+.cancelButton:hover {
+    background-color: var(--muted);
+    color: var(--foreground);
+}
+
+.confirmButton {
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--radius-md);
+    background-color: var(--destructive);
+    color: var(--destructive-foreground);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-weight: 600;
+}
+
+.confirmButton:hover {
+    background-color: hsl(0, 72%, 45%); /* Um tom de vermelho um pouco mais escuro */
+}
