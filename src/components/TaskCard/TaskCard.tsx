@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react';
+import { draggable } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import { ClockAlert, ClockFading, ClockPlus, FilePenLine, Flag, MoreHorizontal, Trash2 } from 'lucide-react';
 import style from './TaskCard.module.css';
 import type { ITask } from '../../types/taskTypes';
@@ -12,7 +14,21 @@ interface TaskCardProps {
   onEditClick: (task: ITask) => void;
 }
 
-function TaskCard({ task, onDetailsClick, onDeleteClick, onEditClick}: TaskCardProps) {
+function TaskCard({ task, onDetailsClick, onDeleteClick, onEditClick }: TaskCardProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { id, status } = task;
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    return draggable({
+      element: el,
+      getInitialData: () => ({ type: 'card', taskId: id, status: status }),
+    });
+  }, [id, status]);
+
+
   const formattedDueDate = formatDate(task.dueDate);
 
   const getExpirationStatus = (dueDate: string): 'expired' | 'deadline' | 'in-time' => {
@@ -54,9 +70,9 @@ function TaskCard({ task, onDetailsClick, onDeleteClick, onEditClick}: TaskCardP
 
   return (
 
-    <div className={cardClasses}>
+    <div ref={ref} className={cardClasses}>
       <header className={style.header}>
-          <div className={`${style.priority} ${style[priorityClass]}}`}>
+          <div className={`${style.priority} ${style[priorityClass]}`}>
             <Flag size={14} />
             <span>{priorityObject[task.priority]}</span>
           </div>

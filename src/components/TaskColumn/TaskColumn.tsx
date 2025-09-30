@@ -1,7 +1,8 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import style from './TaskColumn.module.css';
 import type { TaskStatus } from '../../types/taskTypes';
 import { Plus } from 'lucide-react';
+import { dropTargetForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 
 
 interface TaskColumnProps {
@@ -14,13 +15,23 @@ interface TaskColumnProps {
 }
 
 function TaskColumn({ title, children, status, taskCount, isDraggingOver, onAddTask }: TaskColumnProps) {
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    return dropTargetForElements({
+      element: el,
+      getData: () => ({ columnId: status }),
+    });
+  }, [status]);
+
   // Combina as classes dinamicamente para o feedback visual
   const columnClasses = `${style.column} ${isDraggingOver ? style.isDraggingOver : ''}`;
 
   return (
-    // Este 'section' será nosso "drop target".
-    // O atributo `data-column-id` é como a biblioteca saberá qual é esta coluna.
-    <section className={columnClasses} data-column-id={status}>
+    <section ref={ref} className={columnClasses}>
       <header className={style.header}>
         <h2 className={style.title}>
           {title}
@@ -47,5 +58,7 @@ function TaskColumn({ title, children, status, taskCount, isDraggingOver, onAddT
   );
 }
 
-
 export default memo(TaskColumn);
+
+
+

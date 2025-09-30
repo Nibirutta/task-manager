@@ -96,7 +96,7 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
         status: initialStatus || 'to-do',
       });
     }
-  }, [taskToEdit, initialStatus, isOpen, form, isEditing]);
+  }, [taskToEdit, initialStatus, form, isEditing]);
 
   const handleFormSubmit = (data: TaskFormValues) => {
     if (isEditing) {

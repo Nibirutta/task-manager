@@ -1,8 +1,9 @@
-import  { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import style from './TaskBoard.module.css';
 import type { ITask, TaskStatus } from '../../types/taskTypes';
 import TaskColumn from '../../components/TaskColumn/TaskColumn';
 import TaskCard from '../../components/TaskCard/TaskCard';
+import { monitorForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 
 // Define a estrutura e a ordem de nossas colunas.
 // O 'id' deve corresponder ao 'status' vindo da API.
@@ -19,7 +20,7 @@ interface TaskBoardProps {
   onEditClick: (task: ITask) => void;
   onDeleteClick: (task: ITask) => void;
   onAddTask: (status: TaskStatus) => void;
-  // Futuramente, receberá a prop onTaskStatusChange
+  onTaskStatusChange: (taskId: string, newStatus: TaskStatus) => void;
 }
 
 function TaskBoard({
@@ -28,7 +29,39 @@ function TaskBoard({
   onEditClick,
   onDeleteClick,
   onAddTask,
+  onTaskStatusChange,
 }: TaskBoardProps) {
+  const [draggingTaskId, setDraggingTaskId] = useState<string | null>(null);
+  const [draggingOverColumn, setDraggingOverColumn] = useState<TaskStatus | null>(null);
+
+  useEffect(() => {
+    return monitorForElements({
+      onDragStart: ({ source }) => {
+        if (source.data.type === 'card') {
+          setDraggingTaskId(source.data.taskId as string);
+        }
+      },
+      onDrag: ({ location }) => {
+        const destination = location.current.dropTargets[0];
+        if (destination) {
+          setDraggingOverColumn(destination.data.columnId as TaskStatus);
+        } else {
+          setDraggingOverColumn(null);
+        }
+      },
+      onDrop: ({ source, location }) => {
+        setDraggingTaskId(null);
+        setDraggingOverColumn(null);
+        const destination = location.current.dropTargets[0];
+        if (!destination || source.data.type !== 'card') return;
+
+        const taskId = source.data.taskId as string;
+        const newStatus = destination.data.columnId as TaskStatus;
+
+        onTaskStatusChange(taskId, newStatus);
+      },
+    });
+  }, [onTaskStatusChange]);
 
   const tasksByColumn = useMemo(() => {
     const groupedTasks = new Map<TaskStatus, ITask[]>();
@@ -54,11 +87,15 @@ function TaskBoard({
             status={column.id}
             taskCount={columnTasks.length}
             onAddTask={onAddTask}
-            isDraggingOver={false} // Será controlado pelo D&D no futuro
+            isDraggingOver={draggingOverColumn === column.id}
           >
-            {columnTasks.map(task => (
-              <TaskCard key={task.id} task={task} onDetailsClick={onDetailsClick} onEditClick={onEditClick} onDeleteClick={onDeleteClick} />
-            ))}
+            {columnTasks.map(task => {
+              // Oculta o card original enquanto ele está sendo arrastado
+              if (task.id === draggingTaskId) {
+                return null;
+              }
+              return <TaskCard key={task.id} task={task} onDetailsClick={onDetailsClick} onEditClick={onEditClick} onDeleteClick={onDeleteClick} />;
+            })}
           </TaskColumn>
         );
       })}

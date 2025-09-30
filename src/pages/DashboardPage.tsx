@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
 import useAuth from '../hooks/useAuth';
 import { getTasks, deleteTask, newTask, updateTask } from '../api/Task API/services/taskService';
-import type { ITask, TaskStatus, INewTask, IUpdateTask } from '../types/taskTypes';
+import type { ITask, TaskStatus, INewTask, IUpdateTask, TaskPriority } from '../types/taskTypes';
 import TaskBoard from '../features/TaskBoard/TaskBoard';
 import style from './DashboardPage.module.css'
 import Spinner from '../components/Spinner/Spinner';
 import DeleteTaskDialog from '../features/DeleteTaskDialog/DeleteTaskDialog';
 import TaskFormDialog from '../features/TaskFormDialog/TaskFormDialog';
+import { Input } from '../lib/Reui/input/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../lib/Reui/select/select';
 
 
 const DashboardPage = () => {
@@ -20,6 +22,17 @@ const DashboardPage = () => {
   const [isFormDialogOpen, setIsFormDialogOpen] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState<ITask | null>(null);
   const [initialStatusForNewTask, setInitialStatusForNewTask] = useState<TaskStatus | undefined>(undefined);
+  // Estados para os filtros
+  const [filterTitle, setFilterTitle] = useState('');
+  const [filterPriority, setFilterPriority] = useState<TaskPriority | 'all'>('all');
+
+  const priorityFilterOptions: { value: TaskPriority | 'all'; label: string }[] = [
+    { value: 'all', label: 'Todas as Prioridades' },
+    ...['urgent', 'high', 'medium', 'low', 'optional'].map(p => ({
+      value: p as TaskPriority,
+      label: p.charAt(0).toUpperCase() + p.slice(1)
+    }))
+  ];
 
   useEffect(() => {
     if (!accessToken) return;
@@ -75,6 +88,26 @@ const DashboardPage = () => {
     }
   };
 
+  const handleTaskStatusChange = async (taskId: string, newStatus: TaskStatus) => {
+    const originalTasks = tasks;
+    // Atualiza o estado local otimisticamente para uma UI mais rápida
+    setTasks(prevTasks =>
+      prevTasks.map(task =>
+        task.id === taskId ? { ...task, status: newStatus } : task
+      )
+    );
+
+    try {
+      const updateData: IUpdateTask = { id: taskId, status: newStatus };
+      await updateTask(updateData, accessToken!);
+      toast.success('Tarefa movida com sucesso!');
+    } catch (err) {
+      toast.error('Falha ao mover a tarefa.');
+      console.error(err)
+      setTasks(originalTasks); // Reverte o estado em caso de erro
+    }
+  };
+
   // Abre o modal de formulário para criação
   const handleAddTask = (status: TaskStatus) => {
     setTaskToEdit(null); // Garante que estamos no modo de criação
@@ -111,20 +144,48 @@ const DashboardPage = () => {
     }
   };
 
+  // Filtra as tarefas com base nos estados de filtro
+  const filteredTasks = useMemo(() => {
+    return tasks.filter(task => {
+      const titleMatch = task.title.toLowerCase().includes(filterTitle.toLowerCase());
+      const priorityMatch = filterPriority === 'all' || task.priority === filterPriority;
+      return titleMatch && priorityMatch;
+    });
+  }, [tasks, filterTitle, filterPriority]);
+
   return (
     <div className={style.dashboard}>
       <header className={style.header}>
         <h1 className={style.title}>Meu Quadro de Tarefas</h1>
-        {/* todo: filtros de pesquisa*/}
+        <div className={style.filters}>
+          <Input
+            type="text"
+            placeholder="Buscar por título..."
+            value={filterTitle}
+            onChange={(e) => setFilterTitle(e.target.value)}
+            className={style.filterInput}
+          />
+          <Select value={filterPriority} onValueChange={(value) => setFilterPriority(value as TaskPriority | 'all')}>
+            <SelectTrigger className={style.filterSelect}>
+              <SelectValue placeholder="Filtrar por prioridade" />
+            </SelectTrigger>
+            <SelectContent>
+              {priorityFilterOptions.map(opt => (
+                <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
       </header>
       {loading ? ( 
         Spinner(32, '#0d1b2a', 'Carregando...')
       ): (       <TaskBoard
-        tasks={tasks}
+        tasks={filteredTasks}
         onDetailsClick={handleDetailsClick}
         onEditClick={handleEditClick}
         onDeleteClick={handleDeleteClick}
         onAddTask={handleAddTask}
+        onTaskStatusChange={handleTaskStatusChange}
       />)}
       
       <DeleteTaskDialog
