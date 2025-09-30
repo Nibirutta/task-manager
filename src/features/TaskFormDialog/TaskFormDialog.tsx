@@ -20,15 +20,12 @@ import { Calendar } from '../../lib/Reui/calendar/calendar';
 import { Calendar as CalendarIcon, X } from 'lucide-react';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import cn from '../../lib/utils';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from './form'
 import style from './TaskFormDialog.module.css';
 
 const taskFormSchema = z.object({
-  title: z.string().min(3, { message: 'O título deve ter no mínimo 3 caracteres.' }),
+  title: z.string().min(3, { message: 'O título deve ter no mínimo 3 caracteres.' }).trim(),
   description: z.string().optional(),
-  // 1. Tornamos o campo opcional para permitir o estado "limpo" (null/undefined)
-  // 2. Usamos .refine() para garantir que o campo não seja nulo na submissão.
   dueDate: z.date().optional().refine(date => date !== undefined && date !== null, {
     message: 'A data de vencimento é obrigatória.',
   }),
@@ -82,7 +79,6 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
 
   useEffect(() => {
     if (isEditing) {
-      // Popula o formulário com os dados da tarefa para edição
       form.reset({
         title: taskToEdit.title,
         description: taskToEdit.description || '',
@@ -123,36 +119,39 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>{isEditing ? 'Editar Tarefa' : 'Criar Nova Tarefa'}</DialogTitle>
-          <DialogDescription>
+      <DialogContent className= {style.dialogContent}>
+        <DialogHeader className={style.dialogHeader}>
+          <DialogTitle className={style.dialogTitle}>{isEditing ? 'Editar Tarefa' : 'Criar Nova Tarefa'}</DialogTitle>
+
+          <DialogDescription className={style.dialogDescription}>
             {isEditing ? 'Altere os detalhes da sua tarefa.' : 'Preencha as informações para criar uma nova tarefa.'}
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
           <form id="task-form" onSubmit={form.handleSubmit(handleFormSubmit)} className={style.form}>
             <FormField
+              
               control={form.control}
               name="title"
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Título</FormLabel>
+                <FormItem className={style.formField}>
+                  <FormLabel className={style.formLabel}>Título</FormLabel>
                   <FormControl>
-                    <Input placeholder="Ex: Desenvolver a tela de login" {...field} />
+                    <Input className={style.formInput} placeholder="Ex: Desenvolver a tela de login" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
               name="description"
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Descrição</FormLabel>
+                <FormItem className={style.formField}>
+                  <FormLabel className={style.formLabel}>Descrição</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="Adicione mais detalhes sobre a tarefa..." {...field} />
+                    <Textarea className='text-2xl bg-input text-foreground' placeholder="Adicione mais detalhes sobre a tarefa..." {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -162,17 +161,17 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
               control={form.control}
               name="status"
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Status</FormLabel>
+                <FormItem className={style.formField}>
+                  <FormLabel className={style.formLabel}>Status</FormLabel>
                   <Select onValueChange={field.onChange} value={field.value}>
                     <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Selecione o status" />
+                      <SelectTrigger className='text-xl cursor-pointer p-6 bg-input text-foreground'>
+                        <SelectValue className= 'text-foreground' placeholder="Selecione o status" />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent>
+                    <SelectContent className={style.selectContent}>
                       {statusOptions.map(opt => (
-                        <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
+                        <SelectItem className={style.selectItem} key={opt.value} value={opt.value}>{opt.label}</SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
@@ -185,35 +184,36 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
                 control={form.control}
                 name="dueDate"
                 render={({ field }) => (
-                  <FormItem className="flex flex-col">
-                    <FormLabel>Data de Vencimento</FormLabel>
+                  <FormItem className={style.formField}>
+                    <FormLabel className={style.formLabel}>Data de Vencimento</FormLabel>
                     <div className={style.datePickerContainer}>
                       <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>
                             <button
                               type="button"
-                              className={cn(style.datePickerTrigger, !field.value && 'text-muted-foreground')}
+                              className={style.datePickerTrigger}
+                              aria-label="Selecionar data"
+
                             >
-                              <CalendarIcon className="mr-2 h-4 w-4" />
+                              <CalendarIcon size={20} />
                               {field.value ? format(field.value, 'PPP', { locale: ptBR }) : <span>Escolha uma data</span>}
                             </button>
                           </FormControl>
                         </PopoverTrigger>
                         <PopoverContent className="w-auto p-0">
-                          <Calendar mode="single" selected={field.value} onSelect={field.onChange} initialFocus />
+                          <Calendar className={style.calendar} mode="single" selected={field.value} onSelect={field.onChange} autoFocus aria-label='Selecione uma data' />
                         </PopoverContent>
                       </Popover>
                       {field.value && (
                         <button
                           type="button"
-                          // 3. Usamos `null` em vez de `undefined` para limpar o campo.
                           onClick={() => form.setValue('dueDate', undefined , { shouldValidate: true })
                           }
                           className={style.clearDateButton}
                           aria-label="Limpar data"
                         >
-                          <X size={16} />
+                          <X size={12} />
                         </button>
                       )}
                     </div>
@@ -225,17 +225,17 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
                 control={form.control}
                 name="priority"
                 render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Prioridade</FormLabel>
+                  <FormItem className={style.formField}>
+                    <FormLabel className={style.formLabel}>Prioridade</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Selecione a prioridade" />
+                        <SelectTrigger className='text-2xl cursor-pointer p-8'>
+                          <SelectValue  placeholder="Selecione a prioridade" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
+                      <SelectContent className={style.selectContent}>
                         {priorityOptions.map(opt => (
-                          <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
+                          <SelectItem className={style.selectItem} key={opt.value} value={opt.value}>{opt.label}</SelectItem>
                         ))}
                       </SelectContent>
                     </Select>

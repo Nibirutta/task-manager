@@ -119,6 +119,34 @@
     --column-empty-color: rgba(255, 255, 255, 0.2);
     --column-dragging-color: #0a111f ;
 
+    /* Task Form Dialog */ 
+
+    --task-form-dialog-bg: rgba(255, 255, 255, 0.5);
+    --task-form-dialog-header-bg: #1b263b;
+    --task-form-dialog-title-color: #e0e1dd; 
+    --task-form-dialog-title-font: 'Electrolize', sans-serif;
+    --task-form-dialog-description-color: #778da9;
+    --task-form-dialog-description-font: 'Poppins', sans-serif;
+    
+    --task-form-dialog-datepicker-trigger-bg: #1b263b ;
+    --task-form-dialog-datepicker-trigger-text: #1b263b;
+    --task-form-dialog-datepicker-trigger-text-hover: #e0e1dd;
+    --task-form-dialog-datepicker-clear-button-text: #e0e1dd;
+
+
+    --task-form-dialog-cancel-button-bg: transparent;
+    --task-form-dialog-cancel-button-bg-hover: #e0e1dd;
+    --task-form-dialog-cancel-button-text: #0d1b2a;
+    --task-form-dialog-cancel-button-text-hover: #0d1b2a;
+    --task-form-dialog-cancel-button-border: #e0e1dd;
+
+    --task-form-dialog-submit-button-bg: #415a77;
+    --task-form-dialog-submit-button-bg-hover:#0d1b2a;
+    --task-form-dialog-submit-button-text: #e0e1dd;
+
+    /* A cor do texto de erro de validação */
+    --task-form-dialog-error-text: var(--destructive);
+
 }
 
 
