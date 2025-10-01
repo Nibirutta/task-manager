@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { toast } from 'react-toastify';
 import useAuth from '../hooks/useAuth';
 import { getTasks, deleteTask, newTask, updateTask } from '../api/Task API/services/taskService';
@@ -8,8 +8,10 @@ import style from './DashboardPage.module.css'
 import Spinner from '../components/Spinner/Spinner';
 import DeleteTaskDialog from '../features/DeleteTaskDialog/DeleteTaskDialog';
 import TaskFormDialog from '../features/TaskFormDialog/TaskFormDialog';
+
 import { Input } from '../lib/Reui/input/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../lib/Reui/select/select';
+import TaskDetailsDialog from '../features/TaskDetailsDialog/TaskDetailsDialog';
 
 
 const DashboardPage = () => {
@@ -22,6 +24,8 @@ const DashboardPage = () => {
   const [isFormDialogOpen, setIsFormDialogOpen] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState<ITask | null>(null);
   const [initialStatusForNewTask, setInitialStatusForNewTask] = useState<TaskStatus | undefined>(undefined);
+  const [isDetailsDialogOpen, setIsDetailsDialogOpen] = useState(false);
+  const [taskToView, setTaskToView] = useState<ITask | null>(null);
   // Estados para os filtros
   const [filterTitle, setFilterTitle] = useState('');
   const [filterPriority, setFilterPriority] = useState<TaskPriority | 'all'>('all');
@@ -34,31 +38,35 @@ const DashboardPage = () => {
     }))
   ];
 
-  useEffect(() => {
-    if (!accessToken) return;
-
-    const fetchTasks = async () => {
+  const fetchTasks = useCallback(async (filters: { title?: string; priority?: TaskPriority | 'all' } = {}) => {
+      if (!accessToken) return;
       setLoading(true);
       try {
-        const response = await getTasks({}, accessToken);
-        if (response.data) {
-          setTasks(response.data);
-        }
+        const apiParams = {
+          title: filters.title || undefined,
+          priority: filters.priority === 'all' ? undefined : filters.priority,
+        };
+        const response = await getTasks(apiParams, accessToken);
+        setTasks(response.data || []);
       } catch (error) {
         toast.error('Falha ao buscar as tarefas.');
         console.error(error);
       } finally {
         setLoading(false);
       }
-    };
-    fetchTasks();
+    },
+    [accessToken] // A função fetchTasks só será recriada se o accessToken mudar.
+  );
 
-  }, [accessToken]);
+  // Efeito para buscar tarefas quando os filtros mudam
+  useEffect(() => {
+    fetchTasks({ title: filterTitle, priority: filterPriority });
+  }, [filterTitle, filterPriority, fetchTasks]);
 
   const handleDetailsClick = (task: ITask) => {
-
-    console.log('Abrindo detalhes para:', task);
-    toast.info(`Detalhes: ${task.title}`);
+    // Abre o modal de detalhes com a tarefa clicada
+    setTaskToView(task);
+    setIsDetailsDialogOpen(true);
   };
 
   // Abre o modal de formulário para edição
@@ -90,7 +98,7 @@ const DashboardPage = () => {
 
   const handleTaskStatusChange = async (taskId: string, newStatus: TaskStatus) => {
     const originalTasks = tasks;
-    // Atualiza o estado local otimisticamente para uma UI mais rápida
+
     setTasks(prevTasks =>
       prevTasks.map(task =>
         task.id === taskId ? { ...task, status: newStatus } : task
@@ -131,8 +139,11 @@ const DashboardPage = () => {
         console.error('Erro ao editar tarefa:', error);
       }
     } else {
+
+      const taskDataWithDefaultStatus: INewTask = { ...data, status: 'to-do' };
+
       try {
-        const response = await toast.promise(newTask(data, accessToken!), {
+        const response = await toast.promise(newTask(taskDataWithDefaultStatus, accessToken!), {
           pending: 'Criando nova tarefa...',
           success: 'Nova tarefa criada com sucesso!',
           error: 'Falha ao criar a tarefa.',
@@ -143,15 +154,6 @@ const DashboardPage = () => {
       }
     }
   };
-
-  // Filtra as tarefas com base nos estados de filtro
-  const filteredTasks = useMemo(() => {
-    return tasks.filter(task => {
-      const titleMatch = task.title.toLowerCase().includes(filterTitle.toLowerCase());
-      const priorityMatch = filterPriority === 'all' || task.priority === filterPriority;
-      return titleMatch && priorityMatch;
-    });
-  }, [tasks, filterTitle, filterPriority]);
 
   return (
     <div className={style.dashboard}>
@@ -177,10 +179,11 @@ const DashboardPage = () => {
           </Select>
         </div>
       </header>
+      
       {loading ? ( 
         Spinner(32, '#0d1b2a', 'Carregando...')
       ): (       <TaskBoard
-        tasks={filteredTasks}
+        tasks={tasks}
         onDetailsClick={handleDetailsClick}
         onEditClick={handleEditClick}
         onDeleteClick={handleDeleteClick}
@@ -201,6 +204,14 @@ const DashboardPage = () => {
         taskToEdit={taskToEdit}
         initialStatus={initialStatusForNewTask}
         onSubmit={handleFormSubmit}
+      />
+
+      <TaskDetailsDialog
+        isOpen={isDetailsDialogOpen}
+        onOpenChange={setIsDetailsDialogOpen}
+        task={taskToView}
+        onEditClick={handleEditClick}
+        onDeleteClick={handleDeleteClick}
       />
     </div>
   );

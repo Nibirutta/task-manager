@@ -103,12 +103,21 @@
     --card-title-font: 'Lato', sans-serif;
     --card-priority-color: #b0bec5;
     --card-priority-font: 'Lato', sans-serif;
-    /* Cores de fundo por prioridade */
+
     --card-priority-high-bg: #e17a47;
     --card-priority-medium-bg: #efc958;
     --card-priority-low-bg: #41b19d;
     --card-priority-urgent-bg: #ef3d59;
     --card-priority-optional-bg: #344e5c;
+
+    --card-status-todo-bg: #fdb813;
+    --card-status-inprogress-bg: #3498db;
+    --card-status-inreview-bg: #9b59b6;
+    --card-status-done-bg: #1abc9c;
+
+
+
+
 
     --column-bg: #14213d;
     --column-border: transparent;

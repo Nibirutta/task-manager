@@ -32,22 +32,22 @@ const resetTokenRoute = {
 
 const getTasksRoute = {
     method: 'GET',
-    route : '/task'
+    route : '/tasks'
 }
 
 const createTaskRoute = {
     method: 'POST',
-    route : '/task'
+    route : '/tasks'
 }
 
 const updateTaskRoute = {
     method: 'PUT',
-    route : '/task/:'
+    route : '/tasks/:'
 }
 
 const deleteTaskRoute = {
     method: 'DELETE',
-    route : '/task/:'
+    route : '/tasks/:'
 }
 
 export {

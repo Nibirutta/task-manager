@@ -14,13 +14,19 @@ import {
 import { apiFetch } from "../client/apiClient";
 
 const getTasks = async (params: IGetTasks, acessToken: string) => {
+  // Constrói os parâmetros de query dinamicamente
+  const queryParams = new URLSearchParams();
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && value !== '') {
+      queryParams.append(key, String(value));
+    }
+  });
+  const queryString = queryParams.toString();
+
   const response = await apiFetch(
-    `${getTasksRoute.route}?title=${params.title}&status=${params.status}&priority=${params.priority}&from=${params.from}&to=${params.to}`,
-    {
-      method: getTasksRoute.method,
-    },
-    acessToken
-  );
+    `${getTasksRoute.route}${queryString ? `?${queryString}` : ''}`,
+    { method: getTasksRoute.method },
+    acessToken);
   return response;
 };
 
