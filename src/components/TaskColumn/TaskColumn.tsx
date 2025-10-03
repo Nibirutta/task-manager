@@ -1,20 +1,41 @@
-import React, { memo, useEffect, useRef } from 'react';
+import  { memo, useEffect, useRef } from 'react';
 import style from './TaskColumn.module.css';
-import type { TaskStatus } from '../../types/taskTypes';
+import type { ITask, TaskStatus } from '../../types/taskTypes';
 import { Plus } from 'lucide-react';
 import { dropTargetForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
+import TaskCard from '../TaskCard/TaskCard'; // Importe o TaskCard aqui
+import type { ExpirationStatus } from '../../utils/getTaskStatus';
 
+// Adicione as props que o TaskCard precisa
+type IProcessedTask = ITask & {
+  expirationStatus: ExpirationStatus;
+  formattedDueDate: string;
+};
 
 interface TaskColumnProps {
   title: string;
-  children: React.ReactNode;
   status: TaskStatus;
-  taskCount: number;
+  tasks: IProcessedTask[]; // Recebe o array de tarefas
   isDraggingOver: boolean;
   onAddTask: (status: TaskStatus) => void;
+  // Adicione as funções que serão passadas para o TaskCard
+  onDetailsClick: (task: ITask) => void;
+  onEditClick: (task: ITask) => void;
+  onDeleteClick: (task: ITask) => void;
+  draggingTaskId: string | null; // Precisa saber qual card está sendo arrastado
 }
 
-function TaskColumn({ title, children, status, taskCount, isDraggingOver, onAddTask }: TaskColumnProps) {
+function TaskColumn({ 
+  title, 
+  status, 
+  tasks, 
+  isDraggingOver, 
+  onAddTask,
+  onDetailsClick,
+  onEditClick,
+  onDeleteClick,
+  draggingTaskId
+}: TaskColumnProps) {
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -30,12 +51,20 @@ function TaskColumn({ title, children, status, taskCount, isDraggingOver, onAddT
   // Combina as classes dinamicamente para o feedback visual
   const columnClasses = `${style.column} ${isDraggingOver ? style.isDraggingOver : ''}`;
 
+
+  const taskIds = tasks.map(t => t._id);
+  const hasDuplicates = new Set(taskIds).size !== taskIds.length;
+  
+  if (hasDuplicates) {
+    console.warn(`ALERTA DE DEBUG: Foram encontrados IDs duplicados na coluna "${title}"`, taskIds);
+  }
+
   return (
     <section ref={ref} className={columnClasses}>
       <header className={style.header}>
         <h2 className={style.title}>
           {title}
-          <span className={style.taskCount}>{taskCount}</span>
+          <span className={style.taskCount}>{tasks.length}</span>
         </h2>
         <button onClick={() => onAddTask(status)} className={style.addButton} aria-label={`Adicionar tarefa em ${title}`}>
           <Plus size={18} />
@@ -43,8 +72,22 @@ function TaskColumn({ title, children, status, taskCount, isDraggingOver, onAddT
       </header>
 
       <main className={style.content}>
-        {taskCount > 0 ? (
-          children
+        {tasks.length > 0 ? (
+          
+          tasks.map(task => {
+            if (task._id === draggingTaskId) {
+              return null;
+            }
+            return (
+              <TaskCard 
+                key={task._id}
+                task={task} 
+                onDetailsClick={onDetailsClick} 
+                onEditClick={onEditClick} 
+                onDeleteClick={onDeleteClick} 
+              />
+            );
+          })
         ) : (
           <div className={style.emptyState}>
             <p>Arraste suas tarefas para cá</p>

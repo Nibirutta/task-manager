@@ -2,12 +2,14 @@ type TaskStatus = 'to-do' | 'in-progress' | 'in-review' | 'done';
 type TaskPriority = 'high' | 'medium' | 'low' | 'urgent' | 'optional';
 
 interface ITask {
-    id: string;
+    _id: string;
     title: string;
     description?: string;
     status: TaskStatus;
     priority: TaskPriority;
     dueDate: string;
+    createdAt: string;
+    updatedAt: string;
 }
 
 interface IGetTasks {
@@ -28,7 +30,7 @@ interface INewTask {
 }
 
 interface IUpdateTask {
-    id: string;
+    _id: string;
     description?: string;
     status?: TaskStatus;
     priority?: TaskPriority;
@@ -37,7 +39,7 @@ interface IUpdateTask {
 }
 
 interface IDeleteTask {
-    id: string;
+    _id: string;
 }
 
 

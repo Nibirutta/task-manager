@@ -101,14 +101,14 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
   const handleFormSubmit = (data: TaskFormValues) => {
     if (isEditing) {
       // Garantimos que taskToEdit não é nulo e criamos o objeto IUpdateTask
-      const updatedData: IUpdateTask = { id: taskToEdit!.id, ...data };
+      const updatedData: IUpdateTask = { _id: taskToEdit!._id, ...data }; // Usa _id
       onSubmit(updatedData);
     } else {
       // Criamos um objeto que corresponde exatamente ao tipo INewTask
       const newData: INewTask = {
         title: data.title,
         description: data.description,
-        dueDate: data.dueDate!, // Usamos '!' para afirmar que a data não será nula aqui, pois o Zod já validou
+        dueDate: data.dueDate!, 
         priority: data.priority,
         status: data.status,
       };

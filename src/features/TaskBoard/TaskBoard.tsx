@@ -2,8 +2,10 @@ import { useEffect, useMemo, useState } from 'react';
 import style from './TaskBoard.module.css';
 import type { ITask, TaskStatus } from '../../types/taskTypes';
 import TaskColumn from '../../components/TaskColumn/TaskColumn';
-import TaskCard from '../../components/TaskCard/TaskCard';
+
+
 import { monitorForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
+import type { ExpirationStatus } from '../../utils/getTaskStatus';
 
 // Define a estrutura e a ordem de nossas colunas.
 // O 'id' deve corresponder ao 'status' vindo da API.
@@ -14,8 +16,13 @@ const columnsConfig: { id: TaskStatus; title: string }[] = [
   { id: 'done', title: 'Concluído' },
 ];
 
+// Estende o ITask para incluir as propriedades calculadas no DashboardPage
+type IProcessedTask = ITask & {
+  expirationStatus: ExpirationStatus;
+  formattedDueDate: string;
+};
 interface TaskBoardProps {
-  tasks: ITask[];
+  tasks: IProcessedTask[];
   onDetailsClick: (task: ITask) => void;
   onEditClick: (task: ITask) => void;
   onDeleteClick: (task: ITask) => void;
@@ -38,7 +45,7 @@ function TaskBoard({
     return monitorForElements({
       onDragStart: ({ source }) => {
         if (source.data.type === 'card') {
-          setDraggingTaskId(source.data.taskId as string);
+          setDraggingTaskId(source.data._id as string); // Usa _id
         }
       },
       onDrag: ({ location }) => {
@@ -55,7 +62,7 @@ function TaskBoard({
         const destination = location.current.dropTargets[0];
         if (!destination || source.data.type !== 'card') return;
 
-        const taskId = source.data.taskId as string;
+        const taskId = source.data._id as string; // Usa _id
         const newStatus = destination.data.columnId as TaskStatus;
 
         onTaskStatusChange(taskId, newStatus);
@@ -64,7 +71,7 @@ function TaskBoard({
   }, [onTaskStatusChange]);
 
   const tasksByColumn = useMemo(() => {
-    const groupedTasks = new Map<TaskStatus, ITask[]>();
+    const groupedTasks = new Map<TaskStatus, IProcessedTask[]>();
     // Inicializa o mapa com arrays vazios para todas as colunas definidas
     columnsConfig.forEach(column => {
       groupedTasks.set(column.id, []);
@@ -85,18 +92,15 @@ function TaskBoard({
             key={column.id}
             title={column.title}
             status={column.id}
-            taskCount={columnTasks.length}
+            tasks={columnTasks} // Passa o array de dados
             onAddTask={onAddTask}
             isDraggingOver={draggingOverColumn === column.id}
-          >
-            {columnTasks.map(task => {
-              // Oculta o card original enquanto ele está sendo arrastado
-              if (task.id === draggingTaskId) {
-                return null;
-              }
-              return <TaskCard key={task.id} task={task} onDetailsClick={onDetailsClick} onEditClick={onEditClick} onDeleteClick={onDeleteClick} />;
-            })}
-          </TaskColumn>
+            // Passe as funções de manipulação para a coluna
+            onDetailsClick={onDetailsClick}
+            onEditClick={onEditClick}
+            onDeleteClick={onDeleteClick}
+            draggingTaskId={draggingTaskId}
+          />
         );
       })}
     </div>

@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useReducer, useMemo } from 'react';
 import { toast } from 'react-toastify';
 import useAuth from '../hooks/useAuth';
 import { getTasks, deleteTask, newTask, updateTask } from '../api/Task API/services/taskService';
@@ -12,20 +12,50 @@ import TaskFormDialog from '../features/TaskFormDialog/TaskFormDialog';
 import { Input } from '../lib/Reui/input/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../lib/Reui/select/select';
 import TaskDetailsDialog from '../features/TaskDetailsDialog/TaskDetailsDialog';
+import getTaskStatus from '../utils/getTaskStatus'; // Importa a função pura, não o default export
 
+
+// Reducer para gerenciar o estado dos diálogos
+type DialogState = {
+  delete: { isOpen: boolean; task: ITask | null };
+  form: { isOpen: boolean; task: ITask | null; initialStatus?: TaskStatus };
+  details: { isOpen: boolean; task: ITask | null };
+};
+
+type DialogAction =
+  | { type: 'OPEN_DELETE'; payload: ITask }
+  | { type: 'OPEN_DETAILS'; payload: ITask }
+  | { type: 'OPEN_FORM'; payload: { task: ITask | null; initialStatus?: TaskStatus } }
+  | { type: 'CLOSE_ALL' };
+
+const initialDialogState: DialogState = {
+  delete: { isOpen: false, task: null },
+  form: { isOpen: false, task: null },
+  details: { isOpen: false, task: null },
+};
+
+const dialogReducer = (state: DialogState, action: DialogAction): DialogState => {
+  switch (action.type) {
+    case 'OPEN_DELETE':
+      return { ...initialDialogState, delete: { isOpen: true, task: action.payload } };
+    case 'OPEN_DETAILS':
+      return { ...initialDialogState, details: { isOpen: true, task: action.payload } };
+    case 'OPEN_FORM':
+      return { ...initialDialogState, form: { isOpen: true, ...action.payload } };
+    case 'CLOSE_ALL':
+      return initialDialogState;
+    default:
+      return state;
+  }
+};
 
 const DashboardPage = () => {
   const [tasks, setTasks] = useState<ITask[]>([]);
   const [loading, setLoading] = useState(false);
   const { accessToken } = useAuth();
-  // Estados para controlar os modais
-  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
-  const [taskToDelete, setTaskToDelete] = useState<ITask | null>(null);
-  const [isFormDialogOpen, setIsFormDialogOpen] = useState(false);
-  const [taskToEdit, setTaskToEdit] = useState<ITask | null>(null);
-  const [initialStatusForNewTask, setInitialStatusForNewTask] = useState<TaskStatus | undefined>(undefined);
-  const [isDetailsDialogOpen, setIsDetailsDialogOpen] = useState(false);
-  const [taskToView, setTaskToView] = useState<ITask | null>(null);
+  // Estado dos diálogos gerenciado pelo reducer
+  const [dialogState, dispatchDialog] = useReducer(dialogReducer, initialDialogState);
+
   // Estados para os filtros
   const [filterTitle, setFilterTitle] = useState('');
   const [filterPriority, setFilterPriority] = useState<TaskPriority | 'all'>('all');
@@ -38,16 +68,38 @@ const DashboardPage = () => {
     }))
   ];
 
-  const fetchTasks = useCallback(async (filters: { title?: string; priority?: TaskPriority | 'all' } = {}) => {
+  // Processa as tarefas com useMemo para adicionar status de expiração e aplicar filtros
+  const processedTasks = useMemo(() => {
+    return tasks
+      .map(task => {
+        const { expirationStatus, formattedDueDate } = getTaskStatus(task.dueDate); // getTaskStatus não precisa de _id
+        return { ...task, expirationStatus, formattedDueDate };
+      })
+      .filter(task => {
+        const titleMatch = filterTitle
+          ? task.title.toLowerCase().includes(filterTitle.toLowerCase())
+          : true;
+        const priorityMatch = filterPriority === 'all'
+          ? true
+          : task.priority === filterPriority;
+        
+        return titleMatch && priorityMatch;
+      });
+  }, [tasks, filterTitle, filterPriority]);
+
+
+  const fetchTasks = useCallback(
+    async (filters: { title?: string; priority?: TaskPriority | 'all' } = {}) => 
+      {
       if (!accessToken) return;
       setLoading(true);
       try {
         const apiParams = {
           title: filters.title || undefined,
           priority: filters.priority === 'all' ? undefined : filters.priority,
-        };
-        const response = await getTasks(apiParams, accessToken);
-        setTasks(response.data || []);
+        }
+        const tasksResponse: ITask[] = await getTasks(apiParams, accessToken);
+        setTasks(tasksResponse || []);
       } catch (error) {
         toast.error('Falha ao buscar as tarefas.');
         console.error(error);
@@ -59,56 +111,57 @@ const DashboardPage = () => {
   );
 
   // Efeito para buscar tarefas quando os filtros mudam
+  // OBS: A filtragem por título agora é feita no frontend para uma resposta mais rápida.
   useEffect(() => {
-    fetchTasks({ title: filterTitle, priority: filterPriority });
-  }, [filterTitle, filterPriority, fetchTasks]);
+    fetchTasks({ priority: filterPriority });
+  }, [filterPriority, fetchTasks]);
 
   const handleDetailsClick = (task: ITask) => {
     // Abre o modal de detalhes com a tarefa clicada
-    setTaskToView(task);
-    setIsDetailsDialogOpen(true);
+    dispatchDialog({ type: 'OPEN_DETAILS', payload: task });
   };
 
   // Abre o modal de formulário para edição
   const handleEditClick = (task: ITask) => {
-    setTaskToEdit(task);
-    setIsFormDialogOpen(true);
+    dispatchDialog({ type: 'OPEN_FORM', payload: { task } });
   };
 
   // Abre o modal de confirmação
   const handleDeleteClick = (task: ITask) => {
-    setTaskToDelete(task);
-    setIsDeleteDialogOpen(true);
+    dispatchDialog({ type: 'OPEN_DELETE', payload: task });
   };
 
   // Função chamada pelo modal ao confirmar
   const handleConfirmDelete = async (task: ITask) => {
+    const originalTasks = tasks;
+    setTasks(tasks.filter(t => t._id !== task._id));
+    dispatchDialog({ type: 'CLOSE_ALL' });
+
     try {
-      await toast.promise(deleteTask({ id: task.id }, accessToken!), {
+      await toast.promise(deleteTask({ _id: task._id }, accessToken!), {
         pending: 'Excluindo tarefa...',
         success: 'Tarefa excluída com sucesso!',
         error: 'Falha ao excluir a tarefa.',
       });
-      // Remove a tarefa do estado local
-      setTasks(tasks.filter(t => t.id !== task.id));
     } catch (error) {
+      // Rollback em caso de erro
+      setTasks(originalTasks);
       console.error('Erro ao deletar tarefa:', error);
     }
   };
 
   const handleTaskStatusChange = async (taskId: string, newStatus: TaskStatus) => {
-    const originalTasks = tasks;
+    const originalTasks = tasks; 
 
     setTasks(prevTasks =>
       prevTasks.map(task =>
-        task.id === taskId ? { ...task, status: newStatus } : task
+        task._id === taskId ? { ...task, status: newStatus } : task
       )
     );
 
-    try {
-      const updateData: IUpdateTask = { id: taskId, status: newStatus };
+    try { 
+      const updateData: IUpdateTask = { _id: taskId, status: newStatus };
       await updateTask(updateData, accessToken!);
-      toast.success('Tarefa movida com sucesso!');
     } catch (err) {
       toast.error('Falha ao mover a tarefa.');
       console.error(err)
@@ -118,37 +171,36 @@ const DashboardPage = () => {
 
   // Abre o modal de formulário para criação
   const handleAddTask = (status: TaskStatus) => {
-    setTaskToEdit(null); // Garante que estamos no modo de criação
-    setInitialStatusForNewTask(status);
-    setIsFormDialogOpen(true);
+    dispatchDialog({ type: 'OPEN_FORM', payload: { task: null, initialStatus: status } });
   };
 
   // Função chamada pelo formulário ao submeter
   const handleFormSubmit = async (data: INewTask | IUpdateTask) => {
-    const isEditing = 'id' in data;
+    const isEditing = '_id' in data; 
 
     if (isEditing) {
       try {
-        const response = await toast.promise(updateTask(data, accessToken!), {
+        const response = await toast.promise(updateTask(data as IUpdateTask, accessToken!), {
           pending: 'Atualizando tarefa...',
           success: 'Tarefa atualizada com sucesso!',
           error: 'Falha ao atualizar a tarefa.',
         });
-        setTasks(tasks.map(t => (t.id === data.id ? response.data : t)));
+        setTasks(tasks.map(t => (t._id === response.data._id ? response.data : t))); // Compara pelo _id
+        dispatchDialog({ type: 'CLOSE_ALL' });
       } catch (error) {
         console.error('Erro ao editar tarefa:', error);
       }
     } else {
 
-      const taskDataWithDefaultStatus: INewTask = { ...data, status: 'to-do' };
-
       try {
-        const response = await toast.promise(newTask(taskDataWithDefaultStatus, accessToken!), {
+        const response = await toast.promise(newTask(data as INewTask, accessToken!), {
           pending: 'Criando nova tarefa...',
           success: 'Nova tarefa criada com sucesso!',
           error: 'Falha ao criar a tarefa.',
         });
-        setTasks([...tasks, response.data]);
+
+        setTasks(prevTasks => [...prevTasks, response.data]);
+        dispatchDialog({ type: 'CLOSE_ALL' });
       } catch (error) {
         console.error('Erro ao adicionar tarefa:', error);
       }
@@ -183,7 +235,7 @@ const DashboardPage = () => {
       {loading ? ( 
         Spinner(32, '#0d1b2a', 'Carregando...')
       ): (       <TaskBoard
-        tasks={tasks}
+        tasks={processedTasks}
         onDetailsClick={handleDetailsClick}
         onEditClick={handleEditClick}
         onDeleteClick={handleDeleteClick}
@@ -192,24 +244,24 @@ const DashboardPage = () => {
       />)}
       
       <DeleteTaskDialog
-        isOpen={isDeleteDialogOpen}
-        onOpenChange={setIsDeleteDialogOpen}
-        task={taskToDelete}
+        isOpen={dialogState.delete.isOpen}
+        onOpenChange={() => dispatchDialog({ type: 'CLOSE_ALL' })}
+        task={dialogState.delete.task}
         onConfirm={handleConfirmDelete}
       />
 
       <TaskFormDialog
-        isOpen={isFormDialogOpen}
-        onOpenChange={setIsFormDialogOpen}
-        taskToEdit={taskToEdit}
-        initialStatus={initialStatusForNewTask}
+        isOpen={dialogState.form.isOpen}
+        onOpenChange={() => dispatchDialog({ type: 'CLOSE_ALL' })}
+        taskToEdit={dialogState.form.task}
+        initialStatus={dialogState.form.initialStatus}
         onSubmit={handleFormSubmit}
       />
 
       <TaskDetailsDialog
-        isOpen={isDetailsDialogOpen}
-        onOpenChange={setIsDetailsDialogOpen}
-        task={taskToView}
+        isOpen={dialogState.details.isOpen}
+        onOpenChange={() => dispatchDialog({ type: 'CLOSE_ALL' })}
+        task={dialogState.details.task}
         onEditClick={handleEditClick}
         onDeleteClick={handleDeleteClick}
       />

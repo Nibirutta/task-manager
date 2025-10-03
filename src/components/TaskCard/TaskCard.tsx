@@ -3,12 +3,17 @@ import { draggable } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import { ClockAlert, ClockFading, ClockPlus, FilePenLine, Flag, MoreHorizontal, Trash2 } from 'lucide-react';
 import style from './TaskCard.module.css';
 import type { ITask } from '../../types/taskTypes';
+
 import PopoverTaskCard from '../PopoverTaskCard/PopoverTaskCard';
-import formatDate from '../../utils/formatDate';
+import type { ExpirationStatus } from '../../utils/getTaskStatus';
+
 
 // As props que o componente espera receber.
 interface TaskCardProps {
-  task: ITask;
+  task: ITask & {
+    expirationStatus: ExpirationStatus;
+    formattedDueDate: string;
+  };
   onDetailsClick: (task: ITask) => void;
   onDeleteClick: (task: ITask) => void;
   onEditClick: (task: ITask) => void;
@@ -16,43 +21,17 @@ interface TaskCardProps {
 
 function TaskCard({ task, onDetailsClick, onDeleteClick, onEditClick }: TaskCardProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const { id, status } = task;
+  const { _id, status, expirationStatus, formattedDueDate } = task; // Desestrutura _id
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
 
     return draggable({
-      element: el,
-      getInitialData: () => ({ type: 'card', taskId: id, status: status }),
+      element: el, // Passa _id como taskId para compatibilidade com o TaskBoard
+      getInitialData: () => ({ type: 'card', taskId: _id, status: status }),
     });
-  }, [id, status]);
-
-
-  const formattedDueDate = formatDate(task.dueDate);
-
-  const getExpirationStatus = (dueDate: string): 'expired' | 'deadline' | 'in-time' => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0); // Normaliza para o início do dia
-
-    const due = new Date(dueDate);
-    // A data da API já vem como YYYY-MM-DD, o que o construtor de Date interpreta como UTC.
-    // Para evitar problemas de fuso, adicionamos o fuso horário local.
-    const timeZoneOffset = due.getTimezoneOffset() * 60000;
-    const dueLocal = new Date(due.getTime() + timeZoneOffset);
-    dueLocal.setHours(0, 0, 0, 0);
-
-    const timeDiff = dueLocal.getTime() - today.getTime();
-    const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-
-    if (daysDiff < 0) {
-      return 'expired';
-    } else if (daysDiff <= 1) { // Vence hoje ou amanhã
-      return 'deadline';
-    } else {
-      return 'in-time';
-    }
-  };
+  }, [_id, status]);
 
   const priorityObject = {
       low: 'Baixa',
@@ -63,8 +42,6 @@ function TaskCard({ task, onDetailsClick, onDeleteClick, onEditClick }: TaskCard
   } as const;
 
   const priorityClass = `priority-${task.priority}`;
-  const expirationClass = getExpirationStatus(task.dueDate);
-
 
   const cardClasses = `${style.card} ${style[priorityClass] || ''}`;
 
@@ -78,10 +55,10 @@ function TaskCard({ task, onDetailsClick, onDeleteClick, onEditClick }: TaskCard
           </div>
       
         
-                 <div className={`${style.badge} ${style[expirationClass]}`}>
-          {expirationClass === 'expired' ? (
+                 <div className={`${style.badge} ${style[expirationStatus]}`}>
+          {expirationStatus === 'expired' ? (
             <ClockAlert size={14} />
-          ) : expirationClass === 'in-time' ? (
+          ) : expirationStatus === 'in-time' ? (
             <ClockPlus size={14} />
           ) : (
             <ClockFading size={14} />
