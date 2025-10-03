@@ -13,6 +13,7 @@ import { Input } from '../lib/Reui/input/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../lib/Reui/select/select';
 import TaskDetailsDialog from '../features/TaskDetailsDialog/TaskDetailsDialog';
 import getTaskStatus from '../utils/getTaskStatus'; // Importa a função pura, não o default export
+import FlickeringGrid from '../lib/magicUI/grid';
 
 
 // Reducer para gerenciar o estado dos diálogos
@@ -208,7 +209,16 @@ const DashboardPage = () => {
   };
 
   return (
-    <div className={style.dashboard}>
+    <div className={style.dashboardContainer}>
+
+      <FlickeringGrid 
+        className="absolute inset-0 z-0 size-full"
+        squareSize={4}
+        gridGap={6}
+        color="#14213d"
+        maxOpacity={0.5}
+        flickerChance={0.1}
+      />
       <header className={style.header}>
         <h1 className={style.title}>Meu Quadro de Tarefas</h1>
         <div className={style.filters}>

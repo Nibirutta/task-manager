@@ -5,6 +5,26 @@
   width: 100%;
   padding: 2rem;
   gap: 2rem;
+  position: relative;
+
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--column-header-bg) var(--column-bg);
+  &::-webkit-scrollbar {
+    width: 10px ;
+    height: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background: var(--column-header-bg);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--column-bg);
+    border-radius: 20px;
+    border: 3px solid var(--column-header-bg);
+  }
+
+
 }
 
 .header {
