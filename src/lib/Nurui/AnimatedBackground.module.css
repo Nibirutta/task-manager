@@ -1,0 +1,36 @@
+.animatedBackgroundContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Fica atrás do conteúdo */
+
+    /* Definindo as cores como variáveis CSS com valores padrão */
+    --line-color-1: #22d3ee;
+    --line-color-2: #8b5cf6;
+    --blob-color-1: rgba(6, 182, 212, 0.3);
+    --blob-color-2: rgba(139, 92, 246, 0.3);
+}
+
+.blob1 {
+    position: absolute;
+    left: -25%;
+    top: 25%;
+    height: 24rem; /* 384px */
+    width: 24rem; /* 384px */
+    border-radius: 9999px; /* rounded-full */
+    background-color: var(--blob-color-1); /* Usando a variável CSS */
+    filter: blur(72px); /* blur-3xl */
+}
+
+.blob2 {
+    position: absolute;
+    right: -25%;
+    top: 50%;
+    height: 24rem; /* 384px */
+    width: 24rem; /* 384px */
+    border-radius: 9999px; /* rounded-full */
+    background-color: var(--blob-color-2); /* Usando a variável CSS */
+    filter: blur(72px); /* blur-3xl */
+}

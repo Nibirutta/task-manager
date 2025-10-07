@@ -209,9 +209,9 @@ const DashboardPage = () => {
   };
 
   return (
-    <div className={style.dashboardContainer}>
+    <>
 
-      <FlickeringGrid 
+    <FlickeringGrid 
         className="absolute inset-0 z-0 size-full"
         squareSize={4}
         gridGap={6}
@@ -219,6 +219,9 @@ const DashboardPage = () => {
         maxOpacity={0.5}
         flickerChance={0.1}
       />
+    <div className={style.dashboardContainer}>
+
+
       <header className={style.header}>
         <h1 className={style.title}>Meu Quadro de Tarefas</h1>
         <div className={style.filters}>
@@ -276,6 +279,7 @@ const DashboardPage = () => {
         onDeleteClick={handleDeleteClick}
       />
     </div>
+    </>
   );
 };
 

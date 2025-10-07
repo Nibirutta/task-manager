@@ -1,0 +1,26 @@
+.heroSection {
+    position: relative; /* Essencial para o posicionamento do background */
+    background-color: #020617; /* Cor de fundo escura */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Ocupa a tela inteira */
+    padding: 2rem;
+    overflow: hidden; /* Garante que as ondas não "vazem" */
+}
+
+
+
+.heroContent {
+    position: relative; /* Para ficar na frente do background */
+    z-index: 1;
+    text-align: center;
+    color: white; /* Ajuste a cor do texto para contrastar com o fundo */
+    /* Adicione outros estilos para o conteúdo aqui */
+}
+
+/* Adicione os estilos dos botões e outros elementos que você já tinha */
+.title, .subtitle, .ctaButtons, .dismissText {
+    margin-bottom: 1rem;
+    /* Estilos para o conteúdo do hero */
+}
