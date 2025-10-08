@@ -1,26 +1,89 @@
 .heroSection {
-    position: relative; /* Essencial para o posicionamento do background */
-    background-color: #020617; /* Cor de fundo escura */
+    position: relative; 
+    background-color:var(--header-bg-color);
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh; /* Ocupa a tela inteira */
+    height: 100dvh;
+    width: 100dvw; 
     padding: 2rem;
-    overflow: hidden; /* Garante que as ondas não "vazem" */
+    overflow: hidden; 
 }
 
 
 
 .heroContent {
-    position: relative; /* Para ficar na frente do background */
-    z-index: 1;
-    text-align: center;
-    color: white; /* Ajuste a cor do texto para contrastar com o fundo */
-    /* Adicione outros estilos para o conteúdo aqui */
+    position: relative; 
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 3rem;
+    padding: 6rem 5rem;
+    max-width: 1440px;
+    margin: 0 auto;
+
 }
 
-/* Adicione os estilos dos botões e outros elementos que você já tinha */
-.title, .subtitle, .ctaButtons, .dismissText {
-    margin-bottom: 1rem;
-    /* Estilos para o conteúdo do hero */
+.title{
+    grid-column: span 3 / span 3;
+    grid-row: span 2 / span 2;
+    font: 800 6.4rem/1.2 var(--hero-title-font);
+    color: var(--hero-title-color);
+    text-shadow: 4px 8px 4px var(--hero-title-shadow);
+    text-align: center;
+    padding: 1rem;
+
 }
+
+.subtitle{
+    grid-column: span 3 / span 3;
+    grid-column-start: 1;
+    grid-row-start: 3;
+    font: 600 2.4rem/1.2 var(--hero-subtitle-font);
+    color: var(--hero-subtitle-color);
+    text-align: center;
+    padding: 1rem;
+}
+
+.ctaButtons{
+    grid-column: span 3 / span 3;
+    grid-column-start: 1;
+    grid-row-start: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8rem;
+    padding: 1rem 4rem;
+}
+
+.developedText{
+    grid-column: span 4 / span 4;
+    grid-column-start: 2;
+    grid-row-start: 5;
+    font: 500 1.6rem/1.2 var(--hero-developed-font);
+    color: var(--hero-developed-color);
+    text-align: center;
+    padding: 1rem;
+}
+
+.heroImageContainer{
+        grid-column: span 3 / span 3;
+    grid-row: span 4 / span 4;
+    grid-column-start: 4;
+    grid-row-start: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.heroImageContainer img{
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+

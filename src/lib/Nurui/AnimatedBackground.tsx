@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import style from './hero.module.css';
+import style from './AnimatedBackground.module.css';
 
 interface AnimatedBackgroundProps {
   line1Color?: string;

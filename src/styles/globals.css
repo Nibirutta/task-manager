@@ -33,6 +33,16 @@
     --dropdown-item-destructive-text-color: oklch(57.8% 0.224 19.86);
     --dropdown-item-destructive-bg-hover: oklch(57.8% 0.224 19.86 / 0.05);
 
+    /* Hero Section */
+    --hero-title-font: 'Orbitron', sans-serif;
+    --hero-title-color: #778da9;
+    --hero-title-shadow: #415a77;
+    --hero-subtitle-font: 'Lato', sans-serif;
+    --hero-subtitle-color: #e0e1dd;
+    --hero-developed-font: 'Lato', sans-serif;
+    --hero-developed-color: #e0e1dd;
+
+
     /* Login Form */
     --login-bg-color: #182437 ;
     --login-border-color: #142133;

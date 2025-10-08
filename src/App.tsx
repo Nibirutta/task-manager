@@ -6,7 +6,7 @@ import Layout from './layout/Layout';
 import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
-import DashboardPage from './pages/DashboardPage';
+import DashboardPage from './pages/DashboardPage/DashboardPage';
 import NotFoundPage from './pages/NotFoundPage';
 import UserSettingsPage from './pages/UserSettingsPage';
 

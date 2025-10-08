@@ -1,19 +1,19 @@
 import { useEffect, useState, useCallback, useReducer, useMemo } from 'react';
 import { toast } from 'react-toastify';
-import useAuth from '../hooks/useAuth';
-import { getTasks, deleteTask, newTask, updateTask } from '../api/Task API/services/taskService';
-import type { ITask, TaskStatus, INewTask, IUpdateTask, TaskPriority } from '../types/taskTypes';
-import TaskBoard from '../features/TaskBoard/TaskBoard';
+import useAuth from '../../hooks/useAuth';
+import { getTasks, deleteTask, newTask, updateTask } from '../../api/Task API/services/taskService';
+import type { ITask, TaskStatus, INewTask, IUpdateTask, TaskPriority } from '../../types/taskTypes';
+import TaskBoard from '../../features/TaskBoard/TaskBoard';
 import style from './DashboardPage.module.css'
-import Spinner from '../components/Spinner/Spinner';
-import DeleteTaskDialog from '../features/DeleteTaskDialog/DeleteTaskDialog';
-import TaskFormDialog from '../features/TaskFormDialog/TaskFormDialog';
+import Spinner from '../../components/Spinner/Spinner';
+import DeleteTaskDialog from '../../features/DeleteTaskDialog/DeleteTaskDialog';
+import TaskFormDialog from '../../features/TaskFormDialog/TaskFormDialog';
 
-import { Input } from '../lib/Reui/input/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../lib/Reui/select/select';
-import TaskDetailsDialog from '../features/TaskDetailsDialog/TaskDetailsDialog';
-import getTaskStatus from '../utils/getTaskStatus'; // Importa a função pura, não o default export
-import FlickeringGrid from '../lib/magicUI/grid';
+import { Input } from '../../lib/Reui/input/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../lib/Reui/select/select';
+import TaskDetailsDialog from '../../features/TaskDetailsDialog/TaskDetailsDialog';
+import getTaskStatus from '../../utils/getTaskStatus'; // Importa a função pura, não o default export
+import FlickeringGrid from '../../lib/magicUI/grid';
 
 
 // Reducer para gerenciar o estado dos diálogos
