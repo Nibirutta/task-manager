@@ -1,11 +1,18 @@
 import { PacmanLoader } from "react-spinners";
+import style from './Spinner.module.css';
 
-const Spinner = (size: number, color: string, text: string) => {
+interface SpinnerProps {
+  size?: number;
+  color?: string;
+  text?: string;
+}
+
+const Spinner = ({ size = 55, color = "#0cbce9", text = "Carregando..." }: SpinnerProps) => {
   return (
-    <>
+    <div className={style.spinnerContainer}>
       <PacmanLoader size={size} color={color} />
-      <span> {text}</span>
-    </>
+      {text && <span className={style.spinnerText}>{text}</span>}
+    </div>
   );
 };
 

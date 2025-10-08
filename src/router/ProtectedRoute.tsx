@@ -13,7 +13,7 @@ const ProtectedRoute = () => {
   const { isAuthenticated, isLoading } = useAuth();
 
   if (isLoading) {
-    return Spinner(55, '#0cbce9', 'Carregando...')
+    return <Spinner size={55} color="#0d1b2a" text="Verificando sua sessão..." />;
   }
 
   if (!isAuthenticated) {

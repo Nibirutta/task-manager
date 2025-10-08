@@ -1,39 +1,40 @@
 
+import { lazy, Suspense } from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './router/ProtectedRoute';
 import Layout from './layout/Layout';
-import HomePage from './pages/HomePage/HomePage';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import DashboardPage from './pages/DashboardPage/DashboardPage';
-import NotFoundPage from './pages/NotFoundPage';
-import UserSettingsPage from './pages/UserSettingsPage';
+import Spinner from './components/Spinner/Spinner';
 
-
-
-
-
+// Lazy-loading dos componentes de página
+const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const RegisterPage = lazy(() => import('./pages/RegisterPage'));
+const DashboardPage = lazy(() => import('./pages/DashboardPage/DashboardPage'));
+const UserSettingsPage = lazy(() => import('./pages/UserSettingsPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        {/* Rotas Públicas */}
-        <Route index element={<HomePage />} />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="register" element={<RegisterPage />} />
+    <Suspense fallback={<Spinner color='#0d1b2a' />}>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          {/* Rotas Públicas */}
+          <Route index element={<HomePage />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="register" element={<RegisterPage />} />
 
-        {/* Rotas Protegidas */}
-        <Route element={<ProtectedRoute />}>
-          <Route path="dashboard" element={<DashboardPage />} />
-          <Route path="settings" element={<UserSettingsPage />} />
+          {/* Rotas Protegidas */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="dashboard" element={<DashboardPage />} />
+            <Route path="settings" element={<UserSettingsPage />} />
+          </Route>
+
+          {/* Rota de fallback para 404 */}
+          <Route path="*" element={ <NotFoundPage /> } />
         </Route>
-
-        {/* Rota de fallback para 404 */}
-        <Route path="*" element={ <NotFoundPage /> } />
-      </Route>
-    </Routes>
+      </Routes>
+    </Suspense>
   )
 }
 
