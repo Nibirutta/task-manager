@@ -246,7 +246,7 @@ const DashboardPage = () => {
       </header>
       
       {loading ? ( 
-        Spinner(32, '#0d1b2a', 'Carregando...')
+        <Spinner/>
       ): (       <TaskBoard
         tasks={processedTasks}
         onDetailsClick={handleDetailsClick}
