@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import HeroSection from "./HeroSection";
 import FeaturesSection from "./FeaturesSection";
+import DemoSection from "./DemoSection";
 
 
 
@@ -19,7 +20,13 @@ const HomePage = () => {
 
       <FeaturesSection title="O que nos torna únicos?" subtitle='Produtividade com propósito — cada recurso foi pensado pra facilitar sua rotina'/>
 
-      
+
+      <DemoSection
+        title="Veja o Task Manager em ação"
+        subtitle="Um design simples, rápido e feito pra ajudar você a focar no que importa."
+        figcaption="Interface intuitiva, leve e totalmente personalizável."
+      />
+
     </>
   );
 };

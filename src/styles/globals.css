@@ -49,9 +49,7 @@
     --features-title-shadow: 0 2px 6px #415a77;
     --features-subtitle-font: 'Lato', sans-serif;
     --features-subtitle-color: #e0e1dd;
-
-
-
+    
     --featcard-bg-color: #0d1b2a;
     --featcard-border-color: #1b263b;
     --featcard-shadow-color: #1b263b;
@@ -63,6 +61,19 @@
     --featcard-description-font: 'Lato', sans-serif;
     --featcard-description-color: #d0eef2;
 
+    /* Demo Section */
+
+    --demo-title-font: 'Lato', sans-serif;
+    --demo-title-color: #e0e1dd;
+    --demo-title-shadow: 0 2px 6px #415a77;
+    --demo-subtitle-font: 'Lato', sans-serif;
+    --demo-subtitle-color: #e0e1dd;
+    --demo-figure-border:#1b263b ;
+    --demo-figure-shadow: 0 2px 6px #415a77;
+    --demo-figcaption-color: #e0e1dd;
+    --demo-figcaption-font: 'Lato', sans-serif;
+
+    
 
 
     /* Login Form */
