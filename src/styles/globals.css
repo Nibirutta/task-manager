@@ -42,6 +42,19 @@
     --hero-developed-font: 'Lato', sans-serif;
     --hero-developed-color: #e0e1dd;
 
+    /* Features Section */
+    --featcard-bg-color: #0d1b2a;
+    --featcard-border-color: #1b263b;
+    --featcard-shadow-color: #1b263b;
+    --featcard-border-hover: #05f2db;
+    --featcard-shadow-hover: #05f2db;
+    
+    --featcard-title-font: 'Lato', sans-serif;
+    --featcard-title-color: #e0e1dd;
+    --featcard-description-font: 'Lato', sans-serif;
+    --featcard-description-color: #d0eef2;
+
+
 
     /* Login Form */
     --login-bg-color: #182437 ;
