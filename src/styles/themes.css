@@ -1,0 +1,44 @@
+
+@custom-variant Default (&:where([data-theme=Default], [data-theme=Default] *));
+
+[data-theme=Default]{
+    --body-bg-color: var(--color-black-pearl-950); 
+
+    ::-webkit-scrollbar-thumb {
+    background: var(--color-black-pearl-300);
+  }
+
+  * {
+    scrollbar-color: var(--color-black-pearl-300);
+  }
+}
+
+@custom-variant Neon-Flow (&:where([data-theme=Neon-Flow], [data-theme=Neon-Flow] *));
+
+[data-theme='Neon-Flow']{
+    --body-bg-color: var(--color-cinder-950); 
+}
+
+@custom-variant Cloudy-Focus (&:where([data-theme=Cloudy-Focus], [data-theme=Cloudy-Focus] *));
+
+[data-theme='Cloudy-Focus']{
+    --body-bg-color: var(--color-zircon-100); 
+}
+
+@custom-variant After-Hours (&:where([data-theme=After-Hours], [data-theme=After-Hours] *));
+
+[data-theme='After-Hours']{
+    --body-bg-color: var(--color-woodsmoke-950); 
+}
+
+@custom-variant Forest-Calm (&:where([data-theme=Forest-Calm], [data-theme=Forest-Calm] *));
+
+[data-theme='Forest-Calm']{
+    --body-bg-color: var(--color-snow-drift-50); 
+}
+
+@custom-variant Solar-Bloom (&:where([data-theme=Solar-Bloom], [data-theme=Solar-Bloom] *));
+
+[data-theme='Solar-Bloom']{
+    --body-bg-color: var(--color-bridal-heath-100)
+}
