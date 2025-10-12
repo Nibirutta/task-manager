@@ -38,25 +38,17 @@
             transparent 100%
         );
 
-        /* faça com que a box shadow seja animada tambem junto com  a borda animada */
-        box-shadow: 0 0 20px var(--color-1), 0 0 40px var(--color-2);
-        
-        
-
+        box-shadow: 0 0 2px var(--color-1), 0 0 4px var(--color-2), 0 0 6px var(--color-3);
         animation: rotate 4s linear infinite;
     }
 }
 
 .content{ 
-    display: grid;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 2rem;
-    grid-template-areas: 
-    'avatar titulo titulo'
-    'avatar social social'
-    ;
-
     background-color:  var(--dev-card-bg-color);
     border-radius: 1rem;
     position: relative;
@@ -66,7 +58,15 @@
     padding: 1rem;
 }
 
-
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background-color: var(--dev-card-header-bg-color) ;
+    border-radius: 1rem;
+}
 .avatar{
     display: flex;
     justify-content: center;
@@ -87,8 +87,19 @@
     object-fit: cover;
 }
 
+.role{
+    padding: 0.8rem;
+    background-color: var(--dev-card-role-bg-color);
+    color: var(--dev-card-role-color);
+    border-radius: 1rem;
+    font-family: var(--dev-card-role-font);
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-align: center;
+}
+
 .title{
-    grid-area: titulo;
+
     color: var(--dev-card-title-color);
     font-family: var(--dev-card-title-font);
     font-size: 2.4rem;
@@ -96,6 +107,130 @@
     padding: 1rem;
     font-weight: 700;
 }
+
+.description{
+    color: var(--dev-card-description-color);
+    font-family: var(--dev-card-description-font);
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.tech{
+    color: var(--dev-card-tech-color);
+    font-family: var(--dev-card-tech-font);
+    font-size: 1.4rem;
+    text-align: center;
+    padding: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.stackList{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+}
+
+.stackItem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    font-family: var(--dev-card-stack-font);
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.react{
+    color: #61DAFB;
+    background-color: #072d45;
+    text-shadow: 0 0 2px #61DAFB;
+;
+}
+
+.tailwind{
+    color: #38bdf8;
+    background-color: #083549;
+    text-shadow: 0 0 2px #38bdf8;
+}
+
+.vite{
+    background-color: #ffc529;
+    color: #fff4c6;
+    text-shadow: 0 0 2px #646CFF;
+}
+
+.typescript{
+    color: #3178c6;
+    background-color: #12233f;
+    text-shadow: 0 0 2px #3178c6;
+}
+
+.react-router{
+    color: #CA4245;
+    background-color: #420f13;
+    text-shadow: 0 0 2px #CA4245;
+
+}
+
+.zod{
+    color: #3E67B1;
+    background-color: #222f49;
+    text-shadow: 0 0 2px #3E67B1;
+}
+
+.radix{
+    color: #767781;
+    background-color: #161618;
+    text-shadow: 0 0 2px #767781;
+}
+
+.framer-motion{
+    color: #E10098;
+    background-color: #5b003a;
+    text-shadow: 0 0 2px #E10098;
+
+}
+
+.nest-js{
+    color: #E0234E;
+    background-color: #4b061a;
+    text-shadow: 0 0 2px #E0234E;
+}
+
+.mongo-db{
+    color: #47a248;
+    background-color: #0e2510;
+    text-shadow: 0 0 2px #47a248;
+}
+
+.rabbit-mq{
+    color: #FF6600;
+    background-color: #461604;
+    text-shadow: 0 0 2px #FF6600;
+}
+
+.jwt{
+    color: #888888;
+    background-color: #3d3d3d;
+    text-shadow: 0 0 2px #888888;
+}
+
+.RxJS{
+    color: #b7178c;
+    background-color: #510139;
+    text-shadow: 0 0 2px #b7178c;
+}
+
 
 .social{
     grid-area: social;

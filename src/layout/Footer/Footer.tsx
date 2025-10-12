@@ -2,7 +2,6 @@
 import style from './Footer.module.css'
 import ReactIcon from '../../assets/svg/react.svg?react';
 import NodeIcon from '../../assets/svg/nodedotjs.svg?react';
-import DevCard from '../../components/DevCard/DevCard';
 
 
 
@@ -54,31 +53,9 @@ function Footer() {
           <div className={style.developers}>
             <h3 >Desenvolvedores</h3>
             <div className={style.dev}>
-              <DevCard
-                key="dev-card-lucino"
-                avatar='/src/assets/imgs/avatar/20250123_165309.jpg'
-                name='Lucino Campos'
-                portfolioImage='/src/assets/imgs/icons/ALucin4do-logo.png'
-                portfolio='https://alucinado-dev.vercel.app/'
-                github='https://github.com/Alucinado-dev'
-                linkedin='https://www.linkedin.com/in/lucino-de-campos/'
-                color1='#05f2db'
-                color2='#00ff00'
-                color3='#d9048e'
-              />
+              
 
-              <DevCard
-                key="dev-card-lucas"
-                avatar='/src/assets/imgs/avatar/FotoPerfilLucas.jpg'
-                name='Lucas Silva'
-                github='https://github.com/Nibirutta'
-                linkedin='https://www.linkedin.com/in/lucasaugustodev/'
-                portfolioImage='/src/assets/imgs/icons/NibiruttaPNG.png'
-                portfolio='https://www.artstation.com/lucasaugust'
-                color1='#D9E1E4'
-                color2='#F0D264'
-                color3='#2A4D8C'
-              />
+              
             </div>
           </div>
         </div>

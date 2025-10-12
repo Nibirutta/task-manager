@@ -61,6 +61,8 @@
     --featcard-description-font: 'Lato', sans-serif;
     --featcard-description-color: #d0eef2;
 
+  
+
     /* Demo Section */
 
     --demo-title-font: 'Lato', sans-serif;
@@ -74,7 +76,36 @@
     --demo-figcaption-font: 'Lato', sans-serif;
 
     
+    /* About Section */
+    --about-title-font: 'Lato', sans-serif;
+    --about-title-color: #e0e1dd;
+    --about-title-shadow: 0 2px 6px #415a77;
+    --about-subtitle-font: 'Lato', sans-serif;
+    --about-subtitle-color: #e0e1dd;
+    --about-text-font: 'Lato', sans-serif;
+    --about-text-color: #e0e1dd;
+    --about-link-color: #05f2db;
+    --about-link-hover: #00ff00;
+    --about-icon-color: #415a77;
 
+        /* Develpoer Card */
+    --dev-card-bg-color: #001c1c;
+    --dev-card-header-bg-color: #008e8e;
+    --dev-card-avatar-border-color: #008e8e;
+    --dev-card-role-bg-color: #008e8e;
+    --dev-card-role-color: #00e3e3;
+    --dev-card-role-font: 'Electrolize', sans-serif;
+    
+    --dev-card-title-font: "Tech", monospace;
+    --dev-card-title-color: #00e3e3;
+    --dev-card-tech-color: #00e3e3;
+    --dev-card-tech-font: 'Lato', sans-serif;
+    --dev-card-description-font: 'Lato', sans-serif;
+    --dev-card-description-color: #e0e1dd;
+    --dev-card-stack-font: 'Lato', sans-serif;
+    --dev-card-stack-color: #e0e1dd;
+    
+    
 
     /* Login Form */
     --login-bg-color: #182437 ;
@@ -125,11 +156,7 @@
     --fpd-description-color: #415a77 ;
 
 
-    /* Develpoer Card */
-    --dev-card-bg-color: #001c1c;
-    --dev-card-avatar-border-color: #008e8e;
-    --dev-card-title-font: "Tech", monospace;
-    --dev-card-title-color: #00e3e3;
+
 
     /* Footer */
     --footer-bg-color: #0d1b2a;
