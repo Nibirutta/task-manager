@@ -8,7 +8,6 @@ import NodeIcon from '../../assets/svg/nodedotjs.svg?react';
 function Footer() {
 
   return (
-
     <footer className={style.footer}>
       <div className={style.content}>
         <div className={style.upcontainer}>
@@ -46,17 +45,6 @@ function Footer() {
 
             </ul>
 
-          </div>
-  
-
-
-          <div className={style.developers}>
-            <h3 >Desenvolvedores</h3>
-            <div className={style.dev}>
-              
-
-              
-            </div>
           </div>
         </div>
   

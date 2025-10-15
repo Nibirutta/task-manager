@@ -3,6 +3,7 @@ import HeroSection from "./HeroSection";
 import FeaturesSection from "./FeaturesSection";
 import DemoSection from "./DemoSection";
 import AboutSection from "./AboutSection";
+import CTA from "./CTA";
 
 const HomePage = () => {
   useEffect(() => {
@@ -34,6 +35,8 @@ const HomePage = () => {
         
         Além disso, queremos que qualquer pessoa possa contribuir com ideias, código ou temas novos. Porque acreditamos que tecnologia boa é aquela construída em comunidade."
       />
+
+      <CTA/>
     </>
   );
 };

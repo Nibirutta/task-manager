@@ -47,17 +47,19 @@ const DevCard = ({
             <img src={avatar} alt={`Avatar de ${name}`} />
           </figure>
 
+          <div className="flex flex-col justify-center items-end">
+
+          <h4 className={style.title}>{name}</h4>
+          
+          {description && <p className={style.description}>{description}</p>}
           <h5 className={style.role}>{role}</h5>
+          </div>
         </header>
 
         <main>
-          <h4 className={style.title}>{name}</h4>
-
-          {description && <p className={style.description}>{description}</p>}
-
             {stacks && (
               <div>
-                <h6 className={style.tech}> Tecnologias Utilizadas</h6>
+                <h6 className={style.tech}> Tecnologias Utilizadas nesse projeto</h6>
                 <ul className={style.stackList}>
                   {stacks.map((stack, index) => (
                     <li key={index}  className={`${style.stackItem} ${style[stack.toLowerCase()]}`}>
@@ -69,7 +71,8 @@ const DevCard = ({
             )}
         </main>
 
-        <footer>
+        <footer className="flex justify-between items-center">
+          <p className={style.contact}> Me encontre por aqui :</p>
           <div className={style.social}>
             <a
               className={style.linkedin}

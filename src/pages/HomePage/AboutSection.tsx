@@ -8,8 +8,8 @@ type AboutSectionProps = {
 
 const AboutSection = ({ title, text }: AboutSectionProps) => {
   return (
-    <section>
-      <div>
+    <section className="flex flex-col-reverse  justify-between items-center min-h-dvh p-8 w-full" id="about">
+      <div className="flex justify-center items-center gap-12  p-4 ">
         <DevCard
           key="dev-card-lucino"
           avatar="/src/assets/imgs/avatar/20250123_165309.jpg"
@@ -22,7 +22,6 @@ const AboutSection = ({ title, text }: AboutSectionProps) => {
           color2="#00ff00"
           color3="#d9048e"
           role="Front-End"
-          description="Apaixonado por Tecnologia"
           stacks={[
             "React",
             "Tailwind",
@@ -58,15 +57,15 @@ const AboutSection = ({ title, text }: AboutSectionProps) => {
         />
       </div>
 
-      <div>
+      <div className="flex flex-col items-center justify-center h-full py-12  gap-8 ">
         <h2
-          className="p-4 text-6xl font-bold text-center text-[var(--demo-title-font)] text-shadow-[var(--demo-title-shadow)]
-            font-(family-name:--demo-title-font) "
+          className="p-4 text-6xl font-bold text-center text-[var(--about-title-color)] text-shadow-[var(--about-title-shadow)]
+            font-(family-name:--about-title-font) "
         >
           {title}
         </h2>
 
-        <p className="p-4 text-4xl font-medium text-[var(--demo-subtitle-color)] font-(family-name:--demo-subtitle-font)">
+        <p className="p-4 text-4xl font-medium text-[var(--about-text-color)] font-(family-name:--about-text-font)">
           {text}
         </p>
       </div>

@@ -80,13 +80,9 @@
     --about-title-font: 'Lato', sans-serif;
     --about-title-color: #e0e1dd;
     --about-title-shadow: 0 2px 6px #415a77;
-    --about-subtitle-font: 'Lato', sans-serif;
-    --about-subtitle-color: #e0e1dd;
     --about-text-font: 'Lato', sans-serif;
     --about-text-color: #e0e1dd;
-    --about-link-color: #05f2db;
-    --about-link-hover: #00ff00;
-    --about-icon-color: #415a77;
+
 
         /* Develpoer Card */
     --dev-card-bg-color: #001c1c;
@@ -104,7 +100,14 @@
     --dev-card-description-color: #e0e1dd;
     --dev-card-stack-font: 'Lato', sans-serif;
     --dev-card-stack-color: #e0e1dd;
-    
+    --dev-card-contact-font: 'Lato', sans-serif;
+    --dev-card-contact-color: #e0e1dd;
+
+    --cta-title-font: 'Lato', sans-serif;
+    --cta-title-color: #e0e1dd;
+    --cta-title-shadow: 0 2px 6px #415a77;
+
+
     
 
     /* Login Form */
