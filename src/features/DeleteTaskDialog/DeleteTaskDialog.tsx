@@ -7,7 +7,7 @@ import {
   DialogFooter,
   DialogClose,
 } from '../../lib/Reui/modal/modal';
-import type { ITask } from '../../types/taskTypes';
+import type { ITask } from '../../types/taskServiceTypes';
 import style from './DeleteTaskDialog.module.css';
 
 interface DeleteTaskDialogProps {

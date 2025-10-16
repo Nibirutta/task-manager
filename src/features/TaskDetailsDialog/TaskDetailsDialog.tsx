@@ -6,7 +6,7 @@ import {
   DialogDescription,
   DialogFooter,
 } from '../../lib/Reui/modal/modal';
-import type { ITask, TaskPriority, TaskStatus } from '../../types/taskTypes';
+import type { ITask, TaskPriority, TaskStatus } from '../../types/taskServiceTypes';
 import style from './TaskDetailsDialog.module.css';
 import formatDate from '../../utils/formatDate';
 import { Flag, CheckCircle, CircleDotDashed, Hourglass, XCircle, FilePenLine, FileX, Minimize2 } from 'lucide-react';

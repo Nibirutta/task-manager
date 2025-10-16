@@ -11,7 +11,7 @@ import {
   DialogFooter,
   DialogClose,
 } from '../../lib/Reui/modal/modal';
-import type { ITask, INewTask, IUpdateTask, TaskPriority, TaskStatus } from '../../types/taskTypes';
+import type { ITask, INewTask, IUpdateTask, TaskPriority, TaskStatus } from '../../types/taskServiceTypes';
 import { Input } from '../../lib/Reui/input/input';
 import { Textarea } from '../../lib/Reui/textArea/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../lib/Reui/select/select';

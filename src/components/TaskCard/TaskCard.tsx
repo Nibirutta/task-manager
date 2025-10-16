@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { draggable } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import { ClockAlert, ClockFading, ClockPlus, FilePenLine, Flag, MoreHorizontal, Trash2 } from 'lucide-react';
 import style from './TaskCard.module.css';
-import type { ITask } from '../../types/taskTypes';
+import type { ITask } from '../../types/taskServiceTypes';
 
 import PopoverTaskCard from '../PopoverTaskCard/PopoverTaskCard';
 import type { ExpirationStatus } from '../../utils/getTaskStatus';

@@ -1,34 +1,79 @@
 const baseURL = 'https://nibirutta-task-api.up.railway.app'
 
+
+/* Account Routes  */
+
 const registerRoute = {
     method: 'POST',
-    route : '/user/register'
+    route : '/account/register'
 } 
 
 const loginRoute = {
     method: 'POST',
-    route : '/user/login'
+    route : '/account/login'
 }
 
 const refreshRoute = {
     method: 'GET',
-    route : '/user/refresh'
+    route : '/account/refresh'
 }
 
 const logoutRoute = {
     method: 'GET',
-    route : '/user/logout'
-}
-    
-const resetRequestRoute = { 
-    method: 'POST',
-    route : '/user/reset/request'
+    route : '/account/logout'
 }
 
-const resetTokenRoute = {
-    method: 'POST',
-    route : '/user/reset'
+const credentialRoute = {
+    method: 'PATCH',
+    route : '/account/credential'
 }
+
+const resetRequestRoute = { 
+    method: 'POST',
+    route : '/account/request-reset'
+}
+
+const resetPasswordRoute = {
+    method: 'POST',
+    route : '/account/reset-password'
+}
+
+const deleteAccountRoute = {
+    method: 'DELETE',
+    route : '/account'
+}
+
+/* Profile Routes */
+
+const getProfileRoute = {
+    method: 'GET',
+    route : '/profile'
+}
+
+const updateProfileNameRoute = {
+    method: 'POST',
+    route : '/profile/name'
+}
+
+const updateProfileLanguageRoute = {
+    method: 'POST',
+    route : '/profile/language'
+}
+
+const updateProfileThemeRoute = {
+    method: 'POST',
+    route : '/profile/theme'
+}
+
+const updateProfileNotificationRoute = {
+    method: 'POST',
+    route : '/profile/notification'
+}
+
+
+/* Task Routes */
+
+
 
 const getTasksRoute = {
     method: 'GET',
@@ -57,9 +102,16 @@ export {
     refreshRoute,
     logoutRoute,
     resetRequestRoute,
-    resetTokenRoute,
+    resetPasswordRoute,
+    deleteAccountRoute,
+    credentialRoute,
     getTasksRoute,
     createTaskRoute,
     updateTaskRoute,
-    deleteTaskRoute
+    deleteTaskRoute,
+    getProfileRoute,
+    updateProfileNameRoute,
+    updateProfileLanguageRoute,
+    updateProfileThemeRoute,
+    updateProfileNotificationRoute
 }

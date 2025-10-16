@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import style from './TaskBoard.module.css';
-import type { ITask, TaskStatus } from '../../types/taskTypes';
+import type { ITask, TaskStatus } from '../../types/taskServiceTypes';
 import TaskColumn from '../../components/TaskColumn/TaskColumn';
 
 

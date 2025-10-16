@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback, useReducer, useMemo } from 'react';
 import { toast } from 'react-toastify';
 import useAuth from '../../hooks/useAuth';
 import { getTasks, deleteTask, newTask, updateTask } from '../../api/Task API/services/taskService';
-import type { ITask, TaskStatus, INewTask, IUpdateTask, TaskPriority } from '../../types/taskTypes';
+import type { ITask, TaskStatus, INewTask, IUpdateTask, TaskPriority } from '../../types/taskServiceTypes';
 import TaskBoard from '../../features/TaskBoard/TaskBoard';
 import style from './DashboardPage.module.css'
 import Spinner from '../../components/Spinner/Spinner';

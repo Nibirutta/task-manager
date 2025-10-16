@@ -1,6 +1,6 @@
 import  { memo, useEffect, useRef } from 'react';
 import style from './TaskColumn.module.css';
-import type { ITask, TaskStatus } from '../../types/taskTypes';
+import type { ITask, TaskStatus } from '../../types/taskServiceTypes';
 import { Plus } from 'lucide-react';
 import { dropTargetForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import TaskCard from '../TaskCard/TaskCard'; // Importe o TaskCard aqui
