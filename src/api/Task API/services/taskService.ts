@@ -4,7 +4,7 @@ import type {
   ITask,
   INewTask,
   IUpdateTask,
-} from "../../../types/taskTypes";
+} from "../../../types/taskServiceTypes";
 
 import {
   createTaskRoute,

@@ -1,29 +1,36 @@
 
-import type { IinputField } from "../../types/IinputField";
-import { Eye, EyeOff, ShieldX } from "lucide-react";
+import { Eye, EyeOff, ShieldX, type LucideIcon } from "lucide-react";
 import styles from "./InputField.module.css"; 
 import clsx from "clsx"; 
-import { useState } from "react";
+import { useState, type InputHTMLAttributes } from "react";
 
-function InputField(props: IinputField) {
-	const {
-		id,
-		label,
-		Icon,
-		placeholder,
-		isValid,
-		errorMessage,
-		type = 'text',
-		...rest 
-	} = props;
 
-	const errorId = `error-${id}`;
+type InputFieldProps = InputHTMLAttributes<HTMLInputElement> &{
+	id: string;
+	label: string;
+	Icon?: LucideIcon;
+	errorMessage?: string;
+	isValid?: boolean;
+}
+
+
+const InputField = ({
+	id,
+	label,
+	Icon,
+	errorMessage,
+	isValid,
+	type,
+	...rest 
+	} : InputFieldProps)  => {
+
+
 
 	const [showPassword, setShowPassword] = useState(false);
 	const isPasswordInput = type === 'password';
 
-	let currentType = type; // Começa com o tipo padrão passado nas props
-	if (isPasswordInput) { // Apenas modifica o tipo se for um input de senha
+	let currentType = type; 
+	if (isPasswordInput) { 
 		currentType = showPassword ? 'text' : 'password';
 	}
 
@@ -50,10 +57,9 @@ function InputField(props: IinputField) {
 					id={id}
 					type={currentType}
 					className={styles.input}
-					placeholder={placeholder}
 					aria-invalid={!isValid}
-					aria-describedby={!isValid ? errorId : undefined}
-					{...rest} // Passa todas as props restantes (name, disabled, etc.)
+					aria-errormessage={!isValid ? errorMessage : undefined}
+					{...rest} 
 				/>
 
 				{isPasswordInput && (
@@ -68,7 +74,7 @@ function InputField(props: IinputField) {
 			</div>
 
 			{!isValid && errorMessage && (
-				<span id={errorId} role="alert" className="text-[#ed3f54] flex ml-8 mt-4 items-center gap-1 text-xs">
+				<span  role="alert" aria-label="Mensagem de Input Inválido" className="text-[#ed3f54] flex ml-8 mt-4 items-center gap-1 text-xs">
 					<ShieldX size={20} />
 					<span className={styles.errorMessage}> {errorMessage}</span>
 				</span>

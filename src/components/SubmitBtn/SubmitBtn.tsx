@@ -1,16 +1,27 @@
 import clsx from 'clsx';
-import type { IsubmitBtn } from '../../types/Isubmitbtn';
+
 import style from './SubmitBtn.module.css';
-import { LoaderCircle } from 'lucide-react';
+import { LoaderCircle, type LucideIcon } from 'lucide-react';
+import type { ButtonHTMLAttributes } from 'react';
 
-function SubmitBtn(props: IsubmitBtn) {
-	const { title, icon: Icon, isLoading, className, disabled, ...rest } = props;
+type SubmitBtnProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+	title: string;
+	icon?: LucideIcon;
+	isLoading?: boolean;
+}
 
-	const isDisabled = isLoading || disabled;
+function SubmitBtn({
+	title,
+	icon: Icon,
+	isLoading,
+	...rest
+}: SubmitBtnProps) {
+
+	const isDisabled = isLoading || rest.disabled
 
 	return (
 		<button
-			className={clsx(style.btn, className, isDisabled && style.disabled)}
+			className={clsx(style.btn, rest.className, isDisabled && style.disabled)}
 			type="submit"
 			disabled={isDisabled}
 			aria-disabled={isDisabled}

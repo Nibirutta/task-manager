@@ -1,7 +1,7 @@
 type TaskStatus = 'to-do' | 'in-progress' | 'in-review' | 'done';
 type TaskPriority = 'high' | 'medium' | 'low' | 'urgent' | 'optional';
 
-interface ITask {
+type TaskType =  {
     _id: string;
     title: string;
     description?: string;
@@ -43,4 +43,4 @@ interface IDeleteTask {
 }
 
 
-export type { TaskStatus, TaskPriority, ITask, IGetTasks, INewTask, IUpdateTask, IDeleteTask }
+export type { TaskStatus, TaskPriority, TaskType, IGetTasks, INewTask, IUpdateTask, IDeleteTask }
