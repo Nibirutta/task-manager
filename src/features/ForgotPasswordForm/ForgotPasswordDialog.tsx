@@ -17,8 +17,9 @@ import {
 } from "../../lib/Reui/modal/modal";
 import InputField from "../../components/InputField/InputField";
 import SubmitBtn from "../../components/SubmitBtn/SubmitBtn";
-import { requestReset } from "../../api/Task API/services/passwordResetService";
+
 import style from "./ForgotPasswordDialog.module.css";
+import { requestPasswordResetEmail } from "../../api/Task API/services/authService";
 
 const forgotPasswordSchema = z.object({
   email: z.email({ error: "Por favor, insira um e-mail válido." })
@@ -42,7 +43,7 @@ function ForgotPasswordDialog() {
 
   const onSubmit = async (data: ForgotPasswordInputs) => {
     try {
-      await toast.promise(requestReset(data.email), {
+      await toast.promise(requestPasswordResetEmail(data), {
         pending: "Verificando seu e-mail...",
         success: "Se uma conta com este e-mail existir, um link de recuperação foi enviado.",
         error: "Ocorreu um erro. Por favor, tente novamente mais tarde.",

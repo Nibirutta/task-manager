@@ -1,9 +1,10 @@
 import type {
   IDeleteTask,
   IGetTasks,
-  ITask,
+
   INewTask,
   IUpdateTask,
+  TaskType,
 } from "../../../types/taskServiceTypes";
 
 import {
@@ -14,7 +15,7 @@ import {
 } from "../../../utils/urlApi";
 import { apiFetch } from "../client/apiClient";
 
-const getTasks = async (params: IGetTasks, acessToken: string): Promise<ITask[]> => {
+const getTasks = async (params: IGetTasks): Promise<TaskType[]> => {
 
   const queryParams = new URLSearchParams();
   Object.entries(params).forEach(([key, value]) => {
@@ -29,8 +30,7 @@ const getTasks = async (params: IGetTasks, acessToken: string): Promise<ITask[]>
 
   const response = await apiFetch(
     `${getTasksRoute.route}${queryString ? `?${queryString}` : ''}`,
-    { method: getTasksRoute.method },
-    acessToken);
+    { method: getTasksRoute.method });
 
   console.groupCollapsed('✅ API Response: getTasks');
   console.log('Data received:', response);
@@ -39,7 +39,7 @@ const getTasks = async (params: IGetTasks, acessToken: string): Promise<ITask[]>
   return response || [];
 };
 
-const newTask = async (params: INewTask, acessToken: string): Promise<{ data: ITask }> => {
+const newTask = async (params: INewTask): Promise<{ data: TaskType }> => {
   console.groupCollapsed('🚀 API Request: newTask');
   console.log('Data sent:', params);
   const response = await apiFetch(
@@ -47,8 +47,7 @@ const newTask = async (params: INewTask, acessToken: string): Promise<{ data: IT
     {
       method: createTaskRoute.method,
       body: JSON.stringify(params),
-    },
-    acessToken
+    }
   );
   console.log('Response received:', response);
   console.groupEnd();
@@ -56,7 +55,7 @@ const newTask = async (params: INewTask, acessToken: string): Promise<{ data: IT
   return response;
 };
 
-const updateTask = async (params: IUpdateTask, acessToken: string): Promise<{ data: ITask }> => {
+const updateTask = async (params: IUpdateTask): Promise<{ data: TaskType }> => {
   console.groupCollapsed('🚀 API Request: updateTask');
   console.log('ID to update:', params._id);
   console.log('Data sent:', params);
@@ -67,8 +66,7 @@ const updateTask = async (params: IUpdateTask, acessToken: string): Promise<{ da
     {
       method: updateTaskRoute.method,
       body: JSON.stringify(updateData), 
-    },
-    acessToken
+    }
   );
   console.log('Response received:', response);
   console.groupEnd();
@@ -76,7 +74,7 @@ const updateTask = async (params: IUpdateTask, acessToken: string): Promise<{ da
   return response;
 };
 
-const deleteTask = async (params: IDeleteTask, acessToken: string) => {
+const deleteTask = async (params: IDeleteTask) => {
   console.groupCollapsed('🚀 API Request: deleteTask');
   console.log('ID to delete:', params._id);
 
@@ -84,8 +82,7 @@ const deleteTask = async (params: IDeleteTask, acessToken: string) => {
     `${deleteTaskRoute.route}/${params._id}`, 
     {
       method: deleteTaskRoute.method,
-    },
-    acessToken
+    }
   );
   console.log('Response received (should be undefined on success):', response);
   console.groupEnd();

@@ -1,16 +1,12 @@
-import type { IApiError } from "../../../types/authServiceTypes";
+
 import { baseURL } from "../../../utils/urlApi";
+import type { APIErrorType } from "../APITypes";
 
 
 
-const apiFetch = async (endpoint: string, options: RequestInit = {}, accessToken?: string) => {
+const apiFetch = async (endpoint: string, options: RequestInit = {}) => {
 
 	const headers = new Headers(options.headers || {});
-
-	// Adiciona o token de autorização se ele existir
-	if (accessToken) {
-		headers.append('Authorization', `Bearer ${accessToken}`);
-	}
 
 	// Garante que estamos sempre enviando e aceitando JSON
 	if (options.body) {
@@ -20,11 +16,12 @@ const apiFetch = async (endpoint: string, options: RequestInit = {}, accessToken
 
 	const response = await fetch(`${baseURL}${endpoint}`, {
 		...options,
+		credentials: 'include', // Essencial para enviar cookies HttpOnly
 		headers,
 	});
 
 	if (!response.ok) {
-		const errorData: IApiError = await response.json().catch(() => ({
+		const errorData: APIErrorType = await response.json().catch(() => ({
 			message: `Erro na API: ${response.statusText}`,
 			code: response.status,
 		}));

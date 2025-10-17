@@ -1,8 +1,8 @@
 import { useEffect, useState, useCallback, useReducer, useMemo } from 'react';
 import { toast } from 'react-toastify';
-import useAuth from '../../hooks/useAuth';
+
 import { getTasks, deleteTask, newTask, updateTask } from '../../api/Task API/services/taskService';
-import type { ITask, TaskStatus, INewTask, IUpdateTask, TaskPriority } from '../../types/taskServiceTypes';
+import type { TaskType, TaskStatus, INewTask, IUpdateTask, TaskPriority } from '../../types/taskServiceTypes';
 import TaskBoard from '../../features/TaskBoard/TaskBoard';
 import style from './DashboardPage.module.css'
 import Spinner from '../../components/Spinner/Spinner';
@@ -18,15 +18,15 @@ import FlickeringGrid from '../../lib/magicUI/grid';
 
 // Reducer para gerenciar o estado dos diálogos
 type DialogState = {
-  delete: { isOpen: boolean; task: ITask | null };
-  form: { isOpen: boolean; task: ITask | null; initialStatus?: TaskStatus };
-  details: { isOpen: boolean; task: ITask | null };
+  delete: { isOpen: boolean; task: TaskType | null };
+  form: { isOpen: boolean; task: TaskType | null; initialStatus?: TaskStatus };
+  details: { isOpen: boolean; task: TaskType | null };
 };
 
 type DialogAction =
-  | { type: 'OPEN_DELETE'; payload: ITask }
-  | { type: 'OPEN_DETAILS'; payload: ITask }
-  | { type: 'OPEN_FORM'; payload: { task: ITask | null; initialStatus?: TaskStatus } }
+  | { type: 'OPEN_DELETE'; payload: TaskType }
+  | { type: 'OPEN_DETAILS'; payload: TaskType }
+  | { type: 'OPEN_FORM'; payload: { task: TaskType | null; initialStatus?: TaskStatus } }
   | { type: 'CLOSE_ALL' };
 
 const initialDialogState: DialogState = {
@@ -51,9 +51,9 @@ const dialogReducer = (state: DialogState, action: DialogAction): DialogState =>
 };
 
 const DashboardPage = () => {
-  const [tasks, setTasks] = useState<ITask[]>([]);
+  const [tasks, setTasks] = useState<TaskType[]>([]);
   const [loading, setLoading] = useState(false);
-  const { accessToken } = useAuth();
+
   // Estado dos diálogos gerenciado pelo reducer
   const [dialogState, dispatchDialog] = useReducer(dialogReducer, initialDialogState);
 
@@ -92,14 +92,13 @@ const DashboardPage = () => {
   const fetchTasks = useCallback(
     async (filters: { title?: string; priority?: TaskPriority | 'all' } = {}) => 
       {
-      if (!accessToken) return;
       setLoading(true);
       try {
         const apiParams = {
           title: filters.title || undefined,
           priority: filters.priority === 'all' ? undefined : filters.priority,
         }
-        const tasksResponse: ITask[] = await getTasks(apiParams, accessToken);
+        const tasksResponse: TaskType[] = await getTasks(apiParams);
         setTasks(tasksResponse || []);
       } catch (error) {
         toast.error('Falha ao buscar as tarefas.');
@@ -108,7 +107,7 @@ const DashboardPage = () => {
         setLoading(false);
       }
     },
-    [accessToken] // A função fetchTasks só será recriada se o accessToken mudar.
+    [] 
   );
 
   // Efeito para buscar tarefas quando os filtros mudam
@@ -117,29 +116,29 @@ const DashboardPage = () => {
     fetchTasks({ priority: filterPriority });
   }, [filterPriority, fetchTasks]);
 
-  const handleDetailsClick = (task: ITask) => {
+  const handleDetailsClick = (task: TaskType) => {
     // Abre o modal de detalhes com a tarefa clicada
     dispatchDialog({ type: 'OPEN_DETAILS', payload: task });
   };
 
   // Abre o modal de formulário para edição
-  const handleEditClick = (task: ITask) => {
+  const handleEditClick = (task: TaskType) => {
     dispatchDialog({ type: 'OPEN_FORM', payload: { task } });
   };
 
   // Abre o modal de confirmação
-  const handleDeleteClick = (task: ITask) => {
+  const handleDeleteClick = (task: TaskType) => {
     dispatchDialog({ type: 'OPEN_DELETE', payload: task });
   };
 
   // Função chamada pelo modal ao confirmar
-  const handleConfirmDelete = async (task: ITask) => {
+  const handleConfirmDelete = async (task: TaskType) => {
     const originalTasks = tasks;
     setTasks(tasks.filter(t => t._id !== task._id));
     dispatchDialog({ type: 'CLOSE_ALL' });
 
     try {
-      await toast.promise(deleteTask({ _id: task._id }, accessToken!), {
+      await toast.promise(deleteTask({ _id: task._id }), {
         pending: 'Excluindo tarefa...',
         success: 'Tarefa excluída com sucesso!',
         error: 'Falha ao excluir a tarefa.',
@@ -162,7 +161,7 @@ const DashboardPage = () => {
 
     try { 
       const updateData: IUpdateTask = { _id: taskId, status: newStatus };
-      await updateTask(updateData, accessToken!);
+      await updateTask(updateData);
     } catch (err) {
       toast.error('Falha ao mover a tarefa.');
       console.error(err)
@@ -181,7 +180,7 @@ const DashboardPage = () => {
 
     if (isEditing) {
       try {
-        const response = await toast.promise(updateTask(data as IUpdateTask, accessToken!), {
+        const response = await toast.promise(updateTask(data as IUpdateTask), {
           pending: 'Atualizando tarefa...',
           success: 'Tarefa atualizada com sucesso!',
           error: 'Falha ao atualizar a tarefa.',
@@ -194,7 +193,7 @@ const DashboardPage = () => {
     } else {
 
       try {
-        const response = await toast.promise(newTask(data as INewTask, accessToken!), {
+        const response = await toast.promise(newTask(data as INewTask), {
           pending: 'Criando nova tarefa...',
           success: 'Nova tarefa criada com sucesso!',
           error: 'Falha ao criar a tarefa.',
@@ -247,14 +246,16 @@ const DashboardPage = () => {
       
       {loading ? ( 
         <Spinner/>
-      ): (       <TaskBoard
+      ): (       
+        <TaskBoard
         tasks={processedTasks}
         onDetailsClick={handleDetailsClick}
         onEditClick={handleEditClick}
         onDeleteClick={handleDeleteClick}
         onAddTask={handleAddTask}
         onTaskStatusChange={handleTaskStatusChange}
-      />)}
+      />
+      )}
       
       <DeleteTaskDialog
         isOpen={dialogState.delete.isOpen}

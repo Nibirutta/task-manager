@@ -29,24 +29,22 @@ type RegisterRequestTypes = {
 }
 
 type RegisterResponseTypes = {
-	userInfo: UserInfoTypes
-	accessToken: string
+
+	userInfo: UserInfoTypes;
 }
 
 type LoginRequestTypes = {
-    username: string
+  username?: string
 	email?: string
     password: string
 }
 
 type LoginResponseTypes =  {
 	userInfo: UserInfoTypes
-	accessToken: string
 }
 
 type RefreshResponseTypes = {
 	userInfo: UserInfoTypes
-	accessToken: string
 }
 
 type LogoutResponseTypes = {
@@ -104,4 +102,3 @@ export type {
 	themeType,
 	languageType
 }
-

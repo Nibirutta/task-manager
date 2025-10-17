@@ -65,11 +65,11 @@ const requestNewPassword = (data : ResetPasswordRequestTypes) : Promise<ResetPas
 	return response
 }
 
-const requestDeleteAccount = (accessToken: string) : Promise<DeleteAccountResponseTypes> => {
+const requestDeleteAccount = () : Promise<DeleteAccountResponseTypes> => {
 	const response : Promise<DeleteAccountResponseTypes> = apiFetch(deleteAccountRoute.route,{
-		method: deleteAccountRoute.method
-	},accessToken)
-	
+		method: deleteAccountRoute.method,
+	});
+
 	return response
 }
 

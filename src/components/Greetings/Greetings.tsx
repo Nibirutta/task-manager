@@ -21,7 +21,7 @@ function Greetings() {
   return (
     <div className="flex items-center gap-4">
       <h2 className={style.text}>
-        Olá, {user}!
+        Olá, {user.name}!
       </h2>
       <button onClick={handleLogout} className="p-4  text-[var(--navbar-link-color)] rounded-md cursor-pointer  text-2xl font-medium transition-colors  hover:text-[var(--navbar-link-hover)]">
         Não é você? Sair

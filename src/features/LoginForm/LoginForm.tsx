@@ -22,7 +22,7 @@ const loginSchema = z.object({
 		.trim()
 		.min(3, "O nome de usuário deve ter no mínimo 3 caracteres.")
 		.max(30, "O nome de usuário não pode ter mais de 30 caracteres.")
-		.regex(/^[a-zA-Z0-9_]+$/, "Use apenas letras, números e underline (_)."),
+		.regex(/^[a-zA-Z0-9_-]+$/, "Use apenas letras, números e underline '_' ou hífen'-'."),
 	password: z
 		.string({ error: "A senha é obrigatória." })
 		.min(8, "A senha deve ter no mínimo 8 caracteres.")
