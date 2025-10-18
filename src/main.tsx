@@ -6,14 +6,16 @@ import "./index.css";
 import { AuthProvider } from "./contexts/AuthContext";
 
 import App from "./App";
-
+import { PreferencesProvider } from "./contexts/PreferencesContext";
 
 createRoot(document.getElementById("root")!).render(
-	<StrictMode>
-		<BrowserRouter>
-			<AuthProvider>
-				<App />
-			</AuthProvider>
-		</BrowserRouter>
-	</StrictMode>
+  <StrictMode>
+    <BrowserRouter>
+      <AuthProvider>
+        <PreferencesProvider>
+          <App />
+        </PreferencesProvider>
+      </AuthProvider>
+    </BrowserRouter>
+  </StrictMode>
 );
