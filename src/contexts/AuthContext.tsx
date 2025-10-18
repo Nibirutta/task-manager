@@ -1,7 +1,9 @@
 import { createContext, useState, type ReactNode, useEffect, useMemo, useCallback } from 'react';
 
-import { requestLogin, requestRefresh, requestLogout } from '../api/Task API/services/authService';
+import { requestLogin, requestRefresh, requestLogout, requestDeleteAccount } from '../api/Task API/services/authService';
 import type { LoginRequestTypes, UserInfoTypes } from '../types/authServiceTypes';
+import { addAuthEventListener } from '../api/Task API/client/authEvent';
+
 
 type IAuthContext  = {
 	isAuthenticated: boolean;
@@ -10,6 +12,7 @@ type IAuthContext  = {
 
 	login: (data: LoginRequestTypes) => Promise<void>;
 	logout: () => void;
+	deleteAccount: () => Promise<void>;
 }
 
 
@@ -21,6 +24,20 @@ const AuthContext = createContext<IAuthContext | undefined>(undefined);
 function AuthProvider({ children }: { children: ReactNode }) {
 	const [user, setUser] = useState<UserInfoTypes | null>(null);
 	const [isLoading, setIsLoading] = useState<boolean>(true); 
+
+	const logout = useCallback(async (isForced = false) => {
+		// Se não for um logout forçado, tenta fazer o logout no servidor
+		if (!isForced) {
+			try {
+				await requestLogout(); 
+			} catch (error) {
+				console.error('Erro ao fazer logout no servidor:', error);
+			}
+		}
+		// Limpa o estado local em todos os casos
+		setUser(null);
+	  }, []);
+	
 
 	
 	// quando carrega tenta renovar a sessão usando o refresh token (cookie HttpOnly)
@@ -41,7 +58,14 @@ function AuthProvider({ children }: { children: ReactNode }) {
 		};
 
 		checkAuthStatus();
-	}, []);
+
+		// Adiciona um listener para o evento de logout forçado
+		const handleForceLogout = () => {
+			console.warn("Sessão expirada. Realizando logout forçado.");
+			logout(true);
+		}
+		addAuthEventListener('forceLogout', handleForceLogout);
+	}, [logout]);
 
 
 	const login = useCallback(async (data: LoginRequestTypes) => {
@@ -61,16 +85,15 @@ function AuthProvider({ children }: { children: ReactNode }) {
 		}
 	}, []);
 
-  const logout = useCallback(async () => {
-    try {
-      await requestLogout(); 
-    } catch (error) {
-      console.error('Erro ao fazer logout no servidor:', error);
-    } finally {
-      // limpa o estado localmente, independentemente do sucesso da chamada à API.
-      setUser(null);
-    }
-  }, []);
+	const deleteAccount = useCallback(async () => {
+		try {
+			await requestDeleteAccount();
+			setUser(null); // Força o logout no frontend
+		} catch (error) {
+			console.error('Erro ao deletar a conta:', error);
+			throw error;
+		}
+	}, []);
 
   // o objeto `value` contém tudo que será disponibilizado para os componentes filhos.O useMemo evita recriar o objeto em cada renderização, o que previne re-renderizações desnecessárias nos componentes consumidores.
   const value = useMemo<IAuthContext>(() => ({
@@ -79,7 +102,8 @@ function AuthProvider({ children }: { children: ReactNode }) {
     isLoading,
     login,
     logout,
-  }), [user, isLoading, login, logout]);
+	deleteAccount,
+  }), [user, isLoading, login, logout, deleteAccount]);
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 

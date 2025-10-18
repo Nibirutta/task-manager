@@ -1,7 +1,12 @@
 
 import { baseURL } from "../../../utils/urlApi";
 import type { APIErrorType } from "../APITypes";
+import { requestRefresh } from "../services/authService";
+import { dispatchAuthEvent } from "./authEvent";
 
+
+
+let isRefreshing = false;
 
 
 const apiFetch = async (endpoint: string, options: RequestInit = {}) => {
@@ -20,12 +25,35 @@ const apiFetch = async (endpoint: string, options: RequestInit = {}) => {
 		headers,
 	});
 
+	// Se a resposta for 401 (Unauthorized), tenta renovar o token
+	if (response.status === 401 && endpoint !== '/account/refresh') {
+		if (!isRefreshing) {
+			isRefreshing = true;
+			try {
+				console.log('Token de acesso expirado. Tentando renovar...');
+				await requestRefresh();
+				console.log('Token renovado com sucesso. Tentando a requisição original novamente...');
+				// Tenta a requisição original novamente com o novo token (que já está no cookie)
+				return apiFetch(endpoint, options);
+			} catch (refreshError) {
+				console.error('Falha ao renovar o token. A sessão expirou.');
+				// Dispara um evento para forçar o logout global
+				dispatchAuthEvent('forceLogout');
+				// Rejeita a promessa com o erro original de refresh
+				return Promise.reject(refreshError);
+			} finally {
+				isRefreshing = false;
+			}
+		}
+	}
+
 	if (!response.ok) {
 		const errorData: APIErrorType = await response.json().catch(() => ({
 			message: `Erro na API: ${response.statusText}`,
-			code: response.status,
+			statusCode: response.status,
 		}));
-		throw new Error(errorData.message || 'Ocorreu um erro desconhecido na API.');
+		// Lança um erro mais estruturado
+		throw Object.assign(new Error(errorData.message || 'Ocorreu um erro desconhecido na API.'), { statusCode: errorData.statusCode });
 	}
 
 	// Se a resposta for 204 (No Content) não precisa converter nadinha.

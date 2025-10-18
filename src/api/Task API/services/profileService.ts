@@ -7,6 +7,7 @@ import type {
   UpdateProfileNotificationRequestType,
   UpdateProfileThemeRequestType,
   UpdateProfileThemeResponseType,
+  UpdateProfileNotificationResponseType,
 } from "../../../types/profileServiceTypes";
 import {
   getProfileRoute,
@@ -17,39 +18,33 @@ import {
 } from "../../../utils/urlApi";
 import { apiFetch } from "../client/apiClient";
 
-const requestGetProfile = (
-  acesstoken: string
-): Promise<GetProfileResponseType> => {
+const requestGetProfile = (): Promise<GetProfileResponseType> => {
   const response: Promise<GetProfileResponseType> = apiFetch(
     getProfileRoute.route,
     {
       method: getProfileRoute.method,
-    },
-    acesstoken
+    }
   );
 
   return response;
 };
 
 const requestUpdateProfileName = (
-  data: UpdateProfileNameRequestType,
-  acesstoken: string
+  data: UpdateProfileNameRequestType
 ): Promise<UpdateProfileNameResponseType> => {
   const response: Promise<UpdateProfileNameResponseType> = apiFetch(
     updateProfileNameRoute.route,
     {
       method: updateProfileNameRoute.method,
       body: JSON.stringify(data),
-    },
-    acesstoken
+    }
   );
 
   return response;
 };
 
 const requestUpdateProfileLanguage = (
-  data: UpdateProfileLanguageRequestType,
-  acesstoken: string
+  data: UpdateProfileLanguageRequestType
 ): Promise<UpdateProfileLanguageResponseType> => {
   const response: Promise<UpdateProfileLanguageResponseType> = apiFetch(
     updateProfileLanguageRoute.route,
@@ -57,15 +52,14 @@ const requestUpdateProfileLanguage = (
       method: updateProfileLanguageRoute.method,
       body: JSON.stringify(data),
     },
-    acesstoken
+
   );
 
   return response;
 };
 
 const requestUpdateProfileTheme = (
-  data: UpdateProfileThemeRequestType,
-  accessToken: string
+  data: UpdateProfileThemeRequestType
 ): Promise<UpdateProfileThemeResponseType> => {
   const response: Promise<UpdateProfileThemeResponseType> = apiFetch(
     updateProfileThemeRoute.route,
@@ -73,23 +67,20 @@ const requestUpdateProfileTheme = (
       method: updateProfileThemeRoute.method,
       body: JSON.stringify(data),
     },
-    accessToken
   );
 
   return response;
 };
 
 const requestUpdateProfileNotification = (
-  data: UpdateProfileNotificationRequestType,
-  accessToken: string
-): Promise<UpdateProfileThemeResponseType> => {
-  const response: Promise<UpdateProfileThemeResponseType> = apiFetch(
+  data: UpdateProfileNotificationRequestType
+): Promise<UpdateProfileNotificationResponseType> => {
+  const response: Promise<UpdateProfileNotificationResponseType> = apiFetch(
     updateProfileNotificationRoute.route,
     {
       method: updateProfileNotificationRoute.method,
       body: JSON.stringify(data),
     },
-    accessToken
   );
 
   return response;

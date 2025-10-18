@@ -58,7 +58,6 @@ type CredentialRequestTypes = {
 
 type CredentialResponseTypes = {
 	userInfo: UserInfoTypes
-	accessToken: string
 }
 
 type ResetRequestTypes = {

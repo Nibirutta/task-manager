@@ -1,4 +1,4 @@
-import type { languageType, PreferencesTypes, themeType } from "./authServiceTypes"
+import type { languageType, PreferencesTypes, themeType, UserInfoTypes } from "./authServiceTypes"
 
 
 type GetProfileResponseType = {
@@ -12,34 +12,26 @@ type UpdateProfileNameRequestType = {
 }
 
 
-type UpdateProfileNameResponseType = {
-    message: string
-}
+type UpdateProfileNameResponseType = UserInfoTypes
 
 type UpdateProfileLanguageRequestType = {
     language: languageType
 }
 
-type UpdateProfileLanguageResponseType = {
-    message: string
-}
+type UpdateProfileLanguageResponseType = UserInfoTypes
 
 type UpdateProfileThemeRequestType = {
     theme: themeType
 }
 
-type UpdateProfileThemeResponseType = {
-    message: string
-}
+type UpdateProfileThemeResponseType = UserInfoTypes
 
 type UpdateProfileNotificationRequestType = {
     notificationType: string 
     activate: boolean
 }
 
-type UpdateProfileNotificationResponseType = {
-    message: string
-}
+type UpdateProfileNotificationResponseType = UserInfoTypes
 
 export type {
     GetProfileResponseType,
