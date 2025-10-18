@@ -22,6 +22,42 @@
     --navbar-link-font: 'Poppins', sans-serif;
     --navbar-link-hover: #778da9; 
 
+    /* user menu btn*/
+    --user-menu-btn-bg-color: #0d1b2a;
+    --user-menu-btn-bg-hover: ; 
+    --user-menu-btn-bg-active: ;
+    --user-menu-btn-border-color: #1b263b;
+    --user-menu-btn-border-hover: ;
+    --user-menu-btn-border-active: ;
+    --user-menu-btn-shadow: ;
+    --user-menu-btn-shadow-hover: ;
+    --user-menu-btn-shadow-active: ;
+    --user-menu-btn-text-color: #e0e1dd;
+    --user-menu-btn-text-hover: #778da9;
+    --user-menu-btn-text-active: ;
+
+    --user-menu-container-bg-color: #0d1b2a;
+    --user-menu-container-border-color: #1b263b;
+    --user-menu-container-shadow: ;
+
+    --user-menu-item--bg-color: #0d1b2a;
+    --user-menu-item--bg-hover: #1b263b;
+    --user-menu-item--bg-active: ;
+    --user-menu-item--text-font: 'Poppins',sans-serif;
+    --user-menu-item--text-color: #e0e1dd;
+    --user-menu-item--text-hover: #778da9;
+    --user-menu-item--text-active: ;
+    --user-menu-item--border-color: #1b263b;
+    --user-menu-item--border-hover: ;
+    --user-menu-item--border-active: ;  
+    --user-menu-item--shadow: ;
+    --user-menu-item--shadow-hover: ;
+    --user-menu-item--shadow-active: ;
+
+
+
+    
+
     /* Dropdown Menu  */
     --dropdown-bg-color: oklch(100% 0 0); 
     --dropdown-text-color: oklch(19.56% 0.022 273.44);
@@ -200,6 +236,39 @@
     --column-title-color: #14213d;
     --column-empty-color: rgba(255, 255, 255, 0.2);
     --column-dragging-color: #0a111f ;
+
+    /* Task Filter */
+    --task-filter-trigger-bg-color: ;
+    --task-filter-trigger-bg-hover: #1b263b;
+    --task-filter-trigger-bg-sctive: ;
+    --task-filter-trigger-text-color: #e0e1dd;
+    --task-filter-trigger-text-font: 'Lato', sans-serif;
+    --task-filter-trigger-text-hover: #778da9;
+    --task-filter-trigger-text-active: ;
+    --task-filter-trigger-border-color: ;
+    --task-filter-trigger-border-hover: ;
+    --task-filter-trigger-border-active: ;
+    --task-filter-trigger-box-shadow: ;
+    --task-filter-trigger-box-shadow-hover: ;
+    --task-filter-trigger-box-shadow-active: ;
+
+    --task-filter-content-bg-color: white;
+
+    --task-filter-item-bg-color: ;
+    --task-filter-item-bg-hover: ;
+    --task-filter-item-bg-active: ;
+    --task-filter-item-text-color: ;
+    --task-filter-item-text-font: ;
+    --task-filter-item-text-hover: ;
+    --task-filter-item-text-active: ;
+    --task-filter-item-border-color: ;
+    --task-filter-item-border-hover: ;
+    --task-filter-item-border-active: ;
+    --task-filter-item-box-shadow: ;
+    --task-filter-item-box-shadow-hover: ;
+    --task-filter-item-box-shadow-active: ;
+
+
 
     /* Task Form Dialog */ 
 

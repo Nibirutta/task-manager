@@ -9,11 +9,12 @@ import Spinner from '../../components/Spinner/Spinner';
 import DeleteTaskDialog from '../../features/DeleteTaskDialog/DeleteTaskDialog';
 import TaskFormDialog from '../../features/TaskFormDialog/TaskFormDialog';
 
-import { Input } from '../../lib/Reui/input/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../lib/Reui/select/select';
+// import { Input } from '../../lib/Reui/input/input';
+
 import TaskDetailsDialog from '../../features/TaskDetailsDialog/TaskDetailsDialog';
 import getTaskStatus from '../../utils/getTaskStatus'; // Importa a função pura, não o default export
 import FlickeringGrid from '../../lib/magicUI/grid';
+import TaskFilter from '../../features/TaskFilter/TaskFilter';
 
 
 // Reducer para gerenciar o estado dos diálogos
@@ -58,7 +59,7 @@ const DashboardPage = () => {
   const [dialogState, dispatchDialog] = useReducer(dialogReducer, initialDialogState);
 
   // Estados para os filtros
-  const [filterTitle, setFilterTitle] = useState('');
+  const [filterTitle] = useState('');
   const [filterPriority, setFilterPriority] = useState<TaskPriority | 'all'>('all');
 
   const priorityFilterOptions: { value: TaskPriority | 'all'; label: string }[] = [
@@ -73,7 +74,7 @@ const DashboardPage = () => {
   const processedTasks = useMemo(() => {
     return tasks
       .map(task => {
-        const { expirationStatus, formattedDueDate } = getTaskStatus(task.dueDate); // getTaskStatus não precisa de _id
+        const { expirationStatus, formattedDueDate } = getTaskStatus(task.dueDate); 
         return { ...task, expirationStatus, formattedDueDate };
       })
       .filter(task => {
@@ -110,14 +111,13 @@ const DashboardPage = () => {
     [] 
   );
 
-  // Efeito para buscar tarefas quando os filtros mudam
-  // OBS: A filtragem por título agora é feita no frontend para uma resposta mais rápida.
+
   useEffect(() => {
     fetchTasks({ priority: filterPriority });
   }, [filterPriority, fetchTasks]);
 
+  // Abre o modal de detalhes com a tarefa clicada
   const handleDetailsClick = (task: TaskType) => {
-    // Abre o modal de detalhes com a tarefa clicada
     dispatchDialog({ type: 'OPEN_DETAILS', payload: task });
   };
 
@@ -126,7 +126,7 @@ const DashboardPage = () => {
     dispatchDialog({ type: 'OPEN_FORM', payload: { task } });
   };
 
-  // Abre o modal de confirmação
+  // Abre o modal de confirmação pra deletar
   const handleDeleteClick = (task: TaskType) => {
     dispatchDialog({ type: 'OPEN_DELETE', payload: task });
   };
@@ -224,23 +224,18 @@ const DashboardPage = () => {
       <header className={style.header}>
         <h1 className={style.title}>Meu Quadro de Tarefas</h1>
         <div className={style.filters}>
-          <Input
+{/*           <Input
             type="text"
             placeholder="Buscar por título..."
             value={filterTitle}
             onChange={(e) => setFilterTitle(e.target.value)}
             className={style.filterInput}
+          /> */}
+          <TaskFilter
+            filterPriority={filterPriority}
+            setFilterPriority={setFilterPriority}
+            priorityFilterOptions={priorityFilterOptions}
           />
-          <Select value={filterPriority} onValueChange={(value) => setFilterPriority(value as TaskPriority | 'all')}>
-            <SelectTrigger className={style.filterSelect}>
-              <SelectValue placeholder="Filtrar por prioridade" />
-            </SelectTrigger>
-            <SelectContent>
-              {priorityFilterOptions.map(opt => (
-                <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
         </div>
       </header>
       

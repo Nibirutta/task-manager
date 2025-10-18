@@ -52,7 +52,6 @@ hr {
 
 .navegation nav ul {
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
   justify-content: space-evenly;
   gap: 0.8rem; 
@@ -101,7 +100,6 @@ hr {
 
 .repositories ul {
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
   justify-content: space-evenly;
   gap: 1rem;
