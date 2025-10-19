@@ -55,20 +55,6 @@
     --user-menu-item--shadow-active: ;
 
 
-
-    
-
-    /* Dropdown Menu  */
-    --dropdown-bg-color: oklch(100% 0 0); 
-    --dropdown-text-color: oklch(19.56% 0.022 273.44);
-    --dropdown-border-color: oklch(94% 0.004 286.32); 
-    --dropdown-separator-color: oklch(96.52% 0.005 286.32);
-    --dropdown-item-bg-hover: oklch(96.52% 0.005 286.32); 
-    --dropdown-item-text-hover: oklch(29.23% 0.018 273.44);
-    --dropdown-label-color: oklch(58.31% 0.011 263.81); 
-    --dropdown-item-destructive-text-color: oklch(57.8% 0.224 19.86);
-    --dropdown-item-destructive-bg-hover: oklch(57.8% 0.224 19.86 / 0.05);
-
     /* Hero Section */
     --hero-title-font: 'Orbitron', sans-serif;
     --hero-title-color: #778da9;
@@ -149,6 +135,7 @@
     /* Login Form */
     --login-bg-color: #182437 ;
     --login-border-color: #142133;
+    --login-shadow-color: 0 2px 6px #415a77;
     --login-title-font: 'Orbitron', sans-serif;
     --login-title-color: #778da9 ;
     --redirect-color: #b8d0eb;
@@ -195,6 +182,7 @@
     --fpd-description-color: #415a77 ;
 
 
+    
 
 
     /* Footer */
@@ -224,10 +212,7 @@
     --card-status-inreview-bg: #9b59b6;
     --card-status-done-bg: #1abc9c;
 
-
-
-
-
+    /* Task Column*/
     --column-bg: #14213d;
     --column-border: transparent;
     --column-border-hover: #fca311;
@@ -297,6 +282,48 @@
 
     /* A cor do texto de erro de validação */
     --task-form-dialog-error-text: var(--destructive);
+
+
+
+    /* settings page */
+
+    --profile-title-color: #e0e1dd;
+    --profile-title-font: 'Lato', sans-serif;
+    --profile-title-shadow: 0 2px 6px #415a77;
+    --profile-subtitle-color: #e0e1dd;
+    --profile-subtitle-font: 'Lato', sans-serif;
+    
+    --preferences-title-color: #e0e1dd;
+    --preferences-title-font: 'Lato', sans-serif;
+    --preferences-title-shadow: 0 2px 6px #415a77;
+    --preferences-subtitle-color: #e0e1dd;
+    --preferences-subtitle-font: 'Lato', sans-serif;
+
+    --preferences-theme-title-color: #e0e1dd;
+    --preferences-theme-title-font: 'Lato', sans-serif;
+    --preferences-theme-title-shadow: 0 2px 6px #415a77;
+    --preferences-theme-box-bg-color: #0d1b2a;
+    --preferences-theme-box-border-color: #1b263b;
+    --preferences-theme-box-shadow: 0 2px 6px #415a77;
+    --preferences-theme-btn-bg-color: #0d1b2a;
+    --preferences-theme-btn-bg-hover: #1b263b;
+    --preferences-theme-btn-bg-active: ;
+    --preferences-theme-btn-border-color: #1b263b;
+    --preferences-theme-btn-border-hover: ;
+    --preferences-theme-btn-border-active: ;
+    --preferences-theme-btn-shadow: ;
+    --preferences-theme-btn-shadow-hover: ;
+    --preferences-theme-btn-shadow-active: ;
+    --preferences-theme-btn-text-color: #e0e1dd;
+    --preferences-theme-btn-text-hover: #778da9;
+    --preferences-theme-btn-text-active: ;
+    --preferences-theme-btn-text-font: 'Lato', sans-serif;
+
+
+
+
+
+    
 
 }
 

@@ -11,7 +11,7 @@ const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const DashboardPage = lazy(() => import('./pages/DashboardPage/DashboardPage'));
-const UserSettingsPage = lazy(() => import('./pages/UserSettingsPage'));
+const UserSettingsPage = lazy(() => import('./pages/UserSettingsPage/UserSettingsPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 function App() {

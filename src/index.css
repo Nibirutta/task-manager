@@ -1,6 +1,8 @@
 @import './styles/reset.css';
 @import './styles/globals.css';
 @import 'tailwindcss';
+@plugin 'flowbite-react/plugin/tailwindcss';
+@source '../.flowbite-react/class-list.json';
 @import 'tw-animate-css';
 @import './styles/animations.css';
 @import './styles/fonts.css';

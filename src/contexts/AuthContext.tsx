@@ -12,6 +12,7 @@ type IAuthContext  = {
 
 	login: (data: LoginRequestTypes) => Promise<void>;
 	logout: () => void;
+	updateUser: (newUserInfo: UserInfoTypes) => void;
 	deleteAccount: () => Promise<void>;
 }
 
@@ -95,6 +96,10 @@ function AuthProvider({ children }: { children: ReactNode }) {
 		}
 	}, []);
 
+	const updateUser = useCallback((newUserInfo: UserInfoTypes) => {
+		setUser(newUserInfo);
+	}, []);
+
   // o objeto `value` contém tudo que será disponibilizado para os componentes filhos.O useMemo evita recriar o objeto em cada renderização, o que previne re-renderizações desnecessárias nos componentes consumidores.
   const value = useMemo<IAuthContext>(() => ({
     isAuthenticated: !!user,
@@ -102,8 +107,9 @@ function AuthProvider({ children }: { children: ReactNode }) {
     isLoading,
     login,
     logout,
+	updateUser,
 	deleteAccount,
-  }), [user, isLoading, login, logout, deleteAccount]);
+  }), [user, isLoading, login, logout, deleteAccount, updateUser]);
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
