@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { baseURL } from "../../../utils/urlApi";
 import type { APIErrorType } from "../APITypes";
@@ -6,8 +7,22 @@ import { dispatchAuthEvent } from "./authEvent";
 
 
 
+// Flag para evitar múltiplas chamadas de refresh simultâneas
 let isRefreshing = false;
+// Fila para armazenar requisições que falharam enquanto o token estava sendo renovado
+let failedQueue: Array<{ resolve: (value: unknown) => void, reject: (reason?: any) => void }> = [];
 
+const processQueue = (error: any, token: any = null) => {
+	failedQueue.forEach(prom => {
+		if (error) {
+			prom.reject(error);
+		} else {
+			prom.resolve(token);
+		}
+	});
+
+	failedQueue = [];
+};
 
 const apiFetch = async (endpoint: string, options: RequestInit = {}) => {
 
@@ -27,16 +42,23 @@ const apiFetch = async (endpoint: string, options: RequestInit = {}) => {
 
 	// Se a resposta for 401 (Unauthorized), tenta renovar o token
 	if (response.status === 401 && endpoint !== '/account/refresh') {
+		// Se já existe um refresh em andamento, adiciona a requisição atual na fila de espera.
 		if (!isRefreshing) {
 			isRefreshing = true;
 			try {
 				console.log('Token de acesso expirado. Tentando renovar...');
-				await requestRefresh();
+				const refreshResponse = await requestRefresh();
 				console.log('Token renovado com sucesso. Tentando a requisição original novamente...');
+				
+				// Processa a fila com o novo token (que já está no cookie)
+				processQueue(null, refreshResponse);
+
 				// Tenta a requisição original novamente com o novo token (que já está no cookie)
 				return apiFetch(endpoint, options);
 			} catch (refreshError) {
 				console.error('Falha ao renovar o token. A sessão expirou.');
+				// Processa a fila com erro, rejeitando todas as promessas pendentes
+				processQueue(refreshError, null);
 				// Dispara um evento para forçar o logout global
 				dispatchAuthEvent('forceLogout');
 				// Rejeita a promessa com o erro original de refresh
@@ -44,6 +66,17 @@ const apiFetch = async (endpoint: string, options: RequestInit = {}) => {
 			} finally {
 				isRefreshing = false;
 			}
+		} else {
+			// Se um refresh já está em andamento, retorna uma nova promessa que será resolvida
+			// ou rejeitada quando o refresh terminar.
+			return new Promise((resolve, reject) => {
+				failedQueue.push({
+					resolve: () => {
+						// Tenta a requisição original novamente
+						resolve(apiFetch(endpoint, options));
+					}, reject
+				});
+			});
 		}
 	}
 

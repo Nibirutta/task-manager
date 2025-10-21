@@ -30,7 +30,9 @@ const getTasks = async (params: IGetTasks): Promise<TaskType[]> => {
 
   const response = await apiFetch(
     `${getTasksRoute.route}${queryString ? `?${queryString}` : ''}`,
-    { method: getTasksRoute.method });
+    { method: getTasksRoute.method,
+      credentials: 'include',
+    });
 
   console.groupCollapsed('✅ API Response: getTasks');
   console.log('Data received:', response);
@@ -47,6 +49,7 @@ const newTask = async (params: INewTask): Promise<{ data: TaskType }> => {
     {
       method: createTaskRoute.method,
       body: JSON.stringify(params),
+      credentials: 'include',
     }
   );
   console.log('Response received:', response);
@@ -65,7 +68,8 @@ const updateTask = async (params: IUpdateTask): Promise<{ data: TaskType }> => {
     `${updateTaskRoute.route}/${_id}`,
     {
       method: updateTaskRoute.method,
-      body: JSON.stringify(updateData), 
+      body: JSON.stringify(updateData),
+      credentials: 'include',
     }
   );
   console.log('Response received:', response);
@@ -82,6 +86,7 @@ const deleteTask = async (params: IDeleteTask) => {
     `${deleteTaskRoute.route}/${params._id}`, 
     {
       method: deleteTaskRoute.method,
+      credentials: 'include',
     }
   );
   console.log('Response received (should be undefined on success):', response);

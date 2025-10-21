@@ -26,18 +26,16 @@ function AuthProvider({ children }: { children: ReactNode }) {
 	const [user, setUser] = useState<UserInfoTypes | null>(null);
 	const [isLoading, setIsLoading] = useState<boolean>(true); 
 
-	const logout = useCallback(async (isForced = false) => {
-		// Se não for um logout forçado, tenta fazer o logout no servidor
-		if (!isForced) {
-			try {
-				await requestLogout(); 
-			} catch (error) {
-				console.error('Erro ao fazer logout no servidor:', error);
-			}
+	const logout = useCallback(async () => {
+		try {
+			// Sempre tenta fazer o logout no servidor, mas não bloqueia o fluxo do frontend se falhar.
+			await requestLogout(); 
+		} catch (error) {
+			console.error('A requisição de logout no servidor falhou, mas o logout local será forçado:', error);
+		} finally {
+			setUser(null);
 		}
-		// Limpa o estado local em todos os casos
-		setUser(null);
-	  }, []);
+	}, []);
 	
 
 	
@@ -63,7 +61,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
 		// Adiciona um listener para o evento de logout forçado
 		const handleForceLogout = () => {
 			console.warn("Sessão expirada. Realizando logout forçado.");
-			logout(true);
+			setUser(null); // Apenas limpa o estado local, sem chamar a API novamente.
 		}
 		addAuthEventListener('forceLogout', handleForceLogout);
 	}, [logout]);

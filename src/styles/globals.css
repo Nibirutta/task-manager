@@ -319,6 +319,52 @@
     --preferences-theme-btn-text-active: ;
     --preferences-theme-btn-text-font: 'Lato', sans-serif;
 
+    --security-title-color: #e0e1dd;
+    --security-title-font: 'Lato', sans-serif;
+    --security-title-shadow: 0 2px 6px #415a77;
+    --security-subtitle-color: #e0e1dd;
+    --security-subtitle-font: 'Lato', sans-serif;
+
+    --danger-zone-bg-color: #0d1b2a;
+    --danger-zone-border-color: #1b263b;
+    --danger-zone-shadow: 0 2px 6px #415a77;
+    --danger-zone-title-color: #e0e1dd;
+    --danger-zone-title-font: 'Lato', sans-serif;
+    --danger-zone-title-shadow: 0 2px 6px #415a77;
+    --danger-zone-subtitle-color: #e0e1dd;
+    --danger-zone-subtitle-font: 'Lato', sans-serif;
+
+    --delete-acc-btn-bg-color: #0d1b2a;
+    --delete-acc-btn-bg-hover: #1b263b;
+    --delete-acc-btn-bg-active: ;
+    --delete-acc-btn-border-color: #1b263b;
+    --delete-acc-btn-border-hover: ;
+    --delete-acc-btn-border-active: ;
+    --delete-acc-btn-shadow: ;
+    --delete-acc-btn-shadow-hover: ;
+    --delete-acc-btn-shadow-active: ;
+    --delete-acc-btn-text-color: #e0e1dd;
+    --delete-acc-btn-text-hover: #778da9;
+    --delete-acc-btn-text-active: ;
+    --delete-acc-btn-text-font: 'Lato', sans-serif;
+
+    --delete-dialog-bg: rgba(255, 255, 255, 0.5);
+    --delete-dialog-border-color: #1b263b;
+    --delete-dialog-header-bg: #1b263b;
+    --delete-dialog-title-color: #e0e1dd; 
+    --delete-dialog-title-font: 'Electrolize', sans-serif;
+    --delete-dialog-description-color: #778da9;
+    --delete-dialog-description-font: 'Poppins', sans-serif;
+    --delete-dialog-cancel-btn-bg: transparent;
+    --delete-dialog-cancel-btn-bg-hover: #e0e1dd;
+    --delete-dialog-cancel-btn-text: #0d1b2a;
+    --delete-dialog-cancel-btn-text-hover: #0d1b2a;
+    --delete-dialog-cancel-btn-border: #e0e1dd;
+    --delete-dialog-cancel-btn-border: ;
+    --delete-dialog-cancel-btn-text-font: 'Lato', sans-serif;
+
+
+
 
 
 

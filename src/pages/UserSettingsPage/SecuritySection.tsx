@@ -7,6 +7,7 @@ import { requestCredential } from "../../api/Task API/services/authService";
 import InputField from "../../components/InputField/InputField";
 import SubmitBtn from "../../components/SubmitBtn/SubmitBtn";
 import { Lock, Mail, Shield, ShieldCheck } from "lucide-react";
+import useAuth from "../../hooks/useAuth";
 
 // Schema de validação para o formulário de senha
 const passwordSchema = z
@@ -33,6 +34,7 @@ const emailSchema = z.object({
 type EmailFormData = z.infer<typeof emailSchema>;
 
 export function SecuritySection() {
+  const { updateUser } = useAuth();
 
   const {
     register: registerPassword,
@@ -53,43 +55,48 @@ export function SecuritySection() {
   });
 
   const onPasswordChange = async (data: PasswordFormData) => {
-    try {
-      await requestCredential({
+    const promise = requestCredential({
         password: data.newPassword,
-      });
-
-      toast.success("Senha alterada com sucesso!");
-      resetPasswordForm();
-    } catch (error) {
-      toast.error("Falha ao alterar a senha. Verifique sua senha atual.");
-      console.error(error);
-    }
+    });
+    
+    toast.promise(promise, {
+        pending: "Alterando sua senha...",
+        success: "Senha alterada com sucesso!",
+        error: "Falha ao alterar a senha. Verifique sua senha atual.",
+    });
+    
+    promise.then(response => {
+        updateUser(response.userInfo);
+        resetPasswordForm();
+    }).catch(console.error);
   };
 
   const onEmailChange = async (data: EmailFormData) => {
-    try {
-      await requestCredential({ email: data.email });
-      toast.success("E-mail alterado com sucesso!");
-      resetEmailForm();
-    } catch (error) {
-      toast.error("Falha ao alterar o e-mail. Tente novamente.");
-      console.error(error);
-    }
+    const promise = requestCredential({ email: data.email });
+    toast.promise(promise, {
+        pending: "Alterando seu e-mail...",
+        success: "E-mail alterado com sucesso! O estado global foi atualizado.",
+        error: "Falha ao alterar o e-mail. Tente novamente.",
+    });
+
+    promise.then(response => {
+        updateUser(response.userInfo);
+        resetEmailForm();
+    }).catch(console.error);
   };
 
   return (
-    <section className="space-y-12">
-      {/* Seção de Alteração de Senha */}
-      <div className="space-y-6">
-        <div>
-          <h3 className="text-lg font-medium">Alterar Senha</h3>
-          <p className="text-sm text-muted-foreground">
+    <section className="py-28 mx-auto w-full flex flex-col items-center justify-center gap-8">
+      <div className="flex flex-col items-center justify-center gap-12">
+        <div className="flex flex-col justify-between items-center p-2 gap-8">
+          <h3 className="text-4xl font-bold font-(family-name:--security-title-color) text-[var(--security-title-color)] text-shadow-[var(--security-title-shadow)]">Alterar Senha</h3>
+          <p className="text-2xl font-medium font-(family-name:--security-subtitle-color) text-[var(--security-subtitle-color)]">
             Para sua segurança, recomendamos uma senha forte.
           </p>
         </div>
         <form
           onSubmit={handlePasswordSubmit(onPasswordChange)}
-          className="space-y-4 max-w-md"
+          className="p-8 flex flex-col items-center justify-center w-[400px] gap-8 bg-[var(--login-bg-color)] rounded-2xl border-4 border-[var(--login-border-color)] shadow-[var(--login-shadow-color)]"
         >
           <InputField
             id="currentPassword"
@@ -123,16 +130,16 @@ export function SecuritySection() {
       </div>
 
       {/* Seção de Alteração de E-mail */}
-      <div className="space-y-6">
-        <div>
-          <h3 className="text-lg font-medium">Alterar E-mail</h3>
-          <p className="text-sm text-muted-foreground">
+      <div className="flex flex-col items-center justify-center gap-12">
+        <div className="flex flex-col justify-between items-center p-2 gap-8">
+          <h3 className="text-4xl font-bold font-(family-name:--security-title-color) text-[var(--security-title-color)] text-shadow-[var(--security-title-shadow)]">Alterar E-mail</h3>
+          <p className="text-2xl font-medium font-(family-name:--security-subtitle-color) text-[var(--security-subtitle-color)]">
             Altere o e-mail associado à sua conta.
           </p>
         </div>
         <form
           onSubmit={handleEmailSubmit(onEmailChange)}
-          className="space-y-4 max-w-md"
+          className="p-8 flex flex-col items-center justify-center w-[400px] gap-8 bg-[var(--login-bg-color)] rounded-2xl border-4 border-[var(--login-border-color)] shadow-[var(--login-shadow-color)]"
         >
           <InputField
             id="email"

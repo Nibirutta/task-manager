@@ -1,16 +1,18 @@
 import {
+  type ReactNode,
   createContext,
   useState,
-  type ReactNode,
   useEffect,
   useMemo,
   useCallback,
 } from "react";
+import { toast } from "react-toastify";
 import useAuth from "../hooks/useAuth";
 import type {
   PreferencesTypes,
   themeType,
   languageType,
+  UserInfoTypes,
 } from "../types/authServiceTypes";
 
 import {
@@ -29,7 +31,7 @@ interface IPreferencesContext {
 }
 
 const defaultPreferences: PreferencesTypes = {
-  theme: "light",
+  theme: "dark",
   language: "pt-BR",
   notification: {
     email: true,
@@ -41,92 +43,66 @@ const PreferencesContext = createContext<IPreferencesContext | undefined>(
 );
 
 function PreferencesProvider({ children }: { children: ReactNode }) {
-  const { user } = useAuth();
-  const [preferences, setPreferences] = useState<PreferencesTypes | null>(null);
+  const { user, updateUser } = useAuth();
   const [isUpdating, setIsUpdating] = useState(false);
 
-  // Inicializa ou reseta as preferências quando o usuário muda (login/logout)
-  useEffect(() => {
-    if (user?.preferences) {
-      setPreferences(user.preferences);
-    } else {
-      // Se não há usuário, usa as preferências padrão
-      setPreferences(defaultPreferences);
-    }
-  }, [user]);
+  const preferences = user?.preferences ?? defaultPreferences;
 
   // Efeito para aplicar o tema no <body>
   useEffect(() => {
-    const currentTheme = preferences?.theme || defaultPreferences.theme;
-    document.body.setAttribute("data-theme", currentTheme);
-
+    document.body.dataset.theme = preferences.theme;
   }, [preferences?.theme]);
 
-  // Função genérica para atualizações otimistas
-  const optimisticUpdate = useCallback(
-    async (
-        
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      updateFn: () => Promise<any>,
-      newPreferences: Partial<PreferencesTypes>
-    ) => {
-      if (!preferences) return;
+  // Efeito para aplicar o idioma no <html>
+  useEffect(() => {
+    document.documentElement.lang = preferences.language;
+  }, [preferences?.language]);
 
-      const oldPreferences = { ...preferences };
-      const updatedPreferences = { ...preferences, ...newPreferences };
-
-      // 1. Atualização Otimista: muda a UI imediatamente
-      setPreferences(updatedPreferences);
+  // Função genérica para atualizações
+  const handleUpdate = useCallback(
+    async (updateFn: () => Promise<UserInfoTypes>) => {
       setIsUpdating(true);
-
       try {
-        // 2. Chamada à API
-        const response = await updateFn();
-        // Sincroniza o estado com a resposta final da API (garantia de consistência)
-        setPreferences(response.preferences);
+        const updatedUser = await updateFn();
+        // Atualiza o estado global no AuthContext
+        updateUser(updatedUser);
+        toast.success("Preferência atualizada!");
       } catch (error) {
         console.error("Falha ao atualizar preferência:", error);
-        // 3. Reversão em caso de erro
-        setPreferences(oldPreferences);
-        // Opcional: mostrar uma notificação de erro para o usuário
+        // Reverte a UI para o estado original (já que o 'user' não foi atualizado)
+        // e notifica o usuário.
+        toast.error("Não foi possível salvar sua preferência.");
       } finally {
         setIsUpdating(false);
       }
     },
-    [preferences]
+    [updateUser] 
   );
 
   const updateTheme = useCallback(
     async (newTheme: themeType) => {
-      await optimisticUpdate(() => requestUpdateProfileTheme({ theme: newTheme }), {
-        theme: newTheme,
-      });
+      await handleUpdate(() => requestUpdateProfileTheme({ theme: newTheme }));
     },
-    [optimisticUpdate]
+    [handleUpdate]
   );
 
   const updateLanguage = useCallback(
     async (newLanguage: languageType) => {
-      await optimisticUpdate(
-        () => requestUpdateProfileLanguage({ language: newLanguage }),
-        { language: newLanguage }
-      );
+      await handleUpdate(() => requestUpdateProfileLanguage({ language: newLanguage }));
     },
-    [optimisticUpdate]
+    [handleUpdate]
   );
 
   const updateEmailNotification = useCallback(
     async (activate: boolean) => {
-      await optimisticUpdate(
-        () =>
-          requestUpdateProfileNotification({
-            notificationType: "email",
-            activate,
-          }),
-        { notification: { email: activate } }
+      await handleUpdate(() =>
+        requestUpdateProfileNotification({
+          notificationType: "email",
+          activate,
+        })
       );
     },
-    [optimisticUpdate]
+    [handleUpdate]
   );
 
   const value = useMemo<IPreferencesContext>(

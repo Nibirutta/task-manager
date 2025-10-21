@@ -13,17 +13,13 @@ const UserSettingsPage = () => {
 
   // Adiciona um container para melhor espaçamento e layout
   return (
-    <div className="container mx-auto max-w-3xl py-10">
-      <div className="space-y-6">
-        <h1 className="text-2xl font-bold">Configurações</h1>
-        <div className="space-y-12">
+    <>
           <ProfileSection />
           <PreferencesSection />
           <SecuritySection />
           <DangerZoneSection />
-        </div>
-      </div>
-    </div>
+      
+    </>
   );
 };
 

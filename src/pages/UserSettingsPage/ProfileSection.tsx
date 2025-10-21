@@ -1,78 +1,88 @@
-import { useState, useEffect, type FormEvent } from "react";
-
+import { useEffect, useId } from "react";
 import { toast } from "react-toastify";
-
+import { z } from "zod";
 import { CaseSensitive } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 import useAuth from "../../hooks/useAuth";
 import { requestUpdateProfileName } from "../../api/Task API/services/profileService";
 import InputField from "../../components/InputField/InputField";
 import SubmitBtn from "../../components/SubmitBtn/SubmitBtn";
 
+const profileSchema = z.object({
+  name: z
+    .string()
+    .trim()
+    .min(3, "O nome deve ter no mínimo 3 caracteres.")
+    .max(30, "O nome não pode ter mais de 30 caracteres."),
+});
 
- function ProfileSection() {
-  const { user, updateUser } = useAuth(); 
-  const [name, setName] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
+type ProfileFormInputs = z.infer<typeof profileSchema>;
 
+function ProfileSection() {
+  const { user, updateUser } = useAuth();
+  const nameId = useId();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting, isValid, isDirty },
+    reset,
+  } = useForm<ProfileFormInputs>({
+    resolver: zodResolver(profileSchema),
+    mode: "onTouched",
+  });
 
   useEffect(() => {
     if (user?.name) {
-      setName(user.name);
+      reset({ name: user.name });
     }
-  }, [user?.name]);
+  }, [user, reset]);
 
-  const hasNameChanged = user?.name !== name;
+  const onSubmit = async (data: ProfileFormInputs) => {
+    const updatePromise = requestUpdateProfileName({ name: data.name });
 
-  const handleSubmit = async (event: FormEvent) => {
-    event.preventDefault();
-
-    if (!hasNameChanged || isSubmitting) {
-      return;
-    }
-
-    setIsSubmitting(true);
-    const originalName = user?.name;
-
-    try {
-      const updatedUserInfo = await requestUpdateProfileName({ name });
-      
-      updateUser(updatedUserInfo); // atualiza o estado global 
-      toast.success("Nome atualizado com sucesso!");
-    } catch (error) {
-      console.error("Falha ao atualizar o nome:", error);
-      toast.error("Não foi possível atualizar o nome. Tente novamente.");
-
-      if (originalName) {
-        setName(originalName);
-      }
-    } finally {
-      setIsSubmitting(false);
-    }
+    toast.promise(updatePromise, {
+      pending: "Atualizando seu nome...",
+      success: "Nome atualizado com sucesso!",
+      error: "Não foi possível atualizar o nome. Tente novamente.",
+    });
+    
+    updatePromise.then(updatedUserInfo => {
+        updateUser(updatedUserInfo); 
+        reset({ name: updatedUserInfo.name }); 
+    }).catch(error => {
+        console.error("Falha ao atualizar o nome:", error);
+    });
   };
 
   return (
-    <section className="py-28 mx-auto w-dvw flex flex-col items-center justify-center gap-8">
+    <section className="py-28 mx-auto w-full flex flex-col items-center justify-center gap-8">
       <div>
-        <h3 className="text-6xl font-(family-name:--profile-title-font) text-[var(--profile-title-color)]  text-shadow-[var(--profile-title-shadow)] font-medium">Perfil Público de {user?.name}</h3>
-        <p className="text-4xl font-normal mt-12 text-[var(--profile-subtitle-color)] font-(family-name:--profile-subtitle-font)">
+        <h3 className="text-5xl font-(family-name:--profile-title-font) text-[var(--profile-title-color)]  text-shadow-[var(--profile-title-shadow)] font-medium">
+          Perfil Público de {user?.name}
+        </h3>
+        <p className="text-2xl font-normal mt-12 text-[var(--profile-subtitle-color)] font-(family-name:--profile-subtitle-font)">
           Estas informações podem ser visíveis para outros usuários.
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className=" p-12 flex flex-col items-center  justify-center gap-8 bg-[var(--login-bg-color)] rounded-2xl border-4 border-[var(--login-border-color)] shadow-[var(--login-shadow-color)]">
-
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="p-8 flex flex-col items-center justify-center w-[400px] gap-8 bg-[var(--login-bg-color)] rounded-2xl border-4 border-[var(--login-border-color)] shadow-[var(--login-shadow-color)]"
+      >
         <InputField
-            id="1"
-            label="Nome de Exibição Atual, Alterar?"
-            Icon={CaseSensitive}
-            type="text"
-            placeholder="Digite seu nome de exibição"
-            value={user?.name}
+          id={nameId}
+          label="Nome de Exibição"
+          Icon={CaseSensitive}
+          type="text"
+          placeholder="Digite seu novo nome de exibição"
+          {...register("name")}
+          isValid={!errors.name}
+          errorMessage={errors.name?.message}
         />
 
-        <SubmitBtn
-            title="Alterar"
-        />
+        <SubmitBtn title="Alterar" isLoading={isSubmitting} disabled={!isDirty || !isValid || isSubmitting} />
       </form>
     </section>
   );

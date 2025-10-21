@@ -31,7 +31,6 @@ export function DangerZoneSection() {
     try {
       await deleteAccount();
       toast.success("Sua conta foi deletada com sucesso.");
-      // O AuthContext já lida com o logout e o redirecionamento.
     } catch (error) {
       toast.error("Ocorreu um erro ao deletar sua conta. Tente novamente.");
       console.error("Falha ao deletar a conta:", error);
@@ -49,10 +48,11 @@ export function DangerZoneSection() {
   };
 
   return (
-    <section className="py-12 px-4 md:px-8 lg:px-12 flex flex-col items-center justify-center gap-8">
-      <div className="text-center">
-        <h3 className="text-2xl font-bold text-red-500">Zona de Perigo</h3>
-        <p className="text-md text-gray-400 mt-2">
+    <section className="py-12 px-4  flex flex-col items-center justify-center gap-8 bg-[var(--danger-zone-bg-color)] border-4 border-[var(--danger-zone-border-color)] w-full shadow-[var(--danger-zone-shadow)]">
+      <div className="text-center flex flex-col gap-8 justify-center items-center">
+        <h3 className="text-3xl font-bold text-[var(--danger-zone-title-color)] font-(family-name:--danger-zone-title-font) text-shadow-[var(--danger-zone-title-shadow)]
+         ">Zona de Perigo</h3>
+        <p className="text-xl text-[var(--danger-zone-subtitle-color)] font-(family-name:--danger-zone-subtitle-font) ">
           As ações nesta seção são permanentes e não podem ser desfeitas.
         </p>
       </div>
@@ -62,15 +62,16 @@ export function DangerZoneSection() {
           <SubmitBtn
             title="Deletar Conta"
             icon={ShieldAlert}
-            className="bg-red-600 hover:bg-red-700 border-red-800"
+            className="text-xl cursor-pointer bg-[var(--danger-zone-btn-bg-color)] hover:bg-[var(--danger-zone-btn-bg-hover)] focus:bg-[var(--danger-zone-btn-bg-hover)] active:bg-[var(-delete-acc-btn-bg-active)] border-[var(--danger-zone-btn-border-color)] border-2 hover:border-[var(--danger-zone-btn-border-hover)] focus:border-[var(--danger-zone-btn-border-hover)] active:border-[var(--danger-zone-btn-border-active)] shadow-[var(--danger-zone-btn-shadow)] hover:shadow-[var(--danger-zone-btn-shadow-hover)] focus:shadow-[var(--danger-zone-btn-shadow-hover)] active:shadow-[var(--danger-zone-btn-shadow-active)] text-[var(--danger-zone-btn-text-color)] hover:text-[var(--danger-zone-btn-text-hover)] focus:text-[var(--danger-zone-btn-text-hover)] active:text-[var(--danger-zone-btn-text-active)] font-(family-name:--delete-acc-btn-text-font)
+             "
           />
         </DialogTrigger>
-        <DialogContent className="bg-[var(--login-bg-color)] border-[var(--login-border-color)]">
-          <DialogHeader>
-            <DialogTitle className="text-[var(--fpd-title-color)]">
+        <DialogContent className=" p-12 bg-[var(--delete-dialog-bg)] border-[var(--delete-dialog-border-color)]">
+          <DialogHeader className=" w-full py-4 bg-[var(--delete-dialog-header-bg)]">
+            <DialogTitle className=" text-3xl font-bold text-[var(    --delete-dialog-title-color)] font-(family-name:--delete-dialog-title-font)">
               Você tem certeza absoluta?
             </DialogTitle>
-            <DialogDescription className="text-[var(--fpd-description-color)]">
+            <DialogDescription className="text-xl  text-[var(--delete-dialog-description-color)] font-(family-name:--delete-dialog-description-font)">
               Esta ação não pode ser desfeita. Isso excluirá permanentemente
               sua conta e removerá todos os seus dados de nossos servidores.
             </DialogDescription>
@@ -87,7 +88,7 @@ export function DangerZoneSection() {
           </div>
           <DialogFooter>
             <DialogClose asChild>
-              <button className="px-4 py-2 rounded bg-gray-500 text-white hover:bg-gray-600" disabled={isDeleting}>
+              <button className="px-4 cursor-pointer py-2 rounded bg-[var(--delete-dialog-cancel-btn-bg)] hover:bg-[var(--delete-dialog-cancel-btn-bg-hover)] focus:bg-[var(--delete-dialog-cancel-btn-bg-hover)] text-xl text-[var(--delete-dialog-cancel-btn-text)] hover:text-[var(--delete-dialog-cancel-btn-text-hover)] focus:text-[var(--delete-dialog-cancel-btn-text-hover)] font-(family-name:--delete-dialog-cancel-btn-text-font) border-[var(--delete-dialog-cancel-btn-border)] border-2" disabled={isDeleting}>
                 Cancelar
               </button>
             </DialogClose>
@@ -96,7 +97,8 @@ export function DangerZoneSection() {
               onClick={handleDeleteAccount}
               disabled={!isConfirmationMatching || isDeleting}
               isLoading={isDeleting}
-              className="bg-red-600 hover:bg-red-700 border-red-800"
+              className="text-xl cursor-pointer bg-[var(--danger-zone-btn-bg-color)] hover:bg-[var(--danger-zone-btn-bg-hover)] focus:bg-[var(--danger-zone-btn-bg-hover)] active:bg-[var(-delete-acc-btn-bg-active)] border-[var(--danger-zone-btn-border-color)] border-2 hover:border-[var(--danger-zone-btn-border-hover)] focus:border-[var(--danger-zone-btn-border-hover)] active:border-[var(--danger-zone-btn-border-active)] shadow-[var(--danger-zone-btn-shadow)] hover:shadow-[var(--danger-zone-btn-shadow-hover)] focus:shadow-[var(--danger-zone-btn-shadow-hover)] active:shadow-[var(--danger-zone-btn-shadow-active)] text-[var(--danger-zone-btn-text-color)] hover:text-[var(--danger-zone-btn-text-hover)] focus:text-[var(--danger-zone-btn-text-hover)] active:text-[var(--danger-zone-btn-text-active)] font-(family-name:--delete-acc-btn-text-font)
+             "
             />
           </DialogFooter>
         </DialogContent>
