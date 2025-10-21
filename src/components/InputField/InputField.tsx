@@ -74,8 +74,8 @@ const InputField = ({
 			</div>
 
 			{!isValid && errorMessage && (
-				<span  role="alert" aria-label="Mensagem de Input Inválido" className="text-[#ed3f54] flex ml-8 mt-4 items-center gap-1 text-xs">
-					<ShieldX size={20} />
+				<span  role="alert" aria-label="Mensagem de Input Inválido" className="flex ml-8 mt-4 items-center gap-1 text-[var(--input-field-error-color)] text-xs">
+					<ShieldX size={24} />
 					<span className={styles.errorMessage}> {errorMessage}</span>
 				</span>
 			)}

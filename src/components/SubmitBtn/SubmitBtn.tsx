@@ -28,9 +28,9 @@ function SubmitBtn({
 			{...rest}
 		>
 			{isLoading ? (
-				<LoaderCircle className={style.spinner} size={20} />
+				<LoaderCircle className={style.spinner} size={28} />
 			) : (
-				Icon && <Icon size={20}  />
+				Icon && <Icon size={28}  />
 			)}
 			<span> 
 				{isLoading ? 'Enviando...' : title}
