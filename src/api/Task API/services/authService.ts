@@ -56,8 +56,8 @@ const requestPasswordResetEmail = (data: ResetRequestTypes) : Promise<Credential
 	return response
 }
 
-const requestNewPassword = (data : ResetPasswordRequestTypes) : Promise<ResetPasswordResponseTypes> => {
-	const response : Promise<ResetPasswordResponseTypes> = apiFetch(resetPasswordRoute.route,{
+const requestNewPassword = (data : ResetPasswordRequestTypes, token: string) : Promise<ResetPasswordResponseTypes> => {
+	const response : Promise<ResetPasswordResponseTypes> = apiFetch(`${resetPasswordRoute.route}?token=${token}`,{
 		method: resetPasswordRoute.method,
 		body: JSON.stringify(data)
 	})
