@@ -15,9 +15,19 @@ import Spinner from "../components/Spinner/Spinner";
 const resetPasswordSchema = z
   .object({
     password: z
-      .string()
-      .min(8, "A senha deve ter no mínimo 8 caracteres."),
-    confirmPassword: z.string(),
+      .string({ error: "A senha é obrigatória." })
+      .min(8, "A senha deve ter no mínimo 8 caracteres.")
+      .regex(/[a-z]/, "A senha deve conter ao menos uma letra minúscula.")
+      .regex(/[A-Z]/, "A senha deve conter ao menos uma letra maiúscula.")
+      .regex(/[0-9]/, "A senha deve conter ao menos um número.")
+      .regex(
+        /[^a-zA-Z0-9]/,
+        "A senha deve conter ao menos um caractere especial."
+      ),
+
+    confirmPassword: z.string({
+      error: "A confirmação de senha é obrigatória.",
+    })
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "As senhas não coincidem.",
@@ -70,7 +80,6 @@ const ResetPasswordPage = () => {
       navigate("/login");
     } catch (error) {
       console.error("Falha ao redefinir a senha:", error);
-      
     }
   };
 
@@ -79,12 +88,14 @@ const ResetPasswordPage = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+    <section className="flex flex-col items-center justify-center h-dvh  p-8">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="p-8 flex flex-col items-center justify-center w-full max-w-md gap-8 bg-white rounded-2xl border-4 border-gray-200 shadow-lg"
+        className="p-16 flex flex-col items-center justify-center gap-8 bg-[var(--reset-form-bg)] rounded-2xl border-4 border-[var(--reset-form-border)] shadow-[var(--reset-form-shadow)]"
       >
-        <h2 className="text-3xl font-bold text-gray-800">Redefinir Senha</h2>
+        <h2 className="text-3xl font-bold font-(family-name:--reset-form-title-font) text-[var(--reset-form-title-color)] ">
+          Redefinir Senha
+        </h2>
         <InputField
           id="password"
           label="Digite a Nova Senha"
@@ -107,7 +118,7 @@ const ResetPasswordPage = () => {
           disabled={!isValid || isSubmitting}
         />
       </form>
-    </div>
+    </section>
   );
 };
 

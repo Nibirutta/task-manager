@@ -5,10 +5,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import InputField from "../../components/InputField/InputField";
 import SubmitBtn from "../../components/SubmitBtn/SubmitBtn";
 import { useId } from "react";
-import { AtSign, CircleCheck, IdCard, Shield, ShieldCheck, Tag, UserRound } from "lucide-react";
-import requestRegister from "../../api/Task API/services/registerService";
+import { AtSign, CircleCheck, IdCard, Shield, ShieldCheck, Tag} from "lucide-react";
+
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
+import { requestRegister } from "../../api/Task API/services/authService";
 
 const registerSchema = z.object({
   username: z
@@ -22,7 +23,7 @@ const registerSchema = z.object({
 
   email: z.email(),
 
-  firstname: z
+  name: z
     .string({
       error: "O primeiro nome é obrigatório.",
     })
@@ -31,14 +32,6 @@ const registerSchema = z.object({
     .min(3, "O primeiro nome deve ter no mínimo 3 caracteres.")
     .max(30, "O primeiro nome não pode ter mais de 30 caracteres.")
     .regex(/^[a-zA-Z]+$/, "Use apenas letras."),
-
-  lastname: z
-    .string()
-    .trim()
-    .toLowerCase()
-    .max(30, "O último nome não pode ter mais de 30 caracteres.")
-    // *como o lastname é opicional, ele então deve aceitar string vazia, por isso não tem min, e tem * no regex
-    .regex(/^[a-zA-Z]*$/, "Use apenas letras.").optional(),
 
   password: z
     .string({ error: "A senha é obrigatória." })
@@ -72,15 +65,13 @@ function Registerform() {
         defaultValues: {
           username: "",
           email: "",
-          firstname: "",
-          lastname: "",
+          name: "",
           password: "",
           confirmPassword: "",
         },
       });
 
-    const firstNameID = useId();
-    const lastNameID = useId();
+    const nameID = useId();
     const usernameID = useId();
     const emailID = useId();
     const passwordID = useId();
@@ -124,29 +115,17 @@ function Registerform() {
             
 
             <InputField 
-              id={firstNameID}
+              id={nameID}
               label="Primeiro Nome"
               Icon={IdCard}
               type="text"
               placeholder="Digite seu primeiro nome"
-              isValid={!errors.firstname}
-              errorMessage={errors.firstname?.message}
-              {...register("firstname")}
+              isValid={!errors.name}
+              errorMessage={errors.name?.message}
+              {...register("name")}
               autoComplete="given-name"
             />
 
-            <InputField 
-              id={lastNameID}
-              label="Último Nome"
-              Icon={UserRound}
-              type="text"
-              placeholder="Digite seu último nome"
-              isValid={!errors.lastname}
-              errorMessage={errors.lastname?.message}
-              {...register("lastname")}
-              autoComplete="family-name"
-            />
-            
             <InputField 
               id={emailID}
               label="E-mail"

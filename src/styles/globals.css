@@ -364,7 +364,12 @@
     --delete-dialog-cancel-btn-text-font: 'Lato', sans-serif;
 
 
-
+    --reset-form-bg: rgba(255, 255, 255, 0.5);
+    --reset-form-border: #1b263b;
+    --reset-form-shadow: 0 2px 6px #415a77;
+    --reset-form-title-color: #e0e1dd; 
+    --reset-form-title-font: 'Electrolize', sans-serif;
+    
 
 
 
