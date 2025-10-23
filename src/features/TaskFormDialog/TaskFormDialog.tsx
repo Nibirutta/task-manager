@@ -11,7 +11,7 @@ import {
   DialogFooter,
   DialogClose,
 } from '../../lib/Reui/modal/modal';
-import type { ITask, INewTask, IUpdateTask, TaskPriority, TaskStatus } from '../../types/taskServiceTypes';
+import type {   TaskPriority, TaskStatus, TaskType } from '../../types/taskServiceTypes';
 import { Input } from '../../lib/Reui/input/input';
 import { Textarea } from '../../lib/Reui/textArea/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../lib/Reui/select/select';
@@ -42,9 +42,9 @@ type TaskFormValues = z.infer<typeof taskFormSchema>;
 interface TaskFormDialogProps {
   isOpen: boolean;
   onOpenChange: (isOpen: boolean) => void;
-  taskToEdit: ITask | null; // Se for null, é um formulário de criação
+  taskToEdit: TaskType | null; // Se for null, é um formulário de criação
   initialStatus?: TaskStatus; // Status inicial ao criar uma nova tarefa
-  onSubmit: (data: INewTask | IUpdateTask) => void;
+  onSubmit: (data: TaskFormValues, id?: string) => void;
 }
 
 // Opções para os selects do formulário
@@ -100,21 +100,12 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
 
   const handleFormSubmit = (data: TaskFormValues) => {
     if (isEditing) {
-      // Garantimos que taskToEdit não é nulo e criamos o objeto IUpdateTask
-      const updatedData: IUpdateTask = { _id: taskToEdit!._id, ...data }; // Usa _id
-      onSubmit(updatedData);
+      // Passa os dados do formulário e o ID separadamente
+      onSubmit(data, taskToEdit!.id);
     } else {
-      // Criamos um objeto que corresponde exatamente ao tipo INewTask
-      const newData: INewTask = {
-        title: data.title,
-        description: data.description,
-        dueDate: data.dueDate!, 
-        priority: data.priority,
-        status: data.status,
-      };
-      onSubmit(newData);
+      // Passa apenas os dados do formulário
+      onSubmit(data);
     }
-    onOpenChange(false); // Fecha o modal após submeter
   };
 
   return (
@@ -260,3 +251,4 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
 }
 
 export default TaskFormDialog;
+export type  {TaskFormValues};

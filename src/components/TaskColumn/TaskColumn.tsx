@@ -1,13 +1,13 @@
 import  { memo, useEffect, useRef } from 'react';
 import style from './TaskColumn.module.css';
-import type { ITask, TaskStatus } from '../../types/taskServiceTypes';
+import type {  TaskStatus, TaskType } from '../../types/taskServiceTypes';
 import { Plus } from 'lucide-react';
 import { dropTargetForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import TaskCard from '../TaskCard/TaskCard'; // Importe o TaskCard aqui
 import type { ExpirationStatus } from '../../utils/getTaskStatus';
 
 // Adicione as props que o TaskCard precisa
-type IProcessedTask = ITask & {
+type IProcessedTask = TaskType & {
   expirationStatus: ExpirationStatus;
   formattedDueDate: string;
 };
@@ -19,10 +19,9 @@ interface TaskColumnProps {
   isDraggingOver: boolean;
   onAddTask: (status: TaskStatus) => void;
   // Adicione as funções que serão passadas para o TaskCard
-  onDetailsClick: (task: ITask) => void;
-  onEditClick: (task: ITask) => void;
-  onDeleteClick: (task: ITask) => void;
-  draggingTaskId: string | null; // Precisa saber qual card está sendo arrastado
+  onDetailsClick: (task: TaskType) => void;
+  onEditClick: (task: TaskType) => void;
+  onDeleteClick: (task: TaskType) => void;
 }
 
 function TaskColumn({ 
@@ -33,8 +32,7 @@ function TaskColumn({
   onAddTask,
   onDetailsClick,
   onEditClick,
-  onDeleteClick,
-  draggingTaskId
+  onDeleteClick
 }: TaskColumnProps) {
   const ref = useRef<HTMLElement>(null);
 
@@ -52,7 +50,7 @@ function TaskColumn({
   const columnClasses = `${style.column} ${isDraggingOver ? style.isDraggingOver : ''}`;
 
 
-  const taskIds = tasks.map(t => t._id);
+  const taskIds = tasks.map(t => t.id);
   const hasDuplicates = new Set(taskIds).size !== taskIds.length;
   
   if (hasDuplicates) {
@@ -75,12 +73,9 @@ function TaskColumn({
         {tasks.length > 0 ? (
           
           tasks.map(task => {
-            if (task._id === draggingTaskId) {
-              return null;
-            }
             return (
               <TaskCard 
-                key={task._id}
+                key={task.id}
                 task={task} 
                 onDetailsClick={onDetailsClick} 
                 onEditClick={onEditClick} 
@@ -102,6 +97,3 @@ function TaskColumn({
 }
 
 export default memo(TaskColumn);
-
-
-

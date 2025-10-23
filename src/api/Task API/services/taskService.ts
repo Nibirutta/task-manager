@@ -15,7 +15,7 @@ const getTasks = async (filters: string): Promise<GetTasksResponseType> => {
   console.groupEnd();
 
   const response = await apiFetch(
-    `${getTasksRoute.route}?${filters}`,
+    `${getTasksRoute.route}${filters}`,
     { method: getTasksRoute.method,
       credentials: 'include',
     });

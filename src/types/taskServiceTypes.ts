@@ -48,6 +48,8 @@ type DeleteTaskResponseType = {
 
 
 export type {
+    TaskStatus,
+    TaskPriority,
     TaskType,
     GetTasksResponseType,
     CreatTaskRequestType,

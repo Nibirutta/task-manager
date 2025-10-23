@@ -401,24 +401,24 @@
 
 @custom-variant cloudy-focus (&:where([data-theme=cloudy-focus], [data-theme=cloudy-focus] *));
 
-[data-theme='cloudy-focus']{
+[data-theme=cloudy-focus]{
     --body-bg-color: var(--color-zircon-100); 
 }
 
 @custom-variant after-hours (&:where([data-theme=after-hours], [data-theme=after-hours] *));
 
-[data-theme='after-hours']{
+[data-theme=after-hours]{
     --body-bg-color: var(--color-woodsmoke-950); 
 }
 
-@custom-variant forest-Calm (&:where([data-theme=forest-Calm], [data-theme=forest-Calm] *));
+@custom-variant forest-calm (&:where([data-theme=forest-Calm], [data-theme=forest-Calm] *));
 
-[data-theme='forest-Calm']{
+[data-theme=forest-Calm]{
     --body-bg-color: var(--color-snow-drift-50); 
 }
 
 @custom-variant solar-bloom (&:where([data-theme=solar-bloom], [data-theme=solar-bloom] *));
 
-[data-theme='solar-bloom']{
+[data-theme=solar-bloom]{
     --body-bg-color: var(--color-bridal-heath-100)
 }

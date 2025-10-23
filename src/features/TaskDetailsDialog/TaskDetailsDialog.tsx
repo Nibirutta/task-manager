@@ -6,17 +6,21 @@ import {
   DialogDescription,
   DialogFooter,
 } from '../../lib/Reui/modal/modal';
-import type { ITask, TaskPriority, TaskStatus } from '../../types/taskServiceTypes';
+import type {  TaskPriority, TaskStatus, TaskType } from '../../types/taskServiceTypes';
 import style from './TaskDetailsDialog.module.css';
-import formatDate from '../../utils/formatDate';
 import { Flag, CheckCircle, CircleDotDashed, Hourglass, XCircle, FilePenLine, FileX, Minimize2 } from 'lucide-react';
+import type { ExpirationStatus } from '../../utils/getTaskStatus';
 
+type ProcessedTask = TaskType & {
+  formattedDueDate: string;
+  expirationStatus: ExpirationStatus;
+};
 interface TaskDetailsDialogProps {
   isOpen: boolean;
   onOpenChange: (isOpen: boolean) => void;
-  onEditClick: (task: ITask) => void;
-  onDeleteClick: (task: ITask) => void;
-  task: ITask | null;
+  onEditClick: (task: TaskType) => void;
+  onDeleteClick: (task: TaskType) => void;
+  task: TaskType | null;
 }
 
 
@@ -78,7 +82,7 @@ function TaskDetailsDialog({ isOpen, onOpenChange, onEditClick, onDeleteClick, t
 
           <div className={style.detailItem}>
             <span className={style.detailLabel}>Data de Vencimento</span>
-            <span className={style.detailValue}>{formatDate(task.dueDate)}</span>
+            <span className={style.detailValue}>{(task as ProcessedTask).formattedDueDate || 'Sem data'}</span>
           </div>
 
         </div>

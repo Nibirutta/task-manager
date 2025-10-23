@@ -7,14 +7,14 @@ import {
   DialogFooter,
   DialogClose,
 } from '../../lib/Reui/modal/modal';
-import type { ITask } from '../../types/taskServiceTypes';
+import type { TaskType } from '../../types/taskServiceTypes';
 import style from './DeleteTaskDialog.module.css';
 
 interface DeleteTaskDialogProps {
   isOpen: boolean;
   onOpenChange: (isOpen: boolean) => void;
-  task: ITask | null;
-  onConfirm: (task: ITask) => void;
+  task: TaskType | null;
+  onConfirm: (task: TaskType) => void;
 }
 
 function DeleteTaskDialog({ isOpen, onOpenChange, task, onConfirm }: DeleteTaskDialogProps) {

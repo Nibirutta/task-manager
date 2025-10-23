@@ -2,26 +2,27 @@ import { useEffect, useRef } from 'react';
 import { draggable } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import { ClockAlert, ClockFading, ClockPlus, FilePenLine, Flag, MoreHorizontal, Trash2 } from 'lucide-react';
 import style from './TaskCard.module.css';
-import type { ITask } from '../../types/taskServiceTypes';
+
 
 import PopoverTaskCard from '../PopoverTaskCard/PopoverTaskCard';
 import type { ExpirationStatus } from '../../utils/getTaskStatus';
+import type { TaskType } from '../../types/taskServiceTypes';
 
 
 // As props que o componente espera receber.
 interface TaskCardProps {
-  task: ITask & {
+  task: TaskType & {
     expirationStatus: ExpirationStatus;
     formattedDueDate: string;
   };
-  onDetailsClick: (task: ITask) => void;
-  onDeleteClick: (task: ITask) => void;
-  onEditClick: (task: ITask) => void;
+  onDetailsClick: (task: TaskType) => void;
+  onDeleteClick: (task: TaskType) => void;
+  onEditClick: (task: TaskType) => void;
 }
 
 function TaskCard({ task, onDetailsClick, onDeleteClick, onEditClick }: TaskCardProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const { _id, status, expirationStatus, formattedDueDate } = task; // Desestrutura _id
+  const { id, expirationStatus, formattedDueDate } = task;
 
   useEffect(() => {
     const el = ref.current;
@@ -29,9 +30,9 @@ function TaskCard({ task, onDetailsClick, onDeleteClick, onEditClick }: TaskCard
 
     return draggable({
       element: el, // Passa _id como taskId para compatibilidade com o TaskBoard
-      getInitialData: () => ({ type: 'card', taskId: _id, status: status }),
+      getInitialData: () => ({ type: 'card', taskId: id }),
     });
-  }, [_id, status]);
+  }, [id]);
 
   const priorityObject = {
       low: 'Baixa',

@@ -31,7 +31,7 @@ interface IPreferencesContext {
 }
 
 const defaultPreferences: PreferencesTypes = {
-  theme: "dark",
+  theme: "light",
   language: "pt-BR",
   notification: {
     email: true,
@@ -48,12 +48,12 @@ function PreferencesProvider({ children }: { children: ReactNode }) {
 
   const preferences = user?.preferences ?? defaultPreferences;
 
-  // Efeito para aplicar o tema no <body>
+  // efeito para aplicar o tema no <body>
   useEffect(() => {
     document.body.dataset.theme = preferences.theme;
   }, [preferences?.theme]);
 
-  // Efeito para aplicar o idioma no <html>
+  // efeito para aplicar o idioma no <html>
   useEffect(() => {
     document.documentElement.lang = preferences.language;
   }, [preferences?.language]);

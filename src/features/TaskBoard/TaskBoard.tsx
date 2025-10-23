@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import style from './TaskBoard.module.css';
-import type { ITask, TaskStatus } from '../../types/taskServiceTypes';
+import type {  TaskStatus, TaskType } from '../../types/taskServiceTypes';
 import TaskColumn from '../../components/TaskColumn/TaskColumn';
 
 
@@ -17,15 +17,15 @@ const columnsConfig: { id: TaskStatus; title: string }[] = [
 ];
 
 // Estende o ITask para incluir as propriedades calculadas no DashboardPage
-type IProcessedTask = ITask & {
+type IProcessedTask = TaskType & {
   expirationStatus: ExpirationStatus;
   formattedDueDate: string;
 };
 interface TaskBoardProps {
   tasks: IProcessedTask[];
-  onDetailsClick: (task: ITask) => void;
-  onEditClick: (task: ITask) => void;
-  onDeleteClick: (task: ITask) => void;
+  onDetailsClick: (task: TaskType) => void;
+  onEditClick: (task: TaskType) => void;
+  onDeleteClick: (task: TaskType) => void;
   onAddTask: (status: TaskStatus) => void;
   onTaskStatusChange: (taskId: string, newStatus: TaskStatus) => void;
 }
@@ -38,16 +38,10 @@ function TaskBoard({
   onAddTask,
   onTaskStatusChange,
 }: TaskBoardProps) {
-  const [draggingTaskId, setDraggingTaskId] = useState<string | null>(null);
   const [draggingOverColumn, setDraggingOverColumn] = useState<TaskStatus | null>(null);
 
   useEffect(() => {
     return monitorForElements({
-      onDragStart: ({ source }) => {
-        if (source.data.type === 'card') {
-          setDraggingTaskId(source.data._id as string); // Usa _id
-        }
-      },
       onDrag: ({ location }) => {
         const destination = location.current.dropTargets[0];
         if (destination) {
@@ -57,7 +51,6 @@ function TaskBoard({
         }
       },
       onDrop: ({ source, location }) => {
-        setDraggingTaskId(null);
         setDraggingOverColumn(null);
         const destination = location.current.dropTargets[0];
         if (!destination || source.data.type !== 'card') return;
@@ -99,7 +92,6 @@ function TaskBoard({
             onDetailsClick={onDetailsClick}
             onEditClick={onEditClick}
             onDeleteClick={onDeleteClick}
-            draggingTaskId={draggingTaskId}
           />
         );
       })}

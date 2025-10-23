@@ -1,4 +1,4 @@
-type themeType = 'light' | 'dark' | 'lofi';
+type themeType = 'light'| 'dark' | 'lofi' | 'default' | 'neon-flow' | 'cloudy-focus' | 'after-hours' | 'forest-calm' | 'solar-bloom';
 
 type languageType = 'pt-BR' | 'en-US';
 

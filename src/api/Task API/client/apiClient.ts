@@ -12,19 +12,20 @@ let isRefreshing = false;
 // Fila para armazenar requisições que falharam enquanto o token estava sendo renovado
 let failedQueue: Array<{ resolve: (value: unknown) => void, reject: (reason?: any) => void }> = [];
 
-const processQueue = (error: any, token: any = null) => {
+const processQueue = (error: any) => {
 	failedQueue.forEach(prom => {
 		if (error) {
 			prom.reject(error);
 		} else {
-			prom.resolve(token);
+			// Apenas resolve a promessa, o callback se encarregará de refazer a chamada.
+			prom.resolve(true);
 		}
 	});
 
 	failedQueue = [];
 };
 
-const apiFetch = async (endpoint: string, options: RequestInit = {}) => {
+const apiFetch = async (endpoint: string, options: RequestInit = {}): Promise<any> => {
 
 	const headers = new Headers(options.headers || {});
 
@@ -48,17 +49,17 @@ const apiFetch = async (endpoint: string, options: RequestInit = {}) => {
 			try {
 				console.log('Token de acesso expirado. Tentando renovar...');
 				const refreshResponse = await requestRefresh();
-				console.log('Token renovado com sucesso. Tentando a requisição original novamente...');
+				console.log('Token renovado com sucesso. Tentando a requisição original novamente...', refreshResponse);
 				
-				// Processa a fila com o novo token (que já está no cookie)
-				processQueue(null, refreshResponse);
+				// Processa a fila, sinalizando que o refresh foi bem-sucedido.
+				processQueue(null);
 
-				// Tenta a requisição original novamente com o novo token (que já está no cookie)
+				// Tenta a requisição original novamente. O navegador enviará o novo cookie.
 				return apiFetch(endpoint, options);
 			} catch (refreshError) {
 				console.error('Falha ao renovar o token. A sessão expirou.');
 				// Processa a fila com erro, rejeitando todas as promessas pendentes
-				processQueue(refreshError, null);
+				processQueue(refreshError);
 				// Dispara um evento para forçar o logout global
 				dispatchAuthEvent('forceLogout');
 				// Rejeita a promessa com o erro original de refresh
@@ -71,11 +72,11 @@ const apiFetch = async (endpoint: string, options: RequestInit = {}) => {
 			// ou rejeitada quando o refresh terminar.
 			return new Promise((resolve, reject) => {
 				failedQueue.push({
-					resolve: () => {
-						// Tenta a requisição original novamente
-						resolve(apiFetch(endpoint, options));
-					}, reject
+					resolve, reject
 				});
+			}).then(() => {
+				// Quando a promessa da fila for resolvida, refaz a chamada original.
+				return apiFetch(endpoint, options);
 			});
 		}
 	}
