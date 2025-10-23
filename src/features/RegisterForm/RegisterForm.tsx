@@ -21,7 +21,7 @@ const registerSchema = z.object({
     .max(30, "O nome de usuário não pode ter mais de 30 caracteres.")
     .regex(/^[a-zA-Z0-9_]+$/, "Use apenas letras, números e underline (_)."),
 
-  email: z.email(),
+  email: z.email("Utilize um formato válido para E-mail"),
 
   name: z
     .string({

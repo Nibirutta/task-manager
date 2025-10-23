@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     padding: 0.8rem;
-    gap: 1rem;
+    gap: 2rem;
     width: 450px;
     box-sizing: border-box;
     background-color: var(--register-bg-color);
@@ -14,7 +14,6 @@
     border: 1px solid var(--register-border-color);
 
     &:hover, &:focus-within {
-        transform: translateY(-5px);
         transition: all 0.3s ease-in-out;
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
 
@@ -24,13 +23,13 @@
 
 .title{
     text-align: center;
-    font: 800 1.5rem var(--register-title-font);
+    font: 800 3.2rem var(--register-title-font);
     color: var(--register-title-color);
     margin-bottom: 2rem;
 }
 
 .error{
-    font: 400 0.8rem var(--input-field-error-font);
+    font: 400 1.6rem var(--input-field-error-font);
     color: var(--error-msg-color);
     text-align: center;
     margin-bottom: 1rem;
