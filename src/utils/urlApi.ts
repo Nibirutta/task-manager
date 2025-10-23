@@ -51,22 +51,22 @@ const getProfileRoute = {
 }
 
 const updateProfileNameRoute = {
-    method: 'POST',
+    method: 'PATCH',
     route : '/profile/name'
 }
 
 const updateProfileLanguageRoute = {
-    method: 'POST',
+    method: 'PATCH',
     route : '/profile/language'
 }
 
 const updateProfileThemeRoute = {
-    method: 'POST',
+    method: 'PATCH',
     route : '/profile/theme'
 }
 
 const updateProfileNotificationRoute = {
-    method: 'POST',
+    method: 'PATCH',
     route : '/profile/notification'
 }
 
@@ -77,22 +77,22 @@ const updateProfileNotificationRoute = {
 
 const getTasksRoute = {
     method: 'GET',
-    route : '/tasks'
+    route : '/task'
 }
 
 const createTaskRoute = {
     method: 'POST',
-    route : '/tasks'
+    route : '/task'
 }
 
 const updateTaskRoute = {
-    method: 'PUT',
-    route : '/tasks'
+    method: 'PATCH',
+    route : '/task'
 }
 
 const deleteTaskRoute = {
     method: 'DELETE',
-    route : '/tasks'
+    route : '/task'
 }
 
 export {

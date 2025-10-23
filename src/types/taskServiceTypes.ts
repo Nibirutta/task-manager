@@ -2,45 +2,60 @@ type TaskStatus = 'to-do' | 'in-progress' | 'in-review' | 'done';
 type TaskPriority = 'high' | 'medium' | 'low' | 'urgent' | 'optional';
 
 type TaskType =  {
-    _id: string;
+    id: string;
     title: string;
     description?: string;
     status: TaskStatus;
     priority: TaskPriority;
     dueDate: string;
+    owner: string;
     createdAt: string;
     updatedAt: string;
 }
 
-interface IGetTasks {
-    title?: string;
-    status?: TaskStatus;
-    priority?: TaskPriority;
-    from?: Date;
-    to?: Date;
+type GetTasksResponseType = {
+    taskList: TaskType[]
 }
     
 
-interface INewTask {
+type CreatTaskRequestType  = {
     title: string;
-    dueDate: Date;
     description?: string;
-    status?: TaskStatus;
-    priority?: TaskPriority;
+    status: TaskStatus;
+    priority: TaskPriority;
+    dueDate: string;
 }
 
-interface IUpdateTask {
-    _id: string;
+type CreatTaskResponseType = {
+    task: TaskType
+}
+
+type UpdateTaskRequestType = {
+        title?: string;
     description?: string;
-    status?: TaskStatus;
-    priority?: TaskPriority;
-    title?: string;
-    dueDate?: Date;
+    status: TaskStatus;
+    priority: TaskPriority;
+    dueDate?: string;
 }
 
-interface IDeleteTask {
-    _id: string;
+type UpdateTaskResponseType = {
+    task: TaskType
+}
+
+type DeleteTaskResponseType = {
+    message: string
 }
 
 
-export type { TaskStatus, TaskPriority, TaskType, IGetTasks, INewTask, IUpdateTask, IDeleteTask }
+export type {
+    TaskType,
+    GetTasksResponseType,
+    CreatTaskRequestType,
+    CreatTaskResponseType,
+    UpdateTaskRequestType,
+    UpdateTaskResponseType,
+    DeleteTaskResponseType
+}
+
+
+
