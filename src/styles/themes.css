@@ -3,10 +3,10 @@
 
 [data-theme=default]{
         /* Body */
-    --body-bg-color: #415a77 ;
+    --body-bg-color: var(--color-fiord-600) ;
         /* Header  */
-    --header-border-color:#0d1b2a ;
-    --header-bg-color:#0d1b2a ;
+    --header-border-color:var(--color-black-pearl-950) ;
+    --header-bg-color:var(--color-black-pearl-950) ;
 
     /* Greetings */
     --greetings-color-1:#00ff00 ;
@@ -17,52 +17,49 @@
 
   
     /* Navbar  */ 
-    --navbar-logo-color: #ed3f54; 
-    --navbar-logo-font: 'Orbitron', sans-serif;
-    --navbar-link-color: #e0e1dd;
-    --navbar-link-font: 'Poppins', sans-serif;
-    --navbar-link-hover: #778da9; 
+    --navbar-logo-color: var(--color-loblolly-300) ; 
+    --navbar-link-color: var(--color-mercury-200);
+    --navbar-link-hover: var(--color-bermuda-gray-700); 
+
+    
 
     /* user menu btn*/
-    --user-menu-btn-bg-color: #0d1b2a;
-    --user-menu-btn-bg-hover: ; 
-    --user-menu-btn-bg-active: ;
-    --user-menu-btn-border-color: #1b263b;
-    --user-menu-btn-border-hover: ;
-    --user-menu-btn-border-active: ;
-    --user-menu-btn-shadow: ;
-    --user-menu-btn-shadow-hover: ;
-    --user-menu-btn-shadow-active: ;
-    --user-menu-btn-text-color: #e0e1dd;
-    --user-menu-btn-text-hover: #778da9;
-    --user-menu-btn-text-active: ;
+    --user-menu-btn-bg-color: var(--color-black-pearl-950);
+    --user-menu-btn-bg-hover: var(--color-black-pearl-800); 
+    --user-menu-btn-bg-active: var(--color-black-pearl-700);
+    --user-menu-btn-border-color: var(--color-black-pearl-950);
+    --user-menu-btn-border-hover: var(--color-black-pearl-900);
+    --user-menu-btn-border-active: var(--color-black-pearl-800) ;
+    --user-menu-btn-shadow: 0 0 2px var(--color-black-pearl-950);
+    --user-menu-btn-shadow-hover: 0 0 2px var(--color-black-pearl-400);
+    --user-menu-btn-shadow-active: 0 0 2px var(--color-black-pearl-300);
+    --user-menu-btn-text-color: var(--color-mercury-200);
+    --user-menu-btn-text-hover: var(--color-mercury-400);
+    --user-menu-btn-text-active: var(--color-mercury-600);
 
-    --user-menu-container-bg-color: #0d1b2a;
-    --user-menu-container-border-color: #1b263b;
-    --user-menu-container-shadow: ;
+    --user-menu-container-bg-color: var(--color-loblolly-400);
+    --user-menu-container-border-color: var(--color-loblolly-800);
+    --user-menu-container-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 
-    --user-menu-item--bg-color: #0d1b2a;
-    --user-menu-item--bg-hover: #1b263b;
-    --user-menu-item--bg-active: ;
-    --user-menu-item--text-font: 'Poppins',sans-serif;
-    --user-menu-item--text-color: #e0e1dd;
-    --user-menu-item--text-hover: #778da9;
-    --user-menu-item--text-active: ;
-    --user-menu-item--border-color: #1b263b;
-    --user-menu-item--border-hover: ;
-    --user-menu-item--border-active: ;  
-    --user-menu-item--shadow: ;
-    --user-menu-item--shadow-hover: ;
-    --user-menu-item--shadow-active: ;
+    --user-menu-item--bg-color: var(--color-fiord-900);
+    --user-menu-item--bg-hover: var(--color-fiord-700);
+    --user-menu-item--bg-active: var(--color-fiord-400);
+    --user-menu-item--text-color: var(--color-bermuda-gray-200);
+    --user-menu-item--text-hover: var(--color-bermuda-gray-400);
+    --user-menu-item--text-active: var(--color-bermuda-gray-600);
+    --user-menu-item--border-color: var(--color-fiord-950);
+    --user-menu-item--border-hover: var(--color-fiord-800);
+    --user-menu-item--border-active: var(--color-fiord-500);  
+    --user-menu-item--shadow:  rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    --user-menu-item--shadow-hover:  rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px; 
+    --user-menu-item--shadow-active:  rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 
 
     /* Hero Section */
-    --hero-title-font: 'Orbitron', sans-serif;
-    --hero-title-color: #778da9;
+
+    --hero-title-color: var(--color-bermuda-gray-600);
     --hero-title-shadow: #415a77;
-    --hero-subtitle-font: 'Lato', sans-serif;
     --hero-subtitle-color: #e0e1dd;
-    --hero-developed-font: 'Lato', sans-serif;
     --hero-developed-color: #e0e1dd;
 
     /* Features Section */

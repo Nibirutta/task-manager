@@ -1,8 +1,17 @@
 
 
 :root{
+  /* header */
+      --navbar-logo-font: 'Orbitron', sans-serif;
+    --navbar-link-font: 'Poppins', sans-serif;
     --greetings-font: 'IBM', serif;
+       --user-menu-item--text-font: 'Poppins',sans-serif;
 
+  /* home page */
+
+  --hero-title-font: 'Orbitron', sans-serif;
+     --hero-subtitle-font: 'Lato', sans-serif;
+    --hero-developed-font: 'Lato', sans-serif;
     --input-field-label-font: 'Poppins', sans-serif;
     --input-field-placeholder-font: 'IBM', sans-serif;
     --input-field-input-font: 'Lato', sans-serif;

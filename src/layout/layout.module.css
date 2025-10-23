@@ -4,9 +4,8 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  overflow-x: hidden;
+
 }
 
 main {
@@ -19,23 +18,9 @@ main {
   
 }
 
-@media screen and (min-width: 1024px){
-    main{
-        max-width: 1024px;
-    }
-}
-
-@media screen and (min-width: 1280px){
-    main{
-        max-width: 1280px;
-    }
-}
 
 @media screen and (min-width: 1440px){
     main{
         max-width: 1440px;
     }
 }
-
-
-
