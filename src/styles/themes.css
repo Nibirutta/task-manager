@@ -9,8 +9,8 @@
     --header-bg-color:var(--color-black-pearl-950) ;
 
     /* Greetings */
-    --greetings-color-1:#00ff00 ;
-    --greetings-color-2: #05f2db;
+    --greetings-color-1: #05f2db;
+    --greetings-color-2:  #4679b1;
     --greetings-color-3: #0600ab;
     --greetings-color-4: #d9048e ;
 
@@ -57,10 +57,28 @@
 
     /* Hero Section */
 
+
+    --hero-bg-color-1:#22d3ee;
+    --hero-bg-color-2: #8b5cf6;
+    --hero-bg-color-3: rgba(6, 182, 212, 0.3);
+    --hero-bg-color-4: rgba(139, 92, 246, 0.3);
+
     --hero-title-color: var(--color-bermuda-gray-600);
-    --hero-title-shadow: #415a77;
-    --hero-subtitle-color: #e0e1dd;
-    --hero-developed-color: #e0e1dd;
+    --hero-title-shadow-color-1: var(--color-fiord-600);
+    --hero-title-shadow-color-2: var(--color-fiord-700);
+    --hero-title-shadow-color-3: var(--color-fiord-800);
+    --hero-title-shadow-color-4: var(--color-fiord-900);
+    --hero-title-shadow-color-5: var(--color-bermuda-gray-950);
+    --hero-subtitle-color: var(--color-mercury-200);
+    
+    
+    --cta-button-bg: var(--color-fiord-600);
+    --cta-button-text: var(--color-fiord-200);
+    --cta-button-ball-color: var(--color-fiord-100);
+    --cta-button-secondary-bg: var(--header-bg-color);
+    --cta-button-secondary-text: var(--color-black-pearl-200);
+    
+    --hero-developed-color: var(--color-loblolly-300);
 
     /* Features Section */
 
@@ -126,6 +144,9 @@
     --cta-title-font: 'Lato', sans-serif;
     --cta-title-color: #e0e1dd;
     --cta-title-shadow: 0 2px 6px #415a77;
+
+
+
 
 
     

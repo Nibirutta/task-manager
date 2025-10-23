@@ -109,8 +109,8 @@ export default function MagnetButton({
           className={cn(
             "absolute w-1.5 h-1.5 rounded-full",
             "bg-[var(--ball-color)] pointer-events-none",
-            "transition-opacity z-0 duration-300",
-            isAttracting ? "opacity-30" : "opacity-50",
+            "transition-opacity z-0 duration-300 ",
+            isAttracting ? "opacity-80" : "opacity-100",
           )}
         />
       ))}

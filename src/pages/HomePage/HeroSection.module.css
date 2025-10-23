@@ -5,9 +5,8 @@
     align-items: center;
     justify-content: center;
     height: 100dvh;
-    width: 100dvw; 
+    width: 100%; 
     padding: 2rem;
-    overflow: hidden; 
 }
 
 
@@ -30,7 +29,7 @@
     grid-row: span 2 / span 2;
     font: 800 6.4rem/1.2 var(--hero-title-font);
     color: var(--hero-title-color);
-    text-shadow: 4px 8px 4px var(--hero-title-shadow);
+    text-shadow: var(--hero-title-shadow-color-1) 5px 5px, var(--hero-title-shadow-color-2) 10px 10px, var(--hero-title-shadow-color-3) 15px 15px, var(--hero-title-shadow-color-4) 20px 20px, var(--hero-title-shadow-color-5) 25px 25px;
     text-align: center;
     padding: 1rem;
 

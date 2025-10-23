@@ -8,6 +8,7 @@
   border-bottom: 1px solid var(--header-border-color);
   background-color: var(--header-bg-color);
   backdrop-filter: blur(5px); 
+  padding: 2rem;
 }
 
 

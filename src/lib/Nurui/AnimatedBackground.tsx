@@ -9,10 +9,10 @@ interface AnimatedBackgroundProps {
 }
 
 const AnimatedBackground = ({
-  line1Color,
-  line2Color,
-  blob1Color,
-  blob2Color,
+  line1Color = '#22d3ee',
+  line2Color = '#8b5cf6',
+  blob1Color = 'rgba(6, 182, 212, 0.3)',
+  blob2Color = 'rgba(139, 92, 246, 0.3)',
 }: AnimatedBackgroundProps) => {
   return (
     <>
