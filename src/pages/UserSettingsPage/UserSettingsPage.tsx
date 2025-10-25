@@ -13,13 +13,12 @@ const UserSettingsPage = () => {
 
   // Adiciona um container para melhor espaçamento e layout
   return (
-    <>
-          <ProfileSection />
-          <PreferencesSection />
-          <SecuritySection />
-          <DangerZoneSection />
-      
-    </>
+    <div className="flex flex-col items-center w-full gap-16 py-16">
+      <ProfileSection />
+      <PreferencesSection />
+      <SecuritySection />
+      <DangerZoneSection />
+    </div>
   );
 };
 

@@ -40,20 +40,21 @@ function ProfileSection() {
   }, [user, reset]);
 
   const onSubmit = async (data: ProfileFormInputs) => {
-    const updatePromise = requestUpdateProfileName({ name: data.name });
+    try {
+      const updatedUserInfo = await toast.promise(
+        requestUpdateProfileName({ name: data.name }),
+        {
+          pending: "Atualizando seu nome...",
+          success: "Nome atualizado com sucesso!",
+          error: "Não foi possível atualizar o nome. Tente novamente.",
+        }
+      );
+      updateUser(updatedUserInfo);
+      reset({ name: updatedUserInfo.name });
+    } catch (error) {
+      console.error("Falha ao atualizar o nome:", error);
 
-    toast.promise(updatePromise, {
-      pending: "Atualizando seu nome...",
-      success: "Nome atualizado com sucesso!",
-      error: "Não foi possível atualizar o nome. Tente novamente.",
-    });
-    
-    updatePromise.then(updatedUserInfo => {
-        updateUser(updatedUserInfo); 
-        reset({ name: updatedUserInfo.name }); 
-    }).catch(error => {
-        console.error("Falha ao atualizar o nome:", error);
-    });
+    }
   };
 
   return (

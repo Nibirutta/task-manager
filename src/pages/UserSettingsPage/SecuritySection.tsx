@@ -55,34 +55,34 @@ export function SecuritySection() {
   });
 
   const onPasswordChange = async (data: PasswordFormData) => {
-    const promise = requestCredential({
-        password: data.newPassword,
-    });
-    
-    toast.promise(promise, {
+    try {
+      const response = await toast.promise(
+        requestCredential({ password: data.newPassword }),
+        {
         pending: "Alterando sua senha...",
         success: "Senha alterada com sucesso!",
         error: "Falha ao alterar a senha. Verifique sua senha atual.",
-    });
-    
-    promise.then(response => {
-        updateUser(response.userInfo);
-        resetPasswordForm();
-    }).catch(console.error);
+        }
+      );
+      updateUser(response.userInfo);
+      resetPasswordForm();
+    } catch (error) {
+      console.error("Falha ao alterar a senha:", error);
+    }
   };
 
   const onEmailChange = async (data: EmailFormData) => {
-    const promise = requestCredential({ email: data.email });
-    toast.promise(promise, {
+    try {
+      const response = await toast.promise(requestCredential({ email: data.email }), {
         pending: "Alterando seu e-mail...",
         success: "E-mail alterado com sucesso! O estado global foi atualizado.",
         error: "Falha ao alterar o e-mail. Tente novamente.",
-    });
-
-    promise.then(response => {
-        updateUser(response.userInfo);
-        resetEmailForm();
-    }).catch(console.error);
+      });
+      updateUser(response.userInfo);
+      resetEmailForm();
+    } catch (error) {
+      console.error("Falha ao alterar o e-mail:", error);
+    }
   };
 
   return (

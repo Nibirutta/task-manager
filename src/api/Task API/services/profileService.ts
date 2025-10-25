@@ -19,6 +19,10 @@ import {
 import { apiFetch } from "../client/apiClient";
 
 const requestGetProfile = (): Promise<GetProfileResponseType> => {
+  console.groupCollapsed('🚀 API Request: getProfile');
+  console.log('Requesting user profile...');
+  console.groupEnd();
+
   const response: Promise<GetProfileResponseType> = apiFetch(
     getProfileRoute.route,
     {

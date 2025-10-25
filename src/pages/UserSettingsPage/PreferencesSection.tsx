@@ -14,7 +14,7 @@ export function PreferencesSection() {
     updateEmailNotification,
   } = usePreferences();
 
-  const availableThemes: themeType[] = ["light", "dark", "lofi"];
+  const availableThemes: themeType[] = ["default", "solar-bloom", "neon-flow", "forest-calm", "cloudy-focus", "after-hours"];
 
   const availableLanguages: languageType[] = ["pt-BR", "en-US"];
 
@@ -43,7 +43,7 @@ export function PreferencesSection() {
             {availableThemes.map((themeOption) => (
               <li key={themeOption}>
                 <input
-                  id={`theme-${themeOption}`}
+                  id={`theme-option-${themeOption}`}
                   type="radio"
                   name="theme"
                   value={themeOption}
@@ -53,9 +53,10 @@ export function PreferencesSection() {
                   className="hidden"
                 />
                 <Label
-                  htmlFor={`theme-${themeOption}`}
+                  htmlFor={`theme-option-${themeOption}`}
                   className={
-                    "flex cursor-pointer items-center justify-center rounded-4xl border-2 p-4 text-4xl font-(family-name:--preferences-theme-font) text-[var(--preferences-theme-color)] hover:text-[var(--preferences-theme-btn-text-hover)] focus:text-[var( --preferences-theme-btn-text-hover)] active:text-[var(--preferences-theme-btn-text-active)] border-[var(--preferences-theme-btn-border-color)] hover:border-[var(--preferences-theme-btn-border-hover)] focus:border-[var(--preferences-theme-btn-border-hover)] active:border-[var(--preferences-theme-btn-border-active)] shadow-[var(--preferences-theme-btn-shadow)] hover:shadow-[var(--preferences-theme-btn-shadow-hover)] focus:shadow-[var(--preferences-theme-btn-shadow-hover)] active:shadow-[var(--preferences-theme-btn-shadow-active)] bg-[var(--preferences-theme-btn-bg-color)] hover:bg-[var(--preferences-theme-btn-bg-hover)] focus:bg-[var(--preferences-theme-btn-bg-hover)] active:bg-[var(--preferences-theme-btn-bg-active)]"
+                    `flex cursor-pointer items-center justify-center rounded-4xl border-2 p-4 text-4xl font-(family-name:--preferences-theme-font) text-[var(--preferences-theme-color)] hover:text-[var(--preferences-theme-btn-text-hover)] focus:text-[var( --preferences-theme-btn-text-hover)] active:text-[var(--preferences-theme-btn-text-active)] border-[var(--preferences-theme-btn-border-color)] hover:border-[var(--preferences-theme-btn-border-hover)] focus:border-[var(--preferences-theme-btn-border-hover)] active:border-[var(--preferences-theme-btn-border-active)] shadow-[var(--preferences-theme-btn-shadow)] hover:shadow-[var(--preferences-theme-btn-shadow-hover)] focus:shadow-[var(--preferences-theme-btn-shadow-hover)] active:shadow-[var(--preferences-theme-btn-shadow-active)] bg-[var(--preferences-theme-btn-bg-color)] hover:bg-[var(--preferences-theme-btn-bg-hover)] focus:bg-[var(--preferences-theme-btn-bg-hover)] active:bg-[var(--preferences-theme-btn-bg-active)]
+                    ${theme === themeOption ? 'ring-2 ring-offset-2 ring-[var(--preferences-theme-btn-border-active)]' : ''}`
                   }
                 >
                   {themeOption.charAt(0).toUpperCase() + themeOption.slice(1)}
@@ -76,7 +77,7 @@ export function PreferencesSection() {
                 <li key={langOption}>
                   <input
                     type="radio"
-                    id={`theme-${langOption}`}
+                    id={`lang-option-${langOption}`}
                     name="language"
                     value={langOption}
                     checked={langOption === preferences!.language}
@@ -85,9 +86,10 @@ export function PreferencesSection() {
                     className="hidden"
                   />
                   <Label
-                    htmlFor={`theme-${langOption}`}
+                    htmlFor={`lang-option-${langOption}`}
                     className={
-                      "flex cursor-pointer items-center justify-center rounded-4xl border-2 p-4 text-2xl font-(family-name:--preferences-theme-font) text-[var(--preferences-theme-color)] hover:text-[var(--preferences-theme-btn-text-hover)] focus:text-[var( --preferences-theme-btn-text-hover)] checked:text-[var(--preferences-theme-btn-text-active)] border-[var(--preferences-theme-btn-border-color)] hover:border-[var(--preferences-theme-btn-border-hover)] focus:border-[var(--preferences-theme-btn-border-hover)] checked:border-[var(--preferences-theme-btn-border-active)] shadow-[var(--preferences-theme-btn-shadow)] hover:shadow-[var(--preferences-theme-btn-shadow-hover)] focus:shadow-[var(--preferences-theme-btn-shadow-hover)] checked:shadow-[var(--preferences-theme-btn-shadow-active)] bg-[var(--preferences-theme-btn-bg-color)] hover:bg-[var(--preferences-theme-btn-bg-hover)] focus:bg-[var(--preferences-theme-btn-bg-hover)] checked:bg-[var(--preferences-theme-btn-bg-active)]"
+                      `flex cursor-pointer items-center justify-center rounded-4xl border-2 p-4 text-2xl font-(family-name:--preferences-theme-font) text-[var(--preferences-theme-color)] hover:text-[var(--preferences-theme-btn-text-hover)] focus:text-[var( --preferences-theme-btn-text-hover)] checked:text-[var(--preferences-theme-btn-text-active)] border-[var(--preferences-theme-btn-border-color)] hover:border-[var(--preferences-theme-btn-border-hover)] focus:border-[var(--preferences-theme-btn-border-hover)] checked:border-[var(--preferences-theme-btn-border-active)] shadow-[var(--preferences-theme-btn-shadow)] hover:shadow-[var(--preferences-theme-btn-shadow-hover)] focus:shadow-[var(--preferences-theme-btn-shadow-hover)] checked:shadow-[var(--preferences-theme-btn-shadow-active)] bg-[var(--preferences-theme-btn-bg-color)] hover:bg-[var(--preferences-theme-btn-bg-hover)] focus:bg-[var(--preferences-theme-btn-bg-hover)] checked:bg-[var(--preferences-theme-btn-bg-active)]
+                      ${langOption === preferences!.language ? 'ring-2 ring-offset-2 ring-[var(--preferences-theme-btn-border-active)]' : ''}`
                     }
                   >
                     {langOption}

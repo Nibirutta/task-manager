@@ -102,15 +102,15 @@ function TaskDetailsDialog({ isOpen, onOpenChange, onEditClick, onDeleteClick, t
 
           <DialogFooter className={style.dialogFooter}>
 
-            <button  aria-label='Editar tarefa' onClick={() => onEditClick(task)}>
+            <button title="Editar tarefa" aria-label='Editar tarefa' onClick={() => onEditClick(task)}>
               <FilePenLine size={16} />
             </button>
 
-            <button aria-label='Deletar tarefa' onClick={() => onDeleteClick(task)}>
+            <button title="Deletar tarefa" aria-label='Deletar tarefa' onClick={() => onDeleteClick(task)}>
               <FileX size={16} />
             </button>
 
-            <button aria-label='Fechar' onClick={() => onOpenChange(false)}>
+            <button title="Fechar" aria-label='Fechar' onClick={() => onOpenChange(false)}>
             < Minimize2 size={16} />
             </button>
             

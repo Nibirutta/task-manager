@@ -5,25 +5,20 @@ import Header from "./Header/Header";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-/**
- * O componente de Layout define a estrutura visual comum da aplicação.
- * Ele renderiza o Footer e um espaço reservado (<Outlet />) onde o
- * conteúdo específico de cada página será injetado pelo React Router.
- */
 const Layout = () => {
   return (
     <div className={style.layout}>
       <Header />
       <ToastContainer
         position="top-center"
-        autoClose={5000}
+        autoClose={4000}
         closeButton={true}
         hideProgressBar={false}
         newestOnTop={true}
-        closeOnClick={false}
+        closeOnClick={true}
         pauseOnHover={true}
         rtl={false}
-        pauseOnFocusLoss
+        pauseOnFocusLoss= {false}
         draggable={true}
         theme={"light"}
       />

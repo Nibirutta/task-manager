@@ -3,13 +3,13 @@ import { createContext, useState, type ReactNode, useEffect, useMemo, useCallbac
 import { requestLogin, requestRefresh, requestLogout, requestDeleteAccount } from '../api/Task API/services/authService';
 import type { LoginRequestTypes, UserInfoTypes } from '../types/authServiceTypes';
 import { addAuthEventListener } from '../api/Task API/client/authEvent';
+import { setAccessToken } from '../api/Task API/client/apiClient';
 
 
 type IAuthContext  = {
 	isAuthenticated: boolean;
 	user: UserInfoTypes | null;
 	isLoading: boolean;
-
 	login: (data: LoginRequestTypes) => Promise<void>;
 	logout: () => void;
 	updateUser: (newUserInfo: UserInfoTypes) => void;
@@ -34,6 +34,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
 			console.error('A requisição de logout no servidor falhou, mas o logout local será forçado:', error);
 		} finally {
 			setUser(null);
+			setAccessToken(null); // Limpa o token no apiClient, que é a nossa fonte da verdade
 		}
 	}, []);
 	
@@ -45,6 +46,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
 			try {
 				const response = await requestRefresh(); 
 				setUser(response.userInfo);
+				setAccessToken(response.accessToken); // Define o token no apiClient
 				
 			// eslint-disable-next-line @typescript-eslint/no-unused-vars
 			} catch (error) {
@@ -61,33 +63,43 @@ function AuthProvider({ children }: { children: ReactNode }) {
 		// Adiciona um listener para o evento de logout forçado
 		const handleForceLogout = () => {
 			console.warn("Sessão expirada. Realizando logout forçado.");
-			setUser(null); // Apenas limpa o estado local, sem chamar a API novamente.
+			setUser(null); 
+			setAccessToken(null);
 		}
+
+		// Listener para atualizar o perfil quando o token é renovado em background
+		const handleUpdateProfile = (event: Event) => {
+			const customEvent = event as CustomEvent<UserInfoTypes>;
+			if (customEvent.detail) {
+				setUser(customEvent.detail);
+			}
+		};
+
 		addAuthEventListener('forceLogout', handleForceLogout);
-	}, [logout]);
+		addAuthEventListener('updateProfile', handleUpdateProfile);
+	}, []);
 
 
 	const login = useCallback(async (data: LoginRequestTypes) => {
-    setIsLoading(true);
 		try {
 			const response = await requestLogin(data);
 			setUser(response.userInfo);
+			setAccessToken(response.accessToken); // Define o token no apiClient
+			
 
 		} catch (error) {
 			console.error('Falha no login:', error);
 			setUser(null);
+			throw error; // Re-lança o erro para que o formulário de login possa tratá-lo (ex: mostrar toast)
 
-			throw error;
-		} finally {
-			// garante que o estado de loading seja desativado, mesmo se der erro.
-			setIsLoading(false);
 		}
 	}, []);
 
 	const deleteAccount = useCallback(async () => {
 		try {
 			await requestDeleteAccount();
-			setUser(null); // Força o logout no frontend
+			setUser(null); 
+			setAccessToken(null);
 		} catch (error) {
 			console.error('Erro ao deletar a conta:', error);
 			throw error;

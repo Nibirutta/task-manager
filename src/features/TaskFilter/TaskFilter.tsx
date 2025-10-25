@@ -20,7 +20,7 @@ const TaskFilter = ({
         setFilterPriority(value as TaskPriority | "all")
       }
     >
-      <SelectTrigger className="py-4 px-7 h-auto w-auto cursor-pointer text-2xl font-bold font-(family-name:--task-filter-trigger-text-font)  bg-[var(--task-filter-trigger-bg-color)] hover:bg-[var(--task-filter-trigger-bg-hover)] active:bg-[var(--task-filter-trigger-bg-active)] 
+      <SelectTrigger aria-label="Filtrar por prioridade" className="py-4 px-7 h-auto w-auto cursor-pointer text-2xl font-bold font-(family-name:--task-filter-trigger-text-font)  bg-[var(--task-filter-trigger-bg-color)] hover:bg-[var(--task-filter-trigger-bg-hover)] active:bg-[var(--task-filter-trigger-bg-active)] 
       hover:text-[var(--task-filter-trigger-text-hover)] active:text-[var(--task-filter-trigger-text-active)]
       border-[var(--task-filter-trigger-border-color)] hover:border-[var(--task-filter-trigger-border-hover)] active:border-[var(--task-filter-trigger-border-active)]
       shadow-[var(--task-filter-trigger-box-shadow)] hover:shadow-[var(--task-filter-trigger-box-shadow-hover)] active:shadow-[var(--task-filter-trigger-box-shadow-active)]

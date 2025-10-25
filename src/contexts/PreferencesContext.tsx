@@ -20,6 +20,7 @@ import {
   requestUpdateProfileTheme,
   requestUpdateProfileNotification,
 } from "../api/Task API/services/profileService";
+import { handleApiError } from "../utils/handleApiError";
 
 interface IPreferencesContext {
   preferences: PreferencesTypes | null;
@@ -31,7 +32,7 @@ interface IPreferencesContext {
 }
 
 const defaultPreferences: PreferencesTypes = {
-  theme: "light",
+  theme: "default",
   language: "pt-BR",
   notification: {
     email: true,
@@ -68,10 +69,8 @@ function PreferencesProvider({ children }: { children: ReactNode }) {
         updateUser(updatedUser);
         toast.success("Preferência atualizada!");
       } catch (error) {
-        console.error("Falha ao atualizar preferência:", error);
-        // Reverte a UI para o estado original (já que o 'user' não foi atualizado)
-        // e notifica o usuário.
-        toast.error("Não foi possível salvar sua preferência.");
+        // Usa o handler centralizado para exibir a mensagem de erro da API ou uma padrão.
+        handleApiError(error, "Não foi possível salvar sua preferência.");
       } finally {
         setIsUpdating(false);
       }

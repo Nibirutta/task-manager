@@ -1,4 +1,4 @@
-type themeType = 'light'| 'dark' | 'lofi' | 'default' | 'neon-flow' | 'cloudy-focus' | 'after-hours' | 'forest-calm' | 'solar-bloom';
+type themeType = 'default' | 'neon-flow' | 'cloudy-focus' | 'after-hours' | 'forest-calm' | 'solar-bloom';
 
 type languageType = 'pt-BR' | 'en-US';
 
@@ -31,6 +31,7 @@ type RegisterRequestTypes = {
 type RegisterResponseTypes = {
 
 	userInfo: UserInfoTypes;
+	accessToken: string;
 }
 
 type LoginRequestTypes = {
@@ -40,11 +41,13 @@ type LoginRequestTypes = {
 }
 
 type LoginResponseTypes =  {
-	userInfo: UserInfoTypes
+	userInfo: UserInfoTypes;
+	accessToken: string;
 }
 
 type RefreshResponseTypes = {
-	userInfo: UserInfoTypes
+	userInfo: UserInfoTypes;
+	accessToken: string;
 }
 
 type LogoutResponseTypes = {

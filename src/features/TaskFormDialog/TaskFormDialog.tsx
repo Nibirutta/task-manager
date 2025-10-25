@@ -1,4 +1,4 @@
-import  { useEffect } from 'react';
+import  { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -23,21 +23,6 @@ import { ptBR } from 'date-fns/locale';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from './form'
 import style from './TaskFormDialog.module.css';
 
-const taskFormSchema = z.object({
-  title: z.string().min(3, { message: 'O título deve ter no mínimo 3 caracteres.' }).trim(),
-  description: z.string().optional(),
-  dueDate: z.date().optional().refine(date => date !== undefined && date !== null, {
-    message: 'A data de vencimento é obrigatória.',
-  }),
-  priority: z.enum(['low', 'medium', 'high', 'urgent', 'optional'], {
-    error: 'A prioridade é obrigatória.',
-  }),
-  status: z.enum(['to-do', 'in-progress', 'in-review', 'done'], {
-    error: 'O status é obrigatório.',
-  }),
-});
-
-type TaskFormValues = z.infer<typeof taskFormSchema>;
 
 interface TaskFormDialogProps {
   isOpen: boolean;
@@ -46,6 +31,23 @@ interface TaskFormDialogProps {
   initialStatus?: TaskStatus; // Status inicial ao criar uma nova tarefa
   onSubmit: (data: TaskFormValues, id?: string) => void;
 }
+
+// Função para criar o schema dinamicamente
+const createTaskFormSchema = (isEditing: boolean) => z.object({
+  title: z.string().min(3, { message: 'O título deve ter no mínimo 3 caracteres.' }).trim(),
+  description: z.string().optional(),
+  // A validação da data de vencimento agora depende do modo (criação vs. edição)
+  dueDate: isEditing
+    ? z.date().optional() // Opcional na edição
+    : z.date({
+        error: 'A data de vencimento é obrigatória.',
+      }), // Obrigatório na criação
+  priority: z.enum(['low', 'medium', 'high', 'urgent', 'optional']),
+  status: z.enum(['to-do', 'in-progress', 'in-review', 'done']),
+});
+
+// O tipo dos valores do formulário é inferido a partir do schema (usando o modo de edição, que é o mais abrangente)
+type TaskFormValues = z.infer<ReturnType<typeof createTaskFormSchema>>;
 
 // Opções para os selects do formulário
 const priorityOptions: { value: TaskPriority; label: string }[] = [
@@ -66,8 +68,11 @@ const statusOptions: { value: TaskStatus; label: string }[] = [
 function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSubmit }: TaskFormDialogProps) {
   const isEditing = taskToEdit !== null;
 
+  // O schema é recriado apenas quando o modo de edição muda
+  const taskFormSchema = useMemo(() => createTaskFormSchema(isEditing), [isEditing]);
+
   const form = useForm<TaskFormValues>({
-    resolver: zodResolver(taskFormSchema),
+    resolver: zodResolver(taskFormSchema), // Usa o schema dinâmico
     defaultValues: {
       title: '',
       description: '',
@@ -81,7 +86,7 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
     if (isEditing) {
       form.reset({
         title: taskToEdit.title,
-        description: taskToEdit.description || '',
+        description: taskToEdit.description ?? '',
         dueDate: new Date(taskToEdit.dueDate),
         priority: taskToEdit.priority,
         status: taskToEdit.status,
@@ -95,7 +100,7 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
         priority: 'medium',
         status: initialStatus || 'to-do',
       });
-    }
+    } 
   }, [taskToEdit, initialStatus, form, isEditing]);
 
   const handleFormSubmit = (data: TaskFormValues) => {

@@ -1,3 +1,5 @@
+
+import type { UserInfoTypes } from "../../../types/authServiceTypes";
 /**
  * authEvent.ts
  * 
@@ -7,12 +9,12 @@
  * comuniquem eventos de autenticação para o AuthContext.
  */
 
-type AuthEventType = 'forceLogout';
+type AuthEventType = 'forceLogout' | 'updateProfile';
 
-const authEventTarget = new EventTarget();
+const authEventTarget = new EventTarget(); // Cria uma instância de EventTarget
 
-export const dispatchAuthEvent = (type: AuthEventType) => {
-  authEventTarget.dispatchEvent(new CustomEvent(type));
+export const dispatchAuthEvent = (type: AuthEventType, data?: CustomEventInit<UserInfoTypes>) => {
+  authEventTarget.dispatchEvent(new CustomEvent(type, data)); // Dispara um CustomEvent com o tipo e os dados
 };
 
 export const addAuthEventListener = (type: AuthEventType, listener: EventListener) => {

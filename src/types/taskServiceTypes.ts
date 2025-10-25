@@ -13,9 +13,7 @@ type TaskType =  {
     updatedAt: string;
 }
 
-type GetTasksResponseType = {
-    taskList: TaskType[]
-}
+type GetTasksResponseType = TaskType[];
     
 
 type CreatTaskRequestType  = {
@@ -58,6 +56,3 @@ export type {
     UpdateTaskResponseType,
     DeleteTaskResponseType
 }
-
-
-

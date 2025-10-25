@@ -17,27 +17,24 @@ import { ShieldAlert } from "lucide-react";
 
 export function DangerZoneSection() {
   const { deleteAccount, user } = useAuth();
-
   const [isDeleting, setIsDeleting] = useState(false);
   const [confirmationInput, setConfirmationInput] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const isConfirmationMatching = confirmationInput === user?.name;
 
-  const handleDeleteAccount = async () => {
+  const handleDeleteAccount = async (event: React.FormEvent) => {
+    event.preventDefault();
     if (!isConfirmationMatching) return;
 
     setIsDeleting(true);
-    try {
-      await deleteAccount();
-      toast.success("Sua conta foi deletada com sucesso.");
-    } catch (error) {
-      toast.error("Ocorreu um erro ao deletar sua conta. Tente novamente.");
-      console.error("Falha ao deletar a conta:", error);
-    } finally {
-      setIsDeleting(false);
-      setIsModalOpen(false);
-    }
+    await toast.promise(deleteAccount(), {
+      pending: "Deletando sua conta...",
+      success: "Sua conta foi deletada com sucesso. Você será deslogado.",
+      error: "Ocorreu um erro ao deletar sua conta. Tente novamente.",
+    });
+    // O logout já é tratado pelo AuthContext, então não precisamos fechar o modal manualmente.
+    // Se a operação falhar, o modal permanece aberto para nova tentativa.
   };
 
   const onOpenChange = (open: boolean) => {
@@ -75,32 +72,33 @@ export function DangerZoneSection() {
               Esta ação não pode ser desfeita. Isso excluirá permanentemente
               sua conta e removerá todos os seus dados de nossos servidores.
             </DialogDescription>
-          </DialogHeader>
-          <div className="py-4">
-            <InputField
-              id="delete-confirm"
-              label={`Por favor, digite "${user?.name}" para confirmar.`}
-              value={confirmationInput}
-              onChange={(e) => setConfirmationInput(e.target.value)}
-              autoComplete="off"
-              isValid={true} 
-            />
-          </div>
-          <DialogFooter>
-            <DialogClose asChild>
-              <button className="px-4 cursor-pointer py-2 rounded bg-[var(--delete-dialog-cancel-btn-bg)] hover:bg-[var(--delete-dialog-cancel-btn-bg-hover)] focus:bg-[var(--delete-dialog-cancel-btn-bg-hover)] text-xl text-[var(--delete-dialog-cancel-btn-text)] hover:text-[var(--delete-dialog-cancel-btn-text-hover)] focus:text-[var(--delete-dialog-cancel-btn-text-hover)] font-(family-name:--delete-dialog-cancel-btn-text-font) border-[var(--delete-dialog-cancel-btn-border)] border-2" disabled={isDeleting}>
-                Cancelar
-              </button>
-            </DialogClose>
-            <SubmitBtn
-              title={isDeleting ? "Deletando..." : "Eu entendo, deletar minha conta"}
-              onClick={handleDeleteAccount}
-              disabled={!isConfirmationMatching || isDeleting}
-              isLoading={isDeleting}
-              className="text-xl cursor-pointer bg-[var(--danger-zone-btn-bg-color)] hover:bg-[var(--danger-zone-btn-bg-hover)] focus:bg-[var(--danger-zone-btn-bg-hover)] active:bg-[var(-delete-acc-btn-bg-active)] border-[var(--danger-zone-btn-border-color)] border-2 hover:border-[var(--danger-zone-btn-border-hover)] focus:border-[var(--danger-zone-btn-border-hover)] active:border-[var(--danger-zone-btn-border-active)] shadow-[var(--danger-zone-btn-shadow)] hover:shadow-[var(--danger-zone-btn-shadow-hover)] focus:shadow-[var(--danger-zone-btn-shadow-hover)] active:shadow-[var(--danger-zone-btn-shadow-active)] text-[var(--danger-zone-btn-text-color)] hover:text-[var(--danger-zone-btn-text-hover)] focus:text-[var(--danger-zone-btn-text-hover)] active:text-[var(--danger-zone-btn-text-active)] font-(family-name:--delete-acc-btn-text-font)
-             "
-            />
-          </DialogFooter>
+          </DialogHeader>          
+          <form id="delete-account-form" onSubmit={handleDeleteAccount}>
+            <div className="py-4">
+              <InputField
+                id="delete-confirm"
+                label={`Por favor, digite "${user?.name}" para confirmar.`}
+                value={confirmationInput}
+                onChange={(e) => setConfirmationInput(e.target.value)}
+                autoComplete="off"
+                isValid={true}
+              />
+            </div>
+            <DialogFooter>
+              <DialogClose asChild>
+                <button type="button" className="px-4 cursor-pointer py-2 rounded bg-[var(--delete-dialog-cancel-btn-bg)] hover:bg-[var(--delete-dialog-cancel-btn-bg-hover)] focus:bg-[var(--delete-dialog-cancel-btn-bg-hover)] text-xl text-[var(--delete-dialog-cancel-btn-text)] hover:text-[var(--delete-dialog-cancel-btn-text-hover)] focus:text-[var(--delete-dialog-cancel-btn-text-hover)] font-(family-name:--delete-dialog-cancel-btn-text-font) border-[var(--delete-dialog-cancel-btn-border)] border-2" disabled={isDeleting}>
+                  Cancelar
+                </button>
+              </DialogClose>
+              <SubmitBtn
+                type="submit"
+                title="Eu entendo, deletar minha conta"
+                disabled={!isConfirmationMatching || isDeleting}
+                isLoading={isDeleting}
+                className="text-xl cursor-pointer bg-[var(--danger-zone-btn-bg-color)] hover:bg-[var(--danger-zone-btn-bg-hover)] focus:bg-[var(--danger-zone-btn-bg-hover)] active:bg-[var(-delete-acc-btn-bg-active)] border-[var(--danger-zone-btn-border-color)] border-2 hover:border-[var(--danger-zone-btn-border-hover)] focus:border-[var(--danger-zone-btn-border-hover)] active:border-[var(--danger-zone-btn-border-active)] shadow-[var(--danger-zone-btn-shadow)] hover:shadow-[var(--danger-zone-btn-shadow-hover)] focus:shadow-[var(--danger-zone-btn-shadow-hover)] active:shadow-[var(--danger-zone-btn-shadow-active)] text-[var(--danger-zone-btn-text-color)] hover:text-[var(--danger-zone-btn-text-hover)] focus:text-[var(--danger-zone-btn-text-hover)] active:text-[var(--danger-zone-btn-text-active)] font-(family-name:--delete-acc-btn-text-font)"
+              />
+            </DialogFooter>
+          </form>
         </DialogContent>
       </Dialog>
     </section>

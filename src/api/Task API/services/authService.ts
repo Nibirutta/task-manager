@@ -1,22 +1,30 @@
 import type { CredentialRequestTypes, CredentialResponseTypes, DeleteAccountResponseTypes, LoginRequestTypes, LoginResponseTypes, LogoutResponseTypes, RefreshResponseTypes, RegisterRequestTypes, RegisterResponseTypes, ResetPasswordRequestTypes, ResetPasswordResponseTypes, ResetRequestTypes } from '../../../types/authServiceTypes';
 import { credentialRoute, deleteAccountRoute, loginRoute, logoutRoute, refreshRoute, registerRoute, resetPasswordRoute, resetRequestRoute } from '../../../utils/urlApi';
-import { apiFetch } from '../client/apiClient';
+import { apiFetch, setAccessToken } from '../client/apiClient';
 
-const requestRegister = (data: RegisterRequestTypes ): Promise<RegisterResponseTypes> => {
-    const response : Promise<RegisterResponseTypes> = apiFetch(registerRoute.route,{
+const requestRegister = async (data: RegisterRequestTypes ): Promise<RegisterResponseTypes> => {
+    const response: RegisterResponseTypes = await apiFetch(registerRoute.route,{
         method: 'POST',
         body: JSON.stringify(data)
     })
+
+	if (response.accessToken) {
+		setAccessToken(response.accessToken);
+	}
 
     return response
 
 } 
 
-const requestLogin = (data: LoginRequestTypes): Promise<LoginResponseTypes> => {
-	const response: Promise<LoginResponseTypes> = apiFetch(loginRoute.route, {
+const requestLogin = async (data: LoginRequestTypes): Promise<LoginResponseTypes> => {
+	const response: LoginResponseTypes = await apiFetch(loginRoute.route, {
 		method: loginRoute.method,
 		body: JSON.stringify(data),
 	});
+
+	if (response.accessToken) {
+		setAccessToken(response.accessToken);
+	}
 	
 	return response
 };
@@ -34,7 +42,7 @@ const requestRefresh = (): Promise<RefreshResponseTypes> => {
 		method: refreshRoute.method,
 	});
 	
-	return response
+	return response;
 }
 
 

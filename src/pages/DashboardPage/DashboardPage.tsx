@@ -11,6 +11,7 @@ import TaskDetailsDialog from '../../features/TaskDetailsDialog/TaskDetailsDialo
 import getTaskStatus from '../../utils/getTaskStatus'; // Importa a função pura, não o default export
 import FlickeringGrid from '../../lib/magicUI/grid';
 import TaskFilter from '../../features/TaskFilter/TaskFilter';
+import { handleApiError } from '../../utils/handleApiError';
 
 import type { CreatTaskRequestType, TaskPriority, TaskStatus, TaskType, UpdateTaskRequestType } from '../../types/taskServiceTypes';
 
@@ -57,7 +58,7 @@ const DashboardPage = () => {
   const [dialogState, dispatchDialog] = useReducer(dialogReducer, initialDialogState);
 
   // Estados para os filtros
-  const [filterTitle] = useState('');
+
   const [filterPriority, setFilterPriority] = useState<TaskPriority | 'all'>('all');
 
   const priorityFilterOptions: { value: TaskPriority | 'all'; label: string }[] = [
@@ -68,24 +69,15 @@ const DashboardPage = () => {
     }))
   ];
 
-  // processa as tarefas com useMemo para adicionar status de expiração e aplicar filtros
+  // Apenas processa as tarefas para adicionar dados de UI, sem filtrar.
+  // A filtragem agora é responsabilidade exclusiva do backend via `fetchTasks`.
   const processedTasks = useMemo(() => {
     return tasks
       .map(task => {
         const { expirationStatus, formattedDueDate } = getTaskStatus(task.dueDate); 
         return { ...task, expirationStatus, formattedDueDate };
-      })
-      .filter(task => {
-        const titleMatch = filterTitle
-          ? task.title.toLowerCase().includes(filterTitle.toLowerCase())
-          : true;
-        const priorityMatch = filterPriority === 'all'
-          ? true
-          : task.priority === filterPriority;
-        
-        return titleMatch && priorityMatch;
       });
-  }, [tasks, filterTitle, filterPriority]);
+  }, [tasks]);
 
 
   const fetchTasks = useCallback(
@@ -98,10 +90,9 @@ const DashboardPage = () => {
       }
       try {
         const tasksResponse = await getTasks(queryParams.toString());
-        setTasks(tasksResponse.taskList || []);
+        setTasks(tasksResponse);
       } catch (error) {
-        toast.error('Falha ao buscar as tarefas.');
-        console.error(error);
+        handleApiError(error, 'Falha ao buscar as tarefas.');
       } finally {
         setLoading(false);
       }
@@ -168,11 +159,13 @@ const DashboardPage = () => {
 
     try {
       const updateData = {
-        status: newStatus,
-        priority: taskToUpdate.priority
+        status: newStatus, // O novo status
+        priority: taskToUpdate.priority // A prioridade atual da tarefa
       };
 
-      const response = await toast.promise(
+      // O toast.promise resolve com o valor de sucesso da promessa.
+      // Neste caso, UpdateTaskResponseType, que é { task: TaskType }.
+      const updateResponse = await toast.promise(
         updateTask(updateData,taskId),
         {
           pending: 'Atualizando status da tarefa...',
@@ -180,12 +173,13 @@ const DashboardPage = () => {
           error: 'Falha ao atualizar o status da tarefa.',
         }
       );
-      // Sincroniza o estado com a resposta final da API (que pode ter `updatedAt` etc.)
-      setTasks(prevTasks =>
-      prevTasks.map(task =>
-        task.id === taskId ? response.task : task
-      )
-    );
+      // Adicionamos uma verificação para garantir que a resposta e a tarefa existem.
+      if (updateResponse && updateResponse.task) {
+        // Sincroniza o estado com a resposta final da API (que pode ter `updatedAt` etc.)
+        setTasks(prevTasks =>
+          prevTasks.map(task => (task.id === taskId ? updateResponse.task : task))
+        );
+      }
     } catch (error) {
       setTasks(originalTasks); // Rollback em caso de erro
       console.error('Erro ao atualizar o status da tarefa:', error);
@@ -205,16 +199,20 @@ const DashboardPage = () => {
       // Lógica de Edição
       const updateData: UpdateTaskRequestType = {
         ...formData,
-        dueDate: formData.dueDate?.toISOString(), // Garante que a data está no formato string ISO
+        // Converte para ISO string se a data existir, caso contrário, envia undefined
+        // para que a API saiba que deve remover ou não alterar a data.
+        dueDate: formData.dueDate ? formData.dueDate.toISOString() : undefined,
       };
 
       try {
-        const response = await toast.promise(updateTask(updateData, id), {
+        const updateResponse = await toast.promise(updateTask(updateData, id), {
           pending: 'Atualizando tarefa...',
           success: 'Tarefa atualizada com sucesso!',
           error: 'Falha ao atualizar a tarefa.',
         });
-        setTasks(prevTasks => prevTasks.map(t => (t.id === id ? response.task : t)));
+        if (updateResponse && updateResponse.task) {
+          setTasks(prevTasks => prevTasks.map(t => (t.id === id ? updateResponse.task : t)));
+        }
         dispatchDialog({ type: 'CLOSE_ALL' });
       } catch (error) {
         console.error('Erro ao editar tarefa:', error);
@@ -227,13 +225,15 @@ const DashboardPage = () => {
       };
 
       try {
-        const response = await toast.promise(createTask(createData), {
+        const createResponse = await toast.promise(createTask(createData), {
           pending: 'Criando nova tarefa...',
           success: 'Nova tarefa criada com sucesso!',
           error: 'Falha ao criar a tarefa.',
         });
 
-        setTasks(prevTasks => [...prevTasks, response.task]);
+        if (createResponse && createResponse.task) {
+          setTasks(prevTasks => [...prevTasks, createResponse.task]);
+        }
         dispatchDialog({ type: 'CLOSE_ALL' });
       } catch (error) {
         console.error('Erro ao adicionar tarefa:', error);

@@ -16,9 +16,7 @@ const getTasks = async (filters: string): Promise<GetTasksResponseType> => {
 
   const response = await apiFetch(
     `${getTasksRoute.route}${filters}`,
-    { method: getTasksRoute.method,
-      credentials: 'include',
-    });
+    { method: getTasksRoute.method });
 
   console.groupCollapsed('✅ API Response: getTasks');
   console.log('Data received:', response);
@@ -34,8 +32,7 @@ const createTask = async (data: CreatTaskRequestType): Promise<CreatTaskResponse
     createTaskRoute.route,
     {
       method: createTaskRoute.method,
-      body: JSON.stringify(data),
-      credentials: 'include',
+      body: JSON.stringify(data)
     }
   );
   console.log('Response received:', response);
@@ -55,7 +52,6 @@ const updateTask = async (data: UpdateTaskRequestType, id: string): Promise<Upda
     {
       method: updateTaskRoute.method,
       body: JSON.stringify(data),
-      credentials: 'include',
     }
   );
   console.log('Response received:', response);
@@ -71,8 +67,7 @@ const deleteTask = async (id: string) : Promise<DeleteTaskResponseType> =>  {
   const response = await apiFetch(
     `${deleteTaskRoute.route}/${id}`, 
     {
-      method: deleteTaskRoute.method,
-      credentials: 'include',
+      method: deleteTaskRoute.method
     }
   );
   console.log('Response received:', response);

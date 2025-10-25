@@ -22,17 +22,17 @@ interface TaskCardProps {
 
 function TaskCard({ task, onDetailsClick, onDeleteClick, onEditClick }: TaskCardProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const { id, expirationStatus, formattedDueDate } = task;
+  const { expirationStatus, formattedDueDate } = task;
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
 
     return draggable({
-      element: el, // Passa _id como taskId para compatibilidade com o TaskBoard
-      getInitialData: () => ({ type: 'card', taskId: id }),
+      element: el,
+      getInitialData: () => ({ type: 'card', task: task }),
     });
-  }, [id]);
+  }, [task]);
 
   const priorityObject = {
       low: 'Baixa',

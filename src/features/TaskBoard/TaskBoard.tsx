@@ -53,9 +53,10 @@ function TaskBoard({
       onDrop: ({ source, location }) => {
         setDraggingOverColumn(null);
         const destination = location.current.dropTargets[0];
-        if (!destination || source.data.type !== 'card') return;
+        // Verifica se o dado do 'source' tem o formato esperado
+        if (!destination || source.data.type !== 'card' || !source.data.task) return;
 
-        const taskId = source.data._id as string; // Usa _id
+        const taskId = (source.data.task as TaskType).id; 
         const newStatus = destination.data.columnId as TaskStatus;
 
         onTaskStatusChange(taskId, newStatus);
