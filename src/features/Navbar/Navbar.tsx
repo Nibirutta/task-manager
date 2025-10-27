@@ -5,6 +5,8 @@ import cn from "../../lib/utils";
 import UserMenu from "../../components/UserMenu/UserMenu";
 import MobileNav from "../../components/MobileNav/MobileNav";
 
+import logo from "../../assets/imgs/TaskManagerLogo.png"
+
 const navLinkClasses =
   "text-3xl font-medium text-[var(--navbar-link-color)] font-[var(--navbar-link-font)] transition-colors hover:text-[var(--navbar-link-hover)] focus:text-[var(--navbar-link-hover)]";
 const activeNavLinkClasses = "text-[var(--navbar-link-hover)] font-semibold";
@@ -68,8 +70,8 @@ function Navbar() {
           className="flex items-center gap-2 rounded-md font-bold shrink-0 text-[var(--navbar-logo-color)]"
           style={{ fontFamily: "var(--navbar-logo-font)" }}
         >
-          {/* <img src="/logo.svg" alt="Task Manager Logo" className="h-6 w-6" /> */}
-          <span className="inline-block text-6xl font-bold ">Task Manager</span>
+          <img src={logo} alt="Task Manager Logo" />
+          <span className="inline-block text-2xl sm:text-4xl lg:text-6xl font-bold ">Task Manager</span>
         </Link>
       </div>
 
