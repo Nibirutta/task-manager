@@ -4,7 +4,7 @@ import AnimatedBackground from "../../lib/Nurui/AnimatedBackground";
 import BorderAnimationButton from "../../lib/Nurui/BorderAnimationButton";
 import { LogIn, UserRoundPlus } from "lucide-react";
 import MagnetButton from "../../lib/Nurui/MagnetButton";
-import heroImage from "../../assets/svg/Hero.svg";
+import HeroImage from "../../assets/svg/Hero.svg?react";
 
 
 
@@ -30,9 +30,15 @@ const HeroSection = ({title, subtitle, developed}: HeroSectionProps) =>{
                 <h1 className={style.title}>
                     {title}
                 </h1>
+
                 <p className={style.subtitle}>
                     {subtitle}
                 </p>
+
+                
+            <figure className={style.heroImageContainer}>
+                <HeroImage className={style.heroImage} />
+            </figure>
                 <div className={style.ctaButtons}>
                     <Link to="/register" >
                         <MagnetButton
@@ -67,9 +73,6 @@ const HeroSection = ({title, subtitle, developed}: HeroSectionProps) =>{
                 </div>
                 <p className={style.developedText}>{developed}</p>
 
-            <figure className={style.heroImageContainer}>
-                <img src={heroImage} alt="Ilustração de pessoas organizando tarefas em um quadro." />
-            </figure>
             </div>
         </section>
     )

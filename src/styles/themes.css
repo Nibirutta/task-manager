@@ -80,23 +80,21 @@
     
     --hero-developed-color: var(--color-loblolly-300);
 
+    --hero-svg-primary: var(--color-big-stone-500) ;
+
     /* Features Section */
 
-    --features-title-font: 'Lato', sans-serif;
-    --features-title-color: #e0e1dd;
-    --features-title-shadow: 0 2px 6px #415a77;
-    --features-subtitle-font: 'Lato', sans-serif;
-    --features-subtitle-color: #e0e1dd;
     
-    --featcard-bg-color: #0d1b2a;
-    --featcard-border-color: #1b263b;
-    --featcard-shadow-color: #1b263b;
-    --featcard-border-hover: #05f2db;
-    --featcard-shadow-hover: #05f2db;
-
-    --featcard-title-font: 'Lato', sans-serif;
+    --features-title-color: var(--color-mercury-300);
+    --features-title-shadow: var(--color-mercury-900) 1.95px 1.95px 2.6px;
+    --features-subtitle-color: var(--color-bermuda-gray-300);
+    
+    --featcard-bg-color: var(--color-big-stone-800);
+    --featcard-border-color: transparent ;
+    --featcard-shadow-color:  rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    
     --featcard-title-color: #e0e1dd;
-    --featcard-description-font: 'Lato', sans-serif;
+   
     --featcard-description-color: #d0eef2;
 
   

@@ -1,5 +1,6 @@
 import { BrainCircuit, Fingerprint, NotebookPen, Palette } from "lucide-react";
 import FeaturesCard from "../../components/FeaturesCard/FeaturesCard";
+import style from "./FeaturesSection.module.css";
 
 
 type FeaturesSectionProps = {
@@ -10,12 +11,12 @@ type FeaturesSectionProps = {
 
 const FeaturesSection = ({title, subtitle}: FeaturesSectionProps) => {
     return (
-    <section className="flex flex-col items-center justify-center gap-8 p-12">  
-        <h2 className="p-4 text-6xl font-bold text-center text-[var(--features-title-color)] font-(family-name:--features-title-font) text-shadow-[var(--features-title-shadow)]">{title}</h2>
-        <p className="p-4 font-(family-name:--features-subtitle-font) text-4xl text-[var(--features-subtitle-color)]">{subtitle}</p>
+    <section className={style.section}>  
+        <h2 className={style.title}>{title}</h2>
+        <p className={style.subtitle}>{subtitle}</p>
 
-        <ul className="mt-12 grid grid-cols-4 grid-rows-4 gap-4 p-4">
-            <li className="col-span-2 row-span-2">
+        <ul className={style.featuresContainer}>
+            <li >
                 <FeaturesCard
                     key={1}
                     Icon={NotebookPen}
@@ -24,7 +25,7 @@ const FeaturesSection = ({title, subtitle}: FeaturesSectionProps) => {
                 />
             </li>
 
-            <li className="col-span-2 row-span-2 col-start-1 row-start-3">
+            <li >
                 <FeaturesCard
                     key={2}
                     Icon={BrainCircuit}
@@ -34,7 +35,7 @@ const FeaturesSection = ({title, subtitle}: FeaturesSectionProps) => {
             </li>
 
 
-            <li className="col-span-2 row-span-2 col-start-3 row-start-1">
+            <li >
                 <FeaturesCard
                     key={3}
                     Icon={Palette}
@@ -43,7 +44,7 @@ const FeaturesSection = ({title, subtitle}: FeaturesSectionProps) => {
                     />
             </li>
 
-            <li className="col-span-2 row-span-2 col-start-3 row-start-3">
+            <li >
                 <FeaturesCard
                     key={4}
                     Icon={Fingerprint}

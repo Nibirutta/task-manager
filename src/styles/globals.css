@@ -12,8 +12,15 @@
   --hero-title-font: 'Orbitron', sans-serif;
      --hero-subtitle-font: 'Lato', sans-serif;
     --hero-developed-font: 'Lato', sans-serif;
-
     --cta-btn-font:'IBM', sans-serif; 
+
+    --features-title-font: 'Lato', sans-serif;
+        --features-subtitle-font: 'Lato', sans-serif;
+--featcard-title-font: 'Lato', sans-serif;
+ --featcard-description-font: 'Lato', sans-serif;
+
+
+ 
     --input-field-label-font: 'Poppins', sans-serif;
     --input-field-placeholder-font: 'IBM', sans-serif;
     --input-field-input-font: 'Lato', sans-serif;

@@ -1,0 +1,87 @@
+
+.featuresCard {
+    display: flex;
+    justify-content: center;
+    width: 420px;
+    height: 160px;
+    align-items: center;
+    padding: 2rem;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: var(--featcard-bg-color);
+    border: 2px solid var(--featcard-border-color);
+    box-shadow: var(--featcard-shadow-color);
+    border-radius: 1rem;
+}
+
+.featuresCardHeader{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2rem;
+     color: var(--featcard-title-color);
+}
+
+.featuresCardTitle {
+    font: 700 2.4rem/1.2 var(--featcard-title-font);
+
+
+}
+
+.featuresCardDescription {
+    font: 500 1.6rem/1.2 var(--featcard-description-font);
+    color: var(--featcard-description-color);
+    text-align: center;
+    padding: 1rem;
+}
+
+@media screen and (max-width: 1080px) {
+    .featuresCard{
+        height: 140px;
+        width: 300px;
+    }
+    
+    .featuresCardTitle{
+        font-size: 1.6rem;
+    }
+
+    .featuresCardDescription{
+        font-size: 1.2rem;
+    }
+    
+
+}
+
+@media screen and (max-width: 768px) {
+    .featuresCard{
+        height: 180px;
+        width: 360px;
+    }
+    
+    .featuresCardTitle{
+        font-size: 2.2rem;
+    }
+
+    .featuresCardDescription{
+        font-size: 1.6rem;
+    }
+    
+
+}
+
+@media screen and (max-width: 480px) {
+    .featuresCard{
+        height: 140px;
+        width: 280px;
+    }
+    
+    .featuresCardTitle{
+        font-size: 1.6rem;
+    }
+
+    .featuresCardDescription{
+        font-size: 1.2rem;
+    }
+    
+
+}
