@@ -9,7 +9,7 @@
     height: 120px;
     cursor: grab;
     background-color: var(--card-bg-color) !important;
-    border: 4px solid #2e3c4a;
+    border: 4px solid var(--card-bg-border);
 }
 
 .card:active {
@@ -26,7 +26,7 @@
 }
 
 .title{
-    color: var(--card-title-color);
+    color: var(--card-title-color); 
     font-family: var(--card-title-font);
     font-size: 1.6rem;
     font-weight: 600;
@@ -39,52 +39,12 @@
 
 
 
-
-
-/* Classes de Prioridade para o fundo do card */
-.priority-high {
-    background-color: var(--card-priority-high-bg);
-    
-    &:hover, &:focus-within{
-    border-color: var(--card-priority-high-bg);
-}
-}
-.priority-medium {
-    background-color: var(--card-priority-medium-bg);
-    
-    &:hover, &:focus-within{
-    border-color: var(--card-priority-medium-bg);
-    }
-}
-
-.priority-low {
-    background-color: var(--card-priority-low-bg);
-    &:hover, &:focus-within{
-    border-color: var(--card-priority-low-bg);
-}
-}
-
-.priority-urgent {
-    background-color: var(--card-priority-urgent-bg);
-    &:hover, &:focus-within{
-        border-color: var(--card-priority-urgent-bg);
-    }
-}
-
-.priority-optional {
-    background-color: var(--card-priority-optional-bg);
-    &:hover, &:focus-within{
-        border-color: var(--card-priority-optional-bg);
-    }
-}
-
-
 .priority{
     display: flex;
     align-items: center;
     gap: 0.5rem;
     padding: 0.2rem 0.8rem;
-    border-radius: var(--radius-sm);
+    border-radius: 1rem;
     font-size: 1.2rem;
     font-weight: 500;
     color: var(--card-priority-color);
@@ -92,17 +52,63 @@
 }
 
 
+/* Classes de Prioridade para o fundo do card */
+.priority-high {
+    background-color: var(--card-priority-high-bg);
+    
+    &:hover, &:focus-within{
+    border-color: var(--card-priority-high-border);
+}
+}
+.priority-medium {
+    background-color: var(--card-priority-medium-bg);
+    
+    &:hover, &:focus-within{
+    border-color: var(--card-priority-medium-border);
+    }
+}
+
+.priority-low {
+    background-color: var(--card-priority-low-bg);
+    &:hover, &:focus-within{
+    border-color: var(--card-priority-low-border);
+}
+}
+
+.priority-urgent {
+    background-color: var(--card-priority-urgent-bg);
+    &:hover, &:focus-within{
+        border-color: var(--card-priority-urgent-border);
+    }
+}
+
+.priority-optional {
+    background-color: var(--card-priority-optional-bg);
+    &:hover, &:focus-within{
+        border-color: var(--card-priority-optional-border);
+    }
+}
+
+
+
+
 
 .expired {
-    background-color: #f94144;
+    background-color: var(--card-badge-expired-bg);
+    color: var(--card-badge-expired-text);
+    text-shadow: 1px 1px 3px var(--card-badge-expired-text);
     
 }
 .deadline {
-    background-color: #f9c74f;
+    background-color: var(--card-badge-deadline-bg);
+    color: var(--card-badge-deadline-text);
+    text-shadow: 1px 1px 3px var(--card-badge-deadline-text);
     
 }
 .in-time {
-    background-color: #43aa8b ;
+    background-color: var(--card-badge-intime-bg);
+    color: var(--card-badge-intime-text);
+    text-shadow: 1px 1px 3px var(--card-badge-intime-text);
     
 }
 
@@ -116,8 +122,6 @@
     border-radius: 1rem;
     font-size: 1.2rem;
     font-weight: 500;
-    color: #e0e1dd;
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
 }
 
 .footer {
@@ -137,14 +141,14 @@
 .deleteButton {
     background: none;
     border: none;
-    color: #fa3a3a;
+    color: var(--card-delete-btn-color);
     cursor: pointer;
     padding: 0.4rem;
     border-radius: 50%;
     transition: all 0.2s ease;
     
     &:hover, &:focus {
-    background-color: #fa3a3a;
+    background-color: var(--card-delete-btn-color);
     color: var(--card-bg-color);
     }
 }
@@ -152,14 +156,14 @@
 .editButton {
     background: none;
     border: none;
-    color: #00cecb;
+    color: var(--card-edit-btn-color);
     cursor: pointer;
     padding: 0.4rem;
     border-radius: 50%;
     transition: all 0.2s ease;
     
     &:hover, &:focus {
-    background-color: #00cecb;
+    background-color: var(--card-edit-btn-color);
     color: var(--card-bg-color);
     }
 }
@@ -167,14 +171,14 @@
 .detailsButton {
     background: none;
     border: none;
-    color: #fbf2c0;
+    color: var(--card-details-btn-color);
     cursor: pointer;
     padding: 0.4rem;
     border-radius: 50%;
     transition: all 0.2s ease;
     
     &:hover, &:focus {
-    background-color: #fbf2c0;
+    background-color: var(--card-details-btn-color);
     color: var(--card-bg-color);
     }
 }

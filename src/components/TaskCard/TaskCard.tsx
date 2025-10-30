@@ -70,7 +70,6 @@ function TaskCard({ task, onDetailsClick, onDeleteClick, onEditClick }: TaskCard
       </header>
 
       <main>
-        {/* O badge de prioridade agora fica no corpo do card */}
         <h5 className={style.title}>{task.title}</h5>
       </main>
 

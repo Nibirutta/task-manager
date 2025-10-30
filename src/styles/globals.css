@@ -22,14 +22,14 @@
   --demo-figcaption-font: "Lato", sans-serif;
   --about-title-font: "Lato", sans-serif;
   --about-text-font: "Lato", sans-serif;
-      --dev-card-role-font: 'Electrolize', sans-serif;
-          --dev-card-title-font: "Tech", monospace;
-              --dev-card-tech-font: 'Lato', sans-serif;
-    --dev-card-description-font: 'Lato', sans-serif;
-   --dev-card-stack-font: 'Lato', sans-serif;
-    --dev-card-contact-font: 'Lato', sans-serif;
+  --dev-card-role-font: "Electrolize", sans-serif;
+  --dev-card-title-font: "Tech", monospace;
+  --dev-card-tech-font: "Lato", sans-serif;
+  --dev-card-description-font: "Lato", sans-serif;
+  --dev-card-stack-font: "Lato", sans-serif;
+  --dev-card-contact-font: "Lato", sans-serif;
 
-        --cta-title-font: 'Lato', sans-serif;
+  --cta-title-font: "Lato", sans-serif;
 
   --input-field-label-font: "Poppins", sans-serif;
   --input-field-placeholder-font: "IBM", sans-serif;
@@ -43,6 +43,14 @@
   --sb-text-font: "Electrolize", sans-serif;
 
   --login-title-font: "Orbitron", sans-serif;
+  --fpd-description-font: RedHat, monospace;
+  --fpd-title-font: Lato, sans-serif;
+  --register-title-font: "Orbitron", sans-serif;
+  --footer-title-font: "Playfair", serif;
+  --footer-info-font: "Lato", sans-serif;
+
+  --card-title-font: "Lato", sans-serif;
+  --card-priority-font: "Lato", sans-serif;
 }
 
 @theme {

@@ -175,46 +175,52 @@
         /* Register form */
     --register-bg-color: var(--login-bg-color);
     --register-border-color: var(--login-border-color);
-    --register-title-font: 'Orbitron', sans-serif;
+  
     --register-title-color: var(--login-title-color); 
 
     /* Forgot Password Dialog */
     --fpd-bg-color: var(--color-big-stone-900) ;
-    --fpd-title-font: Lato, sans-serif;
     --fpd-title-color: var(--color-loblolly-400) ;
-    --fpd-description-font: RedHat, monospace;
     --fpd-description-color: var(--color-loblolly-200) ;
 
 
-    
-
-
     /* Footer */
-    --footer-bg-color: #0d1b2a;
-    --footer-title-color: #415a77;
-    --footer-title-font: 'Playfair', serif;
-    --footer-info-font: 'Lato',sans-serif;
-    --footer-info-color: #e0e1dd;
-    --footer-info-hover: #778da9;
-    --footer-line-color: #1b263b;
+    --footer-bg-color: var(--color-black-pearl-950);
+    --footer-title-color: var(--color-fiord-600);
+    --footer-info-color: var(--color-mercury-300);
+    --footer-info-hover: var(--color-loblolly-600);
+    --footer-line-color: var(--color-loblolly-400);
 
     /* Task Card */
-    --card-bg-color: #1f2a36;
-    --card-title-color: #f5f7fa;
-    --card-title-font: 'Lato', sans-serif;
-    --card-priority-color: #b0bec5;
-    --card-priority-font: 'Lato', sans-serif;
+    --card-bg-color: var(--color-bermuda-gray-800);
+    --card-bg-border: var(--color-bermuda-gray-950);
 
-    --card-priority-high-bg: #e17a47;
-    --card-priority-medium-bg: #efc958;
-    --card-priority-low-bg: #41b19d;
-    --card-priority-urgent-bg: #ef3d59;
-    --card-priority-optional-bg: #344e5c;
+    --card-title-color: var(--color-loblolly-200);
+    --card-priority-color: var(--color-loblolly-800);
 
-    --card-status-todo-bg: #fdb813;
-    --card-status-inprogress-bg: #3498db;
-    --card-status-inreview-bg: #9b59b6;
-    --card-status-done-bg: #1abc9c;
+    --card-priority-high-border: #e17a47;
+    --card-priority-medium-border: #efc958;
+    --card-priority-low-border: #41b19d;
+    --card-priority-urgent-border: #ef3d59;
+    --card-priority-optional-border: #344e5c;
+
+    --card-priority-high-bg: #e17a47a3 ;
+    --card-priority-medium-bg: #efc95896 ;
+    --card-priority-low-bg: #41b19c9b;
+    --card-priority-urgent-bg: #ef3d588b ;
+    --card-priority-optional-bg: #344e5c7f;
+
+    --card-badge-expired-bg: #f9414464;
+    --card-badge-expired-text: #f94144 ;
+    --card-badge-deadline-bg: #f9c64f62 ;
+    --card-badge-deadline-text: #f9c74f ;
+    --card-badge-intime-bg: #43aa8b6a ;
+    --card-badge-intime-text: #43aa8b;
+
+    --card-delete-btn-color: #fa3a3a; 
+    --card-edit-btn-color:#00cecb;
+    --card-details-btn-color: #fbf2c0;
+
 
     /* Task Column*/
     --column-bg: #14213d;
