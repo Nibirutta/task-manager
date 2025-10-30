@@ -8,8 +8,8 @@ type AboutSectionProps = {
 
 const AboutSection = ({ title, text }: AboutSectionProps) => {
   return (
-    <section className="flex flex-col-reverse  justify-between items-center min-h-dvh p-8 w-full" id="about">
-      <div className="flex justify-center items-center gap-12  p-4 ">
+    <section className="flex flex-col-reverse  justify-center gap-12 items-center min-h-dvh py-8 w-full" id="about">
+      <div className="flex flex-col xl:flex-row justify-center items-center gap-12  p-4 ">
         <DevCard
           key="dev-card-lucino"
           avatar="/src/assets/imgs/avatar/20250123_165309.jpg"
@@ -57,7 +57,7 @@ const AboutSection = ({ title, text }: AboutSectionProps) => {
         />
       </div>
 
-      <div className="flex flex-col items-center justify-center h-full py-12  gap-8 ">
+      <div className="flex flex-col  items-center justify-center h-full py-12  gap-8 ">
         <h2
           className="p-4 text-6xl font-bold text-center text-[var(--about-title-color)] text-shadow-[var(--about-title-shadow)]
             font-(family-name:--about-title-font) "
@@ -65,7 +65,7 @@ const AboutSection = ({ title, text }: AboutSectionProps) => {
           {title}
         </h2>
 
-        <p className="p-4 text-4xl font-medium text-[var(--about-text-color)] font-(family-name:--about-text-font)">
+        <p className="px-12 text-xl xl:text-3xl font-medium text-[var(--about-text-color)] font-(family-name:--about-text-font)">
           {text}
         </p>
       </div>

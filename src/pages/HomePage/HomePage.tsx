@@ -20,7 +20,7 @@ const HomePage = () => {
 
       <FeaturesSection
         title="O Que Nos Torna Únicos?"
-        subtitle="Produtividade com propósito — cada recurso foi pensado pra facilitar sua rotina"
+        subtitle="Produtividade com propósito, cada recurso foi pensado pra facilitar sua rotina"
       />
 
       <DemoSection

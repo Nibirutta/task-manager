@@ -1,7 +1,8 @@
 import useAuth from '../../hooks/useAuth';
-import Navbar from '../../features/Navbar/Navbar';
+
 import Greetings from '../../components/Greetings/Greetings';
 import style from './Header.module.css'
+import Navbar from '../../features/Navbar/Navbar';
 
 function Header() {
 

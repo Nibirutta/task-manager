@@ -5,22 +5,33 @@
   inherits: false;
 }
 
+@keyframes rotate {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
+  }
+}
+
 .card {
     position: relative;
-    width: 100%;
-    max-width: 42rem; 
+    height: 340px;
+    width: 340px;
     background-color: var(--dev-card-bg-color);
     backdrop-filter: blur(8px); 
     border-radius: 1rem;
     padding: 0.5rem; 
     overflow: hidden;
-
+box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    
     /* Borda animada */
     &::before {
         content: '';
         position: absolute;
         top: 50%;
         left: 50%;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
         transform: translate(-50%, -50%);
         width: 100%;
         aspect-ratio: 1 / 1;
@@ -37,8 +48,6 @@
             transparent 80%,
             transparent 100%
         );
-
-        box-shadow: 0 0 2px var(--color-1), 0 0 4px var(--color-2), 0 0 6px var(--color-3);
         animation: rotate 4s linear infinite;
     }
 }
@@ -135,7 +144,8 @@
     gap: 0.5rem;
     padding: 1rem;
     flex-wrap: wrap;
-    height: 81px;
+box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    border-radius: 0.5rem;
 }
 
 .stackItem{
@@ -150,87 +160,88 @@
     text-align: center;
     font-weight: 400;
     line-height: 1.5;
+box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
 
 .react{
     color: #61DAFB;
-    background-color: #072d45ac;
-    text-shadow: 0 1px 2px #61DAFB;
+    background-color: #072d459a;
+    text-shadow: 1px 1px 2px #61DAFB;
 ;
 }
 
 .tailwind{
     color: #38bdf8;
-    background-color: #083549;
-    text-shadow: 0 1px 2px #38bdf8;
+    background-color: #08354984;
+    text-shadow: 1px 1px 2px #38bdf8;
 }
 
 .vite{
-    color: #646CFF;
-    background-color: #ffc529;
-    text-shadow: 0 0 2px #646CFF;
+    color:  #ffc629;
+    background-color: #646cff7a ;
+    text-shadow: 1px 1px 2px #646CFF;
 }
 
 .typescript{
-    color: #3178c6;
-    background-color: #12233f;
-    text-shadow: 0 0 2px #3178c6;
+    color: #3b90eb;
+    background-color: #12233f86;
+    text-shadow: 1px 1px 2px #3178c6;
 }
 
 .react-router{
-    color: #CA4245;
-    background-color: #420f13;
-    text-shadow: 0 0 2px #CA4245;
+    color: #ff0000;
+    background-color: #420f1381;
+    text-shadow: 1px 1px 2px #ff0004;
 
 }
 
 .zod{
-    color: #3E67B1;
-    background-color: #222f49;
-    text-shadow: 0 0 2px #3E67B1;
+    color: #216eff;
+    background-color: #222f498d;
+    text-shadow: 1px 1px 2px #0059ff;
 }
 
 .radix{
-    color: #767781;
-    background-color: #161618;
-    text-shadow: 0 0 2px #767781;
+    color: #c0c0c2;
+    background-color: #16161891;
+    text-shadow: 1px 1px 2px #e3e3e3;
 }
 
 .framer-motion{
     color: #E10098;
-    background-color: #5b003a;
-    text-shadow: 0 0 2px #E10098;
+    background-color: #5b003a6b;
+    text-shadow: 1px 1px 2px #E10098;
 
 }
 
 .nest-js{
     color: #E0234E;
-    background-color: #4b061a;
-    text-shadow: 0 0 2px #E0234E;
+    background-color: #4b061a8c;
+    text-shadow: 1px 1px 2px #E0234E;
 }
 
 .mongo-db{
     color: #47a248;
-    background-color: #0e2510;
-    text-shadow: 0 0 2px #47a248;
+    background-color: #0e25107e;
+    text-shadow: 1px 1px 2px #47a248;
 }
 
 .rabbit-mq{
     color: #FF6600;
-    background-color: #461604;
-    text-shadow: 0 0 2px #FF6600;
+    background-color: #46160480;
+    text-shadow: 1px 1px 2px #FF6600;
 }
 
 .jwt{
     color: #888888;
-    background-color: #3d3d3d;
-    text-shadow: 0 0 2px #888888;
+    background-color: #3d3d3d81;
+    text-shadow: 1px 1px 2px #888888;
 }
 
-.RxJS{
+.rxjs{
     color: #b7178c;
-    background-color: #510139;
-    text-shadow: 0 0 2px #b7178c;
+    background-color: #51013979;
+    text-shadow: 1px 1px 2px #b7178c;
 }
 
 .contact{
@@ -251,7 +262,8 @@
     align-items: center;
     gap: 2rem;
     padding: 1rem;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: var(--dev-card-social-bg);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
     border-radius: 1rem;
 }
 
@@ -261,8 +273,10 @@
     align-items: center;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
-
-    -webkit-box-reflect: below linear-gradient(transparent, #00c3c3);
+    padding: 0.5rem;
+    border-radius: 50%;
+    background-color: transparent;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 .social a img{
@@ -271,8 +285,7 @@
     transition: all 0.2s ease-in-out;
 }
 
-
-.social a:hover img{
+.social a:hover {
     transform: scale(1.5);
 }
 
@@ -280,89 +293,64 @@
 .social .linkedin{
     filter: drop-shadow(0 0 2px #0077B5);
     &:hover, &:focus-visible{
-        filter: drop-shadow(0 0 1px #0A66C2, 0 0 2px #0A66C2, 0 0 4px #0A66C2);
+        filter: drop-shadow(0 2px 1px #0A66C2, 0 0 2px #0A66C2, 0 0 4px #0A66C2);
     }
 }
 
 .social .github{
     filter: drop-shadow(0 0 2px #181717 );
     &:hover, &:focus-visible{
-        filter: drop-shadow(0 0 1px #181717, 0 0 2px #181717, 0 0 4px #181717);
+        filter: drop-shadow(0 2px 1px #181717, 0 0 2px #181717, 0 0 4px #181717);
     }
 }
 
 .social .portfolio{
     filter: drop-shadow(0 0 1px var(--color-1), 0 0 2px var(--color-2) );
     &:hover, &:focus-visible{
-        filter: drop-shadow(0 0 1px var(--color-1), 0 0 2px var(--color-2), 0 0 3px var(--color-1), 0 0 4px var(--color-2));
+        filter: drop-shadow(0 2px 1px var(--color-1), 0 0 2px var(--color-2), 0 0 3px var(--color-1), 0 0 4px var(--color-2));
     }
 }
 
-/* Animação que rotaciona o gradiente */
-@keyframes rotate {
-    from { --angle: 0deg; }
-    to { --angle: 360deg; }
-}
 
 
-@media screen and (max-width: 1024px) {
-    .avatar img {
-        width: 64px;
-        height: 64px;
-    
-    }
-    .title {
-        font-size: 2rem;
-    }
-    .social a img {
-        width: 1.8rem;
-        height: 1.8rem;
-    }
-    .content {
-        gap: 1rem;
-        grid-template-areas: 
-        'avatar titulo'
-        'social social';
-    }
-}
-@media screen and (max-width: 768px) {
-    .card {
-        max-width: 16rem;
-    }
-    .avatar img {
-        width: 48px;
-        height: 48px;
-    }
-    .title {
-        font-size: 1.4rem;
-    }
-    .social a img {
-        width: 1.6rem;
-        height: 1.6rem;
-    }
-    .content {
+
+
+@media screen and (max-width: 420px) {
+    .content{
         gap: 0.5rem;
-        padding: 0.5rem;
     }
-}
 
-@media screen and (max-width: 480px) {
-    .card {
-        max-width: 30rem;
+    .title{
+        font-size: 1.6rem;
     }
-    .avatar img {
-        width: 96px;
-        height: 96px;
+
+    .tech{
+        font-size: 1.2rem;
     }
-    .title {
-        font-size: 2.4rem;
+
+    .description{
+        font-size: 1rem;
     }
-    .social a img {
-        width: 2rem;
-        height: 2rem;
-    }
-    .content {
-        gap: 1rem;
+
+    .stackList{
         padding: 0.5rem;
+    }
+
+    .stackItem{
+        font-size: 1rem;
+    }
+
+    .contact{
+        font-size: 1.2rem;
+    }
+
+    .social{
+        gap: 1rem;
+    }
+
+    .card{
+        height: 290px;
+        width: 290px;
+    
     }
 }

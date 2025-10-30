@@ -107,5 +107,28 @@
     .subtitle{
         font-size: 1.6rem;
     }
+
+    .developedText{
+        font-size: 1.2rem;
+    }
+
+
 }
 
+@media screen and (max-width: 480px) {
+
+    .title{
+        font-size: 4.2rem;
+    }
+
+    .subtitle{
+        font-size: 1.2rem;
+    }
+
+
+
+    .ctaButtons{
+        gap: 4rem;
+    }
+
+}

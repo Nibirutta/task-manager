@@ -92,56 +92,50 @@
     --featcard-bg-color: var(--color-big-stone-800);
     --featcard-border-color: transparent ;
     --featcard-shadow-color:  rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
-    
     --featcard-title-color: #e0e1dd;
-   
     --featcard-description-color: #d0eef2;
-
   
 
     /* Demo Section */
 
-    --demo-title-font: 'Lato', sans-serif;
-    --demo-title-color: #e0e1dd;
-    --demo-title-shadow: 0 2px 6px #415a77;
-    --demo-subtitle-font: 'Lato', sans-serif;
-    --demo-subtitle-color: #e0e1dd;
-    --demo-figure-border:#1b263b ;
-    --demo-figure-shadow: 0 2px 6px #415a77;
-    --demo-figcaption-color: #e0e1dd;
-    --demo-figcaption-font: 'Lato', sans-serif;
+    
+    --demo-title-color: var(--color-mercury-300);
+    --demo-title-shadow:  var(--color-mercury-900) 1.95px 1.95px 2.6px;
+    --demo-subtitle-color: var(--color-bermuda-gray-300);
+    --demo-figure-border: var(--color-web-orange-500) ;
+    --demo-figure-shadow: var(--color-web-orange-400) 0px 0px 0px 2px inset, rgb(255, 255, 255) 10px -10px 0px -3px, var(--color-web-orange-300) 10px -10px, rgb(255, 255, 255) 20px -20px 0px -3px, var(--color-web-orange-200) 20px -20px, rgb(255, 255, 255) 30px -30px 0px -3px, var(--color-web-orange-100) 30px -30px, rgb(255, 255, 255) 40px -40px 0px -3px, var(--color-web-orange-50) 40px -40px;
+    --demo-figcaption-color: var(--color-mercury-100);
+    --demo-figcaption-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+
+
 
     
     /* About Section */
-    --about-title-font: 'Lato', sans-serif;
-    --about-title-color: #e0e1dd;
-    --about-title-shadow: 0 2px 6px #415a77;
-    --about-text-font: 'Lato', sans-serif;
-    --about-text-color: #e0e1dd;
 
+    --about-title-color: var(--color-mercury-300);
+    --about-title-shadow:  var(--color-mercury-900) 1.95px 1.95px 2.6px;
+    --about-text-color: var(--color-bermuda-gray-300);
 
         /* Develpoer Card */
-    --dev-card-bg-color: #001c1c;
-    --dev-card-header-bg-color: #008e8e;
-    --dev-card-avatar-border-color: #008e8e;
-    --dev-card-role-bg-color: #008e8e;
-    --dev-card-role-color: #00e3e3;
-    --dev-card-role-font: 'Electrolize', sans-serif;
-    
-    --dev-card-title-font: "Tech", monospace;
-    --dev-card-title-color: #00e3e3;
-    --dev-card-tech-color: #00e3e3;
-    --dev-card-tech-font: 'Lato', sans-serif;
-    --dev-card-description-font: 'Lato', sans-serif;
-    --dev-card-description-color: #e0e1dd;
-    --dev-card-stack-font: 'Lato', sans-serif;
-    --dev-card-stack-color: #e0e1dd;
-    --dev-card-contact-font: 'Lato', sans-serif;
-    --dev-card-contact-color: #e0e1dd;
+    --dev-card-bg-color: var(--color-big-stone-950);
+    --dev-card-header-bg-color: var(--color-big-stone-800);
+    --dev-card-avatar-border-color: var(--color-big-stone-600);
+    --dev-card-role-bg-color: var(--color-big-stone-600);
+    --dev-card-role-color: var(--color-fiord-200);
 
-    --cta-title-font: 'Lato', sans-serif;
-    --cta-title-color: #e0e1dd;
-    --cta-title-shadow: 0 2px 6px #415a77;
+    
+
+    --dev-card-title-color: var(--color-fiord-200);
+    --dev-card-tech-color: var(--color-fiord-300);
+
+    --dev-card-description-color: var(--color-fiord-300);
+ 
+    --dev-card-contact-color: var(--color-fiord-300);
+    --dev-card-social-bg: var(--color-big-stone-800);
+
+
+    --cta-title-color: var(--color-mercury-300) ;
+    --cta-title-shadow: var(--color-mercury-900) 1.95px 1.95px 2.6px;
 
 
 
@@ -185,13 +179,11 @@
     --register-title-color: var(--login-title-color); 
 
     /* Forgot Password Dialog */
-    --fpd-bg-color: var(--login-bg-color) ;
-    --fgd-link-color: #05f2c7;
-    --fpd-link-hover: #0073a5;
+    --fpd-bg-color: var(--color-big-stone-900) ;
     --fpd-title-font: Lato, sans-serif;
-    --fpd-title-color: #c6ccd0 ;
+    --fpd-title-color: var(--color-loblolly-400) ;
     --fpd-description-font: RedHat, monospace;
-    --fpd-description-color: #415a77 ;
+    --fpd-description-color: var(--color-loblolly-200) ;
 
 
     

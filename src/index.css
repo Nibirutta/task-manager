@@ -10,7 +10,24 @@
 
 
 body {
-  min-width: 320px;
-  min-height: 100dvh;
   background-color: var(--body-bg-color);
+}
+
+
+
+/** Scrollbar  */
+html {
+  scroll-behavior: smooth;
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+}
+* {
+  scrollbar-width: thin;
 }
