@@ -48,8 +48,6 @@ function Footer() {
           </div>
         </div>
   
-        <hr  />
-  
         <div className={style.copyright}>
           <p>&copy; {new Date().getFullYear()} Task Manager. Todos os direitos reservados.</p>
         </div>
