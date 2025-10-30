@@ -56,3 +56,10 @@
     }
 
 }
+
+
+@media screen and (width <= 380px) {
+    .form{
+        width: 280px;
+    }
+}

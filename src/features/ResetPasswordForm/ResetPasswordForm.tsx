@@ -1,7 +1,7 @@
 import { useId } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import style from "./ResetPasswordForm.module.css";
-import { submitNewPassword } from "../../api/Task API/services/passwordResetService";
+
 import { toast } from "react-toastify";
 import InputField from "../../components/InputField/InputField";
 import z from "zod";
@@ -9,6 +9,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import SubmitBtn from "../../components/SubmitBtn/SubmitBtn";
 import { CheckCheckIcon, Lock, ShieldCheck } from "lucide-react";
+import { requestNewPassword } from "../../api/Task API/services/authService";
+import type { ResetPasswordRequestTypes } from "../../types/authServiceTypes";
 
 const resetPasswordSchema = z
   .object({
@@ -68,9 +70,9 @@ function ResetPasswordForm() {
     );
   }
 
-  const onSubmit = async (data: ResetPasswordInputs) => {
+  const onSubmit = async (data: ResetPasswordRequestTypes) => {
     try {
-      await toast.promise(submitNewPassword(token, data.password), {
+      await toast.promise(requestNewPassword(data, token), {
         pending: "Atualizando sua senha...",
         success: "Senha atualizada com sucesso! Redirecionando para o login.",
         error: {
