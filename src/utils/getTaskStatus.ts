@@ -1,20 +1,22 @@
-import formatDate from './formatDate';
-
 export type ExpirationStatus = 'expired' | 'deadline' | 'in-time';
 
 /**
- * Calcula o status de expiração e formata a data de uma tarefa.
- * @param dueDate - A data de vencimento da tarefa no formato 'YYYY-MM-DD'.
- * @returns Um objeto contendo o status de expiração e a data formatada.
+ * Calcula o status de expiração de uma tarefa com base na data de vencimento.
+ * @param dueDate - A data de vencimento da tarefa em formato de string ISO (ex: '2024-10-25T10:30:00.000Z').
+ * @returns O status de expiração como 'expired', 'deadline' ou 'in-time'.
  */
- const getTaskStatus = (dueDate: string) => {
+export const getTaskExpirationStatus = (dueDate: string | undefined): ExpirationStatus => {
+  if (!dueDate) {
+    return 'in-time'; // Tarefas sem data não expiram
+  }
+
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  const dueLocal = new Date(dueDate.replace(/-/g, '/'));
-  dueLocal.setHours(0, 0, 0, 0);
+  const due = new Date(dueDate);
+  due.setHours(0, 0, 0, 0);
 
-  const timeDiff = dueLocal.getTime() - today.getTime();
+  const timeDiff = due.getTime() - today.getTime();
   const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
 
   let expirationStatus: ExpirationStatus;
@@ -26,7 +28,5 @@ export type ExpirationStatus = 'expired' | 'deadline' | 'in-time';
     expirationStatus = 'in-time';
   }
 
-  return { expirationStatus, formattedDueDate: formatDate(dueDate) };
+  return expirationStatus;
 };
-
-export default getTaskStatus;

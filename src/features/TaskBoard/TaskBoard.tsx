@@ -3,12 +3,10 @@ import style from './TaskBoard.module.css';
 import type {  TaskStatus, TaskType } from '../../types/taskServiceTypes';
 import TaskColumn from '../../components/TaskColumn/TaskColumn';
 
-
 import { monitorForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import type { ExpirationStatus } from '../../utils/getTaskStatus';
 
-// Define a estrutura e a ordem de nossas colunas.
-// O 'id' deve corresponder ao 'status' vindo da API.
+
 const columnsConfig: { id: TaskStatus; title: string }[] = [
   { id: 'to-do', title: 'Pendente' },
   { id: 'in-progress', title: 'Em Progresso' },
@@ -16,7 +14,6 @@ const columnsConfig: { id: TaskStatus; title: string }[] = [
   { id: 'done', title: 'Concluído' },
 ];
 
-// Estende o ITask para incluir as propriedades calculadas no DashboardPage
 type IProcessedTask = TaskType & {
   expirationStatus: ExpirationStatus;
   formattedDueDate: string;
@@ -86,10 +83,9 @@ function TaskBoard({
             key={column.id}
             title={column.title}
             status={column.id}
-            tasks={columnTasks} // Passa o array de dados
+            tasks={columnTasks} 
             onAddTask={onAddTask}
             isDraggingOver={draggingOverColumn === column.id}
-            // Passe as funções de manipulação para a coluna
             onDetailsClick={onDetailsClick}
             onEditClick={onEditClick}
             onDeleteClick={onDeleteClick}

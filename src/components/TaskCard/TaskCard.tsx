@@ -69,9 +69,9 @@ function TaskCard({ task, onDetailsClick, onDeleteClick, onEditClick }: TaskCard
         </div>
       </header>
 
-      <main>
+      <div className='w-full'>
         <h5 className={style.title}>{task.title}</h5>
-      </main>
+      </div>
 
       <footer className={style.footer}>
 

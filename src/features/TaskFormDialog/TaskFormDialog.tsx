@@ -33,18 +33,22 @@ interface TaskFormDialogProps {
 }
 
 // Função para criar o schema dinamicamente
-const createTaskFormSchema = (isEditing: boolean) => z.object({
-  title: z.string().min(3, { message: 'O título deve ter no mínimo 3 caracteres.' }).trim(),
-  description: z.string().optional(),
-  // A validação da data de vencimento agora depende do modo (criação vs. edição)
-  dueDate: isEditing
-    ? z.date().optional() // Opcional na edição
-    : z.date({
-        error: 'A data de vencimento é obrigatória.',
-      }), // Obrigatório na criação
-  priority: z.enum(['low', 'medium', 'high', 'urgent', 'optional']),
-  status: z.enum(['to-do', 'in-progress', 'in-review', 'done']),
-});
+const createTaskFormSchema = (isEditing: boolean) => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Zera o tempo para comparar apenas a data
+
+  return z.object({
+    title: z.string().min(3, { message: 'O título deve ter no mínimo 3 caracteres.' }).trim(),
+    description: z.string().optional(),
+    // Validação da data: não pode ser no passado.
+    dueDate: isEditing
+      ? z.date().min(today, { message: "A data não pode ser no passado." }).optional()
+      : z.date({ error: 'A data de vencimento é obrigatória.' })
+          .min(today, { message: "A data não pode ser no passado." }),
+    priority: z.enum(['low', 'medium', 'high', 'urgent', 'optional']),
+    status: z.enum(['to-do', 'in-progress', 'in-review', 'done']),
+  });
+};
 
 // O tipo dos valores do formulário é inferido a partir do schema (usando o modo de edição, que é o mais abrangente)
 type TaskFormValues = z.infer<ReturnType<typeof createTaskFormSchema>>;
@@ -76,7 +80,7 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
     defaultValues: {
       title: '',
       description: '',
-      dueDate: undefined,
+      dueDate: new Date(), // Define a data atual como padrão para novas tarefas
       priority: 'medium',
       status: initialStatus || 'to-do',
     },
@@ -87,7 +91,11 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
       form.reset({
         title: taskToEdit.title,
         description: taskToEdit.description ?? '',
-        dueDate: new Date(taskToEdit.dueDate),
+        // Evita a conversão de fuso horário.
+        // A string ISO já está em UTC, e o componente Calendar a interpretará corretamente
+        // sem mudar o dia com base no fuso local.
+        // new Date() preserva o UTC se a string estiver no formato ISO completo (com 'Z').
+        dueDate: taskToEdit.dueDate ? new Date(taskToEdit.dueDate) : undefined,
         priority: taskToEdit.priority,
         status: taskToEdit.status,
       });
@@ -96,7 +104,7 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
       form.reset({
         title: '',
         description: '',
-        dueDate: undefined,
+        dueDate: new Date(), // Garante que o reset para criação também use a data atual
         priority: 'medium',
         status: initialStatus || 'to-do',
       });
@@ -198,7 +206,14 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
                           </FormControl>
                         </PopoverTrigger>
                         <PopoverContent className="w-auto p-0">
-                          <Calendar className={style.calendar} mode="single" selected={field.value} onSelect={field.onChange} autoFocus aria-label='Selecione uma data' />
+                          <Calendar
+                            className={style.calendar}
+                            mode="single"
+                            selected={field.value}
+                            onSelect={field.onChange}
+                            disabled={{ before: new Date() }} // Desabilita visualmente as datas passadas
+                            autoFocus
+                            aria-label='Selecione uma data' />
                         </PopoverContent>
                       </Popover>
                       {field.value && (

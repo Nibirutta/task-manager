@@ -1,309 +1,233 @@
-import { useEffect, useState, useCallback, useReducer, useMemo } from 'react';
-import { toast } from 'react-toastify';
-import { getTasks, deleteTask,  updateTask, createTask } from '../../api/Task API/services/taskService';
+
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { toast } from "react-toastify";
+import type { TaskPriority, TaskStatus, TaskType } from "../../types/taskServiceTypes";
+import { getTaskExpirationStatus,  type ExpirationStatus } from "../../utils/getTaskStatus";
+import { createTask, deleteTask, getTasks, updateTask } from "../../api/Task API/services/taskService";
+import formatDate from "../../utils/formatDate";
+
+import BackgroundGrid from "./BackgroundGrid";
+import TaskFilter from "../../features/TaskFilter/TaskFilter";
+import Spinner from "../../components/Spinner/Spinner";
 import TaskBoard from '../../features/TaskBoard/TaskBoard';
-import style from './DashboardPage.module.css'
-import Spinner from '../../components/Spinner/Spinner';
-import DeleteTaskDialog from '../../features/DeleteTaskDialog/DeleteTaskDialog';
 import TaskFormDialog, { type TaskFormValues } from '../../features/TaskFormDialog/TaskFormDialog';
-
 import TaskDetailsDialog from '../../features/TaskDetailsDialog/TaskDetailsDialog';
-import getTaskStatus from '../../utils/getTaskStatus'; // Importa a função pura, não o default export
-import FlickeringGrid from '../../lib/magicUI/grid';
-import TaskFilter from '../../features/TaskFilter/TaskFilter';
-import { handleApiError } from '../../utils/handleApiError';
+import DeleteTaskDialog from "../../features/DeleteTaskDialog/DeleteTaskDialog";
+import style from "./DashboardPage.module.css";
 
-import type { CreatTaskRequestType, TaskPriority, TaskStatus, TaskType, UpdateTaskRequestType } from '../../types/taskServiceTypes';
-
-
-// gerenciador de estados do dialog
-type DialogState = {
-  delete: { isOpen: boolean; task: TaskType | null };
-  form: { isOpen: boolean; task: TaskType | null; initialStatus?: TaskStatus };
-  details: { isOpen: boolean; task: TaskType | null };
+// Tipagem para a tarefa processada, que inclui dados formatados para a UI
+export type IProcessedTask = TaskType & {
+  expirationStatus: ExpirationStatus;
+  formattedDueDate: string;
 };
 
-type DialogAction =
-  | { type: 'OPEN_DELETE'; payload: TaskType }
-  | { type: 'OPEN_DETAILS'; payload: TaskType }
-  | { type: 'OPEN_FORM'; payload: { task: TaskType | null; initialStatus?: TaskStatus } }
-  | { type: 'CLOSE_ALL' };
+const priorityFilterOptions: { value: TaskPriority | 'all'; label: string }[] = [
+  { value: 'all', label: 'Todas' },
+  { value: 'urgent', label: 'Urgente' },
+  { value: 'high', label: 'Alta' },
+  { value: 'medium', label: 'Média' },
+  { value: 'low', label: 'Baixa' },
+  { value: 'optional', label: 'Opcional' },
+];
 
-const initialDialogState: DialogState = {
-  delete: { isOpen: false, task: null },
-  form: { isOpen: false, task: null },
-  details: { isOpen: false, task: null },
-};
-
-const dialogReducer = (state: DialogState, action: DialogAction): DialogState => {
-  switch (action.type) {
-    case 'OPEN_DELETE':
-      return { ...initialDialogState, delete: { isOpen: true, task: action.payload } };
-    case 'OPEN_DETAILS':
-      return { ...initialDialogState, details: { isOpen: true, task: action.payload } };
-    case 'OPEN_FORM':
-      return { ...initialDialogState, form: { isOpen: true, ...action.payload } };
-    case 'CLOSE_ALL':
-      return initialDialogState;
-    default:
-      return state;
-  }
-};
-
-const DashboardPage = () => {
+function DashboardPage() {
+  // --- ESTADOS DE DADOS E UI ---
   const [tasks, setTasks] = useState<TaskType[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // Estado dos dialogs gerenciado pelo reducer
-  const [dialogState, dispatchDialog] = useReducer(dialogReducer, initialDialogState);
-
-  // Estados para os filtros
-
+  // --- ESTADOS DOS FILTROS ---
   const [filterPriority, setFilterPriority] = useState<TaskPriority | 'all'>('all');
 
-  const priorityFilterOptions: { value: TaskPriority | 'all'; label: string }[] = [
-    { value: 'all', label: 'Todas as Prioridades' },
-    ...['urgent', 'high', 'medium', 'low', 'optional'].map(p => ({
-      value: p as TaskPriority,
-      label: p.charAt(0).toUpperCase() + p.slice(1)
-    }))
-  ];
+  // --- ESTADOS DOS MODAIS (DIALOGS) ---
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [taskToEdit, setTaskToEdit] = useState<TaskType | null>(null);
+  const [initialStatusForNewTask, setInitialStatusForNewTask] = useState<TaskStatus | undefined>();
 
-  // Apenas processa as tarefas para adicionar dados de UI, sem filtrar.
-  // A filtragem agora é responsabilidade exclusiva do backend via `fetchTasks`.
-  const processedTasks = useMemo(() => {
-    return tasks
-      .map(task => {
-        const { expirationStatus, formattedDueDate } = getTaskStatus(task.dueDate); 
-        return { ...task, expirationStatus, formattedDueDate };
-      });
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const [taskForDetails, setTaskForDetails] = useState<TaskType | null>(null);
+
+  const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
+  const [taskToDelete, setTaskToDelete] = useState<TaskType | null>(null);
+
+  // --- LÓGICA DE BUSCA DE DADOS (FETCHING) ---
+  const fetchTasks = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      // Monta a query string para a API baseada no filtro de prioridade
+      const filters = filterPriority === 'all' ? '' : `?priority=${filterPriority}`;
+      const fetchedTasks = await getTasks(filters);
+      setTasks(fetchedTasks);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Falha ao buscar tarefas.');
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [filterPriority]); // Re-executa a busca quando o filtro de prioridade muda
+
+  // Efeito para buscar as tarefas na montagem do componente e quando o filtro muda
+  useEffect(() => {
+    fetchTasks();
+  }, [fetchTasks]);
+
+  // --- PROCESSAMENTO DE DADOS (MEMOIZATION) ---
+  const processedTasks = useMemo((): IProcessedTask[] => {
+    return tasks.map(task => ({
+      ...task,
+      expirationStatus: getTaskExpirationStatus(task.dueDate),
+      formattedDueDate: task.dueDate ? formatDate(task.dueDate) : 'Sem data',
+
+    }));
   }, [tasks]);
 
+  // --- HANDLERS DE AÇÕES (CRUD) ---
 
-  const fetchTasks = useCallback(
-    async (filters: { title?: string; priority?: TaskPriority | 'all' } = {}) => 
-      {
-      setLoading(true);
-      const queryParams = new URLSearchParams();
-      if (filters.priority && filters.priority !== 'all') {
-        queryParams.append('priority', filters.priority);
-      }
-      try {
-        const tasksResponse = await getTasks(queryParams.toString());
-        setTasks(tasksResponse);
-      } catch (error) {
-        handleApiError(error, 'Falha ao buscar as tarefas.');
-      } finally {
-        setLoading(false);
-      }
-    },
-    [] 
-  );
+  const handleOpenFormForCreate = useCallback((status: TaskStatus) => {
+    setTaskToEdit(null);
+    setInitialStatusForNewTask(status);
+    setIsFormOpen(true);
+  }, []);
 
+  const handleOpenFormForEdit = useCallback((task: TaskType) => {
+    setTaskToEdit(task);
+    setIsFormOpen(true);
+  }, []);
 
-  useEffect(() => {
-    fetchTasks({ priority: filterPriority });
-  }, [filterPriority, fetchTasks]);
+  const handleOpenDetails = useCallback((task: TaskType) => {
+    setTaskForDetails(task);
+    setIsDetailsOpen(true);
+  }, []);
 
-  // Abre o modal de detalhes com a tarefa clicada
-  const handleDetailsClick = (task: TaskType) => {
-    dispatchDialog({ type: 'OPEN_DETAILS', payload: task });
-  };
+  const handleOpenDeleteConfirm = useCallback((task: TaskType) => {
+    setTaskToDelete(task);
+    setIsDeleteConfirmOpen(true);
+  }, []);
 
-  // Abre o modal de formulário para edição
-  const handleEditClick = (task: TaskType) => {
-    dispatchDialog({ type: 'OPEN_FORM', payload: { task } });
-  };
+  const handleSubmitForm = useCallback(async (data: TaskFormValues, id?: string) => {
+    const isEditing = !!id;
+    let apiCall;
 
-  // Abre o modal de confirmação pra deletar
-  const handleDeleteClick = (task: TaskType) => {
-    dispatchDialog({ type: 'OPEN_DELETE', payload: task });
-  };
-
-  // Função chamada pelo modal ao confirmar
-  const handleConfirmDelete = async (task: TaskType) => {
-    const originalTasks = tasks;
-    setTasks(tasks.filter(t => t.id !== task.id));
-    dispatchDialog({ type: 'CLOSE_ALL' });
-
-    try {
-      await toast.promise(deleteTask(task.id), {
-        pending: 'Excluindo tarefa...',
-        success: 'Tarefa excluída com sucesso!',
-        error: 'Falha ao excluir a tarefa.',
-      });
-    } catch (error) {
-      // Rollback em caso de erro
-      setTasks(originalTasks);
-      console.error('Erro ao deletar tarefa:', error);
+    if (isEditing) {
+      const payload = {
+        ...data,
+        dueDate: data.dueDate ? data.dueDate.toISOString() : undefined,
+      };
+      apiCall = updateTask(payload, id);
+    } else {
+      // Na criação, garantimos que dueDate seja uma string, conforme a API exige.
+      // O formulário já define um valor padrão (new Date()), então data.dueDate sempre existirá.
+      apiCall = createTask({ ...data, dueDate: data.dueDate!.toISOString() });
     }
-  };
 
-  const handleTaskStatusChange = async (taskId: string, newStatus: TaskStatus) => {
+    const successMessage = id ? 'Tarefa atualizada com sucesso!' : 'Tarefa criada com sucesso!';
+
+    await toast.promise(apiCall, {
+      pending: id ? 'Atualizando tarefa...' : 'Criando tarefa...',
+      success: successMessage,
+      error: `Falha ao ${id ? 'atualizar' : 'criar'} a tarefa.`,
+    });
+
+    setIsFormOpen(false);
+    fetchTasks(); // Re-busca as tarefas para atualizar a UI
+  }, [fetchTasks]);
+
+  const handleConfirmDelete = useCallback(async (task: TaskType) => {
+    // Fecha o modal de detalhes se estiver aberto para a tarefa sendo deletada
+    if (taskForDetails?.id === task.id) {
+      setIsDetailsOpen(false);
+    }
+
+    setIsDeleteConfirmOpen(false);
+
+    await toast.promise(deleteTask(task.id), {
+      pending: 'Deletando tarefa...',
+      success: 'Tarefa deletada com sucesso!',
+      error: 'Falha ao deletar a tarefa.',
+    });
+
+    fetchTasks(); // Re-busca as tarefas para atualizar a UI
+  }, [fetchTasks, taskForDetails?.id]);
+
+  const handleTaskStatusChange = useCallback(async (taskId: string, newStatus: TaskStatus) => {
+    // Encontra a tarefa para obter a prioridade atual, necessária para a API de update
     const taskToUpdate = tasks.find(task => task.id === taskId);
     if (!taskToUpdate) return;
 
-    // Evita chamada de API se o status não mudou
-    if (taskToUpdate.status === newStatus) {
-      return;
-    }
+    await toast.promise(
+      // A API de PATCH espera um objeto completo, então enviamos o status novo e a prioridade existente.
+      updateTask({ status: newStatus, priority: taskToUpdate.priority }, taskId), {
 
-    const originalTasks = tasks;
-    // Atualização Otimista: Mude o estado local primeiro
-    setTasks(prevTasks =>
-      prevTasks.map(task =>
-        task.id === taskId ? { ...task, status: newStatus } : task
-      )
-    );
+      pending: 'Movendo tarefa...',
+      success: 'Tarefa movida com sucesso!',
+      error: 'Falha ao mover a tarefa.',
+    });
+    fetchTasks();
+  }, [fetchTasks, tasks]);
 
+  // --- RENDERIZAÇÃO ---
 
-    try {
-      const updateData = {
-        status: newStatus, // O novo status
-        priority: taskToUpdate.priority // A prioridade atual da tarefa
-      };
-
-      // O toast.promise resolve com o valor de sucesso da promessa.
-      // Neste caso, UpdateTaskResponseType, que é { task: TaskType }.
-      const updateResponse = await toast.promise(
-        updateTask(updateData,taskId),
-        {
-          pending: 'Atualizando status da tarefa...',
-          success: 'Status da tarefa atualizado com sucesso!',
-          error: 'Falha ao atualizar o status da tarefa.',
-        }
-      );
-      // Adicionamos uma verificação para garantir que a resposta e a tarefa existem.
-      if (updateResponse && updateResponse.task) {
-        // Sincroniza o estado com a resposta final da API (que pode ter `updatedAt` etc.)
-        setTasks(prevTasks =>
-          prevTasks.map(task => (task.id === taskId ? updateResponse.task : task))
-        );
-      }
-    } catch (error) {
-      setTasks(originalTasks); // Rollback em caso de erro
-      console.error('Erro ao atualizar o status da tarefa:', error);
-    }
-  };
-
-  // Abre o modal de formulário para criação
-  const handleAddTask = (status: TaskStatus) => {
-    dispatchDialog({ type: 'OPEN_FORM', payload: { task: null, initialStatus: status } });
-  };
-
-  // Função chamada pelo formulário ao submeter
-  const handleFormSubmit = async (formData: TaskFormValues, id?: string) => {
-    const isEditing = !!id;
-
-    if (isEditing) {
-      // Lógica de Edição
-      const updateData: UpdateTaskRequestType = {
-        ...formData,
-        // Converte para ISO string se a data existir, caso contrário, envia undefined
-        // para que a API saiba que deve remover ou não alterar a data.
-        dueDate: formData.dueDate ? formData.dueDate.toISOString() : undefined,
-      };
-
-      try {
-        const updateResponse = await toast.promise(updateTask(updateData, id), {
-          pending: 'Atualizando tarefa...',
-          success: 'Tarefa atualizada com sucesso!',
-          error: 'Falha ao atualizar a tarefa.',
-        });
-        if (updateResponse && updateResponse.task) {
-          setTasks(prevTasks => prevTasks.map(t => (t.id === id ? updateResponse.task : t)));
-        }
-        dispatchDialog({ type: 'CLOSE_ALL' });
-      } catch (error) {
-        console.error('Erro ao editar tarefa:', error);
-      }
-    } else {
-      // Lógica de Criação
-      const createData: CreatTaskRequestType = {
-        ...formData,
-        dueDate: formData.dueDate!.toISOString(), // Garante que a data está no formato string ISO
-      };
-
-      try {
-        const createResponse = await toast.promise(createTask(createData), {
-          pending: 'Criando nova tarefa...',
-          success: 'Nova tarefa criada com sucesso!',
-          error: 'Falha ao criar a tarefa.',
-        });
-
-        if (createResponse && createResponse.task) {
-          setTasks(prevTasks => [...prevTasks, createResponse.task]);
-        }
-        dispatchDialog({ type: 'CLOSE_ALL' });
-      } catch (error) {
-        console.error('Erro ao adicionar tarefa:', error);
-      }
-    }
-  };
+  if (error) {
+    return <div className={style.errorState}>Erro: {error}</div>;
+  }
 
   return (
-    <>
-
-    <FlickeringGrid 
-        className="absolute inset-0 z-0 size-full"
-        squareSize={4}
-        gridGap={6}
-        color="#14213d"
-        maxOpacity={0.5}
-        flickerChance={0.1}
-      />
     <div className={style.dashboardContainer}>
-
-
+      <BackgroundGrid />
       <header className={style.header}>
-        <h1 className={style.title}>Meu Quadro de Tarefas</h1>
-        <div className={style.filters}>
+        <h1>Meu Painel de Tarefas</h1>
+        <div className={style.actions}>
           <TaskFilter
             filterPriority={filterPriority}
             setFilterPriority={setFilterPriority}
             priorityFilterOptions={priorityFilterOptions}
           />
+          <button className={style.newTaskButton} onClick={() => handleOpenFormForCreate('to-do')}>
+            Nova Tarefa
+          </button>
         </div>
       </header>
-      
-      {loading ? ( 
-        <Spinner/>
-      ): (       
-        <TaskBoard
-        tasks={processedTasks}
-        onDetailsClick={handleDetailsClick}
-        onEditClick={handleEditClick}
-        onDeleteClick={handleDeleteClick}
-        onAddTask={handleAddTask}
-        onTaskStatusChange={handleTaskStatusChange}
-      />
-      )}
-      
-      <DeleteTaskDialog
-        isOpen={dialogState.delete.isOpen}
-        onOpenChange={() => dispatchDialog({ type: 'CLOSE_ALL' })}
-        task={dialogState.delete.task}
-        onConfirm={handleConfirmDelete}
-      />
+
+      <main className={style.mainContent}>
+        {isLoading ? (
+          <Spinner size={50} color="#FFF" text="Carregando tarefas..." />
+        ) : (
+          <TaskBoard
+            tasks={processedTasks}
+            onAddTask={handleOpenFormForCreate}
+            onDeleteClick={handleOpenDeleteConfirm}
+            onEditClick={handleOpenFormForEdit}
+            onDetailsClick={handleOpenDetails}
+            onTaskStatusChange={handleTaskStatusChange}
+          />
+        )}
+      </main>
 
       <TaskFormDialog
-        isOpen={dialogState.form.isOpen}
-        onOpenChange={() => dispatchDialog({ type: 'CLOSE_ALL' })}
-        taskToEdit={dialogState.form.task}
-        initialStatus={dialogState.form.initialStatus}
-        onSubmit={handleFormSubmit}
+        isOpen={isFormOpen}
+        onOpenChange={setIsFormOpen}
+        taskToEdit={taskToEdit}
+        initialStatus={initialStatusForNewTask}
+        onSubmit={handleSubmitForm}
       />
 
       <TaskDetailsDialog
-        isOpen={dialogState.details.isOpen}
-        onOpenChange={() => dispatchDialog({ type: 'CLOSE_ALL' })}
-        task={dialogState.details.task}
-        onEditClick={handleEditClick}
-        onDeleteClick={handleDeleteClick}
+        isOpen={isDetailsOpen}
+        onOpenChange={setIsDetailsOpen}
+        task={taskForDetails}
+        onEditClick={handleOpenFormForEdit}
+        onDeleteClick={handleOpenDeleteConfirm}
+      />
+
+      <DeleteTaskDialog
+        isOpen={isDeleteConfirmOpen}
+        onOpenChange={setIsDeleteConfirmOpen}
+        task={taskToDelete}
+        onConfirm={handleConfirmDelete}
       />
     </div>
-    </>
   );
-};
+}
 
 export default DashboardPage;

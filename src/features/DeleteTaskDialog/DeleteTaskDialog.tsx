@@ -24,12 +24,11 @@ function DeleteTaskDialog({ isOpen, onOpenChange, task, onConfirm }: DeleteTaskD
 
   const handleConfirm = () => {
     onConfirm(task);
-    onOpenChange(false); // Fecha o modal após a confirmação
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent>
+      <DialogContent className={style.dialogContent}>
         <DialogHeader>
           <DialogTitle>Confirmar Exclusão</DialogTitle>
           <DialogDescription>
@@ -38,7 +37,7 @@ function DeleteTaskDialog({ isOpen, onOpenChange, task, onConfirm }: DeleteTaskD
         </DialogHeader>
         <DialogFooter>
           <DialogClose asChild>
-            <button className={style.cancelButton}>Cancelar</button>
+            <button type="button" className={style.cancelButton}>Cancelar</button>
           </DialogClose>
           <button onClick={handleConfirm} className={style.confirmButton}>Excluir</button>
         </DialogFooter>

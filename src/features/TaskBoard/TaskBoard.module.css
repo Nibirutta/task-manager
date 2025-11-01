@@ -3,14 +3,11 @@
   gap: 2rem;
   padding: 2rem;
   
-  /* Permite que o board ocupe o espaço disponível e role horizontalmente */
   overflow-x: auto;
   height: 100%;
-  
-  /* Melhora a experiência de rolagem em touchscreens */
+
   -webkit-overflow-scrolling: touch;
 
-  /* Estilização da barra de rolagem */
   scrollbar-width: thin;
   scrollbar-color: var(--column-header-bg) var(--column-bg);
 }

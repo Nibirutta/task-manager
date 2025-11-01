@@ -8,7 +8,6 @@
   position: relative;
 
   overflow: auto;
-  -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   scrollbar-color: var(--column-header-bg) var(--column-bg);
   &::-webkit-scrollbar {

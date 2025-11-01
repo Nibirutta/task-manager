@@ -3,10 +3,10 @@ import style from './TaskColumn.module.css';
 import type {  TaskStatus, TaskType } from '../../types/taskServiceTypes';
 import { Plus } from 'lucide-react';
 import { dropTargetForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
-import TaskCard from '../TaskCard/TaskCard'; // Importe o TaskCard aqui
+import TaskCard from '../TaskCard/TaskCard';
 import type { ExpirationStatus } from '../../utils/getTaskStatus';
 
-// Adicione as props que o TaskCard precisa
+
 type IProcessedTask = TaskType & {
   expirationStatus: ExpirationStatus;
   formattedDueDate: string;
@@ -15,10 +15,9 @@ type IProcessedTask = TaskType & {
 interface TaskColumnProps {
   title: string;
   status: TaskStatus;
-  tasks: IProcessedTask[]; // Recebe o array de tarefas
+  tasks: IProcessedTask[]; 
   isDraggingOver: boolean;
   onAddTask: (status: TaskStatus) => void;
-  // Adicione as funções que serão passadas para o TaskCard
   onDetailsClick: (task: TaskType) => void;
   onEditClick: (task: TaskType) => void;
   onDeleteClick: (task: TaskType) => void;
@@ -46,7 +45,6 @@ function TaskColumn({
     });
   }, [status]);
 
-  // Combina as classes dinamicamente para o feedback visual
   const columnClasses = `${style.column} ${isDraggingOver ? style.isDraggingOver : ''}`;
 
 
@@ -69,7 +67,7 @@ function TaskColumn({
         </button>
       </header>
 
-      <main className={style.content}>
+      <div className={style.content}>
         {tasks.length > 0 ? (
           
           tasks.map(task => {
@@ -91,7 +89,7 @@ function TaskColumn({
             </p>
           </div>
         )}
-      </main>
+      </div>
     </section>
   );
 }

@@ -192,11 +192,11 @@
     --footer-line-color: var(--color-loblolly-900);
 
     /* Task Card */
-    --card-bg-color: var(--color-bermuda-gray-800);
-    --card-bg-border: var(--color-bermuda-gray-950);
+    --card-bg-color: var(--color-bermuda-gray-950);
+    --card-bg-border: transparent;
 
     --card-title-color: var(--color-loblolly-200);
-    --card-priority-color: var(--color-loblolly-800);
+    --card-priority-color: #03050b;
 
     --card-priority-high-border: #e17a47;
     --card-priority-medium-border: #efc958;
@@ -204,17 +204,17 @@
     --card-priority-urgent-border: #ef3d59;
     --card-priority-optional-border: #344e5c;
 
-    --card-priority-high-bg: #e17a47a3 ;
-    --card-priority-medium-bg: #efc95896 ;
-    --card-priority-low-bg: #41b19c9b;
-    --card-priority-urgent-bg: #ef3d588b ;
-    --card-priority-optional-bg: #344e5c7f;
+    --card-priority-high-bg: #e17a47 ;
+    --card-priority-medium-bg: #efc958 ;
+    --card-priority-low-bg: #41b19c;
+    --card-priority-urgent-bg: #ef3d58 ;
+    --card-priority-optional-bg: #344e5c;
 
-    --card-badge-expired-bg: #f9414464;
+    --card-badge-expired-bg: #b10f1164;
     --card-badge-expired-text: #f94144 ;
-    --card-badge-deadline-bg: #f9c64f62 ;
+    --card-badge-deadline-bg: #85631262 ;
     --card-badge-deadline-text: #f9c74f ;
-    --card-badge-intime-bg: #43aa8b6a ;
+    --card-badge-intime-bg: #096e4e6a ;
     --card-badge-intime-text: #43aa8b;
 
     --card-delete-btn-color: #fa3a3a; 
@@ -225,12 +225,12 @@
     /* Task Column*/
     --column-bg: #14213d;
     --column-border: transparent;
-    --column-border-hover: #fca311;
-    --column-header-bg: #fca311 ;
-    --column-title-font: 'Lato', sans-serif;
+    --column-border-hover: var(--color-web-orange-500);
+    --column-header-bg: var(--color-web-orange-500) ;
+  
     --column-title-color: #14213d;
-    --column-empty-color: rgba(255, 255, 255, 0.2);
-    --column-dragging-color: #0a111f ;
+    --column-empty-color: var(--color-bermuda-gray-400);
+    --column-dragging-color: var(--color-bermuda-gray-950) ;
 
     /* Task Filter */
     --task-filter-trigger-bg-color: ;

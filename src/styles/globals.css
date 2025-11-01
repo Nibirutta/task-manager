@@ -30,6 +30,10 @@
   --dev-card-contact-font: "Lato", sans-serif;
 
   --cta-title-font: "Lato", sans-serif;
+    --footer-title-font: "Playfair", serif;
+  --footer-info-font: "Lato", sans-serif;
+  
+  /* login page*/
 
   --input-field-label-font: "Poppins", sans-serif;
   --input-field-placeholder-font: "IBM", sans-serif;
@@ -46,11 +50,14 @@
   --fpd-description-font: RedHat, monospace;
   --fpd-title-font: Lato, sans-serif;
   --register-title-font: "Orbitron", sans-serif;
-  --footer-title-font: "Playfair", serif;
-  --footer-info-font: "Lato", sans-serif;
+
+  /* * dashboard */
 
   --card-title-font: "Lato", sans-serif;
   --card-priority-font: "Lato", sans-serif;
+  --column-title-font: 'Lato', sans-serif;
+
+  
 }
 
 @theme {
