@@ -1,6 +1,5 @@
 
-import * as AuthServiceTypes from '../../types/authServiceTypes'
-import * as ProfileServiceTypes from '../../types/profileServiceTypes'
+import * as AccountServiceTypes from '../../types/AccountServiceTypes'
 import * as TaskServiceTypes from '../../types/taskServiceTypes'
 
 
@@ -14,8 +13,7 @@ type APIErrorType = {
 
 
 export {
-    AuthServiceTypes,
-    ProfileServiceTypes,
+    AccountServiceTypes,
     TaskServiceTypes,
     type APIErrorType
 }

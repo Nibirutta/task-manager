@@ -2,7 +2,7 @@
 
 import { baseURL } from "../../../utils/urlApi";
 import type { APIErrorType } from "../APITypes";
-import { requestRefresh } from "../services/authService";
+import { requestRefresh } from "../services/accountService";
 import { dispatchAuthEvent } from "./authEvent";
 
 // Variável no escopo do módulo para armazenar o token de acesso em memória.
@@ -38,16 +38,17 @@ const apiFetch = async (endpoint: string, options: RequestInit = {}): Promise<an
 
 	const headers = new Headers(options.headers || {});
 
-	// Adiciona o token de autorização ao header se ele existir.
 	if (accessToken) {
 		headers.append('Authorization', `Bearer ${accessToken}`);
 	}
 
-	// Garante que estamos sempre enviando e aceitando JSON
+
 	if (options.body) {
 		headers.append('Content-Type', 'application/json');
 	}
 	headers.append('Accept', 'application/json');
+	headers.append('Credentials', 'include');
+
 
 	const response = await fetch(`${baseURL}${endpoint}`, {
 		...options,

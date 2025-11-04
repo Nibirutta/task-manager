@@ -9,8 +9,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import SubmitBtn from "../../components/SubmitBtn/SubmitBtn";
 import { CheckCheckIcon, Lock, ShieldCheck } from "lucide-react";
-import { requestNewPassword } from "../../api/Task API/services/authService";
-import type { ResetPasswordRequestTypes } from "../../types/authServiceTypes";
+import { requestNewPassword } from "../../api/Task API/services/accountService";
+import type { ResetPasswordRequestTypes } from "../../types/AccountTypes";
 
 const resetPasswordSchema = z
   .object({

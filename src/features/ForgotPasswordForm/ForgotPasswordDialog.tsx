@@ -19,7 +19,7 @@ import InputField from "../../components/InputField/InputField";
 import SubmitBtn from "../../components/SubmitBtn/SubmitBtn";
 
 import style from "./ForgotPasswordDialog.module.css";
-import { requestPasswordResetEmail } from "../../api/Task API/services/authService";
+import { requestPasswordResetEmail } from "../../api/Task API/services/accountService";
 
 const forgotPasswordSchema = z.object({
   email: z.email({ error: "Por favor, insira um e-mail válido." })

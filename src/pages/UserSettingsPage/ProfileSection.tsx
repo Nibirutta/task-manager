@@ -6,9 +6,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import useAuth from "../../hooks/useAuth";
-import { requestUpdateProfileName } from "../../api/Task API/services/profileService";
 import InputField from "../../components/InputField/InputField";
 import SubmitBtn from "../../components/SubmitBtn/SubmitBtn";
+import { requestUpdateAccount } from "../../api/Task API/services/accountService";
 
 const profileSchema = z.object({
   name: z
@@ -41,16 +41,17 @@ function ProfileSection() {
 
   const onSubmit = async (data: ProfileFormInputs) => {
     try {
-      const updatedUserInfo = await toast.promise(
-        requestUpdateProfileName({ name: data.name }),
+      const response = await toast.promise(
+        requestUpdateAccount({ name: data.name,
+         }),
         {
           pending: "Atualizando seu nome...",
           success: "Nome atualizado com sucesso!",
           error: "Não foi possível atualizar o nome. Tente novamente.",
         }
       );
-      updateUser(updatedUserInfo);
-      reset({ name: updatedUserInfo.name });
+      updateUser(response.profile);
+      reset({ name: response.profile.name });
     } catch (error) {
       console.error("Falha ao atualizar o nome:", error);
 

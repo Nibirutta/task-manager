@@ -2,16 +2,19 @@ type themeType = 'default' | 'neon-flow' | 'cloudy-focus' | 'after-hours' | 'for
 
 type languageType = 'pt-BR' | 'en-US';
 
+type notificationType = {
+	notificationType: 'email' | 'push' | 'none'
+	isActivated: boolean
+}
+
 
 type PreferencesTypes = {
 	theme: themeType
 	language: languageType
-	notification: {
-		email: boolean
-	}
+	notification: notificationType
 }
 
-type UserInfoTypes = {
+type ProfileTypes = {
 		name: string,
 		preferences: PreferencesTypes,
 		userCreatedAt: string,
@@ -30,7 +33,7 @@ type RegisterRequestTypes = {
 
 type RegisterResponseTypes = {
 
-	userInfo: UserInfoTypes;
+	profile: ProfileTypes;
 	accessToken: string;
 }
 
@@ -41,12 +44,12 @@ type LoginRequestTypes = {
 }
 
 type LoginResponseTypes =  {
-	userInfo: UserInfoTypes;
+	profile: ProfileTypes;
 	accessToken: string;
 }
 
 type RefreshResponseTypes = {
-	userInfo: UserInfoTypes;
+	profile: ProfileTypes;
 	accessToken: string;
 }
 
@@ -54,13 +57,19 @@ type LogoutResponseTypes = {
 	message: string
 }
 
-type CredentialRequestTypes = {
+type UpdateAccountRequestTypes = {
 	email?: string
 	password?: string
+	name?: string
+	language?: languageType
+	theme?: themeType
+	notification?: notificationType
 }
 
-type CredentialResponseTypes = {
-	userInfo: UserInfoTypes
+type UpdateAccountResponseTypes = {
+	
+	profile: ProfileTypes;
+	accessToken: string;
 }
 
 type ResetRequestTypes = {
@@ -92,15 +101,15 @@ export type {
 	LoginResponseTypes,
 	RefreshResponseTypes,
 	LogoutResponseTypes,
-	CredentialRequestTypes,
-	CredentialResponseTypes,
+	UpdateAccountRequestTypes,
+	UpdateAccountResponseTypes,
 	ResetRequestTypes,
 	ResetResponseTypes,
 	ResetPasswordRequestTypes,
 	ResetPasswordResponseTypes,
 	DeleteAccountResponseTypes,
 	PreferencesTypes,
-	UserInfoTypes,
+	ProfileTypes,
 	themeType,
 	languageType
 }

@@ -9,7 +9,7 @@ import { AtSign, CircleCheck, IdCard, Shield, ShieldCheck, Tag} from "lucide-rea
 
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
-import { requestRegister } from "../../api/Task API/services/authService";
+import { requestRegister } from "../../api/Task API/services/accountService";
 
 const registerSchema = z.object({
   username: z

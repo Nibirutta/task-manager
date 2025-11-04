@@ -60,11 +60,9 @@ function LoginForm() {
           success: 'Login realizado com sucesso! Redirecionando...',
           error: 'Usuário ou senha inválidos. Tente novamente.'
         },
-
-        {
-          onClose: () => navigate("/dashboard")
-        }
       );
+      navigate("/dashboard");
+      console.log('navegando pra dashboard')
     } catch (error) {
       console.error("Falha no fluxo de login:", error);
     }

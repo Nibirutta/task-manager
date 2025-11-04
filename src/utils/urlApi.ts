@@ -23,10 +23,12 @@ const logoutRoute = {
     route : '/account/logout'
 }
 
-const credentialRoute = {
+const updateAccountRoute = {
     method: 'PATCH',
-    route : '/account/credential'
+    route : '/account'
 }
+
+
 
 const resetRequestRoute = { 
     method: 'POST',
@@ -43,32 +45,6 @@ const deleteAccountRoute = {
     route : '/account'
 }
 
-/* Profile Routes */
-
-const getProfileRoute = {
-    method: 'GET',
-    route : '/profile'
-}
-
-const updateProfileNameRoute = {
-    method: 'PATCH',
-    route : '/profile/name'
-}
-
-const updateProfileLanguageRoute = {
-    method: 'PATCH',
-    route : '/profile/language'
-}
-
-const updateProfileThemeRoute = {
-    method: 'PATCH',
-    route : '/profile/theme'
-}
-
-const updateProfileNotificationRoute = {
-    method: 'PATCH',
-    route : '/profile/notification'
-}
 
 
 /* Task Routes */
@@ -101,17 +77,13 @@ export {
     loginRoute,
     refreshRoute,
     logoutRoute,
+    updateAccountRoute,
     resetRequestRoute,
     resetPasswordRoute,
     deleteAccountRoute,
-    credentialRoute,
     getTasksRoute,
     createTaskRoute,
     updateTaskRoute,
     deleteTaskRoute,
-    getProfileRoute,
-    updateProfileNameRoute,
-    updateProfileLanguageRoute,
-    updateProfileThemeRoute,
-    updateProfileNotificationRoute
+
 }

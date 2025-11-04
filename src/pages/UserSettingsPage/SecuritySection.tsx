@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "react-toastify";
 
-import { requestCredential } from "../../api/Task API/services/authService"; 
+import { requestUpdateAccount } from "../../api/Task API/services/accountService"; 
 import InputField from "../../components/InputField/InputField";
 import SubmitBtn from "../../components/SubmitBtn/SubmitBtn";
 import { Lock, Mail, Shield, ShieldCheck } from "lucide-react";
@@ -57,14 +57,15 @@ export function SecuritySection() {
   const onPasswordChange = async (data: PasswordFormData) => {
     try {
       const response = await toast.promise(
-        requestCredential({ password: data.newPassword }),
+        requestUpdateAccount({ password: data.newPassword,
+         }),
         {
         pending: "Alterando sua senha...",
         success: "Senha alterada com sucesso!",
         error: "Falha ao alterar a senha. Verifique sua senha atual.",
         }
       );
-      updateUser(response.userInfo);
+      updateUser(response.profile);
       resetPasswordForm();
     } catch (error) {
       console.error("Falha ao alterar a senha:", error);
@@ -73,12 +74,13 @@ export function SecuritySection() {
 
   const onEmailChange = async (data: EmailFormData) => {
     try {
-      const response = await toast.promise(requestCredential({ email: data.email }), {
+      const response = await toast.promise(requestUpdateAccount( {
+        email: data.email,}), {
         pending: "Alterando seu e-mail...",
         success: "E-mail alterado com sucesso! O estado global foi atualizado.",
         error: "Falha ao alterar o e-mail. Tente novamente.",
       });
-      updateUser(response.userInfo);
+      updateUser(response.profile);
       resetEmailForm();
     } catch (error) {
       console.error("Falha ao alterar o e-mail:", error);

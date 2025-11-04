@@ -1,8 +1,8 @@
 import Spinner from "../../components/Spinner/Spinner";
 import usePreferences from "../../hooks/usePreferences";
 import { Label } from "../../lib/Reui/label/label";
-import type { languageType, themeType } from "../../types/authServiceTypes";
 import { ToggleSwitch } from "flowbite-react";
+import type { languageType, themeType } from "../../types/AccountServiceTypes";
 
 export function PreferencesSection() {
   const {
@@ -105,12 +105,12 @@ export function PreferencesSection() {
             </h4>
 
             <ToggleSwitch
-              checked={preferences?.notification?.email ?? false}
+              checked={preferences?.notification?.isActivated ?? false}
               sizing="md"
               onChange={(checked) => updateEmailNotification(checked)}
               disabled={isUpdating}
               label={
-                preferences?.notification?.email ? "Ativado" : "Desativado"
+                preferences?.notification?.isActivated ? "Ativado" : "Desativado"
               }
             />
           </div>

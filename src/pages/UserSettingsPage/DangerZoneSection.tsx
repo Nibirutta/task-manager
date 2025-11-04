@@ -11,8 +11,8 @@ import {
   DialogFooter,
   DialogClose,
 } from "../../lib/Reui/modal/modal";
-import InputField from "../../components/InputField/InputField"; // Usando seu InputField
-import SubmitBtn from "../../components/SubmitBtn/SubmitBtn"; // Usando seu SubmitBtn
+import InputField from "../../components/InputField/InputField"; 
+import SubmitBtn from "../../components/SubmitBtn/SubmitBtn"; 
 import { ShieldAlert } from "lucide-react";
 
 export function DangerZoneSection() {
@@ -33,15 +33,14 @@ export function DangerZoneSection() {
       success: "Sua conta foi deletada com sucesso. Você será deslogado.",
       error: "Ocorreu um erro ao deletar sua conta. Tente novamente.",
     });
-    // O logout já é tratado pelo AuthContext, então não precisamos fechar o modal manualmente.
-    // Se a operação falhar, o modal permanece aberto para nova tentativa.
+
   };
 
   const onOpenChange = (open: boolean) => {
     if (!open) {
       setConfirmationInput("");
     }
-    setIsModalOpen(open);
+        setIsModalOpen(open);
   };
 
   return (

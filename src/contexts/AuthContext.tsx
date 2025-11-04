@@ -1,18 +1,19 @@
 import { createContext, useState, type ReactNode, useEffect, useMemo, useCallback } from 'react';
 
-import { requestLogin, requestRefresh, requestLogout, requestDeleteAccount } from '../api/Task API/services/authService';
-import type { LoginRequestTypes, UserInfoTypes } from '../types/authServiceTypes';
+import { requestLogin, requestRefresh, requestLogout, requestDeleteAccount } from '../api/Task API/services/accountService';
+
 import { addAuthEventListener } from '../api/Task API/client/authEvent';
 import { setAccessToken } from '../api/Task API/client/apiClient';
+import type { LoginRequestTypes, ProfileTypes } from '../types/AccountServiceTypes';
 
 
 type IAuthContext  = {
 	isAuthenticated: boolean;
-	user: UserInfoTypes | null;
+	user: ProfileTypes | null;
 	isLoading: boolean;
 	login: (data: LoginRequestTypes) => Promise<void>;
 	logout: () => void;
-	updateUser: (newUserInfo: UserInfoTypes) => void;
+	updateUser: (newUserInfo: ProfileTypes) => void;
 	deleteAccount: () => Promise<void>;
 }
 
@@ -23,7 +24,7 @@ const AuthContext = createContext<IAuthContext | undefined>(undefined);
 
 //  componente que vai gerenciar todo o estado de autenticação.
 function AuthProvider({ children }: { children: ReactNode }) {
-	const [user, setUser] = useState<UserInfoTypes | null>(null);
+	const [user, setUser] = useState<ProfileTypes | null>(null);
 	const [isLoading, setIsLoading] = useState<boolean>(true); 
 
 	const logout = useCallback(async () => {
@@ -45,7 +46,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
 		const checkAuthStatus = async () => {
 			try {
 				const response = await requestRefresh(); 
-				setUser(response.userInfo);
+				setUser(response.profile);
 				setAccessToken(response.accessToken); // Define o token no apiClient
 				
 			// eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -69,9 +70,9 @@ function AuthProvider({ children }: { children: ReactNode }) {
 
 		// Listener para atualizar o perfil quando o token é renovado em background
 		const handleUpdateProfile = (event: Event) => {
-			const customEvent = event as CustomEvent<UserInfoTypes>;
+			const customEvent = event as CustomEvent<ProfileTypes>;
 			if (customEvent.detail) {
-				setUser(customEvent.detail);
+				setUser(customEvent.detail); 
 			}
 		};
 
@@ -83,7 +84,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
 	const login = useCallback(async (data: LoginRequestTypes) => {
 		try {
 			const response = await requestLogin(data);
-			setUser(response.userInfo);
+			setUser(response.profile);
 			setAccessToken(response.accessToken); // Define o token no apiClient
 			
 
@@ -106,7 +107,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
 		}
 	}, []);
 
-	const updateUser = useCallback((newUserInfo: UserInfoTypes) => {
+	const updateUser = useCallback((newUserInfo: ProfileTypes) => {
 		setUser(newUserInfo);
 	}, []);
 

@@ -8,19 +8,10 @@ import {
 } from "react";
 import { toast } from "react-toastify";
 import useAuth from "../hooks/useAuth";
-import type {
-  PreferencesTypes,
-  themeType,
-  languageType,
-  UserInfoTypes,
-} from "../types/authServiceTypes";
 
-import {
-  requestUpdateProfileLanguage,
-  requestUpdateProfileTheme,
-  requestUpdateProfileNotification,
-} from "../api/Task API/services/profileService";
+import { requestUpdateAccount } from "../api/Task API/services/accountService";
 import { handleApiError } from "../utils/handleApiError";
+import type { languageType, PreferencesTypes, themeType, UpdateAccountResponseTypes } from "../types/AccountServiceTypes";
 
 interface IPreferencesContext {
   preferences: PreferencesTypes | null;
@@ -35,7 +26,8 @@ const defaultPreferences: PreferencesTypes = {
   theme: "default",
   language: "pt-BR",
   notification: {
-    email: true,
+    notificationType: "email",
+    isActivated: true
   },
 };
 
@@ -61,12 +53,12 @@ function PreferencesProvider({ children }: { children: ReactNode }) {
 
   // Função genérica para atualizações
   const handleUpdate = useCallback(
-    async (updateFn: () => Promise<UserInfoTypes>) => {
+    async (updateFn: () => Promise<UpdateAccountResponseTypes>) => {
       setIsUpdating(true);
       try {
-        const updatedUser = await updateFn();
-        // Atualiza o estado global no AuthContext
-        updateUser(updatedUser);
+        const response = await updateFn();
+        // Atualiza o estado global no AuthContext com o novo perfil
+        updateUser(response.profile);
         toast.success("Preferência atualizada!");
       } catch (error) {
         // Usa o handler centralizado para exibir a mensagem de erro da API ou uma padrão.
@@ -80,26 +72,23 @@ function PreferencesProvider({ children }: { children: ReactNode }) {
 
   const updateTheme = useCallback(
     async (newTheme: themeType) => {
-      await handleUpdate(() => requestUpdateProfileTheme({ theme: newTheme }));
+      await handleUpdate(() => requestUpdateAccount({ theme: newTheme }));
     },
     [handleUpdate]
   );
 
   const updateLanguage = useCallback(
     async (newLanguage: languageType) => {
-      await handleUpdate(() => requestUpdateProfileLanguage({ language: newLanguage }));
+      await handleUpdate(() => requestUpdateAccount({ language: newLanguage,
+      }));
     },
     [handleUpdate]
   );
 
   const updateEmailNotification = useCallback(
     async (activate: boolean) => {
-      await handleUpdate(() =>
-        requestUpdateProfileNotification({
-          notificationType: "email",
-          activate,
-        })
-      );
+      const notification = { notificationType: "email" as const, isActivated: activate };
+      await handleUpdate(() => requestUpdateAccount({ notification }));
     },
     [handleUpdate]
   );

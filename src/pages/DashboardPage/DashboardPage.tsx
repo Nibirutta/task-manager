@@ -117,8 +117,7 @@ function DashboardPage() {
       };
       apiCall = updateTask(payload, id);
     } else {
-      // Na criação, garantimos que dueDate seja uma string, conforme a API exige.
-      // O formulário já define um valor padrão (new Date()), então data.dueDate sempre existirá.
+
       apiCall = createTask({ ...data, dueDate: data.dueDate!.toISOString() });
     }
 

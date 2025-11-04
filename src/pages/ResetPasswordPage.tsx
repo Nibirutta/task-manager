@@ -8,7 +8,7 @@ import { Shield, ShieldCheck } from "lucide-react";
 
 import InputField from "../components/InputField/InputField";
 import SubmitBtn from "../components/SubmitBtn/SubmitBtn";
-import { requestNewPassword } from "../api/Task API/services/authService";
+import { requestNewPassword } from "../api/Task API/services/accountService";
 import Spinner from "../components/Spinner/Spinner";
 
 // Schema de validação para o formulário
