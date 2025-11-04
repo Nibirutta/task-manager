@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { draggable } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import { ClockAlert, ClockFading, ClockPlus, FilePenLine, Flag, MoreHorizontal, Trash2 } from 'lucide-react';
+import { motion } from 'framer-motion';
 import style from './TaskCard.module.css';
 
 
@@ -48,7 +49,15 @@ function TaskCard({ task, onDetailsClick, onDeleteClick, onEditClick }: TaskCard
 
   return (
 
-    <div ref={ref} className={cardClasses}>
+    <motion.div
+      ref={ref}
+      className={cardClasses}
+      layout // Esta é a mágica para animar a reorganização!
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.2 }}
+    >
       <header className={style.header}>
           <div className={`${style.priority} ${style[priorityClass]}`}>
             <Flag size={14} />
@@ -116,7 +125,7 @@ function TaskCard({ task, onDetailsClick, onDeleteClick, onEditClick }: TaskCard
           </button>
         </PopoverTaskCard>
       </footer>
-    </div>
+    </motion.div>
   );
 }
 

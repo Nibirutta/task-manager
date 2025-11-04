@@ -2,6 +2,7 @@ import  { memo, useEffect, useRef } from 'react';
 import style from './TaskColumn.module.css';
 import type {  TaskStatus, TaskType } from '../../types/taskServiceTypes';
 import { Plus } from 'lucide-react';
+import { AnimatePresence } from 'framer-motion';
 import { dropTargetForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import TaskCard from '../TaskCard/TaskCard';
 import type { ExpirationStatus } from '../../utils/getTaskStatus';
@@ -68,20 +69,18 @@ function TaskColumn({
       </header>
 
       <div className={style.content}>
-        {tasks.length > 0 ? (
-          
-          tasks.map(task => {
-            return (
-              <TaskCard 
-                key={task.id}
-                task={task} 
-                onDetailsClick={onDetailsClick} 
-                onEditClick={onEditClick} 
-                onDeleteClick={onDeleteClick} 
-              />
-            );
-          })
-        ) : (
+        <AnimatePresence>
+          {tasks.length > 0 ? (
+            tasks.map(task => (
+                <TaskCard 
+                  key={task.id}
+                  task={task} 
+                  onDetailsClick={onDetailsClick} 
+                  onEditClick={onEditClick} 
+                  onDeleteClick={onDeleteClick} 
+                />
+            ))
+          ) : (
           <div className={style.emptyState}>
             <p>Arraste suas tarefas para cá</p>
             <p>
@@ -89,6 +88,7 @@ function TaskColumn({
             </p>
           </div>
         )}
+        </AnimatePresence>
       </div>
     </section>
   );

@@ -1,6 +1,6 @@
 .dialogContent{
-    max-width: 380px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+    max-width: 480px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     background-color: var(--task-form-dialog-bg);
     border-radius: 2rem ;
     backdrop-filter: blur(5px);
@@ -31,26 +31,30 @@
     font-family: var(--task-form-dialog-description-font);
 }
 
-
-
-
 .form {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 1.5rem;
     padding: 1rem;
+    width: 100%;
 }
 
 .formField {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
     gap: 0.5rem;
+    width: 100%;
 }
 
 .formLabel {
     font-size: 1.6rem;
     font-weight: 500;
-    color: var(--task-form-dialog-header-bg);
+    color: var(--task-form-item-label-color);
+    font-family: var(--task-form-item-label-font);
 }
 
 .formInput {
@@ -62,39 +66,67 @@
     font-size: 1.4rem;
     font-weight: 400;
     padding: 0.5rem;
-    background-color: var(--input);
-    border: 1px solid var(--border);
-    color: var(--foreground);
+    background-color: var(--task-form-input-bg);
+    border: 1px solid var(--task-form-input-border-color);
+    color: var(--task-form-input-text-color);
+    font-family: var(--task-form-input-text-font);
     transition: all 0.2s ease-in-out;
 }
 
-.selectItem{
-    height: 2rem;
-    font-size: 1.4rem;
-    font-weight: 400;
-        border-radius: 0.5rem;
-    padding: 0.5rem;
-    background-color: var(--input);
-    border: 1px solid var(--border);
-    color: var(--foreground);
-    transition: all 0.2s ease-in-out;
+.selectTrigger {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+    height: 45px;
+    font-family: var(--task-form-select-trigger-text-font);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    background-color: var(--task-form-select-trigger-bg);
+    border: 1px solid var(--task-form-select-trigger-border-color);
+    color: var(--task-form-select-trigger-text-color);
     cursor: pointer;
-    margin-bottom: 0.5rem;
+    transition: all 0.2s ease-in-out;
 
-    &:hover, &:focus{
-        border: 1px solid var(--primary);
-        background-color: var(--primary);
-        color: var(--primary-foreground);
+    &:hover, &:focus, &:active {
+        border-color: var(--task-form-select-trigger-border-color-hover);
+        background-color: var(--task-form-select-trigger-bg-hover);
+        color: var(--task-form-select-trigger-text-hover);
     }
 }
 
 .selectContent{
     display: flex;
+    justify-content: center;
     align-items: center;
     padding: 1rem;
     gap: 2rem;
-
+    background-color: var(--task-form-select-content-bg);
+    border: 1px solid var(--task-form-select-content-border-color);
 }
+
+
+.selectItem{
+    font-size: 1.6rem;
+    font-weight: 400;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    background-color: var(--task-form-select-item-bg);
+    border: 1px solid var(--task-form-select-item-border-color);
+    color: var(--task-form-select-item-text-color);
+    cursor: pointer;
+    font-family: var(--task-form-select-item-text-font);
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+
+    &:hover, &:focus{
+        border-color:  var(--task-form-select-item-border-color-hover);
+        background-color: var(--task-form-select-item-bg-hover);
+        color: var(--task-form-select-item-text-color-hover);
+    }
+}
+
 
 
 
@@ -105,14 +137,9 @@
     justify-content: space-between;
     align-items: flex-start;
     padding-top: 1rem;
-    gap: 1.5rem;
 }
 
-@media (max-width: 640px) {
-    .formRow {
-        flex-direction: column;
-    }
-}
+
 
 
 .datePickerContainer {
@@ -126,24 +153,26 @@
     width: 100%;
     justify-content: space-between;
     gap: 1rem;
-    background-color: transparent;
-    border: 3px solid var(--task-form-dialog-datepicker-trigger-bg);
+    background-color: var(--task-form-dialog-datepicker-trigger-bg);
+    border: 2px solid var(--task-form-dialog-datepicker-trigger-border);
     color: var(--task-form-dialog-datepicker-trigger-text) ;
     border-radius: 0.5rem;
     padding: 1rem;
     font-size: 1.4rem;
+    font-weight: 400;
+    font-family: var(--task-form-dialog-datepicker-trigger-font);   
     transition: all 0.2s ease-in-out;
     cursor: pointer;
 
     &:hover, &:focus, &:active {
-        border-color: transparent;
-        background-color: var(--task-form-dialog-datepicker-trigger-bg);
+        border-color: var(--task-form-dialog-datepicker-trigger-border-hover) ;
+        background-color: var(--task-form-dialog-datepicker-trigger-bg-hover);
         color: var(--task-form-dialog-datepicker-trigger-text-hover);
     }
 
 }
 
-/* Botão 'X' para limpar a data */
+
 .clearDateButton {
     position: absolute;
     right: 5px;
@@ -163,11 +192,18 @@
 
 
 .calendar {
-    font-size: 2rem; /* Ajuste este valor para aumentar/diminuir o calendário */
+    font-size: 2rem; 
 }
 
+.formBtns{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    padding-top: 1rem;
+}
 
-/* Botão de Cancelar no rodapé do modal */
 .cancelButton {
     padding: 0.8rem 1.5rem;
     border-radius: 1rem;
@@ -177,30 +213,42 @@
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     font-size: 1.4rem;
-    font-family: var(--task-form-dialog-description-font);
+    font-family: var(--task-form-dialog-cancel-button-text-font);
     font-weight: 500;
 
     &:hover, &:focus, &:active {
         background-color: var(--task-form-dialog-cancel-button-bg-hover);
         color: var(--task-form-dialog-cancel-button-text-hover);
-        border-color: var(--task-form-dialog-cancel-button-bg);
+        border-color: var(--task-form-dialog-cancel-button-border-hover);
     }
 }
 
-/* Botão de Submeter/Salvar no rodapé do modal */
+
 .submitButton {
     padding: 0.8rem 1.5rem;
     border-radius: 1rem;
     background-color: var(--task-form-dialog-submit-button-bg);
     color: var(--task-form-dialog-submit-button-text);
+    border: 1px solid var(--task-form-dialog-submit-button-border);
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     font-size: 1.4rem;
-    font-family: var(--task-form-dialog-description-font);
+    font-family: var(--task-form-dialog-submit-button-text-font);
     font-weight: 600;
     
     &:hover, &:focus, &:active {
         background-color: var(--task-form-dialog-submit-button-bg-hover);
-        border-color: var(--task-form-dialog-submit-button-bg);
+        border-color: var(--task-form-dialog-submit-button-border-hover);
+        color: var(--task-form-dialog-submit-button-text-hover);
+    }
+}
+
+@media (max-width: 500px) {
+
+    .dialogContent{
+        width: 280px;
+    }
+    .formRow {
+        flex-direction: column;
     }
 }

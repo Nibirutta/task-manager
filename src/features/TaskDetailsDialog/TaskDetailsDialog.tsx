@@ -5,11 +5,24 @@ import {
   DialogTitle,
   DialogDescription,
   DialogFooter,
-} from '../../lib/Reui/modal/modal';
-import type {  TaskPriority, TaskStatus, TaskType } from '../../types/taskServiceTypes';
-import style from './TaskDetailsDialog.module.css';
-import { Flag, CheckCircle, CircleDotDashed, Hourglass, XCircle, FilePenLine, FileX, Minimize2 } from 'lucide-react';
-import type { ExpirationStatus } from '../../utils/getTaskStatus';
+} from "../../lib/Reui/modal/modal";
+import type {
+  TaskPriority,
+  TaskStatus,
+  TaskType,
+} from "../../types/taskServiceTypes";
+import style from "./TaskDetailsDialog.module.css";
+import {
+  Flag,
+  CheckCircle,
+  CircleDotDashed,
+  Hourglass,
+  XCircle,
+  FilePenLine,
+  FileX,
+  Minimize2,
+} from "lucide-react";
+import type { ExpirationStatus } from "../../utils/getTaskStatus";
 
 type ProcessedTask = TaskType & {
   formattedDueDate: string;
@@ -23,47 +36,124 @@ interface TaskDetailsDialogProps {
   task: TaskType | null;
 }
 
-
-const priorityDetails: Record<TaskPriority, { label: string; icon: React.ReactNode; className: string }> = {
-  urgent: { label: 'Urgente', icon: <Flag size={16} />, className: style.urgent },
-  high: { label: 'Alta', icon: <Flag size={16} />, className: style.high },
-  medium: { label: 'Média', icon: <Flag size={16} />, className: style.medium },
-  low: { label: 'Baixa', icon: <Flag size={16} />, className: style.low },
-  optional: { label: 'Opcional', icon: <Flag size={16} />, className: style.optional },
+const priorityDetails: Record<
+  TaskPriority,
+  { label: string; icon: React.ReactNode; className: string }
+> = {
+  urgent: {
+    label: "Urgente",
+    icon: <Flag size={16} />,
+    className: style.urgent,
+  },
+  high: { label: "Alta", icon: <Flag size={16} />, className: style.high },
+  medium: { label: "Média", icon: <Flag size={16} />, className: style.medium },
+  low: { label: "Baixa", icon: <Flag size={16} />, className: style.low },
+  optional: {
+    label: "Opcional",
+    icon: <Flag size={16} />,
+    className: style.optional,
+  },
 };
 
-const statusDetails: Record<TaskStatus, { label: string; icon: React.ReactNode; className: string }> = {
-  'to-do': { label: 'Pendente', icon: <Hourglass size={16} />, className: style.todo },
+const statusDetails: Record<
+  TaskStatus,
+  { label: string; icon: React.ReactNode; className: string }
+> = {
+  "to-do": {
+    label: "Pendente",
+    icon: <Hourglass size={16} />,
+    className: style.todo,
+  },
 
-  'in-progress': { label: 'Em Progresso', icon: <CircleDotDashed size={16} />, className: style.inprogress },
+  "in-progress": {
+    label: "Em Progresso",
+    icon: <CircleDotDashed size={16} />,
+    className: style.inprogress,
+  },
 
-  'in-review': { label: 'Em Revisão', icon: <XCircle size={16} />, className: style.inreview },
+  "in-review": {
+    label: "Em Revisão",
+    icon: <XCircle size={16} />,
+    className: style.inreview,
+  },
 
-  'done': { label: 'Concluído', icon: <CheckCircle size={16} />, className: style.done },
+  done: {
+    label: "Concluído",
+    icon: <CheckCircle size={16} />,
+    className: style.done,
+  },
 };
 
+const expirationDetails: Record<
+  ExpirationStatus,
+  { label: string; icon: React.ReactNode; className: string }
+> = {
+  "in-time": {
+    label: "Dentro do prazo",
+    icon: <CheckCircle size={16} />,
+    className: style.intime,
+  },
 
-function TaskDetailsDialog({ isOpen, onOpenChange, onEditClick, onDeleteClick, task }: TaskDetailsDialogProps) {
+  deadline: {
+    label: "Ultimo Dia",
+    icon: <XCircle size={16} />,
+    className: style.deadline,
+  },
 
+  expired: {
+    label: "Vencido",
+    icon: <XCircle size={16} />,
+    className: style.expired,
+  },
+};
+
+function TaskDetailsDialog({
+  isOpen,
+  onOpenChange,
+  onEditClick,
+  onDeleteClick,
+  task,
+}: TaskDetailsDialogProps) {
   if (!task) {
     return null;
   }
 
+  const formattedDueDate = (task as ProcessedTask).formattedDueDate;
+  const expirationStatus = (task as ProcessedTask).expirationStatus;
+
   const priority = priorityDetails[task.priority];
   const status = statusDetails[task.status];
+  const expiration = expirationDetails[expirationStatus];
+
+  const taskCreatedDateFormatted = new Date(task.createdAt).toLocaleDateString(
+    "pt-BR",
+    {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    }
+  );
+
+  const taskUpdatedDateFormatted = new Date(task.updatedAt).toLocaleDateString(
+    "pt-BR",
+    {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    }
+  );
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className={style.dialogContent}>
-        <DialogHeader>
+        <DialogHeader className="w-full flex flex-col items-center justify-center">
           <DialogTitle className={style.dialogTitle}>{task.title}</DialogTitle>
-          <DialogDescription className={style.dialogDescription}>
-            
+          <DialogDescription className={style.dialogSubtitle}>
+            {`Tarefa criada em ${taskCreatedDateFormatted}, e modificada pela ultima vez em ${taskUpdatedDateFormatted}.`}
           </DialogDescription>
         </DialogHeader>
 
-        <div className={style.detailsGrid}>
-
+        <div className={style.badges}>
           <div className={style.detailItem}>
             <span className={style.detailLabel}>Status</span>
             <span className={`${style.detailValue} ${status.className}`}>
@@ -81,40 +171,53 @@ function TaskDetailsDialog({ isOpen, onOpenChange, onEditClick, onDeleteClick, t
           </div>
 
           <div className={style.detailItem}>
-            <span className={style.detailLabel}>Data de Vencimento</span>
-            <span className={style.detailValue}>{(task as ProcessedTask).formattedDueDate || 'Sem data'}</span>
+            <span className={style.detailLabel}>{expiration.label}</span>
+            <span className={` ${style.detailValue} ${expiration.className}`}>
+              {expiration.icon}
+              {formattedDueDate}
+            </span>
           </div>
-
         </div>
 
         <div className={style.descriptionSection}>
           <h3 className={style.detailLabel}>Descrição</h3>
           {task.description ? (
-            <p className={style.descriptionText}>
-              {task.description}
-            </p>
-          ): (
+            <p className={style.descriptionText}>{task.description}</p>
+          ) : (
             <p className={style.descriptionText}>
               Nenhuma descrição no momento.
             </p>
           )}
-          </div>
+        </div>
 
-          <DialogFooter className={style.dialogFooter}>
+        <DialogFooter className={style.dialogFooter}>
+          <button
+            title="Editar tarefa"
+            aria-label="Editar tarefa"
+            onClick={() => onEditClick(task)}
+          >
+            <span>Editar</span>
+            <FilePenLine size={16} />
+          </button>
 
-            <button title="Editar tarefa" aria-label='Editar tarefa' onClick={() => onEditClick(task)}>
-              <FilePenLine size={16} />
-            </button>
+          <button
+            title="Deletar tarefa"
+            aria-label="Deletar tarefa"
+            onClick={() => onDeleteClick(task)}
+          >
+            <span>Deletar</span>
+            <FileX size={16} />
+          </button>
 
-            <button title="Deletar tarefa" aria-label='Deletar tarefa' onClick={() => onDeleteClick(task)}>
-              <FileX size={16} />
-            </button>
-
-            <button title="Fechar" aria-label='Fechar' onClick={() => onOpenChange(false)}>
-            < Minimize2 size={16} />
-            </button>
-            
-          </DialogFooter>
+          <button
+            title="Fechar"
+            aria-label="Fechar"
+            onClick={() => onOpenChange(false)}
+          >
+            <span>Fechar</span>
+            <Minimize2 size={16} />
+          </button>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );

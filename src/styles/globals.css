@@ -30,9 +30,9 @@
   --dev-card-contact-font: "Lato", sans-serif;
 
   --cta-title-font: "Lato", sans-serif;
-    --footer-title-font: "Playfair", serif;
+  --footer-title-font: "Playfair", serif;
   --footer-info-font: "Lato", sans-serif;
-  
+
   /* login page*/
 
   --input-field-label-font: "Poppins", sans-serif;
@@ -55,9 +55,29 @@
 
   --card-title-font: "Lato", sans-serif;
   --card-priority-font: "Lato", sans-serif;
-  --column-title-font: 'Lato', sans-serif;
+  --card-subtitle-font: "Lato", sans-serif;
+  --card-description-font: "Lato", sans-serif;
+    --card-description-font: ;
+--card-badges-label-font: ;
+--card-badges-value-font: ;
+    --card-footer-btn-font: ;
 
   
+  --column-title-font: "Lato", sans-serif;
+  --dashboard-page-title-font: "Electrolize", sans-serif;
+  --task-filter-trigger-text-font: "Lato", sans-serif;
+  --task-filter-item-text-font: "Lato", sans-serif;
+
+  --task-form-dialog-title-font: "Electrolize", sans-serif;
+  --task-form-dialog-description-font: "Poppins", sans-serif;
+      --task-form-input-text-font: ;
+          --task-form-item-label-font: ;
+    --task-form-select-trigger-text-font: ;
+    --task-form-select-item-text-font: ;
+    --task-form-dialog-datepicker-trigger-font: ;
+    --task-form-dialog-cancel-button-text-font: ;
+    --task-form-dialog-submit-button-text-font: ;
+
 }
 
 @theme {

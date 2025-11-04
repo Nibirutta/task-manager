@@ -96,7 +96,7 @@ const DialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivEleme
 const DialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     data-slot="dialog-footer"
-    className={cn('flex flex-col-reverse sm:flex-row sm:justify-end pt-5 sm:space-x-2.5', className)}
+    className={cn('flex flex-row sm:justify-end pt-5 sm:space-x-2.5', className)}
     {...props}
   />
 );

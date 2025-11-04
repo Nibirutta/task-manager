@@ -14,6 +14,7 @@ import TaskFormDialog, { type TaskFormValues } from '../../features/TaskFormDial
 import TaskDetailsDialog from '../../features/TaskDetailsDialog/TaskDetailsDialog';
 import DeleteTaskDialog from "../../features/DeleteTaskDialog/DeleteTaskDialog";
 import style from "./DashboardPage.module.css";
+import { FilePlus, RefreshCw } from "lucide-react";
 
 // Tipagem para a tarefa processada, que inclui dados formatados para a UI
 export type IProcessedTask = TaskType & {
@@ -151,20 +152,26 @@ function DashboardPage() {
   }, [fetchTasks, taskForDetails?.id]);
 
   const handleTaskStatusChange = useCallback(async (taskId: string, newStatus: TaskStatus) => {
-    // Encontra a tarefa para obter a prioridade atual, necessária para a API de update
+    const originalTasks = tasks;
+
+    const optimisticTasks = tasks.map(task =>
+      task.id === taskId ? { ...task, status: newStatus } : task
+    );
+    setTasks(optimisticTasks);
+
     const taskToUpdate = tasks.find(task => task.id === taskId);
     if (!taskToUpdate) return;
 
-    await toast.promise(
-      // A API de PATCH espera um objeto completo, então enviamos o status novo e a prioridade existente.
-      updateTask({ status: newStatus, priority: taskToUpdate.priority }, taskId), {
+    try {
+      await updateTask({ status: newStatus, priority: taskToUpdate.priority }, taskId);
+      toast.success('Tarefa movida!'); 
+    } catch (error) {
+      toast.error('Falha ao mover a tarefa. Desfazendo alteração.');
+      setTasks(originalTasks);
+      console.error(error);
+    }
 
-      pending: 'Movendo tarefa...',
-      success: 'Tarefa movida com sucesso!',
-      error: 'Falha ao mover a tarefa.',
-    });
-    fetchTasks();
-  }, [fetchTasks, tasks]);
+  }, [tasks]);
 
   // --- RENDERIZAÇÃO ---
 
@@ -175,23 +182,31 @@ function DashboardPage() {
   return (
     <div className={style.dashboardContainer}>
       <BackgroundGrid />
-      <header className={style.header}>
-        <h1>Meu Painel de Tarefas</h1>
+      <div className={style.header}>
+        <h1 className={style.title}>Meu Painel de Tarefas</h1>
         <div className={style.actions}>
           <TaskFilter
             filterPriority={filterPriority}
             setFilterPriority={setFilterPriority}
             priorityFilterOptions={priorityFilterOptions}
           />
-          <button className={style.newTaskButton} onClick={() => handleOpenFormForCreate('to-do')}>
-            Nova Tarefa
+          <button
+            className={style.newTaskButton}
+            onClick={fetchTasks}
+            disabled={isLoading}
+            aria-label="Atualizar tarefas"
+          >
+            <RefreshCw size={24} className={isLoading ? style.spinning : ''} />
+          </button>
+          <button className={style.newTaskButton}  onClick={() => handleOpenFormForCreate('to-do')} aria-label="Criar Nova Tarefa">
+            < FilePlus size={24} />
           </button>
         </div>
-      </header>
+      </div>
 
-      <main className={style.mainContent}>
+      <div className={style.mainContent}>
         {isLoading ? (
-          <Spinner size={50} color="#FFF" text="Carregando tarefas..." />
+          <Spinner size={50} color="var(--dashboard-page-spinner-color)" text="Carregando tarefas..." />
         ) : (
           <TaskBoard
             tasks={processedTasks}
@@ -202,7 +217,7 @@ function DashboardPage() {
             onTaskStatusChange={handleTaskStatusChange}
           />
         )}
-      </main>
+      </div>
 
       <TaskFormDialog
         isOpen={isFormOpen}

@@ -13,8 +13,6 @@
     --greetings-color-2:  #4679b1;
     --greetings-color-3: #0600ab;
     --greetings-color-4: #d9048e ;
-
-
   
     /* Navbar  */ 
     --navbar-logo-color: var(--color-loblolly-300) ; 
@@ -196,6 +194,12 @@
     --card-bg-border: transparent;
 
     --card-title-color: var(--color-loblolly-200);
+    --card-subtitle-color: var(--color-loblolly-500);
+    --card-description-bg: var(--color-bermuda-gray-400);
+    --card-description-color: var(--color-loblolly-900);
+
+--card-badges-bg: var(--color-black-pearl-800);
+--card-badges-label-color: var(--color-loblolly-300);
     --card-priority-color: #03050b;
 
     --card-priority-high-border: #e17a47;
@@ -217,6 +221,18 @@
     --card-badge-intime-bg: #096e4e6a ;
     --card-badge-intime-text: #43aa8b;
 
+    --card-status-todo-bg: var(--color-loblolly-50);
+    --card-status-inprogress-bg: var(--color-loblolly-100);
+    --card-status-inreview-bg: var(--color-loblolly-200);
+    --card-status-done-bg: var(--color-loblolly-300);
+    
+    --card-footer-btn-bg: var(--color-black-pearl-200);
+    --card-footer-btn-bg-hover: var(--color-black-pearl-900);
+    --card-footer-btn-color: var(--color-loblolly-900);
+    --card-footer-btn-color-hover: var(--color-loblolly-300);
+    --card-footer-btn-border: var(--color-black-pearl-400);
+    --card-footer-btn-border-hover: var(--color-black-pearl-950);
+
     --card-delete-btn-color: #fa3a3a; 
     --card-edit-btn-color:#00cecb;
     --card-details-btn-color: #fbf2c0;
@@ -232,68 +248,125 @@
     --column-empty-color: var(--color-bermuda-gray-400);
     --column-dragging-color: var(--color-bermuda-gray-950) ;
 
+    /* Dashboard Page Actions */
+    --dashboard-page-title-color: var(--color-mercury-300);
+    --dashboard-new-task-btn-bg-color: var(--color-black-pearl-950);
+    --dashboard-new-task-btn-hover-bg-color: var(--color-black-pearl-700);
+    --dashboard-new-task-btn-text-color: var(--color-mercury-300);
+    
+
     /* Task Filter */
-    --task-filter-trigger-bg-color: ;
-    --task-filter-trigger-bg-hover: #1b263b;
-    --task-filter-trigger-bg-sctive: ;
-    --task-filter-trigger-text-color: #e0e1dd;
-    --task-filter-trigger-text-font: 'Lato', sans-serif;
-    --task-filter-trigger-text-hover: #778da9;
-    --task-filter-trigger-text-active: ;
-    --task-filter-trigger-border-color: ;
-    --task-filter-trigger-border-hover: ;
-    --task-filter-trigger-border-active: ;
-    --task-filter-trigger-box-shadow: ;
-    --task-filter-trigger-box-shadow-hover: ;
-    --task-filter-trigger-box-shadow-active: ;
+    --task-filter-trigger-bg-color: var(--color-black-pearl-950) ;
+    --task-filter-trigger-bg-hover: var(--color-black-pearl-700);
+    --task-filter-trigger-bg-sctive: var(--color-black-pearl-500);
+    --task-filter-trigger-text-color: var(--color-mercury-300);
+    --task-filter-trigger-text-hover: var(--color-mercury-200);
+    --task-filter-trigger-text-active: var(--color-mercury-100);
+    --task-filter-trigger-border-color: var(--color-mercury-300);
+    --task-filter-trigger-border-hover: var(--color-mercury-200);
+    --task-filter-trigger-border-active: var(--color-mercury-100);
+    --task-filter-trigger-box-shadow:  rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    --task-filter-trigger-box-shadow-hover:  rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px; 
+    --task-filter-trigger-box-shadow-active: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset ;
 
-    --task-filter-content-bg-color: white;
+    --task-filter-content-bg-color: var(--color-bermuda-gray-700);
 
-    --task-filter-item-bg-color: ;
-    --task-filter-item-bg-hover: ;
-    --task-filter-item-bg-active: ;
-    --task-filter-item-text-color: ;
-    --task-filter-item-text-font: ;
-    --task-filter-item-text-hover: ;
-    --task-filter-item-text-active: ;
-    --task-filter-item-border-color: ;
-    --task-filter-item-border-hover: ;
-    --task-filter-item-border-active: ;
-    --task-filter-item-box-shadow: ;
-    --task-filter-item-box-shadow-hover: ;
-    --task-filter-item-box-shadow-active: ;
+    --task-filter-item-bg-color: var(--color-bermuda-gray-900);
+    --task-filter-item-bg-hover: var(--color-bermuda-gray-800);
+    --task-filter-item-bg-active: var(--color-bermuda-gray-700);
+    --task-filter-item-text-color: var(--color-bermuda-gray-300);
+    --task-filter-item-text-hover: var(--color-bermuda-gray-200);
+    --task-filter-item-text-active: var(--color-bermuda-gray-100);
+    --task-filter-item-border-color: var(--color-bermuda-gray-950);
+    --task-filter-item-border-hover: var(--color-bermuda-gray-900);
+    --task-filter-item-border-active: var(--color-bermuda-gray-800);
+    --task-filter-item-box-shadow:  rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+    --task-filter-item-box-shadow-hover:  rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    --task-filter-item-box-shadow-active: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
 
 
 
     /* Task Form Dialog */ 
 
-    --task-form-dialog-bg: rgba(255, 255, 255, 0.5);
-    --task-form-dialog-header-bg: #1b263b;
-    --task-form-dialog-title-color: #e0e1dd; 
-    --task-form-dialog-title-font: 'Electrolize', sans-serif;
-    --task-form-dialog-description-color: #778da9;
-    --task-form-dialog-description-font: 'Poppins', sans-serif;
+    --task-form-dialog-bg: var(--color-big-stone-200);
+    --task-form-dialog-header-bg: var(--color-big-stone-800);
+    --task-form-dialog-title-color: var(--color-fiord-200); 
+    --task-form-dialog-description-color: var(--color-fiord-100);
+
     
-    --task-form-dialog-datepicker-trigger-bg: #1b263b ;
-    --task-form-dialog-datepicker-trigger-text: #1b263b;
-    --task-form-dialog-datepicker-trigger-text-hover: #e0e1dd;
-    --task-form-dialog-datepicker-clear-button-text: #e0e1dd;
+    --task-form-item-label-color:  var(--color-fiord-700);
+    --task-form-input-bg: var(--color-big-stone-800);
+    --task-form-input-border-color: var(--color-big-stone-950) ;
+    --task-form-input-text-color: var(--color-fiord-200);
+
+    --task-form-select-trigger-bg: var(--color-black-pearl-900) ;
+    --task-form-select-trigger-bg-hover: var(--color-black-pearl-700);
+    --task-form-select-trigger-border-color: var(--color-black-pearl-950) ;
+    --task-form-select-trigger-border-color-hover: var(--color-black-pearl-900) ;
+    --task-form-select-trigger-text-color: var(--color-fiord-200) ;
+    --task-form-select-trigger-text-color-hover: var(--color-fiord-100) ;
+
+    --task-form-select-content-bg:var(--color-black-pearl-400) ;
+    --task-form-select-content-border-color: var(--color-black-pearl-500);
+    --task-form-select-item-bg: var(--color-black-pearl-900) ;
+    --task-form-select-item-bg-hover: var(--color-black-pearl-700) ;
+    --task-form-select-item-text-color: var(--color-mercury-300) ;
+    --task-form-select-item-text-color-hover: var(--color-mercury-100) ;
+    --task-form-select-item-border-color: var(--color-black-pearl-950) ;
+    --task-form-select-item-border-color-hover: var(--color-black-pearl-800) ;
+
+    --task-form-dialog-datepicker-trigger-bg: var(--color-black-pearl-900) ;
+    --task-form-dialog-datepicker-trigger-bg-hover: var(--color-black-pearl-700);
+    --task-form-dialog-datepicker-trigger-border: var(--color-black-pearl-950) ;
+    --task-form-dialog-datepicker-trigger-border-hover: var(--color-black-pearl-900) ;
+    --task-form-dialog-datepicker-trigger-text: var(--color-mercury-300);
+    --task-form-dialog-datepicker-trigger-text-hover: var(--color-mercury-200);
+    --task-form-dialog-datepicker-clear-button-text: var(--color-mercury-100);
 
 
-    --task-form-dialog-cancel-button-bg: transparent;
-    --task-form-dialog-cancel-button-bg-hover: #e0e1dd;
-    --task-form-dialog-cancel-button-text: #0d1b2a;
-    --task-form-dialog-cancel-button-text-hover: #0d1b2a;
-    --task-form-dialog-cancel-button-border: #e0e1dd;
+    --task-form-dialog-cancel-button-bg: var(--color-black-pearl-100);
+    --task-form-dialog-cancel-button-bg-hover: var(--color-black-pearl-300);
+    --task-form-dialog-cancel-button-text: var(--color-fiord-950);
+    --task-form-dialog-cancel-button-text-hover: var(--color-fiord-900);
+    --task-form-dialog-cancel-button-border: var(--color-black-pearl-50);
+    --task-form-dialog-cancel-button-border-hover:var(--color-black-pearl-200) ;
 
-    --task-form-dialog-submit-button-bg: #415a77;
-    --task-form-dialog-submit-button-bg-hover:#0d1b2a;
-    --task-form-dialog-submit-button-text: #e0e1dd;
+    --task-form-dialog-submit-button-bg: var(--color-big-stone-900);
+    --task-form-dialog-submit-button-bg-hover:var(--color-big-stone-700);
+    --task-form-dialog-submit-button-text: var(--color-fiord-200);
+    --task-form-dialog-submit-button-text-hover: var(--color-fiord-100);
+    --task-form-dialog-submit-button-border: var(--color-big-stone-950);
+    --task-form-dialog-submit-button-border-hover: var(--color-big-stone-800) ;
 
-    /* A cor do texto de erro de validação */
-    --task-form-dialog-error-text: var(--destructive);
+    /* date picker  */
+    --date-picker-bg: var(--color-mercury-100);
+    --date-picker-text-color: var(--color-big-stone-900);
+    --date-picker-btn-color: var(--color-big-stone-800);
+    --date-picker-btn-color-hover: var(--color-big-stone-950);
+    --date-picker-weekday-color: var(--color-mercury-800);
+    
+    --date-picker-day-text-color: var(--color-mercury-900);
+    --date-picker-day-hover-bg: var(--color-mercury-800);
+    --date-picker-day-hover-text-color: var(--color-mercury-200);
 
+    --date-picker-day-selected-bg: var(--color-big-stone-800);
+    --date-picker-day-selected-text-color: var(--color-mercury-300);
+    --date-picker-day-selected-outside-text-color: var(--color-mercury-500);
 
+    --date-picker-day-disabled-text-color: var(--color-mercury-300);
+    --date-picker-day-outside-text-color: var(--color-mercury-300);
+    --date-picker-day-focus-ring-color: var(--color-big-stone-500);
+
+    --date-picker-range-middle-bg: var(--color-big-stone-600);
+    --date-picker-range-middle-text-color: var(--color-mercury-100);
+
+    --date-picker-today-indicator-bg: var(--color-web-orange-400);
+    --date-picker-today-indicator-selected-bg: var(--color-web-orange-600);
+    --date-picker-today-indicator-disabled-bg: var(--color-web-orange-200);
+
+    --date-picker-outside-day-selected-bg: #3486c380;
+    --date-picker-outside-day-selected-text-color: #e5eff9;
+    --date-picker-week-number-text-color: #a9bbd0cc;
 
     /* settings page */
 
@@ -328,7 +401,7 @@
     --preferences-theme-btn-text-hover: #778da9;
     --preferences-theme-btn-text-active: ;
     --preferences-theme-btn-text-font: 'Lato', sans-serif;
-
+    
     --security-title-color: #e0e1dd;
     --security-title-font: 'Lato', sans-serif;
     --security-title-shadow: 0 2px 6px #415a77;

@@ -50,7 +50,7 @@ const createTaskFormSchema = (isEditing: boolean) => {
   });
 };
 
-// O tipo dos valores do formulário é inferido a partir do schema (usando o modo de edição, que é o mais abrangente)
+
 type TaskFormValues = z.infer<ReturnType<typeof createTaskFormSchema>>;
 
 // Opções para os selects do formulário
@@ -72,11 +72,10 @@ const statusOptions: { value: TaskStatus; label: string }[] = [
 function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSubmit }: TaskFormDialogProps) {
   const isEditing = taskToEdit !== null;
 
-  // O schema é recriado apenas quando o modo de edição muda
   const taskFormSchema = useMemo(() => createTaskFormSchema(isEditing), [isEditing]);
 
   const form = useForm<TaskFormValues>({
-    resolver: zodResolver(taskFormSchema), // Usa o schema dinâmico
+    resolver: zodResolver(taskFormSchema), 
     defaultValues: {
       title: '',
       description: '',
@@ -91,10 +90,6 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
       form.reset({
         title: taskToEdit.title,
         description: taskToEdit.description ?? '',
-        // Evita a conversão de fuso horário.
-        // A string ISO já está em UTC, e o componente Calendar a interpretará corretamente
-        // sem mudar o dia com base no fuso local.
-        // new Date() preserva o UTC se a string estiver no formato ISO completo (com 'Z').
         dueDate: taskToEdit.dueDate ? new Date(taskToEdit.dueDate) : undefined,
         priority: taskToEdit.priority,
         status: taskToEdit.status,
@@ -113,10 +108,10 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
 
   const handleFormSubmit = (data: TaskFormValues) => {
     if (isEditing) {
-      // Passa os dados do formulário e o ID separadamente
+
       onSubmit(data, taskToEdit!.id);
     } else {
-      // Passa apenas os dados do formulário
+
       onSubmit(data);
     }
   };
@@ -134,7 +129,6 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
         <Form {...form}>
           <form id="task-form" onSubmit={form.handleSubmit(handleFormSubmit)} className={style.form}>
             <FormField
-              
               control={form.control}
               name="title"
               render={({ field }) => (
@@ -155,7 +149,7 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
                 <FormItem className={style.formField}>
                   <FormLabel className={style.formLabel}>Descrição</FormLabel>
                   <FormControl>
-                    <Textarea className='text-2xl bg-input text-foreground' placeholder="Adicione mais detalhes sobre a tarefa..." {...field} />
+                    <Textarea className={style.formInput} placeholder="Adicione mais detalhes sobre a tarefa..." {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -169,8 +163,8 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
                   <FormLabel className={style.formLabel}>Status</FormLabel>
                   <Select onValueChange={field.onChange} value={field.value}>
                     <FormControl>
-                      <SelectTrigger className='text-xl cursor-pointer p-6 bg-input text-foreground'>
-                        <SelectValue className= 'text-foreground' placeholder="Selecione o status" />
+                      <SelectTrigger className={style.selectTrigger}>
+                        <SelectValue placeholder="Selecione o status" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent className={style.selectContent}>
@@ -205,7 +199,7 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
                             </button>
                           </FormControl>
                         </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0">
+                        <PopoverContent className="w-auto p-0 bg-[var(--date-picker-bg)] text-[var(--date-picker-text-color)]">
                           <Calendar
                             className={style.calendar}
                             mode="single"
@@ -240,7 +234,7 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
                     <FormLabel className={style.formLabel}>Prioridade</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
-                        <SelectTrigger className='text-2xl cursor-pointer p-8'>
+                        <SelectTrigger className={style.selectTrigger }>
                           <SelectValue  placeholder="Selecione a prioridade" />
                         </SelectTrigger>
                       </FormControl>
@@ -257,7 +251,7 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
             </div>
           </form>
         </Form>
-        <DialogFooter>
+        <DialogFooter className={style.formBtns}>
           <DialogClose asChild>
             <button type="button" className={style.cancelButton}>Cancelar</button>
           </DialogClose>

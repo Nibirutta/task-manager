@@ -29,13 +29,13 @@ function DeleteTaskDialog({ isOpen, onOpenChange, task, onConfirm }: DeleteTaskD
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className={style.dialogContent}>
-        <DialogHeader>
-          <DialogTitle>Confirmar Exclusão</DialogTitle>
-          <DialogDescription>
+        <DialogHeader className={style.dialogHeader}>
+          <DialogTitle className={style.dialogTitle}>Confirmar Exclusão</DialogTitle>
+          <DialogDescription className={style.dialogDescription}>
             Você tem certeza que deseja excluir a tarefa "{task.title}"? Esta ação não pode ser desfeita.
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter>
+        <DialogFooter className={style.dialogFooter}>
           <DialogClose asChild>
             <button type="button" className={style.cancelButton}>Cancelar</button>
           </DialogClose>
