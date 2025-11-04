@@ -71,13 +71,15 @@ function ProfileSection() {
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="p-8 flex flex-col items-center justify-center w-[400px] gap-8 bg-[var(--login-bg-color)] rounded-2xl border-4 border-[var(--login-border-color)] shadow-[var(--login-shadow-color)]"
+        className="p-8 flex flex-col items-center justify-center w-[280px] lg:w-[400px] gap-8 bg-[var(--login-bg-color)] rounded-2xl border-4 border-[var(--login-border-color)] shadow-[var(--login-shadow-color)]"
       >
         <InputField
           id={nameId}
           label="Nome de Exibição"
           Icon={CaseSensitive}
           type="text"
+          autoComplete="off"
+          
           placeholder="Digite seu novo nome de exibição"
           {...register("name")}
           isValid={!errors.name}

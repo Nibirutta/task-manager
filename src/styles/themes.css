@@ -368,84 +368,75 @@
     --date-picker-outside-day-selected-text-color: #e5eff9;
     --date-picker-week-number-text-color: #a9bbd0cc;
 
+
+    --delete-dialog-bg: var(--color-black-pearl-950);
+    --delete-dialog-border-color: var(--color-black-pearl-900);
+    --delete-dialog-header-bg: var(--color-black-pearl-800);
+    --delete-dialog-title-color: var(--color-loblolly-100); 
+    --delete-dialog-description-color: var(--color-loblolly-500);
+    --delete-dialog-cancel-btn-bg: var(--color-black-pearl-100);
+    --delete-dialog-cancel-btn-bg-hover: var(--color-black-pearl-300);
+    --delete-dialog-cancel-btn-color: var(--color-loblolly-800);
+    --delete-dialog-cancel-btn-color-hover: var(--color-loblolly-900);
+    --delete-dialog-cancel-btn-border: var(--color-black-pearl-50);
+    --delete-dialog-cancel-btn-border: var(--color-black-pearl-200) ;
+    --delete-dialog-confirm-btn-bg: #fa3a3a;
+    --delete-dialog-confirm-btn-hover-bg: #fa3a3a9e ;
+    --delete-dialog-confirm-btn-color: var(--color-loblolly-200);
+    --delete-dialog-confirm-btn-hover-color: var(--color-loblolly-50);
+    --delete-dialog-confirm-btn-border: #fa3a3a98 ;
+    --delete-dialog-confirm-btn-hover-border: #fa3a3a ;
+
     /* settings page */
-
-    --profile-title-color: #e0e1dd;
-    --profile-title-font: 'Lato', sans-serif;
-    --profile-title-shadow: 0 2px 6px #415a77;
-    --profile-subtitle-color: #e0e1dd;
-    --profile-subtitle-font: 'Lato', sans-serif;
+    --profile-title-color: var(--color-mercury-100);
+    --profile-title-shadow: 0 2px 6px var(--color-mercury-300);
+    --profile-subtitle-color: var(--color-mercury-400) ;
     
-    --preferences-title-color: #e0e1dd;
-    --preferences-title-font: 'Lato', sans-serif;
-    --preferences-title-shadow: 0 2px 6px #415a77;
-    --preferences-subtitle-color: #e0e1dd;
-    --preferences-subtitle-font: 'Lato', sans-serif;
+    --preferences-title-color: var(--color-mercury-100);
+    --preferences-title-shadow: 0 2px 6px var(--color-mercury-300);
+    --preferences-subtitle-color: var(--color-mercury-400);
 
-    --preferences-theme-title-color: #e0e1dd;
-    --preferences-theme-title-font: 'Lato', sans-serif;
-    --preferences-theme-title-shadow: 0 2px 6px #415a77;
-    --preferences-theme-box-bg-color: #0d1b2a;
-    --preferences-theme-box-border-color: #1b263b;
-    --preferences-theme-box-shadow: 0 2px 6px #415a77;
-    --preferences-theme-btn-bg-color: #0d1b2a;
-    --preferences-theme-btn-bg-hover: #1b263b;
-    --preferences-theme-btn-bg-active: ;
-    --preferences-theme-btn-border-color: #1b263b;
-    --preferences-theme-btn-border-hover: ;
-    --preferences-theme-btn-border-active: ;
-    --preferences-theme-btn-shadow: ;
-    --preferences-theme-btn-shadow-hover: ;
-    --preferences-theme-btn-shadow-active: ;
-    --preferences-theme-btn-text-color: #e0e1dd;
-    --preferences-theme-btn-text-hover: #778da9;
-    --preferences-theme-btn-text-active: ;
-    --preferences-theme-btn-text-font: 'Lato', sans-serif;
+    --preferences-theme-title-color: var(--color-loblolly-200);
+    --preferences-theme-title-shadow: 0 2px 6px var(--color-loblolly-500);
+    --preferences-theme-box-bg-color: var(--color-black-pearl-700);
+    --preferences-theme-box-border-color: var(--color-black-pearl-900);
+    --preferences-theme-box-shadow:  rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    --preferences-theme-btn-bg-color: var(--color-bermuda-gray-300);
+    --preferences-theme-btn-bg-hover: var(--color-bermuda-gray-800);
+    --preferences-theme-btn-bg-active: var(--color-bermuda-gray-400);
+    --preferences-theme-btn-border-color: var(--color-bermuda-gray-900);
+    --preferences-theme-btn-border-hover: var(--color-bermuda-gray-950) ;
+    --preferences-theme-btn-border-active: var(--color-bermuda-gray-700) ;
+    --preferences-theme-btn-shadow:  rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px; 
+    --preferences-theme-btn-shadow-hover:  rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+    --preferences-theme-btn-shadow-active: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    --preferences-theme-btn-text-color: var(--color-loblolly-800);
+    --preferences-theme-btn-text-hover: var(--color-loblolly-200);
+    --preferences-theme-btn-text-active: var(--color-loblolly-50) ;
     
-    --security-title-color: #e0e1dd;
-    --security-title-font: 'Lato', sans-serif;
-    --security-title-shadow: 0 2px 6px #415a77;
-    --security-subtitle-color: #e0e1dd;
-    --security-subtitle-font: 'Lato', sans-serif;
+    --security-title-color: var(--color-mercury-100);
+    --security-title-shadow: 0 2px 6px var(--color-mercury-300);
+    --security-subtitle-color: var(--color-mercury-400);
 
-    --danger-zone-bg-color: #0d1b2a;
-    --danger-zone-border-color: #1b263b;
-    --danger-zone-shadow: 0 2px 6px #415a77;
-    --danger-zone-title-color: #e0e1dd;
-    --danger-zone-title-font: 'Lato', sans-serif;
-    --danger-zone-title-shadow: 0 2px 6px #415a77;
-    --danger-zone-subtitle-color: #e0e1dd;
-    --danger-zone-subtitle-font: 'Lato', sans-serif;
+    --danger-zone-bg-color: var(--color-web-orange-500);
+    --danger-zone-border-color: var(--color-web-orange-400);
+    --danger-zone-shadow: 0 2px 6px var(--color-web-orange-300);
+    --danger-zone-title-color: var(--color-black-pearl-950);
+    --danger-zone-title-shadow: 0 2px 6px var(--color-black-pearl-800);
+    --danger-zone-subtitle-color: var(--color-black-pearl-900);
 
-    --delete-acc-btn-bg-color: #0d1b2a;
-    --delete-acc-btn-bg-hover: #1b263b;
-    --delete-acc-btn-bg-active: ;
-    --delete-acc-btn-border-color: #1b263b;
-    --delete-acc-btn-border-hover: ;
-    --delete-acc-btn-border-active: ;
-    --delete-acc-btn-shadow: ;
-    --delete-acc-btn-shadow-hover: ;
-    --delete-acc-btn-shadow-active: ;
-    --delete-acc-btn-text-color: #e0e1dd;
-    --delete-acc-btn-text-hover: #778da9;
-    --delete-acc-btn-text-active: ;
-    --delete-acc-btn-text-font: 'Lato', sans-serif;
-
-    --delete-dialog-bg: rgba(255, 255, 255, 0.5);
-    --delete-dialog-border-color: #1b263b;
-    --delete-dialog-header-bg: #1b263b;
-    --delete-dialog-title-color: #e0e1dd; 
-    --delete-dialog-title-font: 'Electrolize', sans-serif;
-    --delete-dialog-description-color: #778da9;
-    --delete-dialog-description-font: 'Poppins', sans-serif;
-    --delete-dialog-cancel-btn-bg: transparent;
-    --delete-dialog-cancel-btn-bg-hover: #e0e1dd;
-    --delete-dialog-cancel-btn-text: #0d1b2a;
-    --delete-dialog-cancel-btn-text-hover: #0d1b2a;
-    --delete-dialog-cancel-btn-border: #e0e1dd;
-    --delete-dialog-cancel-btn-border: ;
-    --delete-dialog-cancel-btn-text-font: 'Lato', sans-serif;
-
+    --danger-zone-btn-bg-color: #fa3a3a ;
+    --danger-zone-btn-bg-hover: #fa3a3a9e;
+    --danger-zone-btn-bg-active: #fa3a3ad2 ;
+    --danger-zone-btn-border-color: #fa3a3a ;
+    --danger-zone-btn-border-hover: #fa3a3a;
+    --danger-zone-btn-border-active: #fa3a3a98 ;
+    --danger-zone-btn-shadow:   rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    --danger-zone-btn-shadow-hover:  rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px ;
+    --danger-zone-btn-shadow-active:  rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset ;
+    --danger-zone-btn-text-color: var(--color-loblolly-200) ;
+    --danger-zone-btn-text-hover: var(--color-loblolly-50) ;
+    --danger-zone-btn-text-active: var(--color-loblolly-100) ;
 
     --reset-form-bg: rgba(255, 255, 255, 0.5);
     --reset-form-border: #1b263b;
@@ -454,11 +445,11 @@
     --reset-form-title-font: 'Electrolize', sans-serif; 
 
     ::-webkit-scrollbar-thumb {
-    background: var(--color-black-pearl-300);
+    background: var(--color-black-pearl-600);
   }
 
   * {
-    scrollbar-color: var(--color-black-pearl-300);
+    scrollbar-color: var(--color-black-pearl-600);
   }
 }
 

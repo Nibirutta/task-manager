@@ -13,7 +13,7 @@ const UserSettingsPage = () => {
 
   // Adiciona um container para melhor espaçamento e layout
   return (
-    <div className="flex flex-col items-center w-full gap-16 py-16">
+    <div className="flex flex-col items-center w-full gap-16">
       <ProfileSection />
       <PreferencesSection />
       <SecuritySection />

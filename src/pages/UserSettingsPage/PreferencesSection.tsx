@@ -39,7 +39,7 @@ export function PreferencesSection() {
             Selecione Seu tema
           </h4>
 
-          <ul className="flex justify-center items-center p-4 gap-8 bg-[var(--preferences-theme-box-bg-color)] border-2 border-[var(--preferences-theme-box-border-color)] rounded-2xl shadow-[var(--preferences-theme-box-shadow)]">
+          <ul className="grid grid-cols-3 justify-center items-center p-4 gap-8 bg-[var(--preferences-theme-box-bg-color)] border-2 border-[var(--preferences-theme-box-border-color)] rounded-2xl shadow-[var(--preferences-theme-box-shadow)]">
             {availableThemes.map((themeOption) => (
               <li key={themeOption}>
                 <input
@@ -68,7 +68,7 @@ export function PreferencesSection() {
 
         <div className="flex items-center h-[124px] justify-center gap-16">
           <div className="flex flex-col  justify-between h-full items-center gap-8">
-            <h4 className="text-xl font-medium font-(family-name:--preferences-theme-title-font) text-[var(--preferences-theme-title-color)] text-shadow-[var(--preferences-theme-title-shadow)] p-4  ">
+            <h4 className="text-3xl font-medium font-(family-name:--preferences-theme-title-font) text-[var(--preferences-theme-title-color)] text-shadow-[var(--preferences-theme-title-shadow)] p-4  ">
               Selecione o idioma
             </h4>
 
@@ -100,7 +100,7 @@ export function PreferencesSection() {
           </div>
 
           <div className="flex flex-col justify-start items-center h-[124px]">
-            <h4 className="text-xl font-medium font-(family-name:--preferences-theme-title-font) text-[var(--preferences-theme-title-color)] text-shadow-[var(--preferences-theme-title-shadow)] p-4   mb-16">
+            <h4 className="text-3xl font-medium font-(family-name:--preferences-theme-title-font) text-[var(--preferences-theme-title-color)] text-shadow-[var(--preferences-theme-title-shadow)] p-4   mb-16">
               Receber notificações por E-mail
             </h4>
 

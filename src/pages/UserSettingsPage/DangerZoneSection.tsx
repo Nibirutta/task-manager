@@ -55,15 +55,16 @@ export function DangerZoneSection() {
 
       <Dialog open={isModalOpen} onOpenChange={onOpenChange}>
         <DialogTrigger asChild>
-          <SubmitBtn
-            title="Deletar Conta"
-            icon={ShieldAlert}
-            className="text-xl cursor-pointer bg-[var(--danger-zone-btn-bg-color)] hover:bg-[var(--danger-zone-btn-bg-hover)] focus:bg-[var(--danger-zone-btn-bg-hover)] active:bg-[var(-delete-acc-btn-bg-active)] border-[var(--danger-zone-btn-border-color)] border-2 hover:border-[var(--danger-zone-btn-border-hover)] focus:border-[var(--danger-zone-btn-border-hover)] active:border-[var(--danger-zone-btn-border-active)] shadow-[var(--danger-zone-btn-shadow)] hover:shadow-[var(--danger-zone-btn-shadow-hover)] focus:shadow-[var(--danger-zone-btn-shadow-hover)] active:shadow-[var(--danger-zone-btn-shadow-active)] text-[var(--danger-zone-btn-text-color)] hover:text-[var(--danger-zone-btn-text-hover)] focus:text-[var(--danger-zone-btn-text-hover)] active:text-[var(--danger-zone-btn-text-active)] font-(family-name:--delete-acc-btn-text-font)
+          <button
+            className="text-xl p-6  flex items-center justify-center cursor-pointer bg-[var(--danger-zone-btn-bg-color)] hover:bg-[var(--danger-zone-btn-bg-hover)] focus:bg-[var(--danger-zone-btn-bg-hover)] active:bg-[var(-delete-acc-btn-bg-active)] border-[var(--danger-zone-btn-border-color)] border-2 hover:border-[var(--danger-zone-btn-border-hover)] focus:border-[var(--danger-zone-btn-border-hover)] active:border-[var(--danger-zone-btn-border-active)] shadow-[var(--danger-zone-btn-shadow)] hover:shadow-[var(--danger-zone-btn-shadow-hover)] focus:shadow-[var(--danger-zone-btn-shadow-hover)] active:shadow-[var(--danger-zone-btn-shadow-active)] text-[var(--danger-zone-btn-text-color)] hover:text-[var(--danger-zone-btn-text-hover)] focus:text-[var(--danger-zone-btn-text-hover)] active:text-[var(--danger-zone-btn-text-active)] font-(family-name:--delete-acc-btn-text-font)
              "
-          />
+          >
+            <ShieldAlert size={24} />
+            Deletar Minha Conta
+          </button>
         </DialogTrigger>
-        <DialogContent className=" p-12 bg-[var(--delete-dialog-bg)] border-[var(--delete-dialog-border-color)]">
-          <DialogHeader className=" w-full py-4 bg-[var(--delete-dialog-header-bg)]">
+        <DialogContent className=" w-[300px] p-12 bg-[var(--delete-dialog-bg)] border-[var(--delete-dialog-border-color)] rounded-xl shadow-[var(--delete-dialog-shadow)]">
+          <DialogHeader className=" rounded-2xl flex flex-col items-center justify-center w-full p-4  bg-[var(--delete-dialog-header-bg)]">
             <DialogTitle className=" text-3xl font-bold text-[var(    --delete-dialog-title-color)] font-(family-name:--delete-dialog-title-font)">
               Você tem certeza absoluta?
             </DialogTitle>
@@ -91,10 +92,11 @@ export function DangerZoneSection() {
               </DialogClose>
               <SubmitBtn
                 type="submit"
-                title="Eu entendo, deletar minha conta"
+                title=" deletar minha conta"
                 disabled={!isConfirmationMatching || isDeleting}
+
                 isLoading={isDeleting}
-                className="text-xl cursor-pointer bg-[var(--danger-zone-btn-bg-color)] hover:bg-[var(--danger-zone-btn-bg-hover)] focus:bg-[var(--danger-zone-btn-bg-hover)] active:bg-[var(-delete-acc-btn-bg-active)] border-[var(--danger-zone-btn-border-color)] border-2 hover:border-[var(--danger-zone-btn-border-hover)] focus:border-[var(--danger-zone-btn-border-hover)] active:border-[var(--danger-zone-btn-border-active)] shadow-[var(--danger-zone-btn-shadow)] hover:shadow-[var(--danger-zone-btn-shadow-hover)] focus:shadow-[var(--danger-zone-btn-shadow-hover)] active:shadow-[var(--danger-zone-btn-shadow-active)] text-[var(--danger-zone-btn-text-color)] hover:text-[var(--danger-zone-btn-text-hover)] focus:text-[var(--danger-zone-btn-text-hover)] active:text-[var(--danger-zone-btn-text-active)] font-(family-name:--delete-acc-btn-text-font)"
+                className=" cursor-pointer rounded text-xl px-4 py-2 bg-[var(--danger-zone-btn-bg-color)] hover:bg-[var(--danger-zone-btn-bg-hover)] focus:bg-[var(--danger-zone-btn-bg-hover)] active:bg-[var(-delete-acc-btn-bg-active)] border-[var(--danger-zone-btn-border-color)] border-2 hover:border-[var(--danger-zone-btn-border-hover)] focus:border-[var(--danger-zone-btn-border-hover)] active:border-[var(--danger-zone-btn-border-active)] shadow-[var(--danger-zone-btn-shadow)] hover:shadow-[var(--danger-zone-btn-shadow-hover)] focus:shadow-[var(--danger-zone-btn-shadow-hover)] active:shadow-[var(--danger-zone-btn-shadow-active)] text-[var(--danger-zone-btn-text-color)] hover:text-[var(--danger-zone-btn-text-hover)] focus:text-[var(--danger-zone-btn-text-hover)] active:text-[var(--danger-zone-btn-text-active)] font-(family-name:--delete-acc-btn-text-font)"
               />
             </DialogFooter>
           </form>

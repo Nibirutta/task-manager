@@ -77,6 +77,21 @@
     --task-form-dialog-datepicker-trigger-font: ;
     --task-form-dialog-cancel-button-text-font: ;
     --task-form-dialog-submit-button-text-font: ;
+        --delete-dialog-description-font: 'Poppins', sans-serif;
+    --delete-dialog-title-font: 'Electrolize', sans-serif;
+    --delete-dialog-confirm-btn-font: 'Lato', sans-serif;
+    --delete-dialog-cancel-btn-text-font: 'Lato', sans-serif;
+
+       --profile-title-font: 'Lato', sans-serif;
+     --profile-subtitle-font: 'Lato', sans-serif;
+      --preferences-title-font: 'Lato', sans-serif;
+    --preferences-subtitle-font: 'Lato', sans-serif;
+        --preferences-theme-title-font: 'Lato', sans-serif;
+    --preferences-theme-btn-text-font: 'Lato', sans-serif;
+    --security-title-font: 'Lato', sans-serif;
+    --security-subtitle-font: 'Lato', sans-serif;
+    --danger-zone-title-font: 'Lato', sans-serif;
+    --danger-zone-subtitle-font: 'Lato', sans-serif;
 
 }
 
