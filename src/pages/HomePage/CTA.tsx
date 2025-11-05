@@ -2,10 +2,15 @@ import { Link } from "react-router";
 import BorderAnimationButton from "../../lib/Nurui/BorderAnimationButton";
 import { LogIn, UserRoundPlus } from "lucide-react";
 
-const CTA = () => {
+type CTAProps = {
+  title: string;
+};
+
+
+const CTA = ( {title}: CTAProps) => {
   return (
     <section className="flex flex-col justify-center items-center p-8 gap-12">
-      <h2 className=" text-4xl xl:text-6xl text-[var(--cta-title-color)] font-(family-name:--cta-title-font) text-shadow-[var(--cta-title-shadow)]"> Pronto pra organizar seus projetos?</h2>
+      <h2 className=" text-4xl xl:text-6xl text-[var(--cta-title-color)] font-(family-name:--cta-title-font) text-shadow-[var(--cta-title-shadow)]"> {title}</h2>
 
       <div className="flex 
       sm:flex-row  flex-col  gap-12 justify-between items-center md:gap-24 p-4">
