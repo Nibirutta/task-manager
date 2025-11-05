@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { draggable } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import { ClockAlert, ClockFading, ClockPlus, FilePenLine, Flag, MoreHorizontal, Trash2 } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -23,15 +23,19 @@ interface TaskCardProps {
 
 function TaskCard({ task, onDetailsClick, onDeleteClick, onEditClick }: TaskCardProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
   const { expirationStatus, formattedDueDate } = task;
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
 
+    // Adicionamos onDragStart e onDrop para controlar o estado 'isDragging'
     return draggable({
       element: el,
       getInitialData: () => ({ type: 'card', task: task }),
+      onDragStart: () => setIsDragging(true),
+      onDrop: () => setIsDragging(false),
     });
   }, [task]);
 
@@ -45,18 +49,20 @@ function TaskCard({ task, onDetailsClick, onDeleteClick, onEditClick }: TaskCard
 
   const priorityClass = `priority-${task.priority}`;
 
-  const cardClasses = `${style.card} ${style[priorityClass] || ''}`;
+  // Adiciona a classe 'isDragging' condicionalmente
+  const cardClasses = `${style.card} ${style[priorityClass] || ''} ${
+    isDragging ? style.isDragging : ''}`;
 
   return (
 
     <motion.div
       ref={ref}
       className={cardClasses}
-      layout // Esta é a mágica para animar a reorganização!
-      initial={{ opacity: 0, y: -20 }}
+      layout="position" // Anima a posição do card
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.9 }}
-      transition={{ duration: 0.2 }}
+      exit={{ opacity: 0, transition: { duration: 0.15 } }}
+      transition={{ duration: 0.2, ease: 'easeOut' }}
     >
       <header className={style.header}>
           <div className={`${style.priority} ${style[priorityClass]}`}>

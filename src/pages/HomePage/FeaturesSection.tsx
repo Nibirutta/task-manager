@@ -1,6 +1,7 @@
 import { BrainCircuit, Fingerprint, NotebookPen, Palette } from "lucide-react";
 import FeaturesCard from "../../components/FeaturesCard/FeaturesCard";
 import style from "./FeaturesSection.module.css";
+import { motion, type Variants } from "framer-motion";
 
 const featuresData = [
     {
@@ -31,6 +32,22 @@ const featuresData = [
     },
   ];
 
+// Variantes de animação para o container (ul) e os itens (li)
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2, // Atraso de 0.2s entre cada item filho
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { y: 20, opacity: 0 }, // Começa 20px para baixo e invisível
+  visible: { y: 0, opacity: 1 }, // Anima para a posição original e visível
+};
+
 
 type FeaturesSectionProps = {
     title: string,
@@ -44,13 +61,19 @@ const FeaturesSection = ({title, subtitle}: FeaturesSectionProps) => {
         <h2 className={style.title}>{title}</h2>
         <p className={style.subtitle}>{subtitle}</p>
 
-        <ul className={style.featuresContainer}>
+        <motion.ul 
+            className={style.featuresContainer}
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.5 }} // A animação ocorre uma vez quando 50% do elemento está visível
+        >
             {featuresData.map((feature) => (
-                <li key={feature.id}>
+                <motion.li key={feature.id} variants={itemVariants}>
                     <FeaturesCard {...feature} />
-                </li>
+                </motion.li>
             ))}
-        </ul>
+        </motion.ul>
     </section>
     );
   };

@@ -5,6 +5,7 @@ import TaskColumn from '../../components/TaskColumn/TaskColumn';
 
 import { monitorForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import type { ExpirationStatus } from '../../utils/getTaskStatus';
+import { motion } from 'framer-motion';
 
 
 const columnsConfig: { id: TaskStatus; title: string }[] = [
@@ -75,7 +76,7 @@ function TaskBoard({
   }, [tasks]);
 
   return (
-    <div className={style.board}>
+    <motion.div className={style.board} layout>
       {columnsConfig.map(column => {
         const columnTasks = tasksByColumn.get(column.id) || [];
         return (
@@ -92,7 +93,7 @@ function TaskBoard({
           />
         );
       })}
-    </div>
+    </motion.div>
   );
 }
 

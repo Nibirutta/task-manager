@@ -5,6 +5,26 @@ import BorderAnimationButton from "../../lib/Nurui/BorderAnimationButton";
 import { LogIn, UserRoundPlus } from "lucide-react";
 import MagnetButton from "../../lib/Nurui/MagnetButton";
 import HeroImage from "../../assets/svg/Hero.svg?react";
+import { motion, type Variants } from "framer-motion";
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
 
 
 
@@ -26,54 +46,59 @@ const HeroSection = ({title, subtitle, developed}: HeroSectionProps) =>{
             blob1Color="var(--hero-bg-color-3)"
             blob2Color="var(--hero-bg-color-4)"
             />
-            <div className={style.heroContent}>
-                <h1 className={style.title}>
+            <motion.div 
+                className={style.heroContent}
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+            >
+                <motion.h1 className={style.title} variants={itemVariants}>
                     {title}
-                </h1>
+                </motion.h1>
 
-                <p className={style.subtitle}>
+                <motion.p className={style.subtitle} variants={itemVariants}>
                     {subtitle}
-                </p>
+                </motion.p>
 
                 
-            <figure className={style.heroImageContainer}>
+            <motion.figure className={style.heroImageContainer} variants={itemVariants}>
                 <HeroImage className={style.heroImage} />
-            </figure>
-                <div className={style.ctaButtons}>
+            </motion.figure>
+                <motion.div className={style.ctaButtons} variants={itemVariants}>
                     <Link to="/register" >
                         <MagnetButton
-                        text="REGISTRAR"
-                        className="transition-all duration-300 ease-in-out"
-                        textFont="var(--cta-btn-font)"
-                        particleCount={360}
-                        attractRadius={1000}
-                        icon={UserRoundPlus}
-                        backgroundColor="var(--cta-button-bg)"
-                        textColor="var(--cta-button-text)"
-                        ballColor="var(--cta-button-ball-color)"
-                        textSize="1.6rem"
+                            text="REGISTRAR"
+                            className="transition-all duration-300 ease-in-out"
+                            textFont="var(--cta-btn-font)"
+                            particleCount={360}
+                            attractRadius={1000}
+                            icon={UserRoundPlus}
+                            backgroundColor="var(--cta-button-bg)"
+                            textColor="var(--cta-button-text)"
+                            ballColor="var(--cta-button-ball-color)"
+                            textSize="1.6rem"
 
                         ></MagnetButton>
                     </Link>
 
                     <Link to="/login">
                         <BorderAnimationButton
-                        text="LOGIN"
-                        className="transition-all duration-300 ease-in-out hover:scale-110 focus:scale-110 active:scale-100"
-                        icon={LogIn}
-                        textFont="var(--cta-btn-font)"
-                        backgroundColor="var(--cta-button-secondary-bg)"
-                        textColor="var(--cta-button-secondary-text)"
-                        textSize="1.6rem"
-                        borderColor1="var(--greetings-color-2)"
-                        borderColor2="var(--greetings-color-4)"
+                            text="LOGIN"
+                            className="transition-all duration-300 ease-in-out hover:scale-110 focus:scale-110 active:scale-100"
+                            icon={LogIn}
+                            textFont="var(--cta-btn-font)"
+                            backgroundColor="var(--cta-button-secondary-bg)"
+                            textColor="var(--cta-button-secondary-text)"
+                            textSize="1.6rem"
+                            borderColor1="var(--greetings-color-2)"
+                            borderColor2="var(--greetings-color-4)"
 
                         ></BorderAnimationButton>
                     </Link>
-                </div>
-                <p className={style.developedText}>{developed}</p>
+                </motion.div>
+                <motion.p className={style.developedText} variants={itemVariants}>{developed}</motion.p>
 
-            </div>
+            </motion.div>
         </section>
     )
 }

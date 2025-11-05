@@ -15,6 +15,26 @@ import TaskDetailsDialog from '../../features/TaskDetailsDialog/TaskDetailsDialo
 import DeleteTaskDialog from "../../features/DeleteTaskDialog/DeleteTaskDialog";
 import style from "./DashboardPage.module.css";
 import { FilePlus, RefreshCw } from "lucide-react";
+import { motion, type Variants } from "framer-motion";
+
+// Variantes para animar o cabeçalho e seus itens em cascata
+const headerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const headerItemVariants: Variants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+  },
+};
 
 // Tipagem para a tarefa processada, que inclui dados formatados para a UI
 export type IProcessedTask = TaskType & {
@@ -181,9 +201,14 @@ function DashboardPage() {
   return (
     <div className={style.dashboardContainer}>
       <BackgroundGrid />
-      <div className={style.header}>
-        <h1 className={style.title}>Meu Painel de Tarefas</h1>
-        <div className={style.actions}>
+      <motion.div
+        className={style.header}
+        variants={headerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.h1 className={style.title} variants={headerItemVariants}>Meu Painel de Tarefas</motion.h1>
+        <motion.div className={style.actions} variants={headerItemVariants}>
           <TaskFilter
             filterPriority={filterPriority}
             setFilterPriority={setFilterPriority}
@@ -200,21 +225,27 @@ function DashboardPage() {
           <button className={style.newTaskButton}  onClick={() => handleOpenFormForCreate('to-do')} aria-label="Criar Nova Tarefa">
             < FilePlus size={24} />
           </button>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       <div className={style.mainContent}>
         {isLoading ? (
           <Spinner size={50} color="var(--dashboard-page-spinner-color)" text="Carregando tarefas..." />
         ) : (
-          <TaskBoard
-            tasks={processedTasks}
-            onAddTask={handleOpenFormForCreate}
-            onDeleteClick={handleOpenDeleteConfirm}
-            onEditClick={handleOpenFormForEdit}
-            onDetailsClick={handleOpenDetails}
-            onTaskStatusChange={handleTaskStatusChange}
-          />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <TaskBoard
+              tasks={processedTasks}
+              onAddTask={handleOpenFormForCreate}
+              onDeleteClick={handleOpenDeleteConfirm}
+              onEditClick={handleOpenFormForEdit}
+              onDetailsClick={handleOpenDetails}
+              onTaskStatusChange={handleTaskStatusChange}
+            />
+          </motion.div>
         )}
       </div>
 

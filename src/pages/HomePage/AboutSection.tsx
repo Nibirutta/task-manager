@@ -1,8 +1,8 @@
 import DevCard from "../../components/DevCard/DevCard";
+import { motion,type  Variants } from "framer-motion";
 
 const devsData = [
   {
-    key: "dev-card-lucino",
     avatar: "/src/assets/imgs/avatar/20250123_165309.jpg",
     name: "Lucino Campos",
     portfolioImage: "/src/assets/imgs/icons/ALucin4do-logo.png",
@@ -25,7 +25,6 @@ const devsData = [
     ],
   },
   {
-    key: "dev-card-lucas",
     avatar: "/src/assets/imgs/avatar/FotoPerfilLucas.jpg",
     name: "Lucas Silva",
     github: "https://github.com/Nibirutta",
@@ -40,6 +39,22 @@ const devsData = [
   },
 ];
 
+const cardContainerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.3,
+    },
+  },
+};
+
+const cardItemVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: { opacity: 1, scale: 1 },
+};
+
+
 type AboutSectionProps = {
   title: string;
   text: string;
@@ -49,23 +64,39 @@ type AboutSectionProps = {
 const AboutSection = ({ title, text }: AboutSectionProps) => {
   return (
     <section className="flex flex-col-reverse  justify-center gap-12 items-center min-h-dvh py-8 w-full" id="about">
-      <div className="flex flex-col xl:flex-row justify-center items-center gap-12  p-4 ">
+      <motion.div 
+        className="flex flex-col xl:flex-row justify-center items-center gap-12  p-4 "
+        variants={cardContainerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         {devsData.map((dev) => (
-          <DevCard {...dev} />
+          <motion.div key={dev.name} variants={cardItemVariants}><DevCard {...dev} /></motion.div>
         ))}
-      </div>
+      </motion.div>
 
       <div className="flex flex-col  items-center justify-center h-full py-12  gap-8 ">
-        <h2
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.8 }}
+          transition={{ duration: 0.5 }}
           className="p-4 text-6xl font-bold text-center text-[var(--about-title-color)] text-shadow-[var(--about-title-shadow)]
             font-(family-name:--about-title-font) "
         >
           {title}
-        </h2>
+        </motion.h2>
 
-        <p className="px-12 text-xl xl:text-3xl font-medium text-[var(--about-text-color)] font-(family-name:--about-text-font)">
+        <motion.p 
+          className="px-12 text-xl xl:text-3xl font-medium text-[var(--about-text-color)] font-(family-name:--about-text-font)"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.8 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           {text}
-        </p>
+        </motion.p>
       </div>
     </section>
   );

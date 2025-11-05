@@ -2,7 +2,7 @@ import  { memo, useEffect, useRef } from 'react';
 import style from './TaskColumn.module.css';
 import type {  TaskStatus, TaskType } from '../../types/taskServiceTypes';
 import { Plus } from 'lucide-react';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { dropTargetForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import TaskCard from '../TaskCard/TaskCard';
 import type { ExpirationStatus } from '../../utils/getTaskStatus';
@@ -57,7 +57,7 @@ function TaskColumn({
   }
 
   return (
-    <section ref={ref} className={columnClasses}>
+    <motion.section ref={ref} className={columnClasses} layout>
       <header className={style.header}>
         <h2 className={style.title}>
           {title}
@@ -90,7 +90,7 @@ function TaskColumn({
         )}
         </AnimatePresence>
       </div>
-    </section>
+    </motion.section>
   );
 }
 
