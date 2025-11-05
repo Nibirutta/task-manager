@@ -147,7 +147,8 @@ function DashboardPage() {
       pending: id ? 'Atualizando tarefa...' : 'Criando tarefa...',
       success: successMessage,
       error: `Falha ao ${id ? 'atualizar' : 'criar'} a tarefa.`,
-    });
+      
+    }  );
 
     setIsFormOpen(false);
     fetchTasks(); // Re-busca as tarefas para atualizar a UI
@@ -183,7 +184,17 @@ function DashboardPage() {
 
     try {
       await updateTask({ status: newStatus, priority: taskToUpdate.priority }, taskId);
-      toast.success('Tarefa movida!'); 
+      toast.success('Tarefa movida!', {
+        autoClose: 2000,
+        position: "bottom-right",
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        
+      }); 
     } catch (error) {
       toast.error('Falha ao mover a tarefa. Desfazendo alteração.');
       setTasks(originalTasks);
