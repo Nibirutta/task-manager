@@ -13,6 +13,8 @@ const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const DashboardPage = lazy(() => import('./pages/DashboardPage/DashboardPage'));
 const UserSettingsPage = lazy(() => import('./pages/UserSettingsPage/UserSettingsPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+const ResetPasswordPage = lazy(() => import('./pages/ResetPasswordPage'));
+
 
 function App() {
   return (
@@ -22,7 +24,10 @@ function App() {
           {/* Rotas Públicas */}
           <Route index element={<HomePage />} />
           <Route path="login" element={<LoginPage />} />
-          <Route path="register" element={<RegisterPage />} />
+          <Route path="register" element={<RegisterPage />}
+          />
+          <Route path="reset-password" element={<ResetPasswordPage />} 
+          />
 
           {/* Rotas Protegidas */}
           <Route element={<ProtectedRoute />}>

@@ -11,6 +11,9 @@ import SubmitBtn from "../components/SubmitBtn/SubmitBtn";
 import { requestNewPassword } from "../api/Task API/services/accountService";
 import Spinner from "../components/Spinner/Spinner";
 
+
+
+
 // Schema de validação para o formulário
 const resetPasswordSchema = z
   .object({
@@ -42,6 +45,8 @@ const ResetPasswordPage = () => {
   const [token, setToken] = useState<string | null>(null);
   const [isValidatingToken, setIsValidatingToken] = useState(true);
 
+
+
   const {
     register,
     handleSubmit,
@@ -57,7 +62,7 @@ const ResetPasswordPage = () => {
 
     if (!tokenFromUrl) {
       toast.error("Link de redefinição inválido ou expirado.");
-      navigate("/login");
+      // navigate("/login");
     } else {
       setToken(tokenFromUrl);
     }
@@ -88,10 +93,10 @@ const ResetPasswordPage = () => {
   }
 
   return (
-    <section className="flex flex-col items-center justify-center h-dvh  p-8">
+    <section className="flex flex-col items-center justify-center h-dvh w-full bg-[var(--reset-page-bg)] p-8">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="p-16 flex flex-col items-center justify-center gap-8 bg-[var(--reset-form-bg)] rounded-2xl border-4 border-[var(--reset-form-border)] shadow-[var(--reset-form-shadow)]"
+        className=" p-4 sm:p-16 flex flex-col items-center justify-center gap-8 bg-[var(--reset-form-bg)] rounded-2xl border-4 border-[var(--reset-form-border)] shadow-[var(--reset-form-shadow)]"
       >
         <h2 className="text-3xl font-bold font-(family-name:--reset-form-title-font) text-[var(--reset-form-title-color)] ">
           Redefinir Senha
