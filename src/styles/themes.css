@@ -245,7 +245,7 @@
     --column-header-bg: var(--color-web-orange-500) ;
   
     --column-title-color: #14213d;
-    --column-empty-color: var(--color-bermuda-gray-400);
+    --column-empty-color: var(--color-bermuda-gray-700);
     --column-dragging-color: var(--color-bermuda-gray-950) ;
 
     /* Dashboard Page Actions */
