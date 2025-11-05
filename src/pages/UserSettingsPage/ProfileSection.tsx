@@ -59,8 +59,8 @@ function ProfileSection() {
   };
 
   return (
-    <section className="py-28 mx-auto w-full flex flex-col items-center justify-center gap-8">
-      <div>
+    <section className="py-28 mx-auto w-full flex flex-col items-center justify-center gap-8 border-b-mercury-300 border-b-4">
+      <div className="flex justify-center items-center flex-col p-6">
         <h3 className="text-5xl font-(family-name:--profile-title-font) text-[var(--profile-title-color)]  text-shadow-[var(--profile-title-shadow)] font-medium">
           Perfil Público de {user?.name}
         </h3>

@@ -40,6 +40,8 @@ const apiFetch = async (endpoint: string, options: RequestInit = {}): Promise<an
 
 	if (accessToken) {
 		headers.append('Authorization', `Bearer ${accessToken}`);
+		headers.append('credentials', 'include');
+		
 	}
 
 
@@ -47,10 +49,11 @@ const apiFetch = async (endpoint: string, options: RequestInit = {}): Promise<an
 		headers.append('Content-Type', 'application/json');
 	}
 	headers.append('Accept', 'application/json');
-	headers.append('Credentials', 'include');
+
 
 
 	const response = await fetch(`${baseURL}${endpoint}`, {
+
 		...options,
 		headers,
 	});
@@ -68,7 +71,7 @@ const apiFetch = async (endpoint: string, options: RequestInit = {}): Promise<an
 				const refreshResponse = await requestRefresh();
 				setAccessToken(refreshResponse.accessToken); // Armazena o novo token
 				console.log('Token renovado com sucesso. Tentando a requisição original novamente...', refreshResponse);
-				dispatchAuthEvent('updateProfile', { detail: refreshResponse.userInfo });
+				dispatchAuthEvent('updateProfile', { detail: refreshResponse.profile });
 				
 				// Processa a fila, sinalizando que o refresh foi bem-sucedido.
 				processQueue(null);

@@ -98,7 +98,7 @@ export function SecuritySection() {
         </div>
         <form
           onSubmit={handlePasswordSubmit(onPasswordChange)}
-          className="p-8 flex flex-col items-center justify-center w-[400px] gap-8 bg-[var(--login-bg-color)] rounded-2xl border-4 border-[var(--login-border-color)] shadow-[var(--login-shadow-color)]"
+          className="p-8 flex flex-col items-center justify-center w-[280px] lg:w-[400px] gap-8 bg-[var(--login-bg-color)] rounded-2xl border-4 border-[var(--login-border-color)] shadow-[var(--login-shadow-color)]"
         >
           <InputField
             id="currentPassword"
@@ -141,7 +141,7 @@ export function SecuritySection() {
         </div>
         <form
           onSubmit={handleEmailSubmit(onEmailChange)}
-          className="p-8 flex flex-col items-center justify-center w-[400px] gap-8 bg-[var(--login-bg-color)] rounded-2xl border-4 border-[var(--login-border-color)] shadow-[var(--login-shadow-color)]"
+          className="p-8 flex flex-col items-center justify-center w-[280px] lg:w-[400px] gap-8 bg-[var(--login-bg-color)] rounded-2xl border-4 border-[var(--login-border-color)] shadow-[var(--login-shadow-color)]"
         >
           <InputField
             id="email"

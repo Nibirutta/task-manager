@@ -63,9 +63,9 @@ export function DangerZoneSection() {
             Deletar Minha Conta
           </button>
         </DialogTrigger>
-        <DialogContent className=" w-[300px] p-12 bg-[var(--delete-dialog-bg)] border-[var(--delete-dialog-border-color)] rounded-xl shadow-[var(--delete-dialog-shadow)]">
+        <DialogContent className=" md:w-[400px] w-[300px] p-12 bg-[var(--delete-dialog-bg)] border-[var(--delete-dialog-border-color)] rounded-xl shadow-[var(--delete-dialog-shadow)]">
           <DialogHeader className=" rounded-2xl flex flex-col items-center justify-center w-full p-4  bg-[var(--delete-dialog-header-bg)]">
-            <DialogTitle className=" text-3xl font-bold text-[var(    --delete-dialog-title-color)] font-(family-name:--delete-dialog-title-font)">
+            <DialogTitle className=" text-3xl font-bold text-[var(--delete-dialog-title-color)] font-(family-name:--delete-dialog-title-font)">
               Você tem certeza absoluta?
             </DialogTitle>
             <DialogDescription className="text-xl  text-[var(--delete-dialog-description-color)] font-(family-name:--delete-dialog-description-font)">
@@ -84,7 +84,7 @@ export function DangerZoneSection() {
                 isValid={true}
               />
             </div>
-            <DialogFooter>
+            <DialogFooter className="gap-8">
               <DialogClose asChild>
                 <button type="button" className="px-4 cursor-pointer py-2 rounded bg-[var(--delete-dialog-cancel-btn-bg)] hover:bg-[var(--delete-dialog-cancel-btn-bg-hover)] focus:bg-[var(--delete-dialog-cancel-btn-bg-hover)] text-xl text-[var(--delete-dialog-cancel-btn-text)] hover:text-[var(--delete-dialog-cancel-btn-text-hover)] focus:text-[var(--delete-dialog-cancel-btn-text-hover)] font-(family-name:--delete-dialog-cancel-btn-text-font) border-[var(--delete-dialog-cancel-btn-border)] border-2" disabled={isDeleting}>
                   Cancelar

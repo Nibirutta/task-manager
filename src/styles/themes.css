@@ -401,18 +401,23 @@
     --preferences-theme-box-bg-color: var(--color-black-pearl-700);
     --preferences-theme-box-border-color: var(--color-black-pearl-900);
     --preferences-theme-box-shadow:  rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-    --preferences-theme-btn-bg-color: var(--color-bermuda-gray-300);
+    --preferences-theme-btn-bg-color: var(--color-bermuda-gray-100);
     --preferences-theme-btn-bg-hover: var(--color-bermuda-gray-800);
-    --preferences-theme-btn-bg-active: var(--color-bermuda-gray-400);
+    --preferences-theme-btn-bg-active: var(--color-big-stone-950);
     --preferences-theme-btn-border-color: var(--color-bermuda-gray-900);
     --preferences-theme-btn-border-hover: var(--color-bermuda-gray-950) ;
-    --preferences-theme-btn-border-active: var(--color-bermuda-gray-700) ;
+    --preferences-theme-btn-border-active: var(--color-web-orange-500) ;
     --preferences-theme-btn-shadow:  rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px; 
-    --preferences-theme-btn-shadow-hover:  rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+    --preferences-theme-btn-shadow-hover:  rgba(0, 0, 0, 0.35) 0px 5px 15px;
     --preferences-theme-btn-shadow-active: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
     --preferences-theme-btn-text-color: var(--color-loblolly-800);
     --preferences-theme-btn-text-hover: var(--color-loblolly-200);
-    --preferences-theme-btn-text-active: var(--color-loblolly-50) ;
+    --preferences-theme-btn-text-active: var(--color-web-orange-500) ;
+
+    --switch-thumb-checked-color: var(--color-big-stone-950) ;
+--switch-track-checked-color: var(--color-mercury-100);
+
+    
     
     --security-title-color: var(--color-mercury-100);
     --security-title-shadow: 0 2px 6px var(--color-mercury-300);

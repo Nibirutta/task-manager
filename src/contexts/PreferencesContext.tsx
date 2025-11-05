@@ -56,10 +56,12 @@ function PreferencesProvider({ children }: { children: ReactNode }) {
     async (updateFn: () => Promise<UpdateAccountResponseTypes>) => {
       setIsUpdating(true);
       try {
-        const response = await updateFn();
-        // Atualiza o estado global no AuthContext com o novo perfil
+        const response = await toast.promise(updateFn(), {
+          pending: "Salvando suas preferências...",
+          success: "Preferências salvas com sucesso!",
+          error: "Não foi possível salvar suas preferências. Tente novamente.",
+        });
         updateUser(response.profile);
-        toast.success("Preferência atualizada!");
       } catch (error) {
         // Usa o handler centralizado para exibir a mensagem de erro da API ou uma padrão.
         handleApiError(error, "Não foi possível salvar sua preferência.");
