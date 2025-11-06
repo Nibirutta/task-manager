@@ -15,7 +15,7 @@ import TaskDetailsDialog from '../../features/TaskDetailsDialog/TaskDetailsDialo
 import DeleteTaskDialog from "../../features/DeleteTaskDialog/DeleteTaskDialog";
 import style from "./DashboardPage.module.css";
 import { FilePlus, RefreshCw } from "lucide-react";
-import { motion, type Variants } from "framer-motion";
+import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
 // Variantes para animar o cabeçalho e seus itens em cascata
@@ -243,15 +243,20 @@ function DashboardPage() {
       </motion.div>
 
       <div className={style.mainContent}>
-        {isLoading ? (
-          <Spinner size={50} color="var(--dashboard-page-spinner-color)" text={t('dashboard.loadingTasks')} />
-        ) : (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
+        <AnimatePresence mode="wait">
+          {isLoading ? (
+            <motion.div
+              key="spinner"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Spinner size={50} color="var(--dashboard-page-spinner-color)" text={t('dashboard.loadingTasks')} />
+            </motion.div>
+          ) : (
             <TaskBoard
+              key="task-board"
               tasks={processedTasks}
               onAddTask={handleOpenFormForCreate}
               onDeleteClick={handleOpenDeleteConfirm}
@@ -259,8 +264,8 @@ function DashboardPage() {
               onDetailsClick={handleOpenDetails}
               onTaskStatusChange={handleTaskStatusChange}
             />
-          </motion.div>
-        )}
+          )}
+        </AnimatePresence>
       </div>
 
       <TaskFormDialog

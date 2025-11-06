@@ -79,9 +79,9 @@
 .mainContent {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; /* Alterado para que o TaskBoard comece no topo, se for menor que o min-height */
   flex: 1;
-  min-height: 0; 
+  min-height: 80dvh; 
 }
 
 

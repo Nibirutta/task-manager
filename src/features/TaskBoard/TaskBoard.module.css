@@ -2,9 +2,7 @@
   display: flex;
   gap: 2rem;
   padding: 2rem;
-  
   overflow-x: auto;
-  height: 100%;
 
   -webkit-overflow-scrolling: touch;
 

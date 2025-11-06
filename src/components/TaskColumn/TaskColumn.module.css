@@ -2,11 +2,10 @@
   display: flex;
   flex-direction: column;
   width: 250px;
-  height: 100%; 
   background-color: var(--column-bg); 
   border-radius: 1.5rem;
   flex-shrink: 0;
-  transition: all 0.2s ease-in-out;
+
 }
 .header {
   display: flex;

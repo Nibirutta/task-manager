@@ -1,12 +1,29 @@
 import { useEffect, useMemo, useState } from 'react';
 import style from './TaskBoard.module.css';
 import type {  TaskStatus, TaskType } from '../../types/taskServiceTypes';
-import TaskColumn from '../../components/TaskColumn/TaskColumn';
+import TaskColumn from '../../components/TaskColumn/TaskColumn'; // Assumindo que TaskColumn vai lidar com seu próprio AnimatePresence para os cards
 
 import { monitorForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import type { ExpirationStatus } from '../../utils/getTaskStatus';
-import { motion } from 'framer-motion';
+import { motion,  type Variants } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+
+ const boardVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15, // Atraso entre a animação de cada coluna
+      delayChildren: 0.2,
+    },
+  },
+};
+
+ const columnVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: 'easeOut' } },
+  exit: { opacity: 0, y: 20, transition: { duration: 0.2, ease: 'easeIn' } },
+};
 
 type IProcessedTask = TaskType & {
   expirationStatus: ExpirationStatus;
@@ -65,34 +82,44 @@ function TaskBoard({
   }, [onTaskStatusChange]);
 
   const tasksByColumn = useMemo(() => {
-    const groupedTasks = new Map<TaskStatus, IProcessedTask[]>();
-    // Inicializa o mapa com arrays vazios para todas as colunas definidas
-    columnsConfig.forEach(column => {
-      groupedTasks.set(column.id, []);
-    });
-    // Distribui as tarefas recebidas nas colunas correspondentes
-    tasks.forEach(task => {
-      groupedTasks.get(task.status)?.push(task);
-    });
-    return groupedTasks;
+    const grouped = new Map<TaskStatus, IProcessedTask[]>();
+    columnsConfig.forEach(column => grouped.set(column.id, []));
+    tasks.forEach(task => grouped.get(task.status)?.push(task));
+    return grouped;
   }, [tasks, columnsConfig]);
 
   return (
-    <motion.div className={style.board} layout>
+    <motion.div
+      className={style.board}
+      variants={boardVariants} // Aplica as variantes do board
+      initial="hidden"
+      animate="visible"
+      exit="hidden" // Adiciona animação de saída para o board completo, se ele for desmontado
+      layout // Mantém o layout para redimensionamento/reposicionamento geral do board
+    >
+      {/* AnimatePresence para colunas se elas puderem ser adicionadas/removidas dinamicamente, caso contrário motion.div é suficiente */}
       {columnsConfig.map(column => {
         const columnTasks = tasksByColumn.get(column.id) || [];
         return (
-          <TaskColumn
+          <motion.div
             key={column.id}
-            title={column.title}
-            status={column.id}
-            tasks={columnTasks} 
-            onAddTask={onAddTask}
-            isDraggingOver={draggingOverColumn === column.id}
-            onDetailsClick={onDetailsClick}
-            onEditClick={onEditClick}
-            onDeleteClick={onDeleteClick}
-          />
+            variants={columnVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            layout // Anima a posição da coluna em si
+          >
+            <TaskColumn
+              title={column.title}
+              status={column.id}
+              tasks={columnTasks}
+              onAddTask={onAddTask}
+              isDraggingOver={draggingOverColumn === column.id}
+              onDetailsClick={onDetailsClick}
+              onEditClick={onEditClick}
+              onDeleteClick={onDeleteClick}
+            />
+          </motion.div>
         );
       })}
     </motion.div>
