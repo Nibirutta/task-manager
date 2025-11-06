@@ -52,7 +52,9 @@ function AuthProvider({ children }: { children: ReactNode }) {
 			// eslint-disable-next-line @typescript-eslint/no-unused-vars
 			} catch (error) {
 				console.log('Nenhuma sessão ativa encontrada.');
-				setUser(null);
+				// Se o refresh falhar, pode haver um cookie inválido.
+				// Chamamos o logout para garantir que o backend limpe o cookie.
+				await logout();
 			} finally {
 				// finaliza o carregamento inicial
 				setIsLoading(false);
@@ -78,7 +80,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
 
 		addAuthEventListener('forceLogout', handleForceLogout);
 		addAuthEventListener('updateProfile', handleUpdateProfile);
-	}, []);
+	}, [logout]);
 
 
 	const login = useCallback(async (data: LoginRequestTypes) => {

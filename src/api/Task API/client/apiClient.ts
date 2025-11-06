@@ -39,9 +39,7 @@ const apiFetch = async (endpoint: string, options: RequestInit = {}): Promise<an
 	const headers = new Headers(options.headers || {});
 
 	if (accessToken) {
-		headers.append('Authorization', `Bearer ${accessToken}`);
-		headers.append('credentials', 'include');
-		
+		headers.append('Authorization', `Bearer ${accessToken}`);		
 	}
 
 
@@ -54,6 +52,7 @@ const apiFetch = async (endpoint: string, options: RequestInit = {}): Promise<an
 
 	const response = await fetch(`${baseURL}${endpoint}`, {
 
+		credentials: 'include', 
 		...options,
 		headers,
 	});
