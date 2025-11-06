@@ -41,98 +41,96 @@
 
 
 :root{
-     /* header */
-  --navbar-logo-font: "Orbitron", sans-serif;
-  --navbar-link-font: "Poppins", sans-serif;
-  --greetings-font: "IBM", serif;
-  --user-menu-item--text-font: "Poppins", sans-serif;
+  /* header */
+  --navbar-logo-font: 'Electrolize', sans-serif;
+  --navbar-link-font: 'IBM', sans-serif;
+  --greetings-font: 'Lato', sans-serif;
+  --user-menu-item--text-font: 'IBM', sans-serif;
 
   /* home page */
 
-  --hero-title-font: "Orbitron", sans-serif;
-  --hero-subtitle-font: "Lato", sans-serif;
-  --hero-developed-font: "Lato", sans-serif;
-  --cta-btn-font: "IBM", sans-serif;
+  --hero-title-font: 'Playfair', serif;
+  --hero-subtitle-font: 'IBM', sans-serif;
+  --hero-developed-font: 'Lato', sans-serif;
+  --cta-btn-font: 'Poppins', sans-serif;
 
-  --features-title-font: "Lato", sans-serif;
-  --features-subtitle-font: "Lato", sans-serif;
-  --featcard-title-font: "Lato", sans-serif;
-  --featcard-description-font: "Lato", sans-serif;
+  --features-title-font: 'Poppins', sans-serif;
+  --features-subtitle-font: 'IBM', sans-serif;
+  --featcard-title-font: 'Poppins', sans-serif;
+  --featcard-description-font: 'Lato', sans-serif;
 
-  --demo-title-font: "Lato", sans-serif;
-  --demo-subtitle-font: "Lato", sans-serif;
-  --demo-figcaption-font: "Lato", sans-serif;
-  --about-title-font: "Lato", sans-serif;
-  --about-text-font: "Lato", sans-serif;
-  --dev-card-role-font: "Electrolize", sans-serif;
-  --dev-card-title-font: "Tech", monospace;
-  --dev-card-tech-font: "Lato", sans-serif;
-  --dev-card-description-font: "Lato", sans-serif;
-  --dev-card-stack-font: "Lato", sans-serif;
-  --dev-card-contact-font: "Lato", sans-serif;
+  --demo-title-font: 'Poppins', sans-serif;
+  --demo-subtitle-font: 'IBM', sans-serif;
+  --demo-figcaption-font: 'Lato', sans-serif;
+  --about-title-font: 'Poppins', sans-serif;
+  --about-text-font: 'Lato', sans-serif;
+  --dev-card-role-font: 'IBM', sans-serif;
+  --dev-card-title-font: 'Poppins', sans-serif;
+  --dev-card-tech-font: 'RedHat', monospace;
+  --dev-card-description-font: 'Lato', sans-serif;
+  --dev-card-stack-font: 'RedHat', monospace; /* Assumindo que é para listar tecnologias */
+  --dev-card-contact-font: 'IBM', sans-serif;
 
-  --cta-title-font: "Lato", sans-serif;
-  --footer-title-font: "Playfair", serif;
-  --footer-info-font: "Lato", sans-serif;
+  --cta-title-font: 'Poppins', sans-serif;
+  --footer-title-font: 'IBM', sans-serif;
+  --footer-info-font: 'Lato', sans-serif;
 
   /* login page*/
 
-  --input-field-label-font: "Poppins", sans-serif;
-  --input-field-placeholder-font: "IBM", sans-serif;
-  --input-field-input-font: "Lato", sans-serif;
-  --input-field-error-font: "RedHat", monospace;
-  --input-field-error-font: "Lato", sans-serif;
+  --input-field-label-font: 'IBM', sans-serif;
+  --input-field-placeholder-font: 'Lato', sans-serif;
+  --input-field-input-font: 'IBM', sans-serif;
+  --input-field-error-font: 'Lato', sans-serif;
 
-  --sb-text-font: "Electrolize", sans-serif;
+  --sb-text-font: 'Lato', sans-serif; /* Assumindo que é para texto secundário */
 
-  --login-title-font: "Orbitron", sans-serif;
-  --fpd-description-font: RedHat, monospace;
-  --fpd-title-font: Lato, sans-serif;
-  --register-title-font: "Orbitron", sans-serif;
+  --login-title-font: 'Poppins', sans-serif;
+  --fpd-description-font: 'Lato', sans-serif; /* Forgot Password Description */
+  --fpd-title-font: 'Poppins', sans-serif; /* Forgot Password Title */
+  --register-title-font: 'Poppins', sans-serif;
 
   /* * dashboard */
 
-  --card-title-font: "Lato", sans-serif;
-  --card-priority-font: "Lato", sans-serif;
-  --card-subtitle-font: "Lato", sans-serif;
-  --card-description-font: "Lato", sans-serif;
-    --card-description-font: ;
---card-badges-label-font: ;
---card-badges-value-font: ;
-    --card-footer-btn-font: ;
+  --card-title-font: 'Poppins', sans-serif;
+  --card-priority-font: 'IBM', sans-serif;
+  --card-subtitle-font: 'Lato', sans-serif;
+  --card-description-font: 'Lato', sans-serif;
+  --card-badges-label-font: 'IBM', sans-serif;
+  --card-badges-value-font: 'IBM', sans-serif;
+  --card-footer-btn-font: 'Poppins', sans-serif;
 
   
-  --column-title-font: "Lato", sans-serif;
-  --dashboard-page-title-font: "Electrolize", sans-serif;
-  --task-filter-trigger-text-font: "Lato", sans-serif;
-  --task-filter-item-text-font: "Lato", sans-serif;
+  --column-title-font: 'Poppins', sans-serif;
+  --dashboard-page-title-font: 'Poppins', sans-serif;
+  --task-filter-trigger-text-font: 'IBM', sans-serif;
+  --task-filter-item-text-font: 'Lato', sans-serif;
 
-  --task-form-dialog-title-font: "Electrolize", sans-serif;
-  --task-form-dialog-description-font: "Poppins", sans-serif;
-      --task-form-input-text-font: ;
-          --task-form-item-label-font: ;
-    --task-form-select-trigger-text-font: ;
-    --task-form-select-item-text-font: ;
-    --task-form-dialog-datepicker-trigger-font: ;
-    --task-form-dialog-cancel-button-text-font: ;
-    --task-form-dialog-submit-button-text-font: ;
-        --delete-dialog-description-font: 'Poppins', sans-serif;
-    --delete-dialog-title-font: 'Electrolize', sans-serif;
-    --delete-dialog-confirm-btn-font: 'Lato', sans-serif;
-    --delete-dialog-cancel-btn-text-font: 'Lato', sans-serif;
+  --task-form-dialog-title-font: 'Poppins', sans-serif;
+  --task-form-dialog-description-font: 'Lato', sans-serif;
+  --task-form-input-text-font: 'IBM', sans-serif;
+  --task-form-item-label-font: 'IBM', sans-serif;
+  --task-form-select-trigger-text-font: 'IBM', sans-serif;
+  --task-form-select-item-text-font: 'Lato', sans-serif;
+  --task-form-dialog-datepicker-trigger-font: 'IBM', sans-serif;
+  --task-form-dialog-cancel-button-text-font: 'Poppins', sans-serif;
+  --task-form-dialog-submit-button-text-font: 'Poppins', sans-serif;
+  --delete-dialog-description-font: 'Lato', sans-serif;
+  --delete-dialog-title-font: 'Poppins', sans-serif;
+  --delete-dialog-confirm-btn-font: 'Poppins', sans-serif;
+  --delete-dialog-cancel-btn-text-font: 'Poppins', sans-serif;
 
-    /** settings page */
+  /** settings page */
 
-       --profile-title-font: 'Lato', sans-serif;
-     --profile-subtitle-font: 'Lato', sans-serif;
-      --preferences-title-font: 'Lato', sans-serif;
-    --preferences-subtitle-font: 'Lato', sans-serif;
-        --preferences-theme-title-font: 'Lato', sans-serif;
-    --preferences-theme-btn-text-font: 'Lato', sans-serif;
-    --security-title-font: 'Lato', sans-serif;
-    --security-subtitle-font: 'Lato', sans-serif;
-    --danger-zone-title-font: 'Lato', sans-serif;
-    --danger-zone-subtitle-font: 'Lato', sans-serif;
-        --reset-form-title-font: 'Electrolize', sans-serif; 
+  --profile-title-font: 'Poppins', sans-serif;
+  --profile-subtitle-font: 'IBM', sans-serif;
+  --preferences-title-font: 'Poppins', sans-serif;
+  --preferences-subtitle-font: 'IBM', sans-serif;
+  --preferences-theme-title-font: 'IBM', sans-serif;
+  --preferences-theme-btn-text-font: 'Poppins', sans-serif;
+  --security-title-font: 'Poppins', sans-serif;
+  --security-subtitle-font: 'IBM', sans-serif;
+  --danger-zone-title-font: 'Orbitron', sans-serif; /* Para um toque de alerta tecnológico */
+  --danger-zone-subtitle-font: 'IBM', sans-serif;
+  --reset-form-title-font: 'Poppins', sans-serif;
 
 }
