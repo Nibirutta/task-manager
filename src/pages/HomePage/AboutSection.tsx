@@ -66,8 +66,7 @@ const AboutSection = ({ title, text }: AboutSectionProps) => {
   const translatedDevsData = devsData.map(dev => {
     const devKey = dev.name.split(' ')[0].toLowerCase();     return {
       ...dev,
-      role: t(`homePage.aboutSection.devs.${devKey}.role`),
-      description: t(`homePage.aboutSection.devs.${devKey}.description`),
+      role: t(`homePage.aboutSection.devs.${devKey}.role`)
     };
   });
 
@@ -81,7 +80,7 @@ const AboutSection = ({ title, text }: AboutSectionProps) => {
         viewport={{ once: true, amount: 0.2 }}
       >
         {translatedDevsData.map((dev) => (
-          <motion.div key={dev.name} variants={cardItemVariants}><DevCard {...dev} role={dev.role} description={dev.description} /></motion.div>
+          <motion.div key={dev.name} variants={cardItemVariants}><DevCard {...dev} role={dev.role} /></motion.div>
         ))}
       </motion.div>
 

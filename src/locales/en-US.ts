@@ -36,7 +36,7 @@ export const enUS = {
       project: 'Project',
       frontendRepo: 'Front-end Repository',
       backendRepo: 'Back-end Repository',
-      copyright: '© {{year}} Task Manager. All rights reserved.',
+      copyright: '© {{year}} Task Manager. Open Source.',
     },
   },
 
@@ -105,6 +105,32 @@ export const enUS = {
     },
   },
 
+  // Task Board (Board, Columns, Cards)
+  taskBoard: {
+    columns: {
+      'to-do': 'To Do',
+      'in-progress': 'In Progress',
+      'in-review': 'In Review',
+      done: 'Done',
+    },
+    column: {
+      addTaskLabel: 'Add task in {{title}}',
+      emptyState: {
+        drag: 'Drag your tasks here',
+        create: 'Or create a new one by clicking the',
+      },
+    },
+    card: {
+      deletePopover: 'Delete Task',
+      editPopover: 'Edit Task',
+      detailsPopover: 'View Details',
+      deleteLabel: 'Delete task {{title}}',
+      editLabel: 'Edit task {{title}}',
+      detailsLabel: 'View details for task {{title}}',
+      priority: 'Priority',
+    },
+  },
+
   // Dashboard Page
   dashboard: {
     title: 'My Task Dashboard',
@@ -136,32 +162,6 @@ export const enUS = {
     },
     task: {
       noDueDate: 'No date',
-    },
-  },
-
-  // Task Board (Board, Columns, Cards)
-  taskBoard: {
-    columns: {
-      'to-do': 'To Do',
-      'in-progress': 'In Progress',
-      'in-review': 'In Review',
-      done: 'Done',
-    },
-    column: {
-      addTaskLabel: 'Add task in {{title}}',
-      emptyState: {
-        drag: 'Drag your tasks here',
-        create: 'Or create a new one by clicking the',
-      },
-    },
-    card: {
-      deletePopover: 'Delete Task',
-      editPopover: 'Edit Task',
-      detailsPopover: 'View Details',
-      deleteLabel: 'Delete task {{title}}',
-      editLabel: 'Edit task {{title}}',
-      detailsLabel: 'View details for task {{title}}',
-      priority: 'Priority',
     },
   },
 

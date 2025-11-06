@@ -36,7 +36,7 @@ export const ptBR = {
       project: "Projeto",
       frontendRepo: "Repositório Front-end",
       backendRepo: "Repositório Back-end",
-      copyright: "© {{year}} Task Manager. Todos os direitos reservados.",
+      copyright: "© {{year}} Task Manager. Open Source.",
     },
   },
 
@@ -105,6 +105,32 @@ export const ptBR = {
     },
   },
 
+  // Quadro de Tarefas (Board, Colunas, Cards)
+  taskBoard: {
+    columns: {
+      "to-do": "Pendente",
+      "in-progress": "Em Progresso",
+      "in-review": "Em Revisão",
+      "done": "Concluído",
+    },
+    column: {
+      addTaskLabel: "Adicionar tarefa em {{title}}",
+      emptyState: {
+        drag: "Arraste suas tarefas para cá",
+        create: "Ou crie uma nova clicando no",
+      },
+    },
+    card: {
+      deletePopover: "Deletar Tarefa",
+      editPopover: "Editar Tarefa",
+      detailsPopover: "Ver Detalhes",
+      deleteLabel: "Deletar tarefa {{title}}",
+      editLabel: "Editar tarefa {{title}}",
+      detailsLabel: "Ver detalhes da tarefa {{title}}",
+      priority: "Prioridade",
+    },
+  },
+
   // Página de Dashboard
   dashboard: {
     title: "Meu Painel de Tarefas",
@@ -120,7 +146,55 @@ export const ptBR = {
       low: "Baixa",
       optional: "Opcional",
     },
+    toast: {
+      fetchError: "Falha ao buscar as tarefas.",
+      createPending: "Criando tarefa...",
+      createSuccess: "Tarefa criada com sucesso!",
+      createError: "Falha ao criar a tarefa.",
+      updatePending: "Atualizando tarefa...",
+      updateSuccess: "Tarefa atualizada com sucesso!",
+      updateError: "Falha ao atualizar a tarefa.",
+      deletePending: "Deletando tarefa...",
+      deleteSuccess: "Tarefa deletada com sucesso!",
+      deleteError: "Falha ao deletar a tarefa.",
+      moveSuccess: "Tarefa movida!",
+      moveError: "Falha ao mover a tarefa. Revertendo alteração.",
+    },
+    task: {
+      noDueDate: "Sem data",
+    },
   },
+
+  // Modal de Detalhes da Tarefa
+  detailsDialog: {
+    subtitle: "Tarefa criada em {{createdAt}}, e modificada pela última vez em {{updatedAt}}.",
+    descriptionLabel: "Descrição",
+    noDescription: "Nenhuma descrição no momento.",
+    badges: {
+      status: "Status",
+      priority: "Prioridade",
+      inTime: "No prazo",
+      deadline: "Último Dia",
+      expired: "Atrasada",
+    },
+    footer: {
+      edit: "Editar",
+      editLabel: "Editar tarefa",
+      delete: "Deletar",
+      deleteLabel: "Deletar tarefa",
+      close: "Fechar",
+      closeLabel: "Fechar modal de detalhes",
+    },
+  },
+
+  // Modal de Confirmação de Exclusão
+  deleteDialog: {
+    title: "Confirmar Exclusão",
+    description: "Você tem certeza que deseja deletar a tarefa \"{{title}}\"? Esta ação não pode ser desfeita.",
+    confirmButton: "Deletar",
+    cancelButton: "Cancelar",
+  },
+
   // Formulário de Tarefas (Criação/Edição)
   taskForm: {
     createTitle: "Criar Nova Tarefa",

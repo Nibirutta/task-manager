@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import style from './TaskBoard.module.css';
 import type {  TaskStatus, TaskType } from '../../types/taskServiceTypes';
-import TaskColumn from '../../components/TaskColumn/TaskColumn'; // Assumindo que TaskColumn vai lidar com seu próprio AnimatePresence para os cards
+import TaskColumn from '../../components/TaskColumn/TaskColumn'; 
 
 import { monitorForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import type { ExpirationStatus } from '../../utils/getTaskStatus';
@@ -91,13 +91,13 @@ function TaskBoard({
   return (
     <motion.div
       className={style.board}
-      variants={boardVariants} // Aplica as variantes do board
+      variants={boardVariants}
       initial="hidden"
       animate="visible"
-      exit="hidden" // Adiciona animação de saída para o board completo, se ele for desmontado
-      layout // Mantém o layout para redimensionamento/reposicionamento geral do board
+      exit="hidden" 
+      layout 
     >
-      {/* AnimatePresence para colunas se elas puderem ser adicionadas/removidas dinamicamente, caso contrário motion.div é suficiente */}
+    
       {columnsConfig.map(column => {
         const columnTasks = tasksByColumn.get(column.id) || [];
         return (
