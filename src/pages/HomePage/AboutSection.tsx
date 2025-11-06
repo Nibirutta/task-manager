@@ -1,5 +1,6 @@
 import DevCard from "../../components/DevCard/DevCard";
 import { motion,type  Variants } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const devsData = [
   {
@@ -12,7 +13,6 @@ const devsData = [
     color1: "#05f2db",
     color2: "#00ff00",
     color3: "#d9048e",
-    role: "Front-End",
     stacks: [
       "React",
       "Tailwind",
@@ -34,7 +34,6 @@ const devsData = [
     color1: "#D9E1E4",
     color2: "#F0D264",
     color3: "#2A4D8C",
-    role: "Back-End",
     stacks: ["TypeScript", "Nest-JS", "Mongo-DB", "Rabbit-MQ", "JWT", "RxJS"],
   },
 ];
@@ -62,6 +61,16 @@ type AboutSectionProps = {
 };
 
 const AboutSection = ({ title, text }: AboutSectionProps) => {
+  const { t } = useTranslation();
+
+  const translatedDevsData = devsData.map(dev => {
+    const devKey = dev.name.split(' ')[0].toLowerCase();     return {
+      ...dev,
+      role: t(`homePage.aboutSection.devs.${devKey}.role`),
+      description: t(`homePage.aboutSection.devs.${devKey}.description`),
+    };
+  });
+
   return (
     <section className="flex flex-col-reverse  justify-center gap-12 items-center min-h-dvh py-8 w-full" id="about">
       <motion.div 
@@ -71,8 +80,8 @@ const AboutSection = ({ title, text }: AboutSectionProps) => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        {devsData.map((dev) => (
-          <motion.div key={dev.name} variants={cardItemVariants}><DevCard {...dev} /></motion.div>
+        {translatedDevsData.map((dev) => (
+          <motion.div key={dev.name} variants={cardItemVariants}><DevCard {...dev} role={dev.role} description={dev.description} /></motion.div>
         ))}
       </motion.div>
 

@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import style from './SubmitBtn.module.css';
 import { LoaderCircle, type LucideIcon } from 'lucide-react';
 import type { ButtonHTMLAttributes } from 'react';
+import { useTranslation } from 'react-i18next';
 
 type SubmitBtnProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 	title: string;
@@ -16,6 +17,7 @@ function SubmitBtn({
 	isLoading,
 	...rest
 }: SubmitBtnProps) {
+	const { t } = useTranslation();
 
 	const isDisabled = isLoading || rest.disabled
 
@@ -33,7 +35,7 @@ function SubmitBtn({
 				Icon && <Icon size={28}  />
 			)}
 			<span> 
-				{isLoading ? 'Enviando...' : title}
+				{isLoading ? t('common.sending') : title}
 			</span>
 		</button>
 	);

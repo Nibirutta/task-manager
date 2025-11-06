@@ -1,5 +1,5 @@
-import { useId } from "react";
-import { useForm } from "react-hook-form";
+import { useId, useMemo } from "react";
+import { useForm, type UseFormProps } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "react-toastify";
@@ -10,40 +10,46 @@ import SubmitBtn from "../../components/SubmitBtn/SubmitBtn";
 import useAuth from "../../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import ForgotPasswordDialog from "../ForgotPasswordForm/ForgotPasswordDialog";
+import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 
 
 
 
-const loginSchema = z.object({
-	username: z
-		.string({
-			error: "O nome de usuário é obrigatório.",
-		})
-		.trim()
-		.min(3, "O nome de usuário deve ter no mínimo 3 caracteres.")
-		.max(30, "O nome de usuário não pode ter mais de 30 caracteres.")
-		.regex(/^[a-zA-Z0-9_-]+$/, "Use apenas letras, números e underline '_' ou hífen'-'."),
-	password: z
-		.string({ error: "A senha é obrigatória." })
-		.min(8, "A senha deve ter no mínimo 8 caracteres.")
-		.regex(/[a-z]/, "A senha deve conter ao menos uma letra minúscula.")
-		.regex(/[A-Z]/, "A senha deve conter ao menos uma letra maiúscula.")
-		.regex(/[0-9]/, "A senha deve conter ao menos um número.")
-		.regex(/[^a-zA-Z0-9]/, "A senha deve conter ao menos um caractere especial."),
+// Função que cria o schema de validação com as mensagens traduzidas
+const createLoginSchema = (t: TFunction) => z.object({
+  username: z
+    .string({
+      error: t("validation.username.required"),
+    })
+    .trim()
+    .min(3, t("validation.username.min"))
+    .max(30, t("validation.username.max"))
+    .regex(/^[a-zA-Z0-9_-]+$/, t("validation.username.regex")),
+  password: z
+    .string({ error: t("validation.password.required") })
+    .min(8, t("validation.password.min"))
+    .regex(/[a-z]/, t("validation.password.lowercase"))
+    .regex(/[A-Z]/, t("validation.password.uppercase"))
+    .regex(/[0-9]/, t("validation.password.number"))
+    .regex(/[^a-zA-Z0-9]/, t("validation.password.specialChar")),
 });
 
-type LoginFormInputs = z.infer<typeof loginSchema>;
+type LoginFormInputs = z.infer<ReturnType<typeof createLoginSchema>>;
 
 
 function LoginForm() {
+  const { t } = useTranslation();
+  const loginSchema = useMemo(() => createLoginSchema(t), [t]);
+
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting, isValid },
-  } = useForm<LoginFormInputs>({
+  } = useForm<LoginFormInputs>({ 
     resolver: zodResolver(loginSchema),
     mode: "onTouched",
-  });
+  } as UseFormProps<LoginFormInputs>); // Cast para evitar problemas de tipo com o schema dinâmico
 
   const { login } = useAuth();
   const usernameId = useId();
@@ -56,9 +62,9 @@ function LoginForm() {
       await toast.promise(
         login(data),
         {
-          pending: 'Verificando credenciais...',
-          success: 'Login realizado com sucesso! Redirecionando...',
-          error: 'Usuário ou senha inválidos. Tente novamente.'
+          pending: t('loginPage.toast.pending'),
+          success: t('loginPage.toast.success'),
+          error: t('loginPage.toast.error')
         },
       );
       navigate("/dashboard");
@@ -70,12 +76,12 @@ function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
-      <h2 className={style.title}>Login</h2>
+      <h2 className={style.title}>{t('loginPage.form.title')}</h2>
 
       <InputField
         id={usernameId}
-        label="Username"
-        placeholder="Seu nome de usuário"
+        label={t('loginPage.form.usernameLabel')}
+        placeholder={t('loginPage.form.usernamePlaceholder')}
         Icon={CircleUser}
         {...register("username")}
         isValid={!errors.username}
@@ -85,9 +91,9 @@ function LoginForm() {
 
       <InputField
         id={passwordId}
-        label="Senha"
+        label={t('loginPage.form.passwordLabel')}
         type="password"
-        placeholder="••••••••"
+        placeholder={t('loginPage.form.passwordPlaceholder')}
         Icon={Lock}
         {...register("password")}
         isValid={!errors.password}
@@ -95,7 +101,7 @@ function LoginForm() {
       />
 
       <SubmitBtn
-        title="Entrar"
+        title={t('loginPage.form.submitButton')}
         icon={Send}
         isLoading={isSubmitting}
         disabled={!isValid || isSubmitting}
@@ -103,7 +109,7 @@ function LoginForm() {
 
       <div className={style.redirect}>
         <Link to="/register">
-          <span>Não tenho uma conta</span>
+          <span>{t('loginPage.form.noAccount')}</span>
         </Link>
 
         <ForgotPasswordDialog />

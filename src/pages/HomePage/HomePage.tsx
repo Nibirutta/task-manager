@@ -1,45 +1,44 @@
 import DemoSection from "./DemoSection";
 import AboutSection from "./AboutSection";
 import CTA from "./CTA";
-import { homePageContent } from "./homePageContent";
-import { useEffect } from "react";
+import { useEffect} from "react";
 import HeroSection from "./HeroSection";
 import FeaturesSection from "./FeaturesSection";
+import { useTranslation } from "react-i18next";
 
 const HomePage = () => {
-  useEffect(() => {
-    document.title = homePageContent.meta.title;
-  }, []);
+  const { t } = useTranslation();
 
-  
+  useEffect(() => {
+    document.title = t("homePage.meta.title");
+  }, [t]);
 
   return (
     <>
       <HeroSection
-        title={homePageContent.heroSection.title}
-        subtitle={homePageContent.heroSection.subtitle}
-        developed={homePageContent.heroSection.developed}
+        title={t("homePage.heroSection.title")}
+        subtitle={t("homePage.heroSection.subtitle")}
+        developed={t("homePage.heroSection.developed")}
       />
 
       <FeaturesSection
-        title={homePageContent.featuresSection.title}
-        subtitle={homePageContent.featuresSection.subtitle}
+        title={t("homePage.featuresSection.title")}
+        subtitle={t("homePage.featuresSection.subtitle")}
       />
 
       <DemoSection
-        title={homePageContent.demoSection.title}
-        subtitle={homePageContent.demoSection.subtitle}
-        figcaption={homePageContent.demoSection.figcaption}
+        title={t("homePage.demoSection.title")}
+        subtitle={t("homePage.demoSection.subtitle")}
+        figcaption={t("homePage.demoSection.figcaption")}
       />
 
       <AboutSection
-        title={homePageContent.aboutSection.title}
-        text={homePageContent.aboutSection.text}
+        title={t("homePage.aboutSection.title")}
+        text={t("homePage.aboutSection.text")}
       />
-      <CTA title={homePageContent.ctaSection.title} />
+      <CTA title={t("homePage.ctaSection.title")} />
     </>
   );
 };
 
 export default HomePage;
-

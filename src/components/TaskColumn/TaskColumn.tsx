@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { dropTargetForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import TaskCard from '../TaskCard/TaskCard';
 import type { ExpirationStatus } from '../../utils/getTaskStatus';
+import { useTranslation } from 'react-i18next';
 
 
 type IProcessedTask = TaskType & {
@@ -34,6 +35,7 @@ function TaskColumn({
   onEditClick,
   onDeleteClick
 }: TaskColumnProps) {
+  const { t } = useTranslation();
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -63,7 +65,7 @@ function TaskColumn({
           {title}
           <span className={style.taskCount}>{tasks.length}</span>
         </h2>
-        <button onClick={() => onAddTask(status)} className={style.addButton} aria-label={`Adicionar tarefa em ${title}`}>
+        <button onClick={() => onAddTask(status)} className={style.addButton} aria-label={t('taskBoard.column.addTaskLabel', { title })}>
           <Plus size={18} />
         </button>
       </header>
@@ -82,9 +84,9 @@ function TaskColumn({
             ))
           ) : (
           <div className={style.emptyState}>
-            <p>Arraste suas tarefas para cá</p>
+            <p>{t('taskBoard.column.emptyState.drag')}</p>
             <p>
-              Ou crie uma nova clicando no <Plus size={18} /> 
+              {t('taskBoard.column.emptyState.create')} <Plus size={18} /> 
             </p>
           </div>
         )}

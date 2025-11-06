@@ -16,6 +16,7 @@ import DeleteTaskDialog from "../../features/DeleteTaskDialog/DeleteTaskDialog";
 import style from "./DashboardPage.module.css";
 import { FilePlus, RefreshCw } from "lucide-react";
 import { motion, type Variants } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 // Variantes para animar o cabeçalho e seus itens em cascata
 const headerVariants: Variants = {
@@ -42,16 +43,8 @@ export type IProcessedTask = TaskType & {
   formattedDueDate: string;
 };
 
-const priorityFilterOptions: { value: TaskPriority | 'all'; label: string }[] = [
-  { value: 'all', label: 'Todas' },
-  { value: 'urgent', label: 'Urgente' },
-  { value: 'high', label: 'Alta' },
-  { value: 'medium', label: 'Média' },
-  { value: 'low', label: 'Baixa' },
-  { value: 'optional', label: 'Opcional' },
-];
-
 function DashboardPage() {
+  const { t } = useTranslation();
   // --- ESTADOS DE DADOS E UI ---
   const [tasks, setTasks] = useState<TaskType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -80,28 +73,40 @@ function DashboardPage() {
       const filters = filterPriority === 'all' ? '' : `?priority=${filterPriority}`;
       const fetchedTasks = await getTasks(filters);
       setTasks(fetchedTasks);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Falha ao buscar tarefas.');
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : t('dashboard.toast.fetchError');
+      setError(errorMessage);
+      toast.error(errorMessage);
       console.error(err);
     } finally {
       setIsLoading(false);
     }
-  }, [filterPriority]); // Re-executa a busca quando o filtro de prioridade muda
+  }, [filterPriority, t]); // Re-executa a busca quando o filtro de prioridade muda
 
   // Efeito para buscar as tarefas na montagem do componente e quando o filtro muda
   useEffect(() => {
     fetchTasks();
-  }, [fetchTasks]);
+    document.title = t('dashboard.title');
+  }, [fetchTasks, t]);
+
+  const priorityFilterOptions = useMemo(() => [
+    { value: 'all' as const, label: t('dashboard.priority.all') },
+    { value: 'urgent' as const, label: t('dashboard.priority.urgent') },
+    { value: 'high' as const, label: t('dashboard.priority.high') },
+    { value: 'medium' as const, label: t('dashboard.priority.medium') },
+    { value: 'low' as const, label: t('dashboard.priority.low') },
+    { value: 'optional' as const, label: t('dashboard.priority.optional') },
+  ], [t]);
 
   // --- PROCESSAMENTO DE DADOS (MEMOIZATION) ---
   const processedTasks = useMemo((): IProcessedTask[] => {
     return tasks.map(task => ({
       ...task,
       expirationStatus: getTaskExpirationStatus(task.dueDate),
-      formattedDueDate: task.dueDate ? formatDate(task.dueDate) : 'Sem data',
+      formattedDueDate: task.dueDate ? formatDate(task.dueDate) : t('dashboard.task.noDueDate'),
 
     }));
-  }, [tasks]);
+  }, [tasks, t]);
 
   // --- HANDLERS DE AÇÕES (CRUD) ---
 
@@ -141,18 +146,16 @@ function DashboardPage() {
       apiCall = createTask({ ...data, dueDate: data.dueDate!.toISOString() });
     }
 
-    const successMessage = id ? 'Tarefa atualizada com sucesso!' : 'Tarefa criada com sucesso!';
-
     await toast.promise(apiCall, {
-      pending: id ? 'Atualizando tarefa...' : 'Criando tarefa...',
-      success: successMessage,
-      error: `Falha ao ${id ? 'atualizar' : 'criar'} a tarefa.`,
+      pending: isEditing ? t('dashboard.toast.updatePending') : t('dashboard.toast.createPending'),
+      success: isEditing ? t('dashboard.toast.updateSuccess') : t('dashboard.toast.createSuccess'),
+      error: isEditing ? t('dashboard.toast.updateError') : t('dashboard.toast.createError'),
       
     }  );
 
     setIsFormOpen(false);
     fetchTasks(); // Re-busca as tarefas para atualizar a UI
-  }, [fetchTasks]);
+  }, [fetchTasks, t]);
 
   const handleConfirmDelete = useCallback(async (task: TaskType) => {
     // Fecha o modal de detalhes se estiver aberto para a tarefa sendo deletada
@@ -163,13 +166,13 @@ function DashboardPage() {
     setIsDeleteConfirmOpen(false);
 
     await toast.promise(deleteTask(task.id), {
-      pending: 'Deletando tarefa...',
-      success: 'Tarefa deletada com sucesso!',
-      error: 'Falha ao deletar a tarefa.',
+      pending: t('dashboard.toast.deletePending'),
+      success: t('dashboard.toast.deleteSuccess'),
+      error: t('dashboard.toast.deleteError'),
     });
 
     fetchTasks(); // Re-busca as tarefas para atualizar a UI
-  }, [fetchTasks, taskForDetails?.id]);
+  }, [fetchTasks, taskForDetails?.id, t]);
 
   const handleTaskStatusChange = useCallback(async (taskId: string, newStatus: TaskStatus) => {
     const originalTasks = tasks;
@@ -184,7 +187,7 @@ function DashboardPage() {
 
     try {
       await updateTask({ status: newStatus, priority: taskToUpdate.priority }, taskId);
-      toast.success('Tarefa movida!', {
+      toast.success(t('dashboard.toast.moveSuccess'), {
         autoClose: 2000,
         position: "bottom-right",
         hideProgressBar: true,
@@ -196,12 +199,12 @@ function DashboardPage() {
         
       }); 
     } catch (error) {
-      toast.error('Falha ao mover a tarefa. Desfazendo alteração.');
+      toast.error(t('dashboard.toast.moveError'));
       setTasks(originalTasks);
       console.error(error);
     }
 
-  }, [tasks]);
+  }, [tasks, t]);
 
   // --- RENDERIZAÇÃO ---
 
@@ -218,7 +221,7 @@ function DashboardPage() {
         initial="hidden"
         animate="visible"
       >
-        <motion.h1 className={style.title} variants={headerItemVariants}>Meu Painel de Tarefas</motion.h1>
+        <motion.h1 className={style.title} variants={headerItemVariants}>{t('dashboard.title')}</motion.h1>
         <motion.div className={style.actions} variants={headerItemVariants}>
           <TaskFilter
             filterPriority={filterPriority}
@@ -229,11 +232,11 @@ function DashboardPage() {
             className={style.newTaskButton}
             onClick={fetchTasks}
             disabled={isLoading}
-            aria-label="Atualizar tarefas"
+            aria-label={t('dashboard.refreshButtonLabel')}
           >
             <RefreshCw size={24} className={isLoading ? style.spinning : ''} />
           </button>
-          <button className={style.newTaskButton}  onClick={() => handleOpenFormForCreate('to-do')} aria-label="Criar Nova Tarefa">
+          <button className={style.newTaskButton}  onClick={() => handleOpenFormForCreate('to-do')} aria-label={t('dashboard.newTaskButtonLabel')}>
             < FilePlus size={24} />
           </button>
         </motion.div>
@@ -241,7 +244,7 @@ function DashboardPage() {
 
       <div className={style.mainContent}>
         {isLoading ? (
-          <Spinner size={50} color="var(--dashboard-page-spinner-color)" text="Carregando tarefas..." />
+          <Spinner size={50} color="var(--dashboard-page-spinner-color)" text={t('dashboard.loadingTasks')} />
         ) : (
           <motion.div
             initial={{ opacity: 0, y: 20 }}

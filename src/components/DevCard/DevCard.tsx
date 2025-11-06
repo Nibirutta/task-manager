@@ -1,5 +1,6 @@
 import { type CSSProperties } from "react";
 import style from "./DevCard.module.css";
+import { useTranslation } from "react-i18next";
 
 type DevCardProps = {
   name: string;
@@ -30,6 +31,8 @@ const DevCard = ({
   description,
   stacks,
 }: DevCardProps) => {
+  const { t } = useTranslation();
+
   return (
     <div
       className={style.card}
@@ -44,7 +47,7 @@ const DevCard = ({
       <div className={style.content}>
         <header className={style.header}>
           <figure className={style.avatar}>
-            <img src={avatar} alt={`Avatar de ${name}`} />
+            <img src={avatar} alt={t('homePage.aboutSection.devCard.avatarAlt', { name })} />
           </figure>
 
           <div className="flex flex-col justify-center items-end">
@@ -59,7 +62,7 @@ const DevCard = ({
         <main>
             {stacks && (
               <div>
-                <h6 className={style.tech}> Tecnologias Utilizadas nesse projeto</h6>
+                <h6 className={style.tech}>{t('homePage.aboutSection.devCard.techTitle')}</h6>
                 <ul className={style.stackList}>
                   {stacks.map((stack, index) => (
                     <li key={index}  className={`${style.stackItem} ${style[stack.toLowerCase()]}`}>
@@ -72,14 +75,14 @@ const DevCard = ({
         </main>
 
         <footer className="flex justify-between items-center">
-          <p className={style.contact}> Me encontre por aqui :</p>
+          <p className={style.contact}>{t('homePage.aboutSection.devCard.contactTitle')}</p>
           <div className={style.social}>
             <a
               className={style.linkedin}
               href={linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`ir para o perfil do linkedin do ${name}`}
+              aria-label={t('homePage.aboutSection.devCard.socialAlt.linkedin', { name })}
             >
               <img
                 src="/src/assets/imgs/icons/linkedin.png"
@@ -92,7 +95,7 @@ const DevCard = ({
               href={github}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`ir para o perfil do github do ${name}`}
+              aria-label={t('homePage.aboutSection.devCard.socialAlt.github', { name })}
             >
               <img
                 src="/src/assets/imgs/icons/github.png"
@@ -104,7 +107,7 @@ const DevCard = ({
               href={portfolio}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`ir para o portfolio do ${name}`}
+              aria-label={t('homePage.aboutSection.devCard.socialAlt.portfolio', { name })}
             >
               <img src={portfolioImage} alt={`logo do portfolio do ${name}`} />
             </a>

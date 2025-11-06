@@ -4,57 +4,61 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import InputField from "../../components/InputField/InputField";
 import SubmitBtn from "../../components/SubmitBtn/SubmitBtn";
-import { useId } from "react";
+import { useId, useMemo } from "react";
 import { AtSign, CircleCheck, IdCard, Shield, ShieldCheck, Tag} from "lucide-react";
 
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import { requestRegister } from "../../api/Task API/services/accountService";
+import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 
-const registerSchema = z.object({
-  username: z
-    .string({
-      error: "O nome de usuário é obrigatório.",
-    })
-    .trim()
-    .min(3, "O nome de usuário deve ter no mínimo 3 caracteres.")
-    .max(30, "O nome de usuário não pode ter mais de 30 caracteres.")
-    .regex(/^[a-zA-Z0-9_]+$/, "Use apenas letras, números e underline (_)."),
+const createRegisterSchema = (t: TFunction) => z.object({
+    username: z
+      .string({
+        error: t("validation.username.required"),
+      })
+      .trim()
+      .min(3, t("validation.username.min"))
+      .max(30, t("validation.username.max"))
+      .regex(/^[a-zA-Z0-9_-]+$/, t("validation.username.regex")),
+  
+    email: z.email(t("validation.email.invalid")),
+  
+    name: z
+      .string({
+        error: t("validation.name.required"),
+      })
+      .trim()
+      .toLowerCase()
+      .min(3, t("validation.name.min"))
+      .max(30, t("validation.name.max"))
+      .regex(/^[a-zA-Z]+$/, t("validation.name.regex")),
+  
+    password: z
+      .string({ error: t("validation.password.required") })
+      .min(8, t("validation.password.min"))
+      .regex(/[a-z]/, t("validation.password.lowercase"))
+      .regex(/[A-Z]/, t("validation.password.uppercase"))
+      .regex(/[0-9]/, t("validation.password.number"))
+      .regex(/[^a-zA-Z0-9]/, t("validation.password.specialChar")),
+  
+      confirmPassword: z
+      .string({ error: t("validation.confirmPassword.required") })
+  
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: t("validation.confirmPassword.match"),
+    path: ["confirmPassword"],
+  });
 
-  email: z.email("Utilize um formato válido para E-mail"),
 
-  name: z
-    .string({
-      error: "O primeiro nome é obrigatório.",
-    })
-    .trim()
-    .toLowerCase()
-    .min(3, "O primeiro nome deve ter no mínimo 3 caracteres.")
-    .max(30, "O primeiro nome não pode ter mais de 30 caracteres.")
-    .regex(/^[a-zA-Z]+$/, "Use apenas letras."),
-
-  password: z
-    .string({ error: "A senha é obrigatória." })
-    .min(8, "A senha deve ter no mínimo 8 caracteres.")
-    .regex(/[a-z]/, "A senha deve conter ao menos uma letra minúscula.")
-    .regex(/[A-Z]/, "A senha deve conter ao menos uma letra maiúscula.")
-    .regex(/[0-9]/, "A senha deve conter ao menos um número.")
-    .regex(/[^a-zA-Z0-9]/, "A senha deve conter ao menos um caractere especial."),
-
-    confirmPassword: z
-    .string({ error: "A confirmação de senha é obrigatória." })
-
-})
-.refine((data) => data.password === data.confirmPassword, {
-  message: "As senhas precisam ser iguais.",
-  path: ["confirmPassword"],
-});
-
-
-type RegisterformInputs = z.infer<typeof registerSchema>
+type RegisterformInputs = z.infer<ReturnType<typeof createRegisterSchema>>
 
 function Registerform() {
-    
+      const { t } = useTranslation();
+      const registerSchema = useMemo(() => createRegisterSchema(t), [t]);
+
       const {
         register,
         handleSubmit,
@@ -62,7 +66,7 @@ function Registerform() {
       } = useForm<RegisterformInputs>({
         resolver: zodResolver(registerSchema),
         mode: "onTouched",
-        defaultValues: {
+        defaultValues: { // defaultValues não precisam de tradução
           username: "",
           email: "",
           name: "",
@@ -70,7 +74,7 @@ function Registerform() {
           confirmPassword: "",
         },
       });
-
+      
     const nameID = useId();
     const usernameID = useId();
     const emailID = useId();
@@ -86,11 +90,11 @@ function Registerform() {
               requestRegister(data),
               
               {
-                pending: "Criando sua conta...",
-                success: "Conta criada com sucesso! Redirecionando para o login...",
+                pending: t('registerForm.toast.pending'),
+                success: t('registerForm.toast.success'),
                 error: {
                   render({ data }: { data: Error }) {
-                    return data.message;
+                    return data.message || t('registerForm.toast.errorFallback');
                   },
                 }                
               },
@@ -111,15 +115,15 @@ function Registerform() {
     return(
         <form onSubmit={handleSubmit(onSubmit)} className={style.form} >
 
-            <h2 className={style.title}>Registre-se</h2>
+            <h2 className={style.title}>{t('registerForm.title')}</h2>
             
 
             <InputField 
               id={nameID}
-              label="Primeiro Nome"
+              label={t('registerForm.firstNameLabel')}
               Icon={IdCard}
               type="text"
-              placeholder="Digite seu primeiro nome"
+              placeholder={t('registerForm.firstNamePlaceholder')}
               isValid={!errors.name}
               errorMessage={errors.name?.message}
               {...register("name")}
@@ -128,9 +132,9 @@ function Registerform() {
 
             <InputField 
               id={emailID}
-              label="E-mail"
+              label={t('registerForm.emailLabel')}
               type="email"
-              placeholder="Digite seu e-mail"
+              placeholder={t('registerForm.emailPlaceholder')}
               isValid={!errors.email}
               errorMessage={errors.email?.message}
               {...register("email")}
@@ -140,9 +144,9 @@ function Registerform() {
 
             <InputField 
               id={usernameID}
-              label="Nome de Usuário"
+              label={t('registerForm.usernameLabel')}
               type="text"
-              placeholder="Digite seu nome de usuário"
+              placeholder={t('registerForm.usernamePlaceholder')}
               isValid={!errors.username}
               errorMessage={errors.username?.message}
               {...register("username")}
@@ -152,9 +156,9 @@ function Registerform() {
             
             <InputField 
               id={passwordID}
-              label="Senha"
+              label={t('registerForm.passwordLabel')}
               type="password"
-              placeholder="Digite sua senha"
+              placeholder={t('registerForm.passwordPlaceholder')}
               isValid={!errors.password}
               errorMessage={errors.password?.message}
               {...register("password")}
@@ -165,9 +169,9 @@ function Registerform() {
 
             <InputField
               id={confirmPasswordID}
-              label="Confirmar Senha"
+              label={t('registerForm.confirmPasswordLabel')}
               type="password"
-              placeholder="Confirme sua senha"
+              placeholder={t('registerForm.confirmPasswordPlaceholder')}
               Icon={ShieldCheck}
               isValid={!errors.confirmPassword}
               errorMessage={errors.confirmPassword?.message}
@@ -175,7 +179,7 @@ function Registerform() {
             />
 
             <SubmitBtn
-              title="Criar Conta"
+              title={t('registerForm.submitButton')}
               icon={CircleCheck}
               disabled={!isValid || isSubmitting}
               isLoading={isSubmitting}

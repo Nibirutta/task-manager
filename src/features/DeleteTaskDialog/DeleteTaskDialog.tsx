@@ -9,6 +9,7 @@ import {
 } from '../../lib/Reui/modal/modal';
 import type { TaskType } from '../../types/taskServiceTypes';
 import style from './DeleteTaskDialog.module.css';
+import { useTranslation } from 'react-i18next';
 
 interface DeleteTaskDialogProps {
   isOpen: boolean;
@@ -18,6 +19,8 @@ interface DeleteTaskDialogProps {
 }
 
 function DeleteTaskDialog({ isOpen, onOpenChange, task, onConfirm }: DeleteTaskDialogProps) {
+  const { t } = useTranslation();
+
   if (!task) {
     return null;
   }
@@ -30,16 +33,16 @@ function DeleteTaskDialog({ isOpen, onOpenChange, task, onConfirm }: DeleteTaskD
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className={style.dialogContent}>
         <DialogHeader className={style.dialogHeader}>
-          <DialogTitle className={style.dialogTitle}>Confirmar Exclusão</DialogTitle>
+          <DialogTitle className={style.dialogTitle}>{t('deleteDialog.title')}</DialogTitle>
           <DialogDescription className={style.dialogDescription}>
-            Você tem certeza que deseja excluir a tarefa "{task.title}"? Esta ação não pode ser desfeita.
+            {t('deleteDialog.description', { title: task.title })}
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className={style.dialogFooter}>
           <DialogClose asChild>
-            <button type="button" className={style.cancelButton}>Cancelar</button>
+            <button type="button" className={style.cancelButton}>{t('deleteDialog.cancelButton')}</button>
           </DialogClose>
-          <button onClick={handleConfirm} className={style.confirmButton}>Excluir</button>
+          <button onClick={handleConfirm} className={style.confirmButton}>{t('deleteDialog.confirmButton')}</button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

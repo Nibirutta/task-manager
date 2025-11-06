@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import cn from "../../lib/utils";
+import { useTranslation } from "react-i18next";
 
 import UserMenu from "../../components/UserMenu/UserMenu";
 import MobileNav from "../../components/MobileNav/MobileNav";
@@ -13,6 +14,7 @@ const activeNavLinkClasses = "text-[var(--navbar-link-hover)] font-semibold";
 
 function Navbar() {
   const { isAuthenticated } = useAuth();
+  const { t } = useTranslation();
 
   const commonLinks = (
     <>
@@ -22,7 +24,7 @@ function Navbar() {
           cn(navLinkClasses, isActive && activeNavLinkClasses)
         }
       >
-        Home
+        {t("layout.navbar.home")}
       </NavLink>
     </>
   );
@@ -35,7 +37,7 @@ function Navbar() {
           cn(navLinkClasses, isActive && activeNavLinkClasses)
         }
       >
-        Dashboard
+        {t("layout.navbar.dashboard")}
       </NavLink>
     </>
   );
@@ -48,7 +50,7 @@ function Navbar() {
           cn(navLinkClasses, isActive && activeNavLinkClasses)
         }
       >
-        Login
+        {t("layout.navbar.login")}
       </NavLink>
       <NavLink
         to="/register"
@@ -56,7 +58,7 @@ function Navbar() {
           cn(navLinkClasses, isActive && activeNavLinkClasses)
         }
       >
-        Registrar
+        {t("layout.navbar.register")}
       </NavLink>
     </>
   );
@@ -70,8 +72,10 @@ function Navbar() {
           className="flex items-center gap-2 rounded-md font-bold shrink-0 text-[var(--navbar-logo-color)]"
           style={{ fontFamily: "var(--navbar-logo-font)" }}
         >
-          <img src={logo} alt="Task Manager Logo" />
-          <span className="inline-block text-2xl sm:text-4xl lg:text-6xl font-bold ">Task Manager</span>
+          <img src={logo} alt={t("layout.navbar.logoAlt")} />
+          <span className="inline-block text-2xl sm:text-4xl lg:text-6xl font-bold ">
+            {t("layout.navbar.appName")}
+          </span>
         </Link>
       </div>
 

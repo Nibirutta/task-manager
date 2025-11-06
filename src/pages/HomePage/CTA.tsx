@@ -1,8 +1,9 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import BorderAnimationButton from "../../lib/Nurui/BorderAnimationButton";
 import { LogIn, UserRoundPlus } from "lucide-react";
 
 import { motion, type Variants } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 type CTAProps = {
   title: string;
@@ -25,6 +26,8 @@ const itemVariants: Variants = {
 };
 
 const CTA = ( {title}: CTAProps) => {
+  const { t } = useTranslation();
+
   return (
     <motion.section
       className="flex flex-col justify-center items-center p-8 gap-12"
@@ -47,7 +50,7 @@ const CTA = ( {title}: CTAProps) => {
         <motion.div variants={itemVariants}>
           <Link to="/registrar">
             <BorderAnimationButton
-              text="Criar conta Grátis"
+              text={t('homePage.ctaSection.registerButton')}
               className="transition-all duration-300 ease-in-out hover:scale-110 focus:scale-110 active:scale-100"
               icon={UserRoundPlus}
               textFont="Orbitron"
@@ -60,7 +63,7 @@ const CTA = ( {title}: CTAProps) => {
         <motion.div variants={itemVariants}>
           <Link to="/login">
             <BorderAnimationButton
-              text="Login"
+              text={t('homePage.ctaSection.loginButton')}
               className="transition-all duration-300 ease-in-out hover:scale-110 focus:scale-110 active:scale-100"
               icon={LogIn}
               textFont="Orbitron"

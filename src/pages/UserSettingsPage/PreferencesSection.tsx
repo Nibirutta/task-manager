@@ -1,4 +1,4 @@
-
+import { useMemo } from "react";
 import Spinner from "../../components/Spinner/Spinner";
 
 import usePreferences from "../../hooks/usePreferences";
@@ -6,9 +6,11 @@ import { Label } from "../../lib/Reui/label/label";
 
 import type { languageType, themeType } from "../../types/AccountServiceTypes";
 import StyledSwitch from "../../components/StyledSwitch/StyledSwitch";
+import { useTranslation } from "react-i18next";
 
 
 export function PreferencesSection() {
+  const { t } = useTranslation();
   const {
     preferences,
     theme,
@@ -20,13 +22,9 @@ export function PreferencesSection() {
 
   const availableThemes: themeType[] = ["default", "solar-bloom", "neon-flow", "forest-calm", "cloudy-focus", "after-hours"];
 
-  const availableLanguages: { label: string; value: languageType }[]
-  
-   = [
-     { label: "Português", value: "pt-BR" },
-     { label: "English", value: "en-US" }
-  ];
-
+  const availableLanguages = useMemo(() => (
+    Object.keys(t('userSettingsPage.preferencesSection.languageLabels', { returnObjects: true })) as languageType[]
+  ).map(key => ({ label: t(`userSettingsPage.preferencesSection.languageLabels.${key}`), value: key })), [t]);
 
 
   if (!preferences) {
@@ -37,17 +35,17 @@ export function PreferencesSection() {
     <section className="w-full py-20 flex flex-col items-center justify-center border-b-mercury-300 border-b-4 gap-8">
       <div className="text-center flex flex-col gap-8 justify-center items-center">
         <h3 className="text-5xl font-bold font-(family-name:--profile-title-font) text-[var(--profile-title-color)] text-shadow-[var(--profile-title-shadow)]">
-          Preferências da Aplicação
+          {t("userSettingsPage.preferencesSection.title")}
         </h3>
         <p className="text-2xl mt-12 font-medium font-(family-name:--profile-subtitle-font) text-[var(--profile-subtitle-color)]">
-          Personalize a aparência e o comportamento do aplicativo.
+          {t("userSettingsPage.preferencesSection.subtitle")}
         </p>
       </div>
 
       <div className="p-12 flex flex-col items-center justify-center gap-8">
         <div className="p-8 flex flex-col items-center justify-center gap-8 bg-[var(--login-bg-color)] rounded-2xl border-4 border-[var(--login-border-color)] shadow-[var(--login-shadow-color)]">
           <h4 className="text-4xl font-normal font-(family-name:--preferences-title-font) text-[var(--preferences-title-color)] text-shadow-[var(--preferences-title-shadow)] p-4">
-            Selecione Seu tema
+            {t("userSettingsPage.preferencesSection.themeTitle")}
           </h4>
 
           <ul className="grid grid-cols-2 xl:grid-cols-3 justify-center items-center p-4 gap-8 bg-[var(--preferences-theme-box-bg-color)] border-2 border-[var(--preferences-theme-box-border-color)] rounded-2xl shadow-[var(--preferences-theme-box-shadow)]">
@@ -82,7 +80,7 @@ export function PreferencesSection() {
         <div className="flex items-center h-[124px] justify-center gap-16">
           <div className="flex flex-col  justify-between h-full items-center gap-8">
             <h4 className="text-3xl font-medium font-(family-name:--preferences-theme-title-font) text-[var(--preferences-theme-title-color)] text-shadow-[var(--preferences-theme-title-shadow)] p-4  ">
-              Selecione o idioma
+              {t("userSettingsPage.preferencesSection.languageTitle")}
             </h4>
 
             <ul className="flex flex-col sm:flex-row justify-center items-center p-4 gap-8  bg-[var(--preferences-theme-box-bg-color)] border-2 border-[var(--preferences-theme-box-border-color)] rounded-2xl shadow-[var(--preferences-theme-box-shadow)]">
@@ -116,7 +114,7 @@ export function PreferencesSection() {
 
           <div className="flex flex-col  justify-between h-full items-center gap-8">
             <h4 className="text-3xl font-medium font-(family-name:--preferences-theme-title-font) text-[var(--preferences-theme-title-color)] text-shadow-[var(--preferences-theme-title-shadow)] p-4  ">
-              Notificações por E-mail              
+              {t("userSettingsPage.preferencesSection.notificationsTitle")}
             </h4>
 
             <StyledSwitch

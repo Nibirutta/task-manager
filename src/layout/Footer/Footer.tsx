@@ -1,11 +1,13 @@
 
 import style from './Footer.module.css'
+import { useTranslation } from 'react-i18next';
 import ReactIcon from '../../assets/svg/react.svg?react';
 import NodeIcon from '../../assets/svg/nodedotjs.svg?react';
 
 
 
 function Footer() {
+  const { t } = useTranslation();
 
   return (
     <footer className={style.footer}>
@@ -13,13 +15,13 @@ function Footer() {
         <div className={style.upcontainer}>
         
           <div className={style.navegation}>
-            <h3>Navegação</h3>
+            <h3>{t('layout.footer.navigation')}</h3>
             
             <nav>
               <ul>
-              <li><a href="/">Home</a></li>
-              <li><a href="/login">Login</a></li>
-              <li><a href="/register">Registrar</a></li>
+              <li><a href="/">{t('layout.navbar.home')}</a></li>
+              <li><a href="/login">{t('layout.navbar.login')}</a></li>
+              <li><a href="/register">{t('layout.navbar.register')}</a></li>
               </ul>
             </nav> 
           </div>
@@ -27,19 +29,19 @@ function Footer() {
 
 
           <div className={style.repositories}>
-            <h3>Projeto</h3>
+            <h3>{t('layout.footer.project')}</h3>
             <ul>
               <li>
                 <a href="https://github.com/Nibirutta/task-manager" target="_blank" rel="noopener noreferrer" className={style.react}>
                   <ReactIcon/> 
-                  <span> Repositório Front-end</span>
+                  <span>{t('layout.footer.frontendRepo')}</span>
                 </a>
               </li>
 
               <li>
                 <a href="https://github.com/Nibirutta/task-api" target="_blank" rel="noopener noreferrer" className={style.node}>
                   <NodeIcon/> 
-                  <span> Repositório Back-end</span>
+                  <span>{t('layout.footer.backendRepo')}</span>
                 </a>
               </li>
 
@@ -49,7 +51,7 @@ function Footer() {
         </div>
   
         <div className={style.copyright}>
-          <p>&copy; {new Date().getFullYear()} Task Manager. Todos os direitos reservados.</p>
+          <p>{t('layout.footer.copyright', { year: new Date().getFullYear() })}</p>
         </div>
 
       </div>

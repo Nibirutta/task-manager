@@ -6,6 +6,7 @@ import { LogIn, UserRoundPlus } from "lucide-react";
 import MagnetButton from "../../lib/Nurui/MagnetButton";
 import HeroImage from "../../assets/svg/Hero.svg?react";
 import { motion, type Variants } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -36,6 +37,7 @@ interface HeroSectionProps {
 }
 
 const HeroSection = ({title, subtitle, developed}: HeroSectionProps) =>{
+    const { t } = useTranslation();
 
 
     return(
@@ -62,12 +64,12 @@ const HeroSection = ({title, subtitle, developed}: HeroSectionProps) =>{
 
                 
             <motion.figure className={style.heroImageContainer} variants={itemVariants}>
-                <HeroImage className={style.heroImage} />
+                <HeroImage aria-label={t('homePage.heroSection.heroImageAlt')} className={style.heroImage} />
             </motion.figure>
                 <motion.div className={style.ctaButtons} variants={itemVariants}>
                     <Link to="/register" >
                         <MagnetButton
-                            text="REGISTRAR"
+                            text={t('homePage.heroSection.registerButton')}
                             className="transition-all duration-300 ease-in-out"
                             textFont="var(--cta-btn-font)"
                             particleCount={360}
@@ -83,7 +85,7 @@ const HeroSection = ({title, subtitle, developed}: HeroSectionProps) =>{
 
                     <Link to="/login">
                         <BorderAnimationButton
-                            text="LOGIN"
+                            text={t('homePage.heroSection.loginButton')}
                             className="transition-all duration-300 ease-in-out hover:scale-110 focus:scale-110 active:scale-100"
                             icon={LogIn}
                             textFont="var(--cta-btn-font)"

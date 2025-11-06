@@ -11,11 +11,13 @@ import useAuth from "../hooks/useAuth";
 
 import { requestUpdateAccount } from "../api/Task API/services/accountService";
 import { handleApiError } from "../utils/handleApiError";
+import i18n from "../layout/i18n"; // 1. Importamos a instância do i18n
 import type { languageType, PreferencesTypes, themeType, UpdateAccountResponseTypes } from "../types/AccountServiceTypes";
 
 interface IPreferencesContext {
   preferences: PreferencesTypes | null;
   theme: themeType;
+  language: languageType;
   isUpdating: boolean;
   updateTheme: (newTheme: themeType) => Promise<void>;
   updateLanguage: (newLanguage: languageType) => Promise<void>;
@@ -24,7 +26,7 @@ interface IPreferencesContext {
 
 const defaultPreferences: PreferencesTypes = {
   theme: "default",
-  language: "pt-BR",
+  language: i18n.language as languageType,
   notification: {
     notificationType: "email",
     isActivated: true
@@ -48,7 +50,9 @@ function PreferencesProvider({ children }: { children: ReactNode }) {
 
   // efeito para aplicar o idioma no <html>
   useEffect(() => {
-    document.documentElement.lang = preferences.language;
+    const currentLanguage = preferences.language;
+    document.documentElement.lang = currentLanguage;
+    i18n.changeLanguage(currentLanguage);
   }, [preferences?.language]);
 
   // Função genérica para atualizações
@@ -99,12 +103,13 @@ function PreferencesProvider({ children }: { children: ReactNode }) {
     () => ({
       preferences,
       theme: preferences?.theme || defaultPreferences.theme,
+      language: preferences?.language || defaultPreferences.language,
       isUpdating,
       updateTheme,
       updateLanguage,
       updateEmailNotification,
     }),
-    [preferences, isUpdating, updateTheme, updateLanguage, updateEmailNotification]
+    [preferences, isUpdating, updateTheme, updateLanguage, updateEmailNotification] 
   );
 
   return (

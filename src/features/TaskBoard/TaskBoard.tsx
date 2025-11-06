@@ -6,14 +6,7 @@ import TaskColumn from '../../components/TaskColumn/TaskColumn';
 import { monitorForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import type { ExpirationStatus } from '../../utils/getTaskStatus';
 import { motion } from 'framer-motion';
-
-
-const columnsConfig: { id: TaskStatus; title: string }[] = [
-  { id: 'to-do', title: 'Pendente' },
-  { id: 'in-progress', title: 'Em Progresso' },
-  { id: 'in-review', title: 'Em Revisão' },
-  { id: 'done', title: 'Concluído' },
-];
+import { useTranslation } from 'react-i18next';
 
 type IProcessedTask = TaskType & {
   expirationStatus: ExpirationStatus;
@@ -36,6 +29,15 @@ function TaskBoard({
   onAddTask,
   onTaskStatusChange,
 }: TaskBoardProps) {
+  const { t } = useTranslation();
+
+  const columnsConfig = useMemo(() => (
+    Object.keys(t('taskBoard.columns', { returnObjects: true })) as TaskStatus[]
+  ).map(key => ({
+    id: key,
+    title: t(`taskBoard.columns.${key}`)
+  })), [t]);
+
   const [draggingOverColumn, setDraggingOverColumn] = useState<TaskStatus | null>(null);
 
   useEffect(() => {
@@ -73,7 +75,7 @@ function TaskBoard({
       groupedTasks.get(task.status)?.push(task);
     });
     return groupedTasks;
-  }, [tasks]);
+  }, [tasks, columnsConfig]);
 
   return (
     <motion.div className={style.board} layout>

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { draggable } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import { ClockAlert, ClockFading, ClockPlus, FilePenLine, Flag, MoreHorizontal, Trash2 } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -7,7 +7,8 @@ import style from './TaskCard.module.css';
 
 import PopoverTaskCard from '../PopoverTaskCard/PopoverTaskCard';
 import type { ExpirationStatus } from '../../utils/getTaskStatus';
-import type { TaskType } from '../../types/taskServiceTypes';
+import type { TaskPriority, TaskType } from '../../types/taskServiceTypes';
+import { useTranslation } from 'react-i18next';
 
 
 // As props que o componente espera receber.
@@ -22,6 +23,7 @@ interface TaskCardProps {
 }
 
 function TaskCard({ task, onDetailsClick, onDeleteClick, onEditClick }: TaskCardProps) {
+  const { t } = useTranslation();
   const ref = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const { expirationStatus, formattedDueDate } = task;
@@ -30,7 +32,7 @@ function TaskCard({ task, onDetailsClick, onDeleteClick, onEditClick }: TaskCard
     const el = ref.current;
     if (!el) return;
 
-    // Adicionamos onDragStart e onDrop para controlar o estado 'isDragging'
+
     return draggable({
       element: el,
       getInitialData: () => ({ type: 'card', task: task }),
@@ -39,13 +41,9 @@ function TaskCard({ task, onDetailsClick, onDeleteClick, onEditClick }: TaskCard
     });
   }, [task]);
 
-  const priorityObject = {
-      low: 'Baixa',
-      medium: 'Média',
-      high: 'Alta',
-      urgent: 'Urgente',
-      optional: 'Opcional'
-  } as const;
+  const priorityLabels = useMemo(() => (
+    t('taskForm.priority', { returnObjects: true }) as Record<TaskPriority, string>
+  ), [t]);
 
   const priorityClass = `priority-${task.priority}`;
 
@@ -67,7 +65,7 @@ function TaskCard({ task, onDetailsClick, onDeleteClick, onEditClick }: TaskCard
       <header className={style.header}>
           <div className={`${style.priority} ${style[priorityClass]}`}>
             <Flag size={14} />
-            <span>{priorityObject[task.priority]}</span>
+            <span>{priorityLabels[task.priority]}</span>
           </div>
       
         
@@ -91,41 +89,41 @@ function TaskCard({ task, onDetailsClick, onDeleteClick, onEditClick }: TaskCard
       <footer className={style.footer}>
 
         <div className={style.leftFooter}>
-          <PopoverTaskCard text="Excluir Tarefa">
+          <PopoverTaskCard text={t('taskBoard.card.deletePopover')}>
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 onDeleteClick(task);
               }}
               className={style.deleteButton}
-              aria-label={`Deletar a tarefa ${task.title}`}
+              aria-label={t('taskBoard.card.deleteLabel', { title: task.title })}
             >
               <Trash2 size={18} />
             </button>
           </PopoverTaskCard>
 
-          <PopoverTaskCard text="Editar Tarefa">
+          <PopoverTaskCard text={t('taskBoard.card.editPopover')}>
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 onEditClick(task);
               }}
               className={style.editButton}
-              aria-label={`Editar a tarefa ${task.title}`}
+              aria-label={t('taskBoard.card.editLabel', { title: task.title })}
             >
               <FilePenLine size={18} />
             </button>
           </PopoverTaskCard>
         </div>
 
-        <PopoverTaskCard text="Ver Detalhes">
+        <PopoverTaskCard text={t('taskBoard.card.detailsPopover')}>
           <button
             onClick={(e) => {
               e.stopPropagation();
               onDetailsClick(task);
             }}
             className={style.detailsButton}
-            aria-label={`Ver detalhes da tarefa ${task.title}`}
+            aria-label={t('taskBoard.card.detailsLabel', { title: task.title })}
           >
             <MoreHorizontal size={18} />
           </button>

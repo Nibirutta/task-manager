@@ -1,4 +1,4 @@
-import { useEffect, useId } from "react";
+import { useEffect, useId, useMemo } from "react";
 import { toast } from "react-toastify";
 import { z } from "zod";
 import { CaseSensitive } from "lucide-react";
@@ -9,20 +9,24 @@ import useAuth from "../../hooks/useAuth";
 import InputField from "../../components/InputField/InputField";
 import SubmitBtn from "../../components/SubmitBtn/SubmitBtn";
 import { requestUpdateAccount } from "../../api/Task API/services/accountService";
+import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 
-const profileSchema = z.object({
+const createProfileSchema = (t: TFunction) => z.object({
   name: z
     .string()
     .trim()
-    .min(3, "O nome deve ter no mínimo 3 caracteres.")
-    .max(30, "O nome não pode ter mais de 30 caracteres."),
+    .min(3, t("validation.name.min"))
+    .max(30, t("validation.name.max")),
 });
 
-type ProfileFormInputs = z.infer<typeof profileSchema>;
+type ProfileFormInputs = z.infer<ReturnType<typeof createProfileSchema>>;
 
 function ProfileSection() {
+  const { t } = useTranslation();
   const { user, updateUser } = useAuth();
   const nameId = useId();
+  const profileSchema = useMemo(() => createProfileSchema(t), [t]);
   const {
     register,
     handleSubmit,
@@ -45,9 +49,9 @@ function ProfileSection() {
         requestUpdateAccount({ name: data.name,
          }),
         {
-          pending: "Atualizando seu nome...",
-          success: "Nome atualizado com sucesso!",
-          error: "Não foi possível atualizar o nome. Tente novamente.",
+          pending: t("userSettingsPage.profileSection.toast.pending"),
+          success: t("userSettingsPage.profileSection.toast.success"),
+          error: t("userSettingsPage.profileSection.toast.error"),
         }
       );
       updateUser(response.profile);
@@ -62,10 +66,10 @@ function ProfileSection() {
     <section className="py-28 mx-auto w-full flex flex-col items-center justify-center gap-8 border-b-mercury-300 border-b-4">
       <div className="flex justify-center items-center flex-col p-6">
         <h3 className="text-5xl font-(family-name:--profile-title-font) text-[var(--profile-title-color)]  text-shadow-[var(--profile-title-shadow)] font-medium">
-          Perfil Público de {user?.name}
+          {t("userSettingsPage.profileSection.title", { name: user?.name })}
         </h3>
         <p className="text-2xl font-normal mt-12 text-[var(--profile-subtitle-color)] font-(family-name:--profile-subtitle-font)">
-          Estas informações podem ser visíveis para outros usuários.
+          {t("userSettingsPage.profileSection.subtitle")}
         </p>
       </div>
 
@@ -75,18 +79,18 @@ function ProfileSection() {
       >
         <InputField
           id={nameId}
-          label="Nome de Exibição"
+          label={t("userSettingsPage.profileSection.form.nameLabel")}
           Icon={CaseSensitive}
           type="text"
           autoComplete="off"
           
-          placeholder="Digite seu novo nome de exibição"
+          placeholder={t("userSettingsPage.profileSection.form.namePlaceholder")}
           {...register("name")}
           isValid={!errors.name}
           errorMessage={errors.name?.message}
         />
 
-        <SubmitBtn title="Alterar" isLoading={isSubmitting} disabled={!isDirty || !isValid || isSubmitting} />
+        <SubmitBtn title={t("userSettingsPage.profileSection.form.submitButton")} isLoading={isSubmitting} disabled={!isDirty || !isValid || isSubmitting} />
       </form>
     </section>
   );

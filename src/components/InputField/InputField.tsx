@@ -3,6 +3,7 @@ import { Eye, EyeOff, ShieldX, type LucideIcon } from "lucide-react";
 import styles from "./InputField.module.css"; 
 import clsx from "clsx"; 
 import { useState, type InputHTMLAttributes } from "react";
+import { useTranslation } from "react-i18next";
 
 
 type InputFieldProps = InputHTMLAttributes<HTMLInputElement> &{
@@ -23,7 +24,7 @@ const InputField = ({
 	type,
 	...rest 
 	} : InputFieldProps)  => {
-
+	const { t } = useTranslation();
 
 
 	const [showPassword, setShowPassword] = useState(false);
@@ -74,7 +75,7 @@ const InputField = ({
 			</div>
 
 			{!isValid && errorMessage && (
-				<span  role="alert" aria-label="Mensagem de Input Inválido" className="flex ml-8 mt-4 items-center gap-1 text-[var(--input-field-error-color)] text-xs">
+				<span  role="alert" aria-label={t('components.inputField.invalidInput')} className="flex ml-8 mt-4 items-center gap-1 text-[var(--input-field-error-color)] text-xs">
 					<ShieldX size={24} />
 					<span className={styles.errorMessage}> {errorMessage}</span>
 				</span>

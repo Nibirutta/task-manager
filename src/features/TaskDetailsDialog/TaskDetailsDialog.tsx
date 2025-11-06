@@ -23,6 +23,8 @@ import {
   Minimize2,
 } from "lucide-react";
 import type { ExpirationStatus } from "../../utils/getTaskStatus";
+import { useTranslation } from "react-i18next";
+import i18n from "../../layout/i18n";
 
 type ProcessedTask = TaskType & {
   formattedDueDate: string;
@@ -36,77 +38,6 @@ interface TaskDetailsDialogProps {
   task: TaskType | null;
 }
 
-const priorityDetails: Record<
-  TaskPriority,
-  { label: string; icon: React.ReactNode; className: string }
-> = {
-  urgent: {
-    label: "Urgente",
-    icon: <Flag size={16} />,
-    className: style.urgent,
-  },
-  high: { label: "Alta", icon: <Flag size={16} />, className: style.high },
-  medium: { label: "Média", icon: <Flag size={16} />, className: style.medium },
-  low: { label: "Baixa", icon: <Flag size={16} />, className: style.low },
-  optional: {
-    label: "Opcional",
-    icon: <Flag size={16} />,
-    className: style.optional,
-  },
-};
-
-const statusDetails: Record<
-  TaskStatus,
-  { label: string; icon: React.ReactNode; className: string }
-> = {
-  "to-do": {
-    label: "Pendente",
-    icon: <Hourglass size={16} />,
-    className: style.todo,
-  },
-
-  "in-progress": {
-    label: "Em Progresso",
-    icon: <CircleDotDashed size={16} />,
-    className: style.inprogress,
-  },
-
-  "in-review": {
-    label: "Em Revisão",
-    icon: <XCircle size={16} />,
-    className: style.inreview,
-  },
-
-  done: {
-    label: "Concluído",
-    icon: <CheckCircle size={16} />,
-    className: style.done,
-  },
-};
-
-const expirationDetails: Record<
-  ExpirationStatus,
-  { label: string; icon: React.ReactNode; className: string }
-> = {
-  "in-time": {
-    label: "Dentro do prazo",
-    icon: <CheckCircle size={16} />,
-    className: style.intime,
-  },
-
-  deadline: {
-    label: "Ultimo Dia",
-    icon: <XCircle size={16} />,
-    className: style.deadline,
-  },
-
-  expired: {
-    label: "Vencido",
-    icon: <XCircle size={16} />,
-    className: style.expired,
-  },
-};
-
 function TaskDetailsDialog({
   isOpen,
   onOpenChange,
@@ -114,6 +45,29 @@ function TaskDetailsDialog({
   onDeleteClick,
   task,
 }: TaskDetailsDialogProps) {
+  const { t } = useTranslation();
+
+  const priorityDetails: Record<TaskPriority, { icon: React.ReactNode; className: string }> = {
+    urgent: { icon: <Flag size={16} />, className: style.urgent },
+    high: { icon: <Flag size={16} />, className: style.high },
+    medium: { icon: <Flag size={16} />, className: style.medium },
+    low: { icon: <Flag size={16} />, className: style.low },
+    optional: { icon: <Flag size={16} />, className: style.optional },
+  };
+
+  const statusDetails: Record<TaskStatus, { icon: React.ReactNode; className: string }> = {
+    "to-do": { icon: <Hourglass size={16} />, className: style.todo },
+    "in-progress": { icon: <CircleDotDashed size={16} />, className: style.inprogress },
+    "in-review": { icon: <XCircle size={16} />, className: style.inreview },
+    done: { icon: <CheckCircle size={16} />, className: style.done },
+  };
+
+  const expirationDetails: Record<ExpirationStatus, { icon: React.ReactNode; className: string }> = {
+    "in-time": { icon: <CheckCircle size={16} />, className: style.intime },
+    deadline: { icon: <XCircle size={16} />, className: style.deadline },
+    expired: { icon: <XCircle size={16} />, className: style.expired },
+  };
+
   if (!task) {
     return null;
   }
@@ -121,26 +75,24 @@ function TaskDetailsDialog({
   const formattedDueDate = (task as ProcessedTask).formattedDueDate;
   const expirationStatus = (task as ProcessedTask).expirationStatus;
 
-  const priority = priorityDetails[task.priority];
-  const status = statusDetails[task.status];
+  const priorityInfo = priorityDetails[task.priority];
+  const statusInfo = statusDetails[task.status];
   const expiration = expirationDetails[expirationStatus];
 
+  // Usa o idioma atual do i18next para formatar a data
+  const dateLocaleOptions: Intl.DateTimeFormatOptions = {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  };
   const taskCreatedDateFormatted = new Date(task.createdAt).toLocaleDateString(
-    "pt-BR",
-    {
-      day: "2-digit",
-      month: "long",
-      year: "numeric",
-    }
+    i18n.language,
+    dateLocaleOptions
   );
 
   const taskUpdatedDateFormatted = new Date(task.updatedAt).toLocaleDateString(
-    "pt-BR",
-    {
-      day: "2-digit",
-      month: "long",
-      year: "numeric",
-    }
+    i18n.language,
+    dateLocaleOptions
   );
 
   return (
@@ -149,29 +101,29 @@ function TaskDetailsDialog({
         <DialogHeader className="w-full flex flex-col items-center justify-center">
           <DialogTitle className={style.dialogTitle}>{task.title}</DialogTitle>
           <DialogDescription className={style.dialogSubtitle}>
-            {`Tarefa criada em ${taskCreatedDateFormatted}, e modificada pela ultima vez em ${taskUpdatedDateFormatted}.`}
+            {t('detailsDialog.subtitle', { createdAt: taskCreatedDateFormatted, updatedAt: taskUpdatedDateFormatted })}
           </DialogDescription>
         </DialogHeader>
 
         <div className={style.badges}>
           <div className={style.detailItem}>
-            <span className={style.detailLabel}>Status</span>
-            <span className={`${style.detailValue} ${status.className}`}>
-              {status.icon}
-              {status.label}
+            <span className={style.detailLabel}>{t('detailsDialog.badges.status')}</span>
+            <span className={`${style.detailValue} ${statusInfo.className}`}>
+              {statusInfo.icon}
+              {t(`taskForm.status.${task.status}`)}
             </span>
           </div>
 
           <div className={style.detailItem}>
-            <span className={style.detailLabel}>Prioridade</span>
-            <span className={`${style.detailValue} ${priority.className}`}>
-              {priority.icon}
-              {priority.label}
+            <span className={style.detailLabel}>{t('detailsDialog.badges.priority')}</span>
+            <span className={`${style.detailValue} ${priorityInfo.className}`}>
+              {priorityInfo.icon}
+              {t(`taskForm.priority.${task.priority}`)}
             </span>
           </div>
 
           <div className={style.detailItem}>
-            <span className={style.detailLabel}>{expiration.label}</span>
+            <span className={style.detailLabel}>{t(`detailsDialog.badges.${expirationStatus}`)}</span>
             <span className={` ${style.detailValue} ${expiration.className}`}>
               {expiration.icon}
               {formattedDueDate}
@@ -180,41 +132,41 @@ function TaskDetailsDialog({
         </div>
 
         <div className={style.descriptionSection}>
-          <h3 className={style.detailLabel}>Descrição</h3>
+          <h3 className={style.detailLabel}>{t('detailsDialog.descriptionLabel')}</h3>
           {task.description ? (
             <p className={style.descriptionText}>{task.description}</p>
           ) : (
             <p className={style.descriptionText}>
-              Nenhuma descrição no momento.
+              {t('detailsDialog.noDescription')}
             </p>
           )}
         </div>
 
         <DialogFooter className={style.dialogFooter}>
           <button
-            title="Editar tarefa"
-            aria-label="Editar tarefa"
+            title={t('detailsDialog.footer.editLabel')}
+            aria-label={t('detailsDialog.footer.editLabel')}
             onClick={() => onEditClick(task)}
           >
-            <span>Editar</span>
+            <span>{t('detailsDialog.footer.edit')}</span>
             <FilePenLine size={16} />
           </button>
 
           <button
-            title="Deletar tarefa"
-            aria-label="Deletar tarefa"
+            title={t('detailsDialog.footer.deleteLabel')}
+            aria-label={t('detailsDialog.footer.deleteLabel')}
             onClick={() => onDeleteClick(task)}
           >
-            <span>Deletar</span>
+            <span>{t('detailsDialog.footer.delete')}</span>
             <FileX size={16} />
           </button>
 
           <button
-            title="Fechar"
-            aria-label="Fechar"
+            title={t('detailsDialog.footer.closeLabel')}
+            aria-label={t('detailsDialog.footer.closeLabel')}
             onClick={() => onOpenChange(false)}
           >
-            <span>Fechar</span>
+            <span>{t('detailsDialog.footer.close')}</span>
             <Minimize2 size={16} />
           </button>
         </DialogFooter>

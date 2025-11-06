@@ -1,5 +1,6 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../lib/Reui/select/select";
 import type { TaskPriority } from "../../types/taskServiceTypes";
+import { useTranslation } from "react-i18next";
 
 type TaskFilterProps = {
     filterPriority: TaskPriority | "all";
@@ -13,6 +14,8 @@ const TaskFilter = ({
     setFilterPriority,
     priorityFilterOptions,
 }: TaskFilterProps) => {
+  const { t } = useTranslation();
+
   return (
     <Select
       value={filterPriority}
@@ -20,14 +23,14 @@ const TaskFilter = ({
         setFilterPriority(value as TaskPriority | "all")
       }
     >
-      <SelectTrigger aria-label="Filtrar por prioridade" className="py-4 px-7 h-auto w-auto cursor-pointer text-2xl font-bold font-(family-name:--task-filter-trigger-text-font)  bg-[var(--task-filter-trigger-bg-color)] hover:bg-[var(--task-filter-trigger-bg-hover)] active:bg-[var(--task-filter-trigger-bg-active)] 
+      <SelectTrigger aria-label={t('dashboard.filterPriority')} className="py-4 px-7 h-auto w-auto cursor-pointer text-2xl font-bold font-(family-name:--task-filter-trigger-text-font)  bg-[var(--task-filter-trigger-bg-color)] hover:bg-[var(--task-filter-trigger-bg-hover)] active:bg-[var(--task-filter-trigger-bg-active)] 
       hover:text-[var(--task-filter-trigger-text-hover)] active:text-[var(--task-filter-trigger-text-active)]
       border-[var(--task-filter-trigger-border-color)] hover:border-[var(--task-filter-trigger-border-hover)] active:border-[var(--task-filter-trigger-border-active)]
       shadow-[var(--task-filter-trigger-box-shadow)] hover:shadow-[var(--task-filter-trigger-box-shadow-hover)] active:shadow-[var(--task-filter-trigger-box-shadow-active)]
       text-[var(--task-filter-trigger-text-color)]
       
       ">
-        <SelectValue placeholder="Filtrar por prioridade" />
+        <SelectValue placeholder={t('dashboard.filterPriority')} />
       </SelectTrigger>
       <SelectContent className="flex flex-col gap-4 p-4 bg-[var(--task-filter-content-bg-color)]">
         {priorityFilterOptions.map((opt) => (

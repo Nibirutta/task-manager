@@ -19,9 +19,11 @@ import { Popover, PopoverContent, PopoverTrigger } from '../../lib/Reui/popover/
 import { Calendar } from '../../lib/Reui/calendar/calendar';
 import { Calendar as CalendarIcon, X } from 'lucide-react';
 import { format } from 'date-fns';
-import { ptBR } from 'date-fns/locale';
+import { ptBR, enUS } from 'date-fns/locale';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from './form'
 import style from './TaskFormDialog.module.css';
+import { useTranslation } from 'react-i18next';
+import type { TFunction } from 'i18next';
 
 
 interface TaskFormDialogProps {
@@ -33,46 +35,41 @@ interface TaskFormDialogProps {
 }
 
 // Função para criar o schema dinamicamente
-const createTaskFormSchema = (isEditing: boolean) => {
+const createTaskFormSchema = (t: TFunction, isEditing: boolean) => {
   const today = new Date();
   today.setHours(0, 0, 0, 0); // Zera o tempo para comparar apenas a data
 
   return z.object({
-    title: z.string().min(3, { message: 'O título deve ter no mínimo 3 caracteres.' }).trim(),
+    title: z.string().min(3, { message: t('taskForm.validation.titleMin') }).trim(),
     description: z.string().optional(),
     // Validação da data: não pode ser no passado.
     dueDate: isEditing
-      ? z.date().min(today, { message: "A data não pode ser no passado." }).optional()
-      : z.date({ error: 'A data de vencimento é obrigatória.' })
-          .min(today, { message: "A data não pode ser no passado." }),
+      ? z.date().min(today, { message: t('taskForm.validation.dateMin') }).optional()
+      : z.date({ error: t('taskForm.validation.dateRequired') })
+          .min(today, { message: t('taskForm.validation.dateMin') }),
     priority: z.enum(['low', 'medium', 'high', 'urgent', 'optional']),
     status: z.enum(['to-do', 'in-progress', 'in-review', 'done']),
   });
 };
 
 
-type TaskFormValues = z.infer<ReturnType<typeof createTaskFormSchema>>;
-
-// Opções para os selects do formulário
-const priorityOptions: { value: TaskPriority; label: string }[] = [
-  { value: 'low', label: 'Baixa' },
-  { value: 'medium', label: 'Média' },
-  { value: 'high', label: 'Alta' },
-  { value: 'urgent', label: 'Urgente' },
-  { value: 'optional', label: 'Opcional' },
-];
-
-const statusOptions: { value: TaskStatus; label: string }[] = [
-  { value: 'to-do', label: 'Pendente' },
-  { value: 'in-progress', label: 'Em Progresso' },
-  { value: 'in-review', label: 'Em Revisão' },
-  { value: 'done', label: 'Concluído' },
-];
+type TaskFormValues = z.infer<ReturnType<typeof createTaskFormSchema>>; 
 
 function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSubmit }: TaskFormDialogProps) {
+  const { t, i18n } = useTranslation();
   const isEditing = taskToEdit !== null;
 
-  const taskFormSchema = useMemo(() => createTaskFormSchema(isEditing), [isEditing]);
+  const taskFormSchema = useMemo(() => createTaskFormSchema(t, isEditing), [t, isEditing]);
+
+  const priorityOptions = useMemo(() => (Object.keys(t('taskForm.priority', { returnObjects: true })) as TaskPriority[]).map(key => ({
+    value: key,
+    label: t(`taskForm.priority.${key}`)
+  })), [t]);
+
+  const statusOptions = useMemo(() => (Object.keys(t('taskForm.status', { returnObjects: true })) as TaskStatus[]).map(key => ({
+    value: key,
+    label: t(`taskForm.status.${key}`)
+  })), [t]);
 
   const form = useForm<TaskFormValues>({
     resolver: zodResolver(taskFormSchema), 
@@ -116,14 +113,16 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
     }
   };
 
+  const dateLocale = i18n.language === 'pt-BR' ? ptBR : enUS;
+
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className= {style.dialogContent}>
         <DialogHeader className={style.dialogHeader}>
-          <DialogTitle className={style.dialogTitle}>{isEditing ? 'Editar Tarefa' : 'Criar Nova Tarefa'}</DialogTitle>
+          <DialogTitle className={style.dialogTitle}>{isEditing ? t('taskForm.editTitle') : t('taskForm.createTitle')}</DialogTitle>
 
           <DialogDescription className={style.dialogDescription}>
-            {isEditing ? 'Altere os detalhes da sua tarefa.' : 'Preencha as informações para criar uma nova tarefa.'}
+            {isEditing ? t('taskForm.editDescription') : t('taskForm.createDescription')}
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -133,9 +132,9 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
               name="title"
               render={({ field }) => (
                 <FormItem className={style.formField}>
-                  <FormLabel className={style.formLabel}>Título</FormLabel>
+                  <FormLabel className={style.formLabel}>{t('taskForm.titleLabel')}</FormLabel>
                   <FormControl>
-                    <Input className={style.formInput} placeholder="Ex: Desenvolver a tela de login" {...field} />
+                    <Input className={style.formInput} placeholder={t('taskForm.titlePlaceholder')} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -147,9 +146,9 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
               name="description"
               render={({ field }) => (
                 <FormItem className={style.formField}>
-                  <FormLabel className={style.formLabel}>Descrição</FormLabel>
+                  <FormLabel className={style.formLabel}>{t('taskForm.descriptionLabel')}</FormLabel>
                   <FormControl>
-                    <Textarea className={style.formInput} placeholder="Adicione mais detalhes sobre a tarefa..." {...field} />
+                    <Textarea className={style.formInput} placeholder={t('taskForm.descriptionPlaceholder')} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -160,11 +159,11 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
               name="status"
               render={({ field }) => (
                 <FormItem className={style.formField}>
-                  <FormLabel className={style.formLabel}>Status</FormLabel>
+                  <FormLabel className={style.formLabel}>{t('taskForm.statusLabel')}</FormLabel>
                   <Select onValueChange={field.onChange} value={field.value}>
                     <FormControl>
                       <SelectTrigger className={style.selectTrigger}>
-                        <SelectValue placeholder="Selecione o status" />
+                        <SelectValue placeholder={t('taskForm.statusPlaceholder')} />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent className={style.selectContent}>
@@ -183,7 +182,7 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
                 name="dueDate"
                 render={({ field }) => (
                   <FormItem className={style.formField}>
-                    <FormLabel className={style.formLabel}>Data de Vencimento</FormLabel>
+                    <FormLabel className={style.formLabel}>{t('taskForm.dueDateLabel')}</FormLabel>
                     <div className={style.datePickerContainer}>
                       <Popover>
                         <PopoverTrigger asChild>
@@ -191,11 +190,11 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
                             <button
                               type="button"
                               className={style.datePickerTrigger}
-                              aria-label="Selecionar data"
+                              aria-label={t('taskForm.dueDatePlaceholder')}
 
                             >
                               <CalendarIcon size={20} />
-                              {field.value ? format(field.value, 'PPP', { locale: ptBR }) : <span>Escolha uma data</span>}
+                              {field.value ? format(field.value, 'PPP', { locale: dateLocale }) : <span>{t('taskForm.dueDatePlaceholder')}</span>}
                             </button>
                           </FormControl>
                         </PopoverTrigger>
@@ -207,7 +206,7 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
                             onSelect={field.onChange}
                             disabled={{ before: new Date() }} // Desabilita visualmente as datas passadas
                             autoFocus
-                            aria-label='Selecione uma data' />
+                            aria-label={t('taskForm.dueDatePlaceholder')} />
                         </PopoverContent>
                       </Popover>
                       {field.value && (
@@ -216,7 +215,7 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
                           onClick={() => form.setValue('dueDate', undefined , { shouldValidate: true })
                           }
                           className={style.clearDateButton}
-                          aria-label="Limpar data"
+                          aria-label={t('taskForm.clearDate')}
                         >
                           <X size={12} />
                         </button>
@@ -231,11 +230,11 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
                 name="priority"
                 render={({ field }) => (
                   <FormItem className={style.formField}>
-                    <FormLabel className={style.formLabel}>Prioridade</FormLabel>
+                    <FormLabel className={style.formLabel}>{t('taskForm.priorityLabel')}</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger className={style.selectTrigger }>
-                          <SelectValue  placeholder="Selecione a prioridade" />
+                          <SelectValue  placeholder={t('taskForm.priorityPlaceholder')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent className={style.selectContent}>
@@ -253,10 +252,10 @@ function TaskFormDialog({ isOpen, onOpenChange, taskToEdit, initialStatus, onSub
         </Form>
         <DialogFooter className={style.formBtns}>
           <DialogClose asChild>
-            <button type="button" className={style.cancelButton}>Cancelar</button>
+            <button type="button" className={style.cancelButton}>{t('common.cancel')}</button>
           </DialogClose>
           <button type="submit" form="task-form" className={style.submitButton}>
-            {isEditing ? 'Salvar Alterações' : 'Criar Tarefa'}
+            {isEditing ? t('taskForm.submitEdit') : t('taskForm.submitCreate')}
           </button>
         </DialogFooter>
       </DialogContent>
