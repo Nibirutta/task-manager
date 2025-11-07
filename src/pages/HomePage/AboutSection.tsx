@@ -19,7 +19,6 @@ const devsData = [
       "Vite",
       "TypeScript",
       "React-Router",
-      "Zod",
       "Radix",
       "Framer-Motion",
     ],
@@ -97,7 +96,7 @@ const AboutSection = ({ title, text }: AboutSectionProps) => {
         </motion.h2>
 
         <motion.p 
-          className="px-12 text-xl xl:text-3xl font-medium text-[var(--about-text-color)] font-(family-name:--about-text-font)"
+          className="px-12 lg:px-32 text-xl xl:text-3xl font-medium text-[var(--about-text-color)] font-(family-name:--about-text-font)"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.8 }}

@@ -101,7 +101,7 @@
     --demo-title-shadow:  var(--color-mercury-900) 1.95px 1.95px 2.6px;
     --demo-subtitle-color: var(--color-bermuda-gray-300);
     --demo-figure-border: var(--color-web-orange-500) ;
-    --demo-figure-shadow: var(--color-web-orange-400) 0px 0px 0px 2px inset, rgb(255, 255, 255) 10px -10px 0px -3px, var(--color-web-orange-300) 10px -10px, rgb(255, 255, 255) 20px -20px 0px -3px, var(--color-web-orange-200) 20px -20px, rgb(255, 255, 255) 30px -30px 0px -3px, var(--color-web-orange-100) 30px -30px, rgb(255, 255, 255) 40px -40px 0px -3px, var(--color-web-orange-50) 40px -40px;
+    --demo-figure-shadow: var(--color-web-orange-400) 0px 0px 0px 2px inset, var(--body-bg-color) 10px -10px 0px -3px, var(--color-web-orange-300) 10px -10px, var(--body-bg-color) 20px -20px 0px -3px, var(--color-web-orange-200) 20px -20px, var(--body-bg-color) 30px -30px 0px -3px, var(--color-web-orange-100) 30px -30px, var(--body-bg-color) 40px -40px 0px -3px, var(--color-web-orange-50) 40px -40px;
     --demo-figcaption-color: var(--color-mercury-100);
     --demo-figcaption-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 

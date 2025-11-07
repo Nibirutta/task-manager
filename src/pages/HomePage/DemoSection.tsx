@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import demo from "../../assets/imgs/Task-Manager.gif"
 
 type DemoSectionProps = {
   title: string;
@@ -34,12 +35,13 @@ const DemoSection = ({ title, subtitle, ...props }: DemoSectionProps) => {
       </div>
 
       <motion.figure
-        className=" flex flex-col relative justify-center items-center gap-4 border-2 border-[var(--demo-figure-border)] shadow-[var(--demo-figure-shadow)]"
+        className=" flex flex-col mt-16 relative justify-center items-center gap-4 border-4 rounded-lg border-[var(--demo-figure-border)] shadow-[var(--demo-figure-shadow)]"
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
       >
+        <img src={demo} alt="task manager demonstration" />
         {props.figcaption && (
           <figcaption className="text-[1.2rem] absolute bottom-16 2xl:text-[1.6rem] text-[var(--demo-figcaption-color)] font-(family-name:--demo-figcaption-font) shadow-[var(--demo-figcaption-shadow)]">
             {props.figcaption}
