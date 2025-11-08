@@ -337,6 +337,17 @@ export const ptBR = {
     },
   },
 
+  // Modal de Recuperação de Senha
+  forgotPassword: {
+    title: "Redefinir Senha",
+    description: "Insira seu e-mail abaixo. Se ele estiver cadastrado, enviaremos um link para você criar uma nova senha.",
+    submitButton: "Enviar Link",
+    toast: {
+      pending: "Verificando seu e-mail...",
+      success: "Se uma conta com este e-mail existir, um link de recuperação foi enviado.",
+      error: "Ocorreu um erro. Por favor, tente novamente mais tarde.",
+    },
+  },
   // Página de Configurações do Usuário
   userSettingsPage: {
     meta: {

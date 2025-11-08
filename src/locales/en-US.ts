@@ -336,6 +336,17 @@ export const enUS = {
     },
   },
 
+  // Forgot Password Dialog
+  forgotPassword: {
+    title: 'Reset Password',
+    description: 'Enter your email below. If it is registered, we will send a link for you to create a new password.',
+    submitButton: 'Send Link',
+    toast: {
+      pending: 'Checking your email...',
+      success: 'If an account with this email exists, a recovery link has been sent.',
+      error: 'An error occurred. Please try again later.',
+    },
+  },
   // User Settings Page
   userSettingsPage: {
     meta: {

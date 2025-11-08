@@ -1,4 +1,4 @@
-import { useId, useState } from "react";
+import { useId, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -20,14 +20,19 @@ import SubmitBtn from "../../components/SubmitBtn/SubmitBtn";
 
 import style from "./ForgotPasswordDialog.module.css";
 import { requestPasswordResetEmail } from "../../api/Task API/services/accountService";
+import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 
-const forgotPasswordSchema = z.object({
-  email: z.email({ error: "Por favor, insira um e-mail válido." })
-})
+const createForgotPasswordSchema = (t: TFunction) => z.object({
+  email: z.email({ message: t("validation.email.invalid") })
+});
 
-type ForgotPasswordInputs = z.infer<typeof forgotPasswordSchema>;
+type ForgotPasswordInputs = z.infer<ReturnType<typeof createForgotPasswordSchema>>;
 
 function ForgotPasswordDialog() {
+  const { t } = useTranslation();
+  const forgotPasswordSchema = useMemo(() => createForgotPasswordSchema(t), [t]);
+
   const [open, setOpen] = useState(false);
   const {
     register,
@@ -44,9 +49,9 @@ function ForgotPasswordDialog() {
   const onSubmit = async (data: ForgotPasswordInputs) => {
     try {
       await toast.promise(requestPasswordResetEmail(data), {
-        pending: "Verificando seu e-mail...",
-        success: "Se uma conta com este e-mail existir, um link de recuperação foi enviado.",
-        error: "Ocorreu um erro. Por favor, tente novamente mais tarde.",
+        pending: t('forgotPassword.toast.pending'),
+        success: t('forgotPassword.toast.success'),
+        error: t('forgotPassword.toast.error'),
       });
       reset(); 
       setOpen(false);
@@ -58,23 +63,22 @@ function ForgotPasswordDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <span className={style.triggerLink}>Esqueceu sua senha?</span>
+        <span className={style.triggerLink}>{t('loginPage.form.forgotPassword')}</span>
       </DialogTrigger>
       <DialogContent className={style.content}>
         <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
           <DialogHeader className={style.header}>
-            <DialogTitle className={style.title}>Redefinir Senha</DialogTitle>
+            <DialogTitle className={style.title}>{t('forgotPassword.title')}</DialogTitle>
             <DialogDescription className={style.description}>
-              Insira seu e-mail abaixo. Se ele estiver cadastrado, enviaremos um
-              link para você criar uma nova senha.
+              {t('forgotPassword.description')}
             </DialogDescription>
           </DialogHeader>
           <DialogBody className={style.body}>
             <InputField
               id={emailId}
-              label="E-mail"
+              label={t('registerForm.emailLabel')}
               type="email"
-              placeholder="seu@email.com"
+              placeholder={t('registerForm.emailPlaceholder')}
               Icon={Mail}
               {...register("email")}
               isValid={!errors.email}
@@ -83,7 +87,7 @@ function ForgotPasswordDialog() {
           </DialogBody>
           <DialogFooter className={style.footer}>
             <SubmitBtn
-              title="Enviar Link"
+              title={t('forgotPassword.submitButton')}
               icon={Send}
               isLoading={isSubmitting}
               disabled={!isValid || isSubmitting}
