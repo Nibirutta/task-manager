@@ -461,13 +461,878 @@
 @custom-variant neon-flow (&:where([data-theme=neon-flow], [data-theme=neon-Flow] *));
 
 [data-theme=neon-Flow]{
-    --body-bg-color: var(--color-cinder-950); 
+  /* Body */
+  --body-bg-color: var(--color-cinder-1000);
+  /* Header  */
+  --header-border-color: var(--color-neon-cyan-900);
+  --header-bg-color: var(--color-cinder-950);
+
+  /* Greetings */
+  --greetings-color-1: var(--color-santas-gray-200);
+  --greetings-color-2: var(--color-santas-gray-400);
+  --greetings-color-3: var(--color-amethyst-400);
+  --greetings-color-4: var(--color-neon-cyan-400);
+  
+  /* Navbar  */
+  --navbar-logo-color: var(--color-neon-cyan-400);
+  --navbar-link-color: var(--color-santas-gray-300);
+  --navbar-link-hover: var(--color-neon-cyan-400);
+
+  /* user menu btn*/
+  --user-menu-btn-bg-color: var(--color-cinder-950);
+  --user-menu-btn-bg-hover: var(--color-cinder-800);
+  --user-menu-btn-bg-active: var(--color-cinder-700);
+  --user-menu-btn-border-color: var(--color-cinder-800);
+  --user-menu-btn-border-hover: var(--color-neon-cyan-700);
+  --user-menu-btn-border-active: var(--color-neon-cyan-500);
+  --user-menu-btn-shadow: 0 0 2px var(--color-cinder-950);
+  --user-menu-btn-shadow-hover: 0 0 5px var(--color-neon-cyan-500);
+  --user-menu-btn-shadow-active: 0 0 8px var(--color-neon-cyan-400);
+  --user-menu-btn-text-color: var(--color-santas-gray-200);
+  --user-menu-btn-text-hover: var(--color-neon-cyan-200);
+  --user-menu-btn-text-active: var(--color-neon-cyan-100);
+
+  --user-menu-container-bg-color: var(--color-cinder-900);
+  --user-menu-container-border-color: var(--color-amethyst-800);
+  --user-menu-container-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+
+  --user-menu-item--bg-color: var(--color-cinder-800);
+  --user-menu-item--bg-hover: var(--color-cinder-700);
+  --user-menu-item--bg-active: var(--color-amethyst-800);
+  --user-menu-item--text-color: var(--color-santas-gray-200);
+  --user-menu-item--text-hover: var(--color-amethyst-300);
+  --user-menu-item--text-active: var(--color-santas-gray-50);
+  --user-menu-item--border-color: var(--color-cinder-700);
+  --user-menu-item--border-hover: var(--color-amethyst-700);
+  --user-menu-item--border-active: var(--color-amethyst-500);
+  --user-menu-item--shadow:  rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  --user-menu-item--shadow-hover:  rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+  --user-menu-item--shadow-active:  rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+
+
+  /* Hero Section */
+  --hero-bg-color-1: var(--color-neon-cyan-400);
+  --hero-bg-color-2: var(--color-rose-600);
+  --hero-bg-color-3: var(--color-neon-cyan-400)72;
+  --hero-bg-color-4: var(--color-rose-600)6c;
+
+  --hero-title-color: var(--color-titan-white-50);
+  --hero-title-shadow-color-1: var(--color-neon-cyan-900);
+  --hero-title-shadow-color-2: var(--color-neon-cyan-800);
+  --hero-title-shadow-color-3: var(--color-amethyst-800);
+  --hero-title-shadow-color-4: var(--color-amethyst-900);
+  --hero-title-shadow-color-5: var(--color-cinder-950);
+  --hero-subtitle-color: var(--color-santas-gray-200);
+
+  --cta-button-bg: var(--color-neon-cyan-500);
+  --cta-button-text: var(--color-cinder-1000);
+  --cta-button-ball-color: var(--color-neon-cyan-100);
+  --cta-button-secondary-bg: var(--color-cinder-900);
+  --cta-button-secondary-text: var(--color-santas-gray-100);
+
+  --hero-developed-color: var(--color-santas-gray-400);
+
+  --hero-svg-primary: var(--color-amethyst-500);
+
+  /* Features Section */
+
+  --features-title-color: var(--color-titan-white-100);
+  --features-title-shadow: var(--color-amethyst-950) 1.95px 1.95px 2.6px;
+  --features-subtitle-color: var(--color-santas-gray-300);
+
+  --featcard-bg-color: var(--color-mirage-900);
+  --featcard-border-color: var(--color-amethyst-900);
+  --featcard-shadow-color: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  --featcard-title-color: var(--color-neon-cyan-200);
+  --featcard-description-color: var(--color-santas-gray-400);
+
+
+  /* Demo Section */
+
+  --demo-title-color: var(--color-titan-white-100);
+  --demo-title-shadow: var(--color-neon-cyan-700) 1.95px 1.95px 2.6px;
+  --demo-subtitle-color: var(--color-santas-gray-300);
+  --demo-figure-border: var(--color-neon-cyan-500);
+  --demo-figure-shadow: var(--color-neon-cyan-500) 0px 0px 0px 2px inset, var(--body-bg-color) 10px -10px 0px -3px, var(--color-amethyst-500) 10px -10px, var(--body-bg-color) 20px -20px 0px -3px, var(--color-neon-cyan-300) 20px -20px, var(--body-bg-color) 30px -30px 0px -3px, var(--color-amethyst-200) 30px -30px, var(--body-bg-color) 40px -40px 0px -3px, var(--color-neon-cyan-100) 40px -40px;
+  --demo-figcaption-color: var(--color-santas-gray-100);
+  --demo-figcaption-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+
+
+  /* About Section */
+
+  --about-title-color: var(--color-titan-white-100);
+  --about-title-shadow: var(--color-amethyst-950) 1.95px 1.95px 2.6px;
+  --about-text-color: var(--color-santas-gray-300);
+
+  /* Develpoer Card */
+  --dev-card-bg-color: var(--color-mirage-900);
+  --dev-card-header-bg-color: var(--color-cinder-950);
+  --dev-card-avatar-border-color: var(--color-neon-cyan-500);
+  --dev-card-role-bg-color: var(--color-amethyst-700);
+  --dev-card-role-color: var(--color-santas-gray-100);
+
+
+  --dev-card-title-color: var(--color-titan-white-100);
+  --dev-card-tech-color: var(--color-neon-cyan-300);
+
+  --dev-card-description-color: var(--color-santas-gray-300);
+
+  --dev-card-contact-color: var(--color-santas-gray-300);
+  --dev-card-social-bg: var(--color-cinder-800);
+
+
+  --cta-title-color: var(--color-titan-white-100);
+  --cta-title-shadow: var(--color-neon-cyan-700) 1.95px 1.95px 2.6px;
+
+ /* Login Form */
+  --login-bg-color: var(--color-cinder-950);
+  --login-border-color: var(--color-amethyst-900);
+  --login-shadow-color: 0 0 12px var(--color-amethyst-700);
+
+  --login-title-color: var(--color-titan-white-100);
+  --redirect-color: var(--color-neon-cyan-400);
+  --redirect-hover: var(--color-neon-cyan-200);
+  --error-msg-color: var(--color-rose-400);
+
+/* input-field */
+  --input-field-bg-color: var(--color-cinder-900);
+  --input-field-text-color: var(--color-santas-gray-100);
+  --input-field-icon-color: var(--color-santas-gray-500);
+  --input-field-label-color: var(--color-amethyst-400);
+  --input-field-placeholder-color: var(--color-santas-gray-600);
+  --input-field-error-color: var(--color-rose-400);
+
+  /* submit button */
+  --sb-bg-color: var(--color-neon-cyan-600);
+  --sb-border-color: var(--color-neon-cyan-800);
+  --sb-hover-bg-color: var(--color-neon-cyan-500);
+  --sb-hover-border-color: var(--color-neon-cyan-700);
+  --sb-text-color: var(--color-cinder-950);
+
+
+    /* Register form */
+  --register-bg-color: var(--login-bg-color);
+  --register-border-color: var(--login-border-color);
+  --register-title-color: var(--login-title-color);
+
+  /* Forgot Password Dialog */
+   --fpd-bg-color: var(--color-cinder-900);
+  --fpd-title-color: var(--color-titan-white-100);
+  --fpd-description-color: var(--color-santas-gray-300);
+
+
+  /* Footer */
+  --footer-bg-color: var(--color-cinder-1000);
+  --footer-title-color: var(--color-santas-gray-500);
+  --footer-info-color: var(--color-santas-gray-300);
+  --footer-info-hover: var(--color-neon-cyan-400);
+  --footer-line-color: var(--color-cinder-800);
+
+    /* Task Card */
+--card-bg-color: var(--color-mirage-900);
+  --card-bg-border: var(--color-cinder-800);
+
+  --card-title-color: var(--color-titan-white-100);
+  --card-subtitle-color: var(--color-santas-gray-300);
+  --card-description-bg: var(--color-mirage-800);
+  --card-description-color: var(--color-santas-gray-200);
+
+  --card-badges-bg: var(--color-cinder-800);
+  --card-badges-label-color: var(--color-santas-gray-300);
+  --card-priority-color: var(--color-cinder-1000); /* Dark text for contrast */
+
+  --card-priority-high-border: var(--color-rose-500);
+  --card-priority-medium-border: var(--color-amethyst-500);
+  --card-priority-low-border: var(--color-neon-cyan-500);
+  --card-priority-urgent-border: var(--color-rose-600);
+  --card-priority-optional-border: var(--color-santas-gray-600);
+
+  --card-priority-high-bg: var(--color-rose-950);
+  --card-priority-medium-bg: var(--color-amethyst-950);
+  --card-priority-low-bg: var(--color-neon-cyan-950);
+  --card-priority-urgent-bg: var(--color-rose-900);
+  --card-priority-optional-bg: var(--color-cinder-900);
+
+  --card-badge-expired-bg: var(--color-rose-950)64;
+  --card-badge-expired-text: var(--color-rose-400);
+  --card-badge-deadline-bg: var(--color-amethyst-950)62;
+  --card-badge-deadline-text: var(--color-amethyst-400);
+  --card-badge-intime-bg: var(--color-neon-cyan-950)6a;
+  --card-badge-intime-text: var(--color-neon-cyan-400);
+
+  --card-status-todo-bg: var(--color-mirage-900);
+  --card-status-inprogress-bg: var(--color-mirage-800);
+  --card-status-inreview-bg: var(--color-mirage-700);
+  --card-status-done-bg: var(--color-mirage-600);
+
+  --card-footer-btn-bg: var(--color-cinder-900);
+  --card-footer-btn-bg-hover: var(--color-cinder-800);
+  --card-footer-btn-color: var(--color-santas-gray-200);
+  --card-footer-btn-color-hover: var(--color-neon-cyan-300);
+  --card-footer-btn-border: var(--color-cinder-800);
+  --card-footer-btn-border-hover: var(--color-neon-cyan-700);
+
+  --card-delete-btn-color: var(--color-rose-500);
+  --card-edit-btn-color: var(--color-amethyst-500);
+  --card-details-btn-color: var(--color-neon-cyan-500);
+
+  /* Task Column*/
+  --column-bg: var(--color-cinder-950);
+  --column-border: var(--color-cinder-900);
+  --column-border-hover: var(--color-neon-cyan-500);
+  --column-header-bg: var(--color-cinder-900);
+
+  --column-title-color: var(--color-titan-white-100);
+  --column-empty-color: var(--color-santas-gray-500);
+  --column-dragging-color: var(--color-mirage-950);
+
+  /* Dashboard Page Actions */
+  --dashboard-page-title-color: var(--color-titan-white-100);
+  --dashboard-new-task-btn-bg-color: var(--color-cinder-900);
+  --dashboard-new-task-btn-hover-bg-color: var(--color-cinder-800);
+  --dashboard-new-task-btn-text-color: var(--color-neon-cyan-400);
+
+
+  /* Task Filter */
+  --task-filter-trigger-bg-color: var(--color-cinder-900);
+  --task-filter-trigger-bg-hover: var(--color-cinder-800);
+  --task-filter-trigger-bg-sctive: var(--color-cinder-700);
+  --task-filter-trigger-text-color: var(--color-santas-gray-200);
+  --task-filter-trigger-text-hover: var(--color-neon-cyan-200);
+  --task-filter-trigger-text-active: var(--color-neon-cyan-100);
+  --task-filter-trigger-border-color: var(--color-cinder-800);
+  --task-filter-trigger-border-hover: var(--color-neon-cyan-700);
+  --task-filter-trigger-border-active: var(--color-neon-cyan-500);
+  --task-filter-trigger-box-shadow: 0 0 0 2px var(--color-neon-cyan-800), 0 4px 6px -1px var(--color-cinder-950), inset 0 1px 0 var(--color-neon-cyan-900);
+  --task-filter-trigger-box-shadow-hover: 0 0 10px var(--color-neon-cyan-500), 0 0 20px var(--color-amethyst-500);
+  --task-filter-trigger-box-shadow-active: inset 0 0 10px var(--color-neon-cyan-400), inset 0 0 20px var(--color-amethyst-400);
+
+  --task-filter-content-bg-color: var(--color-cinder-800);
+
+  --task-filter-item-bg-color: var(--color-cinder-700);
+  --task-filter-item-bg-hover: var(--color-cinder-600);
+  --task-filter-item-bg-active: var(--color-amethyst-800);
+  --task-filter-item-text-color: var(--color-santas-gray-200);
+  --task-filter-item-text-hover: var(--color-amethyst-300);
+  --task-filter-item-text-active: var(--color-santas-gray-50);
+  --task-filter-item-border-color: var(--color-cinder-600);
+  --task-filter-item-border-hover: var(--color-amethyst-700);
+  --task-filter-item-border-active: var(--color-amethyst-500);
+  --task-filter-item-box-shadow: 0 0 5px var(--color-neon-cyan-900);
+  --task-filter-item-box-shadow-hover: 0 0 8px var(--color-neon-cyan-700), 0 0 15px var(--color-amethyst-700);
+  --task-filter-item-box-shadow-active: inset 0 0 5px var(--color-neon-cyan-500), inset 0 0 10px var(--color-amethyst-500);
+
+
+
+  /* Task Form Dialog */
+
+  --task-form-dialog-bg: var(--color-cinder-900);
+  --task-form-dialog-header-bg: var(--color-cinder-950);
+  --task-form-dialog-title-color: var(--color-titan-white-100);
+  --task-form-dialog-description-color: var(--color-santas-gray-300);
+
+
+  --task-form-item-label-color: var(--color-amethyst-400);
+  --task-form-input-bg: var(--color-cinder-800);
+  --task-form-input-border-color: var(--color-cinder-700);
+  --task-form-input-text-color: var(--color-santas-gray-100);
+
+  --task-form-select-trigger-bg: var(--color-cinder-800);
+  --task-form-select-trigger-bg-hover: var(--color-cinder-700);
+  --task-form-select-trigger-border-color: var(--color-cinder-700);
+  --task-form-select-trigger-border-color-hover: var(--color-neon-cyan-700);
+  --task-form-select-trigger-text-color: var(--color-santas-gray-200);
+  --task-form-select-trigger-text-color-hover: var(--color-neon-cyan-200);
+
+  --task-form-select-content-bg: var(--color-cinder-800);
+  --task-form-select-content-border-color: var(--color-amethyst-800);
+  --task-form-select-item-bg: var(--color-cinder-700);
+  --task-form-select-item-bg-hover: var(--color-cinder-600);
+  --task-form-select-item-text-color: var(--color-santas-gray-200);
+  --task-form-select-item-text-color-hover: var(--color-amethyst-300);
+  --task-form-select-item-border-color: var(--color-cinder-600);
+  --task-form-select-item-border-color-hover: var(--color-amethyst-700);
+
+  --task-form-dialog-datepicker-trigger-bg: var(--color-cinder-800);
+  --task-form-dialog-datepicker-trigger-bg-hover: var(--color-cinder-700);
+  --task-form-dialog-datepicker-trigger-border: var(--color-cinder-700);
+  --task-form-dialog-datepicker-trigger-border-hover: var(--color-neon-cyan-700);
+  --task-form-dialog-datepicker-trigger-text: var(--color-santas-gray-200);
+  --task-form-dialog-datepicker-trigger-text-hover: var(--color-neon-cyan-200);
+  --task-form-dialog-datepicker-clear-button-text: var(--color-santas-gray-300);
+
+
+  --task-form-dialog-cancel-button-bg: var(--color-cinder-700);
+  --task-form-dialog-cancel-button-bg-hover: var(--color-cinder-600);
+  --task-form-dialog-cancel-button-text: var(--color-santas-gray-100);
+  --task-form-dialog-cancel-button-text-hover: var(--color-santas-gray-50);
+  --task-form-dialog-cancel-button-border: var(--color-cinder-600);
+  --task-form-dialog-cancel-button-border-hover: var(--color-amethyst-700);
+
+  --task-form-dialog-submit-button-bg: var(--color-neon-cyan-600);
+  --task-form-dialog-submit-button-bg-hover: var(--color-neon-cyan-500);
+  --task-form-dialog-submit-button-text: var(--color-cinder-950);
+  --task-form-dialog-submit-button-text-hover: var(--color-cinder-1000);
+  --task-form-dialog-submit-button-border: var(--color-neon-cyan-800);
+  --task-form-dialog-submit-button-border-hover: var(--color-neon-cyan-700);
+
+  /* date picker  */
+  --date-picker-bg: var(--color-cinder-800);
+  --date-picker-text-color: var(--color-santas-gray-100);
+  --date-picker-btn-color: var(--color-santas-gray-200);
+  --date-picker-btn-color-hover: var(--color-neon-cyan-300);
+  --date-picker-weekday-color: var(--color-santas-gray-500);
+
+  --date-picker-day-text-color: var(--color-santas-gray-100);
+  --date-picker-day-hover-bg: var(--color-cinder-700);
+  --date-picker-day-hover-text-color: var(--color-neon-cyan-200);
+
+  --date-picker-day-selected-bg: var(--color-amethyst-600);
+  --date-picker-day-selected-text-color: var(--color-santas-gray-50);
+  --date-picker-day-selected-outside-text-color: var(--color-santas-gray-200);
+
+  --date-picker-day-disabled-text-color: var(--color-santas-gray-700);
+  --date-picker-day-outside-text-color: var(--color-santas-gray-400);
+  --date-picker-day-focus-ring-color: var(--color-neon-cyan-500);
+
+  --date-picker-range-middle-bg: var(--color-cinder-600);
+  --date-picker-range-middle-text-color: var(--color-santas-gray-100);
+
+  --date-picker-today-indicator-bg: var(--color-neon-cyan-400);
+  --date-picker-today-indicator-selected-bg: var(--color-neon-cyan-600);
+  --date-picker-today-indicator-disabled-bg: var(--color-neon-cyan-200);
+
+  --date-picker-outside-day-selected-bg: var(--color-amethyst-600)80;
+  --date-picker-outside-day-selected-text-color: var(--color-santas-gray-50);
+  --date-picker-week-number-text-color: var(--color-santas-gray-500);
+
+
+  --delete-dialog-bg: var(--color-cinder-950);
+  --delete-dialog-border-color: var(--color-rose-900);
+  --delete-dialog-header-bg: var(--color-cinder-900);
+  --delete-dialog-title-color: var(--color-titan-white-100);
+  --delete-dialog-description-color: var(--color-santas-gray-300);
+  --delete-dialog-cancel-btn-bg: var(--color-cinder-700);
+  --delete-dialog-cancel-btn-bg-hover: var(--color-cinder-600);
+  --delete-dialog-cancel-btn-color: var(--color-santas-gray-100);
+  --delete-dialog-cancel-btn-color-hover: var(--color-santas-gray-50);
+  --delete-dialog-cancel-btn-border: var(--color-cinder-600);
+  --delete-dialog-cancel-btn-border-hover: var(--color-amethyst-700);
+  --delete-dialog-confirm-btn-bg: var(--color-rose-600);
+  --delete-dialog-confirm-btn-hover-bg: var(--color-rose-500);
+  --delete-dialog-confirm-btn-color: var(--color-santas-gray-50);
+  --delete-dialog-confirm-btn-hover-color: var(--color-santas-gray-100);
+  --delete-dialog-confirm-btn-border: var(--color-rose-800);
+  --delete-dialog-confirm-btn-hover-border: var(--color-rose-700);
+
+  /* settings page */
+  --profile-title-color: var(--color-titan-white-100);
+  --profile-title-shadow: 0 2px 6px var(--color-neon-cyan-500);
+  --profile-subtitle-color: var(--color-santas-gray-400);
+
+  --preferences-title-color: var(--color-titan-white-100);
+  --preferences-title-shadow: 0 2px 6px var(--color-amethyst-500);
+  --preferences-subtitle-color: var(--color-santas-gray-400);
+
+  --preferences-theme-title-color: var(--color-titan-white-100);
+  --preferences-theme-title-shadow: 0 2px 6px var(--color-neon-cyan-500);
+  --preferences-theme-box-bg-color: var(--color-cinder-800);
+  --preferences-theme-box-border-color: var(--color-amethyst-800);
+  --preferences-theme-box-shadow: 0 0 15px var(--color-amethyst-700), inset 0 0 5px var(--color-neon-cyan-500);
+  --preferences-theme-btn-bg-color: var(--color-cinder-700);
+  --preferences-theme-btn-bg-hover: var(--color-cinder-600);
+  --preferences-theme-btn-bg-active: var(--color-neon-cyan-600);
+  --preferences-theme-btn-border-color: var(--color-cinder-600);
+  --preferences-theme-btn-border-hover: var(--color-amethyst-700);
+  --preferences-theme-btn-border-active: var(--color-neon-cyan-500);
+  --preferences-theme-btn-shadow: 0 0 8px var(--color-neon-cyan-700);
+  --preferences-theme-btn-shadow-hover: 0 0 12px var(--color-neon-cyan-500), 0 0 20px var(--color-amethyst-500);
+  --preferences-theme-btn-shadow-active: inset 0 0 8px var(--color-neon-cyan-400), inset 0 0 15px var(--color-amethyst-400);
+  --preferences-theme-btn-text-color: var(--color-santas-gray-100);
+  --preferences-theme-btn-text-hover: var(--color-neon-cyan-200);
+  --preferences-theme-btn-text-active: var(--color-santas-gray-50);
+
+  --switch-thumb-checked-color: var(--color-cinder-950);
+  --switch-track-checked-color: var(--color-neon-cyan-500);
+
+
+  --security-title-color: var(--color-titan-white-100);
+  --security-title-shadow: 0 2px 6px var(--color-rose-500);
+  --security-subtitle-color: var(--color-santas-gray-400);
+
+  --danger-zone-bg-color: var(--color-cinder-900);
+  --danger-zone-border-color: var(--color-rose-700);
+  --danger-zone-shadow: 0 2px 6px var(--color-rose-500);
+  --danger-zone-title-color: var(--color-titan-white-100);
+  --danger-zone-title-shadow: 0 2px 6px var(--color-rose-900);
+  --danger-zone-subtitle-color: var(--color-santas-gray-300);
+
+  --danger-zone-btn-bg-color: var(--color-rose-600);
+  --danger-zone-btn-bg-hover: var(--color-rose-500);
+  --danger-zone-btn-bg-active: var(--color-rose-400);
+  --danger-zone-btn-border-color: var(--color-rose-800);
+  --danger-zone-btn-border-hover: var(--color-rose-700);
+  --danger-zone-btn-border-active: var(--color-rose-600);
+  --danger-zone-btn-shadow: 0 0 15px var(--color-rose-700), inset 0 0 5px var(--color-rose-500);
+  --danger-zone-btn-shadow-hover: 0 0 12px var(--color-rose-500), 0 0 20px var(--color-rose-400);
+  --danger-zone-btn-shadow-active: inset 0 0 8px var(--color-rose-400), inset 0 0 15px var(--color-rose-300);
+  --danger-zone-btn-text-color: var(--color-santas-gray-50);
+  --danger-zone-btn-text-hover: var(--color-santas-gray-100);
+  --danger-zone-btn-text-active: var(--color-santas-gray-200);
+
+  --reset-page-bg: var(--color-cinder-900);
+  --reset-form-bg: var(--color-cinder-950);
+  --reset-form-border: var(--color-amethyst-900);
+  --reset-form-shadow: 0 0 15px var(--color-amethyst-700);
+  --reset-form-title-color: var(--color-titan-white-100);
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-neon-cyan-700);
+  }
+
+  * {
+    scrollbar-color: var(--color-neon-cyan-700);
+  }
 }
+
 
 @custom-variant cloudy-focus (&:where([data-theme=cloudy-focus], [data-theme=cloudy-focus] *));
 
 [data-theme=cloudy-focus]{
-    --body-bg-color: var(--color-zircon-100); 
+/* Body */
+  --body-bg-color: var(--color-zircon-50);
+  /* Header  */
+  --header-border-color: var(--color-zircon-200);
+  --header-bg-color: var(--color-white-50);
+
+  /* Greetings */
+  --greetings-color-1: var(--color-grafite-800);
+  --greetings-color-2: var(--color-grafite-600);
+  --greetings-color-3: var(--color-cornflower-blue-600);
+  --greetings-color-4: var(--color-cornflower-blue-500);
+
+  /* Navbar  */
+  --navbar-logo-color: var(--color-cornflower-blue-600);
+  --navbar-link-color: var(--color-grafite-700);
+  --navbar-link-hover: var(--color-cornflower-blue-500);
+
+  /* user menu btn*/
+  --user-menu-btn-bg-color: var(--color-white-50);
+  --user-menu-btn-bg-hover: var(--color-zircon-100);
+  --user-menu-btn-bg-active: var(--color-zircon-200);
+  --user-menu-btn-border-color: var(--color-zircon-200);
+  --user-menu-btn-border-hover: var(--color-cornflower-blue-300);
+  --user-menu-btn-border-active: var(--color-cornflower-blue-500);
+  --user-menu-btn-shadow: 0 0 2px var(--color-zircon-200);
+  --user-menu-btn-shadow-hover: 0 0 5px var(--color-cornflower-blue-200);
+  --user-menu-btn-shadow-active: 0 0 8px var(--color-cornflower-blue-300);
+  --user-menu-btn-text-color: var(--color-grafite-800);
+  --user-menu-btn-text-hover: var(--color-cornflower-blue-700);
+  --user-menu-btn-text-active: var(--color-cornflower-blue-800);
+
+  --user-menu-container-bg-color: var(--color-white-50);
+  --user-menu-container-border-color: var(--color-perano-300);
+  --user-menu-container-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+
+  --user-menu-item--bg-color: var(--color-white-50);
+  --user-menu-item--bg-hover: var(--color-zircon-100);
+  --user-menu-item--bg-active: var(--color-perano-200);
+  --user-menu-item--text-color: var(--color-grafite-700);
+  --user-menu-item--text-hover: var(--color-perano-700);
+  --user-menu-item--text-active: var(--color-perano-900);
+  --user-menu-item--border-color: var(--color-zircon-200);
+  --user-menu-item--border-hover: var(--color-perano-400);
+  --user-menu-item--border-active: var(--color-perano-500);
+  --user-menu-item--shadow:  rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+  --user-menu-item--shadow-hover:  rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  --user-menu-item--shadow-active:  rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+
+
+    /* Hero Section */
+
+--hero-bg-color-1: var(--color-neon-cyan-400);
+  --hero-bg-color-2: var(--color-rose-600);
+  --hero-bg-color-3: var(--color-neon-cyan-400)72; /* Mantendo a transparência */
+  --hero-bg-color-4: var(--color-rose-600)6c; /* Mantendo a transparência */
+
+  --hero-title-color: var(--color-titan-white-50);
+  --hero-title-shadow-color-1: var(--color-neon-cyan-900);
+  --hero-title-shadow-color-2: var(--color-neon-cyan-800);
+  --hero-title-shadow-color-3: var(--color-amethyst-800);
+  --hero-title-shadow-color-4: var(--color-amethyst-900);
+  --hero-title-shadow-color-5: var(--color-cinder-950);
+  --hero-subtitle-color: var(--color-santas-gray-200);
+
+  --cta-button-bg: var(--color-neon-cyan-500);
+  --cta-button-text: var(--color-cinder-1000);
+  --cta-button-ball-color: var(--color-neon-cyan-100);
+  --cta-button-secondary-bg: var(--color-cinder-900);
+  --cta-button-secondary-text: var(--color-santas-gray-100);
+
+  --hero-developed-color: var(--color-santas-gray-400);
+
+  --hero-svg-primary: var(--color-amethyst-500);
+
+  /* Features Section */
+
+  --features-title-color: var(--color-titan-white-100);
+  --features-title-shadow: var(--color-amethyst-950) 1.95px 1.95px 2.6px;
+  --features-subtitle-color: var(--color-santas-gray-300);
+
+  --featcard-bg-color: var(--color-mirage-900);
+  --featcard-border-color: var(--color-amethyst-900);
+  --featcard-shadow-color: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  --featcard-title-color: var(--color-neon-cyan-200);
+  --featcard-description-color: var(--color-santas-gray-400);
+  
+
+    /* Demo Section */
+
+    
+      --demo-title-color: var(--color-titan-white-100);
+  --demo-title-shadow: var(--color-neon-cyan-700) 1.95px 1.95px 2.6px;
+  --demo-subtitle-color: var(--color-santas-gray-300);
+  --demo-figure-border: var(--color-neon-cyan-500);
+  --demo-figure-shadow: var(--color-neon-cyan-500) 0px 0px 0px 2px inset, var(--body-bg-color) 10px -10px 0px -3px, var(--color-amethyst-500) 10px -10px, var(--body-bg-color) 20px -20px 0px -3px, var(--color-neon-cyan-300) 20px -20px, var(--body-bg-color) 30px -30px 0px -3px, var(--color-amethyst-200) 30px -30px, var(--body-bg-color) 40px -40px 0px -3px, var(--color-neon-cyan-100) 40px -40px;
+  --demo-figcaption-color: var(--color-santas-gray-100);
+  --demo-figcaption-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+
+
+  /* About Section */
+
+  --about-title-color: var(--color-titan-white-100);
+  --about-title-shadow: var(--color-amethyst-950) 1.95px 1.95px 2.6px;
+  --about-text-color: var(--color-santas-gray-300);
+
+  /* Develpoer Card */
+  --dev-card-bg-color: var(--color-mirage-900);
+  --dev-card-header-bg-color: var(--color-cinder-950);
+  --dev-card-avatar-border-color: var(--color-neon-cyan-500);
+  --dev-card-role-bg-color: var(--color-amethyst-700);
+  --dev-card-role-color: var(--color-santas-gray-100);
+
+
+  --dev-card-title-color: var(--color-titan-white-100);
+  --dev-card-tech-color: var(--color-neon-cyan-300);
+
+  --dev-card-description-color: var(--color-santas-gray-300);
+
+  --dev-card-contact-color: var(--color-santas-gray-300);
+  --dev-card-social-bg: var(--color-cinder-800);
+
+
+  --cta-title-color: var(--color-titan-white-100);
+  --cta-title-shadow: var(--color-neon-cyan-700) 1.95px 1.95px 2.6px;
+
+  /* Login Form */
+  --login-bg-color: var(--color-cinder-950);
+  --login-border-color: var(--color-amethyst-900);
+  --login-shadow-color: 0 0 12px var(--color-amethyst-700);
+
+  --login-title-color: var(--color-titan-white-100);
+  --redirect-color: var(--color-neon-cyan-400);
+  --redirect-hover: var(--color-neon-cyan-200);
+  --error-msg-color: var(--color-rose-400);
+
+  /* input-field */
+  --input-field-bg-color: var(--color-cinder-900);
+  --input-field-text-color: var(--color-santas-gray-100);
+  --input-field-icon-color: var(--color-santas-gray-500);
+  --input-field-label-color: var(--color-amethyst-400);
+  --input-field-placeholder-color: var(--color-santas-gray-600);
+  --input-field-error-color: var(--color-rose-400);
+
+  /* submit button */
+  --sb-bg-color: var(--color-neon-cyan-600);
+  --sb-border-color: var(--color-neon-cyan-800);
+  --sb-hover-bg-color: var(--color-neon-cyan-500);
+  --sb-hover-border-color: var(--color-neon-cyan-700);
+  --sb-text-color: var(--color-cinder-950);
+
+  /* Register form */
+  --register-bg-color: var(--login-bg-color);
+  --register-border-color: var(--login-border-color);
+  --register-title-color: var(--login-title-color);
+
+  /* Forgot Password Dialog */
+  --fpd-bg-color: var(--color-cinder-900);
+  --fpd-title-color: var(--color-titan-white-100);
+  --fpd-description-color: var(--color-santas-gray-300);
+
+  /* Footer */
+  --footer-bg-color: var(--color-cinder-1000);
+  --footer-title-color: var(--color-santas-gray-500);
+  --footer-info-color: var(--color-santas-gray-300);
+  --footer-info-hover: var(--color-neon-cyan-400);
+  --footer-line-color: var(--color-cinder-800);
+
+
+    /* Task Card */
+  --card-bg-color: var(--color-mirage-900);
+  --card-bg-border: var(--color-cinder-800);
+
+  --card-title-color: var(--color-titan-white-100);
+  --card-subtitle-color: var(--color-santas-gray-300);
+  --card-description-bg: var(--color-mirage-800);
+  --card-description-color: var(--color-santas-gray-200);
+
+  --card-badges-bg: var(--color-cinder-800);
+  --card-badges-label-color: var(--color-santas-gray-300);
+  --card-priority-color: var(--color-cinder-1000); /* Dark text for contrast */
+
+  --card-priority-high-border: var(--color-rose-500);
+  --card-priority-medium-border: var(--color-amethyst-500);
+  --card-priority-low-border: var(--color-neon-cyan-500);
+  --card-priority-urgent-border: var(--color-rose-600);
+  --card-priority-optional-border: var(--color-santas-gray-600);
+
+  --card-priority-high-bg: var(--color-rose-950);
+  --card-priority-medium-bg: var(--color-amethyst-950);
+  --card-priority-low-bg: var(--color-neon-cyan-950);
+  --card-priority-urgent-bg: var(--color-rose-900);
+  --card-priority-optional-bg: var(--color-cinder-900);
+
+  --card-badge-expired-bg: var(--color-rose-950)64;
+  --card-badge-expired-text: var(--color-rose-400);
+  --card-badge-deadline-bg: var(--color-amethyst-950)62;
+  --card-badge-deadline-text: var(--color-amethyst-400);
+  --card-badge-intime-bg: var(--color-neon-cyan-950)6a;
+  --card-badge-intime-text: var(--color-neon-cyan-400);
+
+  --card-status-todo-bg: var(--color-mirage-900);
+  --card-status-inprogress-bg: var(--color-mirage-800);
+  --card-status-inreview-bg: var(--color-mirage-700);
+  --card-status-done-bg: var(--color-mirage-600);
+
+  --card-footer-btn-bg: var(--color-cinder-900);
+  --card-footer-btn-bg-hover: var(--color-cinder-800);
+  --card-footer-btn-color: var(--color-santas-gray-200);
+  --card-footer-btn-color-hover: var(--color-neon-cyan-300);
+  --card-footer-btn-border: var(--color-cinder-800);
+  --card-footer-btn-border-hover: var(--color-neon-cyan-700);
+
+  --card-delete-btn-color: var(--color-rose-500);
+  --card-edit-btn-color: var(--color-amethyst-500);
+  --card-details-btn-color: var(--color-neon-cyan-500);
+
+
+  /* Task Column*/
+  --column-bg: var(--color-cinder-950);
+  --column-border: var(--color-cinder-900);
+  --column-border-hover: var(--color-neon-cyan-500);
+  --column-header-bg: var(--color-cinder-900);
+
+  --column-title-color: var(--color-titan-white-100);
+  --column-empty-color: var(--color-santas-gray-500);
+  --column-dragging-color: var(--color-mirage-950);
+
+  /* Dashboard Page Actions */
+  --dashboard-page-title-color: var(--color-titan-white-100);
+  --dashboard-new-task-btn-bg-color: var(--color-cinder-900);
+  --dashboard-new-task-btn-hover-bg-color: var(--color-cinder-800);
+  --dashboard-new-task-btn-text-color: var(--color-neon-cyan-400);
+
+
+  /* Task Filter */
+  --task-filter-trigger-bg-color: var(--color-cinder-900);
+  --task-filter-trigger-bg-hover: var(--color-cinder-800);
+  --task-filter-trigger-bg-sctive: var(--color-cinder-700);
+  --task-filter-trigger-text-color: var(--color-santas-gray-200);
+  --task-filter-trigger-text-hover: var(--color-neon-cyan-200);
+  --task-filter-trigger-text-active: var(--color-neon-cyan-100);
+  --task-filter-trigger-border-color: var(--color-cinder-800);
+  --task-filter-trigger-border-hover: var(--color-neon-cyan-700);
+  --task-filter-trigger-border-active: var(--color-neon-cyan-500);
+  --task-filter-trigger-box-shadow: 0 0 0 2px var(--color-neon-cyan-800), 0 4px 6px -1px var(--color-cinder-950), inset 0 1px 0 var(--color-neon-cyan-900);
+  --task-filter-trigger-box-shadow-hover: 0 0 10px var(--color-neon-cyan-500), 0 0 20px var(--color-amethyst-500);
+  --task-filter-trigger-box-shadow-active: inset 0 0 10px var(--color-neon-cyan-400), inset 0 0 20px var(--color-amethyst-400);
+
+  --task-filter-content-bg-color: var(--color-cinder-800);
+
+  --task-filter-item-bg-color: var(--color-cinder-700);
+  --task-filter-item-bg-hover: var(--color-cinder-600);
+  --task-filter-item-bg-active: var(--color-amethyst-800);
+  --task-filter-item-text-color: var(--color-santas-gray-200);
+  --task-filter-item-text-hover: var(--color-amethyst-300);
+  --task-filter-item-text-active: var(--color-santas-gray-50);
+  --task-filter-item-border-color: var(--color-cinder-600);
+  --task-filter-item-border-hover: var(--color-amethyst-700);
+  --task-filter-item-border-active: var(--color-amethyst-500);
+  --task-filter-item-box-shadow: 0 0 5px var(--color-neon-cyan-900);
+  --task-filter-item-box-shadow-hover: 0 0 8px var(--color-neon-cyan-700), 0 0 15px var(--color-amethyst-700);
+  --task-filter-item-box-shadow-active: inset 0 0 5px var(--color-neon-cyan-500), inset 0 0 10px var(--color-amethyst-500);
+
+
+
+  /* Task Form Dialog */
+
+  --task-form-dialog-bg: var(--color-cinder-900);
+  --task-form-dialog-header-bg: var(--color-cinder-950);
+  --task-form-dialog-title-color: var(--color-titan-white-100);
+  --task-form-dialog-description-color: var(--color-santas-gray-300);
+
+
+  --task-form-item-label-color: var(--color-amethyst-400);
+  --task-form-input-bg: var(--color-cinder-800);
+  --task-form-input-border-color: var(--color-cinder-700);
+  --task-form-input-text-color: var(--color-santas-gray-100);
+
+  --task-form-select-trigger-bg: var(--color-cinder-800);
+  --task-form-select-trigger-bg-hover: var(--color-cinder-700);
+  --task-form-select-trigger-border-color: var(--color-cinder-700);
+  --task-form-select-trigger-border-color-hover: var(--color-neon-cyan-700);
+  --task-form-select-trigger-text-color: var(--color-santas-gray-200);
+  --task-form-select-trigger-text-color-hover: var(--color-neon-cyan-200);
+
+  --task-form-select-content-bg: var(--color-cinder-800);
+  --task-form-select-content-border-color: var(--color-amethyst-800);
+  --task-form-select-item-bg: var(--color-cinder-700);
+  --task-form-select-item-bg-hover: var(--color-cinder-600);
+  --task-form-select-item-text-color: var(--color-santas-gray-200);
+  --task-form-select-item-text-color-hover: var(--color-amethyst-300);
+  --task-form-select-item-border-color: var(--color-cinder-600);
+  --task-form-select-item-border-color-hover: var(--color-amethyst-700);
+
+  --task-form-dialog-datepicker-trigger-bg: var(--color-cinder-800);
+  --task-form-dialog-datepicker-trigger-bg-hover: var(--color-cinder-700);
+  --task-form-dialog-datepicker-trigger-border: var(--color-cinder-700);
+  --task-form-dialog-datepicker-trigger-border-hover: var(--color-neon-cyan-700);
+  --task-form-dialog-datepicker-trigger-text: var(--color-santas-gray-200);
+  --task-form-dialog-datepicker-trigger-text-hover: var(--color-neon-cyan-200);
+  --task-form-dialog-datepicker-clear-button-text: var(--color-santas-gray-300);
+
+
+  --task-form-dialog-cancel-button-bg: var(--color-cinder-700);
+  --task-form-dialog-cancel-button-bg-hover: var(--color-cinder-600);
+  --task-form-dialog-cancel-button-text: var(--color-santas-gray-100);
+  --task-form-dialog-cancel-button-text-hover: var(--color-santas-gray-50);
+  --task-form-dialog-cancel-button-border: var(--color-cinder-600);
+  --task-form-dialog-cancel-button-border-hover: var(--color-amethyst-700);
+
+  --task-form-dialog-submit-button-bg: var(--color-neon-cyan-600);
+  --task-form-dialog-submit-button-bg-hover: var(--color-neon-cyan-500);
+  --task-form-dialog-submit-button-text: var(--color-cinder-950);
+  --task-form-dialog-submit-button-text-hover: var(--color-cinder-1000);
+  --task-form-dialog-submit-button-border: var(--color-neon-cyan-800);
+  --task-form-dialog-submit-button-border-hover: var(--color-neon-cyan-700);
+
+  /* date picker  */
+  --date-picker-bg: var(--color-cinder-800);
+  --date-picker-text-color: var(--color-santas-gray-100);
+  --date-picker-btn-color: var(--color-santas-gray-200);
+  --date-picker-btn-color-hover: var(--color-neon-cyan-300);
+  --date-picker-weekday-color: var(--color-santas-gray-500);
+
+  --date-picker-day-text-color: var(--color-santas-gray-100);
+  --date-picker-day-hover-bg: var(--color-cinder-700);
+  --date-picker-day-hover-text-color: var(--color-neon-cyan-200);
+
+  --date-picker-day-selected-bg: var(--color-amethyst-600);
+  --date-picker-day-selected-text-color: var(--color-santas-gray-50);
+  --date-picker-day-selected-outside-text-color: var(--color-santas-gray-200);
+
+  --date-picker-day-disabled-text-color: var(--color-santas-gray-700);
+  --date-picker-day-outside-text-color: var(--color-santas-gray-400);
+  --date-picker-day-focus-ring-color: var(--color-neon-cyan-500);
+
+  --date-picker-range-middle-bg: var(--color-cinder-600);
+  --date-picker-range-middle-text-color: var(--color-santas-gray-100);
+
+  --date-picker-today-indicator-bg: var(--color-neon-cyan-400);
+  --date-picker-today-indicator-selected-bg: var(--color-neon-cyan-600);
+  --date-picker-today-indicator-disabled-bg: var(--color-neon-cyan-200);
+
+  --date-picker-outside-day-selected-bg: var(--color-amethyst-600)80;
+  --date-picker-outside-day-selected-text-color: var(--color-santas-gray-50);
+  --date-picker-week-number-text-color: var(--color-santas-gray-500);
+
+
+  --delete-dialog-bg: var(--color-cinder-950);
+  --delete-dialog-border-color: var(--color-rose-900);
+  --delete-dialog-header-bg: var(--color-cinder-900);
+  --delete-dialog-title-color: var(--color-titan-white-100);
+  --delete-dialog-description-color: var(--color-santas-gray-300);
+  --delete-dialog-cancel-btn-bg: var(--color-cinder-700);
+  --delete-dialog-cancel-btn-bg-hover: var(--color-cinder-600);
+  --delete-dialog-cancel-btn-color: var(--color-santas-gray-100);
+  --delete-dialog-cancel-btn-color-hover: var(--color-santas-gray-50);
+  --delete-dialog-cancel-btn-border: var(--color-cinder-600);
+  --delete-dialog-cancel-btn-border-hover: var(--color-amethyst-700);
+  --delete-dialog-confirm-btn-bg: var(--color-rose-600);
+  --delete-dialog-confirm-btn-hover-bg: var(--color-rose-500);
+  --delete-dialog-confirm-btn-color: var(--color-santas-gray-50);
+  --delete-dialog-confirm-btn-hover-color: var(--color-santas-gray-100);
+  --delete-dialog-confirm-btn-border: var(--color-rose-800);
+  --delete-dialog-confirm-btn-hover-border: var(--color-rose-700);
+
+  /* settings page */
+ --profile-title-color: var(--color-zircon-950);
+  --profile-title-shadow: 0 2px 6px var(--color-zircon-200);
+  --profile-subtitle-color: var(--color-grafite-700);
+
+  --preferences-title-color: var(--color-zircon-950);
+  --preferences-title-shadow: 0 2px 6px var(--color-zircon-200);
+  --preferences-subtitle-color: var(--color-grafite-700);
+
+  --preferences-theme-title-color: var(--color-zircon-950);
+  --preferences-theme-title-shadow: 0 2px 6px var(--color-zircon-200);
+  --preferences-theme-box-bg-color: var(--color-link-water-100);
+  --preferences-theme-box-border-color: var(--color-zircon-300);
+  --preferences-theme-box-shadow: rgba(40, 43, 67, 0.1) 0px 5px 10px, rgba(40, 43, 67, 0.08) 0px 3px 6px, inset rgba(177, 194, 223, 0.1) 0px -2px 4px;
+  --preferences-theme-btn-bg-color: var(--color-zircon-200);
+  --preferences-theme-btn-bg-hover: var(--color-zircon-300);
+  --preferences-theme-btn-bg-active: var(--color-cornflower-blue-200);
+  --preferences-theme-btn-border-color: var(--color-zircon-300);
+  --preferences-theme-btn-border-hover: var(--color-cornflower-blue-400);
+  --preferences-theme-btn-border-active: var(--color-cornflower-blue-500);
+  --preferences-theme-btn-shadow: rgba(40, 43, 67, 0.1) 0px 5px 10px, rgba(40, 43, 67, 0.08) 0px 3px 6px;
+  --preferences-theme-btn-shadow-hover: rgba(71, 115, 234, 0.2) 0px 5px 15px;
+  --preferences-theme-btn-shadow-active: inset rgba(71, 115, 234, 0.1) 0px 2px 4px, inset rgba(41, 66, 204, 0.15) 0px 1px 2px;
+  --preferences-theme-btn-text-color: var(--color-grafite-800);
+  --preferences-theme-btn-text-hover: var(--color-cornflower-blue-700);
+  --preferences-theme-btn-text-active: var(--color-cornflower-blue-900);
+
+  --switch-thumb-checked-color: var(--color-zircon-950);
+  --switch-track-checked-color: var(--color-cruise-500);
+
+  --security-title-color: var(--color-zircon-950);
+  --security-title-shadow: 0 2px 6px var(--color-perano-300);
+  --security-subtitle-color: var(--color-grafite-700);
+
+  --danger-zone-bg-color: var(--color-red-50);
+  --danger-zone-border-color: var(--color-red-300);
+  --danger-zone-shadow: 0 2px 6px var(--color-red-200);
+  --danger-zone-title-color: var(--color-zircon-950);
+  --danger-zone-title-shadow: 0 2px 6px var(--color-red-300);
+  --danger-zone-subtitle-color: var(--color-red-700);
+
+  --danger-zone-btn-bg-color: var(--color-red-600);
+  --danger-zone-btn-bg-hover: var(--color-red-500);
+  --danger-zone-btn-bg-active: var(--color-red-400);
+  --danger-zone-btn-border-color: var(--color-red-700);
+  --danger-zone-btn-border-hover: var(--color-red-600);
+  --danger-zone-btn-border-active: var(--color-red-500);
+  --danger-zone-btn-shadow: rgba(239, 68, 68, 0.2) 0px 4px 12px, inset rgba(185, 28, 28, 0.1) 0px 1px 3px;
+  --danger-zone-btn-shadow-hover: rgba(239, 68, 68, 0.3) 0px 6px 16px;
+  --danger-zone-btn-shadow-active: inset rgba(185, 28, 28, 0.2) 0px 2px 4px, inset rgba(127, 29, 29, 0.15) 0px 1px 2px;
+  --danger-zone-btn-text-color: var(--color-white-50);
+  --danger-zone-btn-text-hover: var(--color-white-50);
+  --danger-zone-btn-text-active: var(--color-white-50);
+
+  --reset-page-bg: var(--color-zircon-50);
+  --reset-form-bg: var(--color-white-50);
+  --reset-form-border: var(--color-zircon-200);
+  --reset-form-shadow: rgba(177, 194, 223, 0.2) 0px 4px 12px;
+  --reset-form-title-color: var(--color-zircon-950);
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-cornflower-blue-400);
+  }
+
+  * {
+    scrollbar-color: var(--color-cornflower-blue-400);
+  }
 }
 
 @custom-variant after-hours (&:where([data-theme=after-hours], [data-theme=after-hours] *));
