@@ -213,8 +213,10 @@ function DashboardPage() {
   }
 
   return (
-    <div className={style.dashboardContainer}>
+  <>
+  
       <BackgroundGrid />
+    <div className={style.dashboardContainer}>
       <motion.div
         className={style.header}
         variants={headerVariants}
@@ -291,6 +293,7 @@ function DashboardPage() {
         onConfirm={handleConfirmDelete}
       />
     </div>
+    </>
   );
 }
 

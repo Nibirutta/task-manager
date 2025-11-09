@@ -10,7 +10,7 @@ import FlickeringGrid from '../../lib/magicUI/grid';
 const BackgroundGrid = memo(function BackgroundGrid() {
   return (
     <FlickeringGrid
-      className="absolute inset-0 -z-10 size-full"
+      className="absolute  -z-10 size-full"
       squareSize={4}
       gridGap={6}
       color="#14213d"

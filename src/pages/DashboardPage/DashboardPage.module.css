@@ -6,7 +6,7 @@
   padding: 2rem;
   gap: 2rem;
   position: relative;
-
+  backdrop-filter: blur(2px);
   overflow: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--column-header-bg) var(--column-bg);

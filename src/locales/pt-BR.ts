@@ -173,7 +173,7 @@ export const ptBR = {
     badges: {
       status: "Status",
       priority: "Prioridade",
-      inTime: "No prazo",
+      "in-time": "No prazo",
       deadline: "Último Dia",
       expired: "Atrasada",
     },

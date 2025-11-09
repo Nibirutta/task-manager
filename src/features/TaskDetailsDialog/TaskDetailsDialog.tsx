@@ -59,7 +59,7 @@ function TaskDetailsDialog({
     "to-do": { icon: <Hourglass size={16} />, className: style.todo },
     "in-progress": { icon: <CircleDotDashed size={16} />, className: style.inprogress },
     "in-review": { icon: <XCircle size={16} />, className: style.inreview },
-    done: { icon: <CheckCircle size={16} />, className: style.done },
+    "done": { icon: <CheckCircle size={16} />, className: style.done },
   };
 
   const expirationDetails: Record<ExpirationStatus, { icon: React.ReactNode; className: string }> = {

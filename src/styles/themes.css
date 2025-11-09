@@ -250,6 +250,7 @@
 
     /* Dashboard Page Actions */
     --dashboard-page-title-color: var(--color-mercury-300);
+      --background-grid-color: #14213d;
     --dashboard-new-task-btn-bg-color: var(--color-black-pearl-950);
     --dashboard-new-task-btn-hover-bg-color: var(--color-black-pearl-700);
     --dashboard-new-task-btn-text-color: var(--color-mercury-300);
@@ -688,6 +689,7 @@
 
   /* Dashboard Page Actions */
   --dashboard-page-title-color: var(--color-titan-white-100);
+    --background-grid-color: #14213d;
   --dashboard-new-task-btn-bg-color: var(--color-cinder-900);
   --dashboard-new-task-btn-hover-bg-color: var(--color-cinder-800);
   --dashboard-new-task-btn-text-color: var(--color-neon-cyan-400);
@@ -900,15 +902,15 @@
 
 [data-theme=cloudy-focus]{
 /* Body */
-  --body-bg-color: var(--color-zircon-50);
+  --body-bg-color: var(--color-white-100);
   /* Header  */
-  --header-border-color: var(--color-zircon-200);
-  --header-bg-color: var(--color-white-50);
+  --header-border-color: var(--color-storm-gray-300);
+  --header-bg-color: var(--color-storm-gray-300);
 
   /* Greetings */
   --greetings-color-1: var(--color-grafite-800);
-  --greetings-color-2: var(--color-grafite-600);
-  --greetings-color-3: var(--color-cornflower-blue-600);
+  --greetings-color-2: var(--color-link-water-600);
+  --greetings-color-3: var(--color-cruise-600);
   --greetings-color-4: var(--color-cornflower-blue-500);
 
   /* Navbar  */
@@ -917,17 +919,17 @@
   --navbar-link-hover: var(--color-cornflower-blue-500);
 
   /* user menu btn*/
-  --user-menu-btn-bg-color: var(--color-white-50);
-  --user-menu-btn-bg-hover: var(--color-zircon-100);
-  --user-menu-btn-bg-active: var(--color-zircon-200);
-  --user-menu-btn-border-color: var(--color-zircon-200);
-  --user-menu-btn-border-hover: var(--color-cornflower-blue-300);
-  --user-menu-btn-border-active: var(--color-cornflower-blue-500);
-  --user-menu-btn-shadow: 0 0 2px var(--color-zircon-200);
+  --user-menu-btn-bg-color: var(--color-storm-gray-300);
+  --user-menu-btn-bg-hover: var(--color-storm-gray-500);
+  --user-menu-btn-bg-active: var(--color-storm-gray-700);
+  --user-menu-btn-border-color: var(--color-storm-gray-300);
+  --user-menu-btn-border-hover: var(--color-cornflower-blue-600);
+  --user-menu-btn-border-active: var(--color-cornflower-blue-900);
+  --user-menu-btn-shadow: 0 0 2px var(--color-storm-gray-300);
   --user-menu-btn-shadow-hover: 0 0 5px var(--color-cornflower-blue-200);
   --user-menu-btn-shadow-active: 0 0 8px var(--color-cornflower-blue-300);
   --user-menu-btn-text-color: var(--color-grafite-800);
-  --user-menu-btn-text-hover: var(--color-cornflower-blue-700);
+  --user-menu-btn-text-hover: var(--color-white-100);
   --user-menu-btn-text-active: var(--color-cornflower-blue-800);
 
   --user-menu-container-bg-color: var(--color-white-50);
@@ -951,35 +953,36 @@
 
     /* Hero Section */
 
-  --hero-bg-color-1: var(--color-cornflower-blue-200);
-  --hero-bg-color-2: var(--color-perano-300);
-  --hero-bg-color-3: rgba(195, 213, 250, 0.3); /* cornflower-blue-200 com opacidade */
-  --hero-bg-color-4: rgba(166, 185, 255, 0.3); /* perano-300 com opacidade */
+  --hero-bg-color-1: var(--color-cruise-600);
+  --hero-bg-color-2: var(--color-perano-600);
+  --hero-bg-color-3:var(--color-cornflower-blue-200); /* cornflower-blue-200 com opacidade */
+  --hero-bg-color-4: var(--color-cruise-200); /* perano-300 com opacidade */
 
-  --hero-title-color: var(--color-grafite-900);
-  --hero-title-shadow-color-1: var(--color-zircon-100);
-  --hero-title-shadow-color-2: var(--color-zircon-200);
-  --hero-title-shadow-color-3: var(--color-zircon-300);
-  --hero-title-shadow-color-4: var(--color-zircon-400);
-  --hero-title-shadow-color-5: var(--color-zircon-500);
+  --hero-title-color: var(--color-zircon-400);
+  --hero-title-shadow-color-1: var(--color-zircon-500);
+  --hero-title-shadow-color-2: var(--color-zircon-600);
+  --hero-title-shadow-color-3: var(--color-zircon-700);
+  --hero-title-shadow-color-4: var(--color-zircon-800);
+  --hero-title-shadow-color-5: var(--color-zircon-900);
   --hero-subtitle-color: var(--color-grafite-600);
   
   --cta-button-bg: var(--color-cornflower-blue-600);
   --cta-button-text: var(--color-white-50);
-  --cta-button-ball-color: var(--color-cornflower-blue-300);
+  --cta-button-ball-color: var(--color-cornflower-blue-500);
   --cta-button-secondary-bg: var(--color-white-50);
   --cta-button-secondary-text: var(--color-cornflower-blue-700);
   
   --hero-developed-color: var(--color-grafite-500);
 
-  --features-title-shadow: var(--color-amethyst-950) 1.95px 1.95px 2.6px;
-  --features-subtitle-color: var(--color-santas-gray-300);
+  --features-title-color: var(--color-grafite-800);
+  --features-title-shadow: var(--color-zircon-200) 1.95px 1.95px 2.6px;
+  --features-subtitle-color: var(--color-grafite-600);
 
-  --featcard-bg-color: var(--color-mirage-900);
+  --featcard-bg-color: var(--color-perano-500);
   --featcard-border-color: var(--color-zircon-200);
   --featcard-shadow-color: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
-  --featcard-title-color: var(--color-cornflower-blue-800);
-  --featcard-description-color: var(--color-grafite-700);
+  --featcard-title-color: var(--color-link-water-100);
+  --featcard-description-color: var(--color-grafite-200);
   
 
     /* Demo Section */
@@ -988,9 +991,9 @@
   --demo-title-color: var(--color-grafite-800);
   --demo-title-shadow: var(--color-zircon-200) 1.95px 1.95px 2.6px;
   --demo-subtitle-color: var(--color-grafite-600);
-  --demo-figure-border: var(--color-link-water-400);
-  --demo-figure-shadow: var(--color-link-water-400) 0px 0px 0px 2px inset, var(--body-bg-color) 10px -10px 0px -3px, var(--color-link-water-300) 10px -10px, var(--body-bg-color) 20px -20px 0px -3px, var(--color-link-water-200) 20px -20px, var(--body-bg-color) 30px -30px 0px -3px, var(--color-link-water-100) 30px -30px, var(--body-bg-color) 40px -40px 0px -3px, var(--color-link-water-50) 40px -40px;
-  --demo-figcaption-color: var(--color-grafite-700);
+  --demo-figure-border: var(--color-cruise-200);
+  --demo-figure-shadow: var(--color-cruise-300) 0px 0px 0px 2px inset, var(--body-bg-color) 10px -10px 0px -3px, var(--color-cruise-400) 10px -10px, var(--body-bg-color) 20px -20px 0px -3px, var(--color-cruise-500) 20px -20px, var(--body-bg-color) 30px -30px 0px -3px, var(--color-cruise-600) 30px -30px, var(--body-bg-color) 40px -40px 0px -3px, var(--color-cruise-700) 40px -40px;
+  --demo-figcaption-color: var(--color-link-water-300);
   --demo-figcaption-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 
 
@@ -1002,26 +1005,26 @@
   --about-text-color: var(--color-grafite-600);
 
   /* Develpoer Card */
---dev-card-bg-color: var(--color-white-50);
---dev-card-header-bg-color: var(--color-zircon-100);
+--dev-card-bg-color: var(--color-perano-700);
+--dev-card-header-bg-color: var(--color-perano-500);
 --dev-card-avatar-border-color: var(--color-cornflower-blue-400);
 --dev-card-role-bg-color: var(--color-cornflower-blue-100);
 --dev-card-role-color: var(--color-cornflower-blue-800);
 
---dev-card-title-color: var(--color-grafite-800);
---dev-card-tech-color: var(--color-cornflower-blue-600);
+--dev-card-title-color: var(--color-cornflower-blue-200);
+--dev-card-tech-color: var(--color-cornflower-blue-300);
 
---dev-card-description-color: var(--color-grafite-600);
+--dev-card-description-color: var(--color-grafite-100);
 
---dev-card-contact-color: var(--color-grafite-600);
---dev-card-social-bg: var(--color-zircon-100);
+--dev-card-contact-color: var(--color-cornflower-blue-300);
+--dev-card-social-bg: var(--color-cornflower-blue-500);
 
 --cta-title-color: var(--color-grafite-800);
 --cta-title-shadow: var(--color-zircon-200) 1.95px 1.95px 2.6px;
 
 
   /* Login Form */
---login-bg-color: var(--color-white-50);
+--login-bg-color: var(--color-link-water-300  );
 --login-border-color: var(--color-zircon-200);
 --login-shadow-color: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 
@@ -1053,56 +1056,57 @@
   --register-title-color: var(--login-title-color);
 
   /* Forgot Password Dialog */
---fpd-bg-color: var(--color-white-50);
+--fpd-bg-color: var(--color-link-water-300);
 --fpd-title-color: var(--color-grafite-800);
 --fpd-description-color: var(--color-grafite-600);
 
 
   /* Footer */
---footer-bg-color: var(--color-zircon-100);
---footer-title-color: var(--color-grafite-700);
---footer-info-color: var(--color-grafite-600);
---footer-info-hover: var(--color-cornflower-blue-600);
---footer-line-color: var(--color-zircon-300);
+--footer-bg-color: var(--color-grafite-700);
+--footer-title-color: var(--color-grafite-400);
+--footer-info-color: var(--color-grafite-200);
+--footer-info-hover: var(--color-cornflower-blue-100);
+--footer-line-color: var(--color-zircon-500);
 
 
 
     /* Task Card */
-  --card-bg-color: var(--color-white-50);
-  --card-bg-border: var(--color-zircon-200);
+  --card-bg-color: var(--color-zircon-700);
+  --card-bg-border: var(--color-zircon-100);
 
-  --card-title-color: var(--color-grafite-800);
-  --card-subtitle-color: var(--color-storm-gray-500);
-  --card-description-bg: var(--color-zircon-50);
-  --card-description-color: var(--color-grafite-700);
+  --card-title-color: var(--color-grafite-100);
+  --card-subtitle-color: var(--color-storm-gray-200);
+  --card-description-bg: var(--color-zircon-400);
+  --card-description-color: var(--color-grafite-50);
 
-  --card-badges-bg: var(--color-zircon-100);
-  --card-badges-label-color: var(--color-grafite-600);
-  --card-priority-color: var(--color-white-50);
+  --card-badges-bg: var(--color-zircon-600);
+  --card-badges-label-color: var(--color-grafite-200);
+  --card-priority-color: var(--color-white-950);
 
-  --card-priority-high-border: var(--color-cornflower-blue-500);
-  --card-priority-medium-border: var(--color-cornflower-blue-300);
-  --card-priority-low-border: var(--color-zircon-300);
-  --card-priority-urgent-border: var(--color-perano-500);
-  --card-priority-optional-border: var(--color-storm-gray-300);
+   --card-priority-high-border: #e17a47;
+    --card-priority-medium-border: #efc958;
+    --card-priority-low-border: #41b19d;
+    --card-priority-urgent-border: #ef3d59;
+    --card-priority-optional-border: #344e5c;
 
-  --card-priority-high-bg: var(--color-cornflower-blue-200);
-  --card-priority-medium-bg: var(--color-cornflower-blue-100);
-  --card-priority-low-bg: var(--color-zircon-100);
-  --card-priority-urgent-bg: var(--color-perano-200);
-  --card-priority-optional-bg: var(--color-storm-gray-100);
+    --card-priority-high-bg: #e17a47 ;
+    --card-priority-medium-bg: #efc958 ;
+    --card-priority-low-bg: #41b19c;
+    --card-priority-urgent-bg: #ef3d58 ;
+    --card-priority-optional-bg: #344e5c;
 
-  --card-badge-expired-bg: #fee2e2; /* Red-100 */
-  --card-badge-expired-text: #b91c1c; /* Red-700 */
-  --card-badge-deadline-bg: var(--color-perano-100);
-  --card-badge-deadline-text: var(--color-perano-700);
-  --card-badge-intime-bg: var(--color-cruise-100);
-  --card-badge-intime-text: var(--color-cruise-700);
+    --card-badge-expired-bg: #b10f1164;
+    --card-badge-expired-text: #f94144 ;
+    --card-badge-deadline-bg: #85631262 ;
+    --card-badge-deadline-text: #f9c74f ;
+    --card-badge-intime-bg: #096e4e6a ;
+    --card-badge-intime-text: #43aa8b;
+
 
   --card-status-todo-bg: var(--color-white-50);
-  --card-status-inprogress-bg: var(--color-zircon-50);
-  --card-status-inreview-bg: var(--color-perano-50);
-  --card-status-done-bg: var(--color-cruise-50);
+  --card-status-inprogress-bg: var(--color-zircon-200);
+  --card-status-inreview-bg: var(--color-perano-200);
+  --card-status-done-bg: var(--color-cruise-200);
 
   --card-footer-btn-bg: var(--color-zircon-50);
   --card-footer-btn-bg-hover: var(--color-zircon-100);
@@ -1111,25 +1115,26 @@
   --card-footer-btn-border: var(--color-zircon-200);
   --card-footer-btn-border-hover: var(--color-cornflower-blue-300);
 
-  --card-delete-btn-color: #ef4444; /* Red-500 */
-  --card-edit-btn-color: var(--color-perano-500);
-  --card-details-btn-color: var(--color-cornflower-blue-500);
+  --card-delete-btn-color: rgb(244, 18, 18); 
+  --card-edit-btn-color: var(--color-perano-100);
+  --card-details-btn-color: var(--color-cruise-400);
 
 
   /* Task Column*/
-  --column-bg: var(--color-zircon-100);
-  --column-border: var(--color-zircon-200);
+  --column-bg: var(--color-link-water-400);
+  --column-border: var(--color-zircon-500);
   --column-border-hover: var(--color-cornflower-blue-400);
-  --column-header-bg: var(--color-zircon-200);
+  --column-header-bg: var(--color-cruise-600);
 
-  --column-title-color: var(--color-grafite-800);
-  --column-empty-color: var(--color-storm-gray-500);
+  --column-title-color: var(--color-grafite-200);
+  --column-empty-color: var(--color-link-water-700);
   --column-dragging-color: var(--color-perano-100);
 
   /* Dashboard Page Actions */
-  --dashboard-page-title-color: var(--color-grafite-800);
+  --dashboard-page-title-color: var(--color-zircon-700);
+  --background-grid-color: var(--color-storm-gray-200);
   --dashboard-new-task-btn-bg-color: var(--color-cornflower-blue-600);
-  --dashboard-new-task-btn-hover-bg-color: var(--color-cornflower-blue-700);
+  --dashboard-new-task-btn-hover-bg-color: var(--color-cornflower-blue-800);
   --dashboard-new-task-btn-text-color: var(--color-white-50);
 
 
@@ -1200,14 +1205,14 @@
   --task-form-dialog-datepicker-clear-button-text: var(--color-grafite-500);
 
   --task-form-dialog-cancel-button-bg: var(--color-zircon-200);
-  --task-form-dialog-cancel-button-bg-hover: var(--color-zircon-300);
+  --task-form-dialog-cancel-button-bg-hover: var(--color-zircon-400);
   --task-form-dialog-cancel-button-text: var(--color-grafite-700);
   --task-form-dialog-cancel-button-text-hover: var(--color-grafite-800);
   --task-form-dialog-cancel-button-border: var(--color-zircon-300);
   --task-form-dialog-cancel-button-border-hover: var(--color-zircon-400);
 
   --task-form-dialog-submit-button-bg: var(--color-cornflower-blue-600);
-  --task-form-dialog-submit-button-bg-hover: var(--color-cornflower-blue-700);
+  --task-form-dialog-submit-button-bg-hover: var(--color-cornflower-blue-800);
   --task-form-dialog-submit-button-text: var(--color-white-50);
   --task-form-dialog-submit-button-text-hover: var(--color-white-50);
   --task-form-dialog-submit-button-border: var(--color-cornflower-blue-700);
@@ -1569,6 +1574,7 @@
 
   /* Dashboard Page Actions */
   --dashboard-page-title-color: var(--color-woodsmoke-100);
+    --background-grid-color: #14213d;
   --dashboard-new-task-btn-bg-color: var(--color-shark-800);
   --dashboard-new-task-btn-hover-bg-color: var(--color-shark-700);
   --dashboard-new-task-btn-text-color: var(--color-fuchsia-blue-400);
@@ -2034,6 +2040,7 @@
 
     /* Dashboard Page Actions */
     --dashboard-page-title-color: var(--color-snow-drift-100);
+      --background-grid-color: #14213d;
     --dashboard-new-task-btn-bg-color: var(--color-spring-leaves-600);
     --dashboard-new-task-btn-hover-bg-color: var(--color-spring-leaves-500);
     --dashboard-new-task-btn-text-color: var(--color-spring-leaves-50);
@@ -2527,6 +2534,7 @@
 
     /* Dashboard Page Actions */
      --dashboard-page-title-color: var(--color-sandstone-100);
+       --background-grid-color: #14213d;
     --dashboard-new-task-btn-bg-color: var(--color-bridal-heath-500);
     --dashboard-new-task-btn-hover-bg-color: var(--color-bridal-heath-600);
     --dashboard-new-task-btn-text-color: var(--color-bridal-heath-50);
