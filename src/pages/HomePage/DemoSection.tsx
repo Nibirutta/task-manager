@@ -13,7 +13,7 @@ const DemoSection = ({ title, subtitle, ...props }: DemoSectionProps) => {
     <section className="h-dvh w-full flex flex-col items-center justify-center gap-12  py-12 px-10">
       <div className="flex flex-col items-center justify-center gap-8 text-center">
         <motion.h2
-          className="p-4 text-[3.2rem]  2xl:text-[4.8rem] font-bold text-center text-[var(--demo-title-font)] text-shadow-[var(--demo-title-shadow)]
+          className="p-4 text-[3.2rem]  2xl:text-[4.8rem] font-bold text-center text-[var(--demo-title-color)] text-shadow-[var(--demo-title-shadow)]
             font-(family-name:--demo-title-font) "
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
