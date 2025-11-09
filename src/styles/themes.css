@@ -1341,23 +1341,23 @@
 
 [data-theme=after-hours]{
   /* Body */
-  --body-bg-color: var(--color-woodsmoke-950); 
+  --body-bg-color: var(--color-shark-950); 
 
   /* Header  */
-  --header-border-color: var(--color-shark-900);
+  --header-border-color: transparent;
   --header-bg-color: var(--color-shark-950);
 
   /* Greetings */
-  --greetings-color-1: var(--color-woodsmoke-200);
-  --greetings-color-2: var(--color-woodsmoke-300);
-  --greetings-color-3: var(--color-fuchsia-blue-400);
-  --greetings-color-4: var(--color-fuchsia-blue-500);
+  --greetings-color-1: var(--color-tussock-500);
+  --greetings-color-2: var(--color-santa-fe-600 );
+  --greetings-color-3: var(--color-fuchsia-blue-800);
+  --greetings-color-4: var(--color-westar-800);
 
 
   /* Navbar  */
-  --navbar-logo-color: var(--color-fuchsia-blue-500);
+  --navbar-logo-color: var(--color-fuchsia-blue-700);
   --navbar-link-color: var(--color-woodsmoke-300);
-  --navbar-link-hover: var(--color-fuchsia-blue-400);
+  --navbar-link-hover: var(--color-fuchsia-blue-500);
 
 
   /* user menu btn*/
@@ -1398,9 +1398,9 @@
     /* Hero Section */
 
     --hero-bg-color-1: var(--color-fuchsia-blue-800);
-  --hero-bg-color-2: var(--color-fuchsia-blue-950);
-  --hero-bg-color-3: #6d47ba4d; /* fuchsia-blue-700 com 30% de opacidade */
-  --hero-bg-color-4: #2e1f564d; /* fuchsia-blue-950 com 30% de opacidade */
+  --hero-bg-color-2: var(--color-santa-fe-600);
+  --hero-bg-color-4: #6d47ba4d; 
+  --hero-bg-color-3: #b46f5e82; 
 
   --hero-title-color: var(--color-woodsmoke-50);
   --hero-title-shadow-color-1: var(--color-shark-950);
@@ -1418,13 +1418,13 @@
 
   --hero-developed-color: var(--color-woodsmoke-400);
 
-  --hero-svg-primary: var(--color-fuchsia-blue-500);
+  --hero-svg-primary: var(--color-santa-fe-600);
 
 
   /* Features Section */
 
    --features-title-color: var(--color-woodsmoke-100);
-  --features-title-shadow: var(--color-fuchsia-blue-950) 1.95px 1.95px 2.6px;
+  --features-title-shadow: var(--color-santa-fe-600) 2.95px 2.95px 4px;
   --features-subtitle-color: var(--color-woodsmoke-300);
 
   --featcard-bg-color: var(--color-shark-900);
@@ -1438,17 +1438,17 @@
 
     
    --demo-title-color: var(--color-woodsmoke-100);
-  --demo-title-shadow: var(--color-tussock-950) 1.95px 1.95px 2.6px;
+  --demo-title-shadow: var(--color-santa-fe-600) 2.95px 2.95px 4px;
   --demo-subtitle-color: var(--color-woodsmoke-300);
-  --demo-figure-border: var(--color-tussock-500);
-  --demo-figure-shadow: var(--color-tussock-500) 0px 0px 0px 2px inset, var(--body-bg-color) 10px -10px 0px -3px, var(--color-santa-fe-500) 10px -10px, var(--body-bg-color) 20px -20px 0px -3px, var(--color-tussock-300) 20px -20px, var(--body-bg-color) 30px -30px 0px -3px, var(--color-santa-fe-200) 30px -30px, var(--body-bg-color) 40px -40px 0px -3px, var(--color-tussock-100) 40px -40px;
+  --demo-figure-border: var(--color-fuchsia-blue-700);
+  --demo-figure-shadow: var(--color-fuchsia-blue-700) 0px 0px 0px 2px inset, var(--body-bg-color) 10px -10px 0px -3px, var(--color-fuchsia-blue-600) 10px -10px, var(--body-bg-color) 20px -20px 0px -3px, var(--color-fuchsia-blue-500) 20px -20px, var(--body-bg-color) 30px -30px 0px -3px, var(--color-fuchsia-blue-400) 30px -30px, var(--body-bg-color) 40px -40px 0px -3px, var(--color-fuchsia-blue-300) 40px -40px;
   --demo-figcaption-color: var(--color-westar-200);
   --demo-figcaption-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 
   /* About Section */
 
  --about-title-color: var(--color-woodsmoke-100);
-  --about-title-shadow: var(--color-santa-fe-950) 1.95px 1.95px 2.6px;
+  --about-title-shadow: var(--color-santa-fe-600) 2.95px 2.95px 4px;
   --about-text-color: var(--color-woodsmoke-300);
 
   /* Develpoer Card */
@@ -1464,12 +1464,12 @@
 
   --dev-card-description-color: var(--color-westar-300);
 
-  --dev-card-contact-color: var(--color-westar-300);
+  --dev-card-contact-color: var(--color-fuchsia-blue-400);
   --dev-card-social-bg: var(--color-shark-800);
 
 
   --cta-title-color: var(--color-woodsmoke-100);
-  --cta-title-shadow: var(--color-fuchsia-blue-950) 1.95px 1.95px 2.6px;
+  --cta-title-shadow: var(--color-fuchsia-blue-500) 1.95px 1.95px 2.6px;
 
   /* Login Form */
   --login-bg-color: var(--color-shark-900);
@@ -1479,7 +1479,7 @@
   --login-title-color: var(--color-woodsmoke-100);
   --redirect-color: var(--color-fuchsia-blue-400);
   --redirect-hover: var(--color-fuchsia-blue-300);
-  --error-msg-color: var(--color-santa-fe-500); 
+  --error-msg-color: var(--color-santa-fe-400); 
 
   /* input-field */
   --input-field-bg-color: var(--color-shark-800);
@@ -1492,7 +1492,7 @@
   /* submit button */
   --sb-bg-color: var(--color-fuchsia-blue-700);
   --sb-border-color: var(--color-fuchsia-blue-900);
-  --sb-hover-bg-color: var(--color-fuchsia-blue-600);
+  --sb-hover-bg-color: var(--color-fuchsia-blue-500);
   --sb-hover-border-color: var(--color-fuchsia-blue-800);
   --sb-text-color: var(--color-fuchsia-blue-50);
 
@@ -1502,21 +1502,21 @@
   --register-title-color: var(--login-title-color);
 
   /* Forgot Password Dialog */
-  --fpd-bg-color: var(--color-shark-900);
+  --fpd-bg-color: var(--color-shark-700);
   --fpd-title-color: var(--color-woodsmoke-100);
   --fpd-description-color: var(--color-woodsmoke-300);
 
   /* Footer */
   --footer-bg-color: var(--color-woodsmoke-950);
-  --footer-title-color: var(--color-woodsmoke-400);
+  --footer-title-color: var(--color-fuchsia-blue-400);
   --footer-info-color: var(--color-woodsmoke-300);
-  --footer-info-hover: var(--color-fuchsia-blue-400);
+  --footer-info-hover: var(--color-santa-fe-600);
   --footer-line-color: var(--color-shark-900);
 
 
     /* Task Card */
    --card-bg-color: var(--color-shark-800);
-  --card-bg-border: var(--color-shark-700);
+  --card-bg-border: var(--color-shark-500);
 
   --card-title-color: var(--color-woodsmoke-100);
   --card-subtitle-color: var(--color-woodsmoke-400);
@@ -1525,26 +1525,27 @@
 
   --card-badges-bg: var(--color-shark-700);
   --card-badges-label-color: var(--color-woodsmoke-300);
-  --card-priority-color: var(--color-tussock-50); /* Light text for contrast */
+  --card-priority-color: var(--color-westar-950); 
 
-  --card-priority-high-border: var(--color-tussock-500);
-  --card-priority-medium-border: var(--color-fuchsia-blue-500);
-  --card-priority-low-border: var(--color-westar-500);
-  --card-priority-urgent-border: var(--color-santa-fe-600);
-  --card-priority-optional-border: var(--color-shark-600);
 
-  --card-priority-high-bg: var(--color-tussock-900);
-  --card-priority-medium-bg: var(--color-fuchsia-blue-900);
-  --card-priority-low-bg: var(--color-westar-900);
-  --card-priority-urgent-bg: var(--color-santa-fe-900);
-  --card-priority-optional-bg: var(--color-shark-800);
+   --card-priority-high-border: #e17a47;
+    --card-priority-medium-border: #efc958;
+    --card-priority-low-border: #41b19d;
+    --card-priority-urgent-border: #ef3d59;
+    --card-priority-optional-border: #344e5c;
 
-  --card-badge-expired-bg: #673f3599; /* santa-fe-900 com 60% opacidade */
-  --card-badge-expired-text: var(--color-santa-fe-400);
-  --card-badge-deadline-bg: #5e322599; /* tussock-900 com 60% opacidade */
-  --card-badge-deadline-text: var(--color-tussock-400);
-  --card-badge-intime-bg: #4c328080; /* fuchsia-blue-900 com 50% opacidade */
-  --card-badge-intime-text: var(--color-fuchsia-blue-400);
+    --card-priority-high-bg: #e17a47 ;
+    --card-priority-medium-bg: #efc958 ;
+    --card-priority-low-bg: #41b19c;
+    --card-priority-urgent-bg: #ef3d58 ;
+    --card-priority-optional-bg: #344e5c;
+
+    --card-badge-expired-bg: #b10f1164;
+    --card-badge-expired-text: #f94144 ;
+    --card-badge-deadline-bg: #85631262 ;
+    --card-badge-deadline-text: #f9c74f ;
+    --card-badge-intime-bg: #096e4e6a ;
+    --card-badge-intime-text: #43aa8b;
 
   --card-status-todo-bg: var(--color-shark-800);
   --card-status-inprogress-bg: var(--color-shark-700);
@@ -1552,9 +1553,9 @@
   --card-status-done-bg: var(--color-shark-500);
 
   --card-footer-btn-bg: var(--color-shark-700);
-  --card-footer-btn-bg-hover: var(--color-shark-600);
+  --card-footer-btn-bg-hover: var(--color-santa-fe-600);
   --card-footer-btn-color: var(--color-woodsmoke-200);
-  --card-footer-btn-color-hover: var(--color-fuchsia-blue-300);
+  --card-footer-btn-color-hover: var(--color-fuchsia-blue-100);
   --card-footer-btn-border: var(--color-shark-600);
   --card-footer-btn-border-hover: var(--color-fuchsia-blue-600);
 
@@ -1564,13 +1565,13 @@
 
 
   /* Task Column*/
-   --column-bg: var(--color-woodsmoke-900);
+   --column-bg: var(--color-pale-oyster-300);
   --column-border: var(--color-shark-800);
   --column-border-hover: var(--color-fuchsia-blue-700);
-  --column-header-bg: var(--color-shark-900);
+  --column-header-bg: var(--color-fuchsia-blue-950);
 
   --column-title-color: var(--color-woodsmoke-100);
-  --column-empty-color: var(--color-woodsmoke-500);
+  --column-empty-color: var(--color-fuchsia-blue-100);
   --column-dragging-color: var(--color-woodsmoke-950);
 
   /* Dashboard Page Actions */
@@ -1597,8 +1598,8 @@
 
   --task-filter-content-bg-color: var(--color-shark-900);
 
-  --task-filter-item-bg-color: var(--color-shark-800);
-  --task-filter-item-bg-hover: var(--color-shark-700);
+  --task-filter-item-bg-color: var(--color-shark-700);
+  --task-filter-item-bg-hover: var(--color-shark-500);
   --task-filter-item-bg-active: var(--color-fuchsia-blue-800);
   --task-filter-item-text-color: var(--color-woodsmoke-200);
   --task-filter-item-text-hover: var(--color-fuchsia-blue-300);
@@ -1606,9 +1607,9 @@
   --task-filter-item-border-color: var(--color-shark-700);
   --task-filter-item-border-hover: var(--color-fuchsia-blue-700);
   --task-filter-item-border-active: var(--color-fuchsia-blue-600);
-  --task-filter-item-box-shadow: 0 0 5px var(--color-neon-cyan-900);
-  --task-filter-item-box-shadow-hover: 0 0 8px var(--color-neon-cyan-700), 0 0 15px var(--color-amethyst-700);
-  --task-filter-item-box-shadow-active: inset 0 0 5px var(--color-neon-cyan-500), inset 0 0 10px var(--color-amethyst-500);
+  --task-filter-item-box-shadow: 0 0 5px var(--color-fuchsia-blue-950);
+  --task-filter-item-box-shadow-hover: 0 0 8px var(--color-fuchsia-blue-700), 0 0 15px var(--color-fuchsia-blue-500);
+  --task-filter-item-box-shadow-active: inset 0 0 5px var(--color-bunker-900), inset 0 0 10px var(--color-woodsmoke-800);
 
 
 
@@ -1621,7 +1622,7 @@
   --task-form-dialog-description-color: var(--color-woodsmoke-300);
 
 
-  --task-form-item-label-color: var(--color-fuchsia-blue-400);
+  --task-form-item-label-color: var(--color-fuchsia-blue-600);
   --task-form-input-bg: var(--color-shark-800);
   --task-form-input-border-color: var(--color-shark-700);
   --task-form-input-text-color: var(--color-woodsmoke-100);
@@ -1652,14 +1653,14 @@
 
 
   --task-form-dialog-cancel-button-bg: var(--color-shark-700);
-  --task-form-dialog-cancel-button-bg-hover: var(--color-shark-600);
+  --task-form-dialog-cancel-button-bg-hover: var(--color-shark-500);
   --task-form-dialog-cancel-button-text: var(--color-woodsmoke-100);
   --task-form-dialog-cancel-button-text-hover: var(--color-woodsmoke-50);
   --task-form-dialog-cancel-button-border: var(--color-shark-600);
   --task-form-dialog-cancel-button-border-hover: var(--color-fuchsia-blue-800);
 
   --task-form-dialog-submit-button-bg: var(--color-fuchsia-blue-700);
-  --task-form-dialog-submit-button-bg-hover: var(--color-fuchsia-blue-600);
+  --task-form-dialog-submit-button-bg-hover: var(--color-fuchsia-blue-500);
   --task-form-dialog-submit-button-text: var(--color-fuchsia-blue-50);
   --task-form-dialog-submit-button-text-hover: var(--color-fuchsia-blue-100);
   --task-form-dialog-submit-button-border: var(--color-fuchsia-blue-900);
@@ -1703,13 +1704,13 @@
   --delete-dialog-title-color: var(--color-woodsmoke-100);
   --delete-dialog-description-color: var(--color-woodsmoke-500);
   --delete-dialog-cancel-btn-bg: var(--color-shark-700);
-  --delete-dialog-cancel-btn-bg-hover: var(--color-shark-600);
+  --delete-dialog-cancel-btn-bg-hover: var(--color-shark-500);
   --delete-dialog-cancel-btn-color: var(--color-woodsmoke-100);
   --delete-dialog-cancel-btn-color-hover: var(--color-woodsmoke-50);
   --delete-dialog-cancel-btn-border: var(--color-shark-600);
   --delete-dialog-cancel-btn-border-hover: var(--color-fuchsia-blue-800);
   --delete-dialog-confirm-btn-bg: var(--color-santa-fe-600);
-  --delete-dialog-confirm-btn-hover-bg: var(--color-santa-fe-500);
+  --delete-dialog-confirm-btn-hover-bg: var(--color-santa-fe-400);
   --delete-dialog-confirm-btn-color: var(--color-woodsmoke-50);
   --delete-dialog-confirm-btn-hover-color: var(--color-woodsmoke-100);
   --delete-dialog-confirm-btn-border: var(--color-santa-fe-800);
@@ -1726,7 +1727,7 @@
 
   --preferences-theme-title-color: var(--color-woodsmoke-100);
   --preferences-theme-title-shadow: 0 2px 6px var(--color-fuchsia-blue-950);
-  --preferences-theme-box-bg-color: var(--color-shark-900);
+  --preferences-theme-box-bg-color: var(--color-shark-950);
   --preferences-theme-box-border-color: var(--color-fuchsia-blue-800);
   --preferences-theme-box-shadow: 0 0 15px var(--color-fuchsia-blue-800), inset 0 0 5px var(--color-fuchsia-blue-900);
   --preferences-theme-btn-bg-color: var(--color-shark-800);
@@ -1788,7 +1789,7 @@
 
 @custom-variant forest-calm (&:where([data-theme=forest-Calm], [data-theme=forest-Calm] *));
 
-[data-theme=forest-Calm]{ 
+[data-theme=forest-calm]{ 
            /* Body */
     --body-bg-color: var(--color-snow-drift-950) ;
    
