@@ -91,7 +91,7 @@
     &:hover, &:focus, &:active {
         border-color: var(--task-form-select-trigger-border-color-hover);
         background-color: var(--task-form-select-trigger-bg-hover);
-        color: var(--task-form-select-trigger-text-hover);
+        color: var(--task-form-select-trigger-text-color-hover);
     }
 }
 

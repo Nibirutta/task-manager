@@ -1799,10 +1799,10 @@
 
 
     /* Greetings */
-    --greetings-color-1: var(--color-tasman-200);
-    --greetings-color-2:  var(--color-tasman-400);
+    --greetings-color-1: var(--color-amulet-500);
+    --greetings-color-2:  var(--color-snow-drift-400);
     --greetings-color-3: var(--color-spring-leaves-500);
-    --greetings-color-4: var(--color-spring-leaves-600) ;
+    --greetings-color-4: var(--color-tasman-600) ;
  
   
     /* Navbar  */ 
@@ -1853,16 +1853,16 @@
 
 
    --hero-bg-color-1: var(--color-rangoon-green-800);
-    --hero-bg-color-2: var(--color-rangoon-green-950);
-    --hero-bg-color-3: var(--color-rangoon-green-800)4d;
-    --hero-bg-color-4: var(--color-rangoon-green-950)4d;
+    --hero-bg-color-2: var(--color-spring-leaves-600);
+    --hero-bg-color-3: var(--color-rangoon-green-800);
+    --hero-bg-color-4: var(--color-spring-leaves-500);
 
-    --hero-title-color: var(--color-snow-drift-50);
-    --hero-title-shadow-color-1: var(--color-corduroy-950);
-    --hero-title-shadow-color-2: var(--color-corduroy-900);
-    --hero-title-shadow-color-3: var(--color-corduroy-800);
-    --hero-title-shadow-color-4: var(--color-corduroy-700);
-    --hero-title-shadow-color-5: var(--color-corduroy-600);
+    --hero-title-color: var(--color-snow-drift-200);
+    --hero-title-shadow-color-1: var(--color-tasman-950);
+    --hero-title-shadow-color-2: var(--color-tasman-900);
+    --hero-title-shadow-color-3: var(--color-tasman-800);
+    --hero-title-shadow-color-4: var(--color-tasman-700);
+    --hero-title-shadow-color-5: var(--color-tasman-600);
     --hero-subtitle-color: var(--color-snow-drift-200);
     
     --cta-button-bg: var(--color-spring-leaves-600);
@@ -1872,7 +1872,7 @@
      --cta-button-secondary-text: var(--color-snow-drift-200);
     
     --hero-developed-color: var(--color-tasman-300);
-    --hero-svg-primary: var(--color-spring-leaves-500);
+    --hero-svg-primary: var(--color-husk-600);
 
 
     /* Features Section */
@@ -1895,8 +1895,8 @@
         --demo-title-color: var(--color-snow-drift-100);
     --demo-title-shadow:  var(--color-husk-950) 1.95px 1.95px 2.6px;
     --demo-subtitle-color: var(--color-tasman-300);
-    --demo-figure-border: var(--color-husk-500);
-    --demo-figure-shadow: var(--color-husk-400) 0px 0px 0px 2px inset, var(--body-bg-color) 10px -10px 0px -3px, var(--color-husk-300) 10px -10px, var(--body-bg-color) 20px -20px 0px -3px, var(--color-husk-200) 20px -20px, var(--body-bg-color) 30px -30px 0px -3px, var(--color-husk-100) 30px -30px, var(--body-bg-color) 40px -40px 0px -3px, var(--color-husk-50) 40px -40px;
+    --demo-figure-border: var(--color-amulet-950);
+    --demo-figure-shadow: var(--color-amulet-950) 0px 0px 0px 2px inset, var(--body-bg-color) 10px -10px 0px -3px, var(--color-amulet-900) 10px -10px, var(--body-bg-color) 20px -20px 0px -3px, var(--color-amulet-800) 20px -20px, var(--body-bg-color) 30px -30px 0px -3px, var(--color-amulet-700) 30px -30px, var(--body-bg-color) 40px -40px 0px -3px, var(--color-amulet-600) 40px -40px;
     --demo-figcaption-color: var(--color-husk-100);
     --demo-figcaption-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 
@@ -1913,13 +1913,13 @@
     --dev-card-role-bg-color: var(--color-husk-700);
     --dev-card-role-color: var(--color-husk-100);
 
-    --dev-card-title-color: var(--color-snow-drift-100);
+    --dev-card-title-color: var(--color-amulet-500);
     --dev-card-tech-color: var(--color-husk-400);
 
     --dev-card-description-color: var(--color-tasman-300);
 
      --dev-card-contact-color: var(--color-tasman-300);
-    --dev-card-social-bg: var(--color-corduroy-800);
+    --dev-card-social-bg: var(--color-corduroy-500);
 
 
     --cta-title-color: var(--color-snow-drift-100);
@@ -1952,7 +1952,7 @@
 
     --sb-bg-color: var(--color-spring-leaves-700);
     --sb-border-color: var(--color-spring-leaves-900);
-    --sb-hover-bg-color: var(--color-spring-leaves-600);
+    --sb-hover-bg-color: var(--color-spring-leaves-500);
     --sb-hover-border-color: var(--color-spring-leaves-800);
     --sb-text-color: var(--color-spring-leaves-50);
 
@@ -1965,7 +1965,7 @@
     --register-title-color: var(--login-title-color); 
 
     /* Forgot Password Dialog */
-    --fpd-bg-color: var(--color-rangoon-green-900);
+    --fpd-bg-color: var(--color-rangoon-green-800);
     --fpd-title-color: var(--color-snow-drift-200);
     --fpd-description-color: var(--color-tasman-300);
 
@@ -1973,14 +1973,14 @@
 
     /* Footer */
     --footer-bg-color: var(--color-rangoon-green-950);
-    --footer-title-color: var(--color-corduroy-500);
+    --footer-title-color: var(--color-husk-600);
     --footer-info-color: var(--color-tasman-300);
     --footer-info-hover: var(--color-amulet-400);
     --footer-line-color: var(--color-corduroy-800);
 
 
     /* Task Card */
-    --card-bg-color: var(--color-corduroy-900);
+    --card-bg-color: var(--color-corduroy-950);
     --card-bg-border: var(--color-corduroy-800);
 
     --card-title-color: var(--color-snow-drift-100);
@@ -1988,38 +1988,39 @@
     --card-description-bg: var(--color-corduroy-950);
     --card-description-color: var(--color-tasman-300);
 
-    --card-badges-bg: var(--color-rangoon-green-800);
-    --card-badges-label-color: var(--color-tasman-300);
-    --card-priority-color: var(--color-husk-950);
+    --card-badges-bg: var(--color-rangoon-green-700);
+    --card-badges-label-color: var(--color-tasman-100);
+    --card-priority-color: var(--color-snow-drift-950);
 
-    --card-priority-high-border: var(--color-husk-500);
-    --card-priority-medium-border: var(--color-spring-leaves-500);
-    --card-priority-low-border: var(--color-tasman-500);
-    --card-priority-urgent-border: var(--color-husk-600);
-    --card-priority-optional-border: var(--color-corduroy-600);
+   --card-priority-high-border: #e17a47;
+    --card-priority-medium-border: #efc958;
+    --card-priority-low-border: #41b19d;
+    --card-priority-urgent-border: #ef3d59;
+    --card-priority-optional-border: #344e5c;
 
-    --card-priority-high-bg: var(--color-husk-800);
-    --card-priority-medium-bg: var(--color-spring-leaves-800);
-    --card-priority-low-bg: var(--color-tasman-800);
-    --card-priority-urgent-bg: var(--color-husk-700);
-    --card-priority-optional-bg: var(--color-corduroy-800);
+    --card-priority-high-bg: #e17a47 ;
+    --card-priority-medium-bg: #efc958 ;
+    --card-priority-low-bg: #41b19c;
+    --card-priority-urgent-bg: #ef3d58 ;
+    --card-priority-optional-bg: #344e5c;
 
-    --card-badge-expired-bg: var(--color-husk-900);
-    --card-badge-expired-text: var(--color-husk-300);
-    --card-badge-deadline-bg: var(--color-husk-950);
-    --card-badge-deadline-text: var(--color-husk-400);
-    --card-badge-intime-bg: var(--color-spring-leaves-950);
-    --card-badge-intime-text: var(--color-spring-leaves-400);
+    --card-badge-expired-bg: #b10f1164;
+    --card-badge-expired-text: #f94144 ;
+    --card-badge-deadline-bg: #85631262 ;
+    --card-badge-deadline-text: #f9c74f ;
+    --card-badge-intime-bg: #096e4e6a ;
+    --card-badge-intime-text: #43aa8b;
 
-    --card-status-todo-bg: var(--color-corduroy-900);
-    --card-status-inprogress-bg: var(--color-corduroy-800);
-    --card-status-inreview-bg: var(--color-amulet-900);
-    --card-status-done-bg: var(--color-spring-leaves-900);
+
+    --card-status-todo-bg: var(--color-amulet-300);
+    --card-status-inprogress-bg: var(--color-amulet-500);
+    --card-status-inreview-bg: var(--color-amulet-700);
+    --card-status-done-bg: var(--color-amulet-900);
  
      --card-footer-btn-bg: var(--color-corduroy-800);
-    --card-footer-btn-bg-hover: var(--color-corduroy-700);
-    --card-footer-btn-color: var(--color-snow-drift-300);
-    --card-footer-btn-color-hover: var(--color-amulet-300);
+    --card-footer-btn-bg-hover: var(--color-corduroy-500);
+    --card-footer-btn-color: var(--color-spring-leaves-500);
+    --card-footer-btn-color-hover: var(--color-spring-leaves-300);
     --card-footer-btn-border: var(--color-corduroy-700);
     --card-footer-btn-border-hover: var(--color-amulet-600);
 
@@ -2029,21 +2030,21 @@
 
 
     /* Task Column*/
-    --column-bg: var(--color-rangoon-green-900);
+    --column-bg: var(--color-rangoon-green-500);
     --column-border: var(--color-rangoon-green-800);
     --column-border-hover: var(--color-amulet-600);
-    --column-header-bg: var(--color-amulet-800);
+    --column-header-bg: var(--color-spring-leaves-900);
  
   
     --column-title-color: var(--color-snow-drift-100);
-    --column-empty-color: var(--color-tasman-500);
+    --column-empty-color: var(--color-husk-950);
     --column-dragging-color: var(--color-amulet-900);
 
 
     /* Dashboard Page Actions */
     --dashboard-page-title-color: var(--color-snow-drift-100);
-      --background-grid-color: #14213d;
-    --dashboard-new-task-btn-bg-color: var(--color-spring-leaves-600);
+
+    --dashboard-new-task-btn-bg-color: var(--color-spring-leaves-700);
     --dashboard-new-task-btn-hover-bg-color: var(--color-spring-leaves-500);
     --dashboard-new-task-btn-text-color: var(--color-spring-leaves-50);
   
@@ -2051,7 +2052,7 @@
 
     /* Task Filter */
     --task-filter-trigger-bg-color: var(--color-rangoon-green-800);
-    --task-filter-trigger-bg-hover: var(--color-rangoon-green-700);
+    --task-filter-trigger-bg-hover: var(--color-rangoon-green-500);
     --task-filter-trigger-bg-sctive: var(--color-rangoon-green-600);
     --task-filter-trigger-text-color: var(--color-snow-drift-200);
     --task-filter-trigger-text-hover: var(--color-amulet-300);
@@ -2066,12 +2067,12 @@
     --task-filter-content-bg-color: var(--color-corduroy-900);
 
 
-    --task-filter-item-bg-color: var(--color-corduroy-800);
-    --task-filter-item-bg-hover: var(--color-corduroy-700);
-    --task-filter-item-bg-active: var(--color-amulet-800);
+    --task-filter-item-bg-color: var(--color-corduroy-700);
+    --task-filter-item-bg-hover: var(--color-amulet-800);
+    --task-filter-item-bg-active: var(--color-amulet-50);
     --task-filter-item-text-color: var(--color-snow-drift-200);
     --task-filter-item-text-hover: var(--color-amulet-300);
-    --task-filter-item-text-active: var(--color-snow-drift-50);
+    --task-filter-item-text-active: var(--color-snow-drift-950);
     --task-filter-item-border-color: var(--color-corduroy-700);
     --task-filter-item-border-hover: var(--color-amulet-700);
     --task-filter-item-border-active: var(--color-amulet-600);
@@ -2090,13 +2091,13 @@
 
 
     
-    --task-form-item-label-color:  var(--color-amulet-400);
-    --task-form-input-bg: var(--color-rangoon-green-800);
+    --task-form-item-label-color:  var(--color-amulet-500);
+    --task-form-input-bg: var(--color-rangoon-green-500);
     --task-form-input-border-color: var(--color-rangoon-green-700) ;
     --task-form-input-text-color: var(--color-snow-drift-100);
 
 
-    --task-form-select-trigger-bg: var(--color-rangoon-green-800) ;
+    --task-form-select-trigger-bg: var(--color-rangoon-green-500) ;
     --task-form-select-trigger-bg-hover: var(--color-rangoon-green-700);
     --task-form-select-trigger-border-color: var(--color-amulet-800) ;
     --task-form-select-trigger-border-color-hover: var(--color-amulet-600) ;
@@ -2104,17 +2105,17 @@
     --task-form-select-trigger-text-color-hover: var(--color-amulet-300) ;
 
 
-    --task-form-select-content-bg:var(--color-corduroy-900) ;
+    --task-form-select-content-bg:var(--color-corduroy-600) ;
     --task-form-select-content-border-color: var(--color-amulet-800);
     --task-form-select-item-bg: var(--color-corduroy-800) ;
-    --task-form-select-item-bg-hover: var(--color-corduroy-700) ;
+    --task-form-select-item-bg-hover: var(--color-amulet-800) ;
     --task-form-select-item-text-color: var(--color-snow-drift-200) ;
     --task-form-select-item-text-color-hover: var(--color-amulet-300) ;
     --task-form-select-item-border-color: var(--color-corduroy-700) ;
     --task-form-select-item-border-color-hover: var(--color-amulet-700) ;
 
 
-    --task-form-dialog-datepicker-trigger-bg: var(--color-rangoon-green-800) ;
+    --task-form-dialog-datepicker-trigger-bg: var(--color-rangoon-green-500) ;
     --task-form-dialog-datepicker-trigger-bg-hover: var(--color-rangoon-green-700);
     --task-form-dialog-datepicker-trigger-border: var(--color-amulet-800) ;
     --task-form-dialog-datepicker-trigger-border-hover: var(--color-amulet-600) ;
@@ -2125,14 +2126,14 @@
 
 
     --task-form-dialog-cancel-button-bg: var(--color-corduroy-800);
-    --task-form-dialog-cancel-button-bg-hover: var(--color-corduroy-700);
+    --task-form-dialog-cancel-button-bg-hover: var(--color-corduroy-600);
     --task-form-dialog-cancel-button-text: var(--color-snow-drift-200);
     --task-form-dialog-cancel-button-text-hover: var(--color-snow-drift-100);
     --task-form-dialog-cancel-button-border: var(--color-corduroy-700);
     --task-form-dialog-cancel-button-border-hover:var(--color-corduroy-600) ;
 
 
-    --task-form-dialog-submit-button-bg: var(--color-spring-leaves-700);
+    --task-form-dialog-submit-button-bg: var(--color-spring-leaves-800);
     --task-form-dialog-submit-button-bg-hover:var(--color-spring-leaves-600);
     --task-form-dialog-submit-button-text: var(--color-spring-leaves-50);
     --task-form-dialog-submit-button-text-hover: var(--color-spring-leaves-100);
@@ -2184,12 +2185,12 @@
     --delete-dialog-title-color: var(--color-snow-drift-100); 
     --delete-dialog-description-color: var(--color-tasman-300);
     --delete-dialog-cancel-btn-bg: var(--color-corduroy-800);
-    --delete-dialog-cancel-btn-bg-hover: var(--color-corduroy-700);
+    --delete-dialog-cancel-btn-bg-hover: var(--color-corduroy-600);
     --delete-dialog-cancel-btn-color: var(--color-snow-drift-200);
     --delete-dialog-cancel-btn-color-hover: var(--color-snow-drift-100);
     --delete-dialog-cancel-btn-border: var(--color-corduroy-700);
     --delete-dialog-cancel-btn-border-hover: var(--color-corduroy-600);
-    --delete-dialog-confirm-btn-bg: var(--color-husk-700);
+    --delete-dialog-confirm-btn-bg: var(--color-husk-800);
     --delete-dialog-confirm-btn-hover-bg: var(--color-husk-600);
     --delete-dialog-confirm-btn-color: var(--color-husk-100);
     --delete-dialog-confirm-btn-hover-color: var(--color-husk-50);
@@ -2209,7 +2210,7 @@
 
     --preferences-theme-title-color: var(--color-snow-drift-200);
     --preferences-theme-title-shadow: 0 2px 6px var(--color-corduroy-950);
-    --preferences-theme-box-bg-color: var(--color-corduroy-900);
+    --preferences-theme-box-bg-color: var(--color-corduroy-950);
     --preferences-theme-box-border-color: var(--color-amulet-800);
   
     --preferences-theme-box-shadow:  rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
