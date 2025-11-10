@@ -254,7 +254,7 @@ function DashboardPage() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <Spinner size={50} color="var(--dashboard-page-spinner-color)" text={t('dashboard.loadingTasks')} />
+              <Spinner size={50} color="var(--column-header-bg)" text={t('dashboard.loadingTasks')} />
             </motion.div>
           ) : (
             <TaskBoard

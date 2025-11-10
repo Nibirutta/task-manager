@@ -11,5 +11,5 @@
 .spinnerText {
     margin-top: 2rem;
     font-size: 1.5rem;
-    color: var(--text-color-primary);
+    color: var(--column-header-bg);
 }
