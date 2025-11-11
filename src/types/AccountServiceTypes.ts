@@ -1,4 +1,4 @@
-type themeType = 'default' | 'neon-flow' | 'cloudy-focus' | 'after-hours' | 'forest-calm' | 'solar-bloom';
+type themeType = 'default' | 'neon-flow' | 'cloudy-focus' | 'after-hours' | 'forest-calm' | 'mars-colony';
 
 type languageType = 'pt-BR' | 'en-US';
 

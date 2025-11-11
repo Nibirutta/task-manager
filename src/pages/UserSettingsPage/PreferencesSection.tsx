@@ -20,7 +20,7 @@ export function PreferencesSection() {
     updateEmailNotification,
   } = usePreferences();
 
-  const availableThemes: themeType[] = ["default", "solar-bloom", "neon-flow", "forest-calm", "cloudy-focus", "after-hours"];
+  const availableThemes: themeType[] = ["default", "mars-colony", "neon-flow", "forest-calm", "cloudy-focus", "after-hours"];
 
   const availableLanguages = useMemo(() => (
     Object.keys(t('userSettingsPage.preferencesSection.languageLabels', { returnObjects: true })) as languageType[]
