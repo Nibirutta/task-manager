@@ -1,6 +1,8 @@
 
 # Task Manager 📝
 
+[![Licença MIT](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
+
 O **Task Manager** é uma aplicação full-stack de gerenciamento de tarefas com uma arquitetura de microserviços. O projeto foi desenhado para ser uma ferramenta simples, bonita e inteligente, que se adapta ao ritmo do usuário e facilita a organização de projetos e rotinas diárias.
 
 A interface é inspirada em quadros Kanban, permitindo uma visualização clara do fluxo de trabalho, desde tarefas pendentes até as concluídas.
@@ -98,5 +100,3 @@ Este é um projeto open source e contribuições são muito bem-vindas! Se você
 - [@Nibirutta](https://github.com/Nibirutta)
 
 - [@Alucinado-Dev](https://github.com/Alucinado-dev)
-
-
