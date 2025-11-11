@@ -12,7 +12,7 @@ dist
 dist-ssr
 *.local
 
-.flowbite-react
+
 
 # Editor directories and files
 .vscode/*

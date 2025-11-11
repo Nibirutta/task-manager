@@ -24,8 +24,6 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
-    "flowbite": "^3.1.2",
-    "flowbite-react": "^0.12.9",
     "framer-motion": "^12.23.22",
     "i18next": "^25.6.0",
     "i18next-browser-languagedetector": "^8.2.0",
