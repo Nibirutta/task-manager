@@ -12,7 +12,7 @@ const LoginPage = lazy(() => import('./pages/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const DashboardPage = lazy(() => import('./pages/DashboardPage/DashboardPage'));
 const UserSettingsPage = lazy(() => import('./pages/UserSettingsPage/UserSettingsPage'));
-const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 const ResetPasswordPage = lazy(() => import('./pages/ResetPasswordPage'));
 
 

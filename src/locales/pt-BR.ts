@@ -474,6 +474,8 @@ export const ptBR = {
       ogDescription: "Ops! A página que você tentou acessar não existe. Verifique o URL ou navegue de volta para a página inicial.",
       description: "A página que você está procurando não foi encontrada. Verifique o endereço ou volte para a página inicial.",
     },
-    title: "404 - Página Não Encontrada",
+    title: "Algo não está certo...",
+    subtitle: "A página que você está tentando abrir não existe. Você pode ter digitado o endereço errado ou a página foi movida para outro URL.",
+    button: "Voltar para a página inicial",
   },
 };

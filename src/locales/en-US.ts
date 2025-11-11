@@ -473,6 +473,8 @@ export const enUS = {
       ogTitle: 'Page Not Found (404) | Task Manager',
       ogDescription: 'Oops! The page you tried to access does not exist. Check the URL or navigate back to the homepage.',
     },
-    title: '404 - Page Not Found',
+    title: 'Something is not right...',
+    subtitle: 'Page you are trying to open does not exist. You may have mistyped the address, or the page has been moved to another URL.',
+    button: 'Get back to home page',
   },
 };
