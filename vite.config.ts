@@ -1,14 +1,27 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
-import svgr from 'vite-plugin-svgr';
-
-
+import svgr from 'vite-plugin-svgr'
+import sitemap from 'vite-plugin-sitemap'
 
 // https://vitejs.dev/config/
 
 
-export default defineConfig({
-  plugins: [react(), tailwindcss(), svgr()],
+const dynamicRoutes = [
+  '/',
+  '/login',
+  '/register',
+  '/reset-password',
+];
 
+export default defineConfig({
+  plugins: [
+    react(),
+    tailwindcss(),
+    svgr(),
+    sitemap({
+      hostname: 'https://URL_DO_SEU_SITE.com', // <-- IMPORTANTE: Substitua pelo seu domínio real
+      dynamicRoutes,
+    }),
+  ],
 })

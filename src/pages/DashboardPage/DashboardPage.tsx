@@ -17,6 +17,7 @@ import style from "./DashboardPage.module.css";
 import { FilePlus, RefreshCw } from "lucide-react";
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import usePageMetadata from "../../hooks/usePageMetadata";
 
 // Variantes para animar o cabeçalho e seus itens em cascata
 const headerVariants: Variants = {
@@ -45,6 +46,14 @@ export type IProcessedTask = TaskType & {
 
 function DashboardPage() {
   const { t } = useTranslation();
+
+  usePageMetadata({
+    title: t("dashboard.meta.title"),
+    description: t("dashboard.meta.description"),
+    ogTitle: t("dashboard.meta.ogTitle"),
+    ogDescription: t("dashboard.meta.ogDescription"),
+  });
+
   // --- ESTADOS DE DADOS E UI ---
   const [tasks, setTasks] = useState<TaskType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -86,8 +95,7 @@ function DashboardPage() {
   // Efeito para buscar as tarefas na montagem do componente e quando o filtro muda
   useEffect(() => {
     fetchTasks();
-    document.title = t('dashboard.title');
-  }, [fetchTasks, t]);
+  }, [fetchTasks]);
 
   const priorityFilterOptions = useMemo(() => [
     { value: 'all' as const, label: t('dashboard.priority.all') },

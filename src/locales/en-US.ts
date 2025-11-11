@@ -44,6 +44,9 @@ export const enUS = {
   homePage: {
     meta: {
       title: 'Task Manager | Organize your tasks with smart priority',
+      description: 'Organize your tasks with a simple design and smart priority. Create, manage, and prioritize your projects with Task Manager.',
+      ogTitle: 'Task Manager: Organize your tasks with smart priority',
+      ogDescription: 'Create, manage, and prioritize your projects and daily routines with Task Manager. A simple, beautiful, and intelligent tool.',
     },
     heroSection: {
       title: 'Task Manager',
@@ -133,6 +136,12 @@ export const enUS = {
 
   // Dashboard Page
   dashboard: {
+    meta: {
+      title: 'My Dashboard | Task Manager',
+      description: 'Manage your tasks easily and intuitively with the Task Manager dashboard. Drag and drop tasks between columns and filter by priority.',
+      ogTitle: 'My Task Dashboard | Task Manager',
+      ogDescription: 'Access your personalized dashboard to manage all your tasks. Track progress and stay organized with Task Manager.',
+    },
     title: 'My Task Dashboard',
     refreshButtonLabel: 'Refresh tasks',
     newTaskButtonLabel: 'Create New Task',
@@ -238,6 +247,9 @@ export const enUS = {
   loginPage: {
     meta: {
       title: 'Task Manager | Login',
+      description: 'Access your Task Manager account to start managing your tasks and projects efficiently.',
+      ogTitle: 'Login | Task Manager',
+      ogDescription: 'Access your Task Manager account to start managing your tasks and projects efficiently.',
     },
     form: {
       title: 'Login',
@@ -260,6 +272,9 @@ export const enUS = {
   registerPage: {
     meta: {
       title: 'Task Manager | Register',
+      description: 'Create your free account on Task Manager and start organizing your projects and daily routines today.',
+      ogTitle: 'Sign Up | Task Manager',
+      ogDescription: 'Create your free account on Task Manager and start organizing your projects and daily routines today.',
     },
   },
 
@@ -351,6 +366,9 @@ export const enUS = {
   userSettingsPage: {
     meta: {
       title: 'Task Manager | Settings',
+      description: 'Customize your profile, security, and theme and language preferences in Task Manager.',
+      ogTitle: 'User Settings | Task Manager',
+      ogDescription: 'Customize your profile, security, and theme and language preferences in Task Manager.',
     },
     profileSection: {
       title: 'Public Profile of {{name}}',
@@ -426,6 +444,9 @@ export const enUS = {
   resetPasswordPage: {
     meta: {
       title: 'Task Manager | Reset Password',
+      description: 'Reset your password to securely regain access to your Task Manager account.',
+      ogTitle: 'Reset Password | Task Manager',
+      ogDescription: 'Reset your password to securely regain access to your Task Manager account.',
     },
     form: {
       title: 'Reset Password',
@@ -442,5 +463,16 @@ export const enUS = {
       success: 'Password reset successfully! You can now log in.',
       error: 'The link is invalid or has expired. Please request a new one.',
     },
+  },
+
+  // Not Found Page (404)
+  notFoundPage: {
+    meta: {
+      title: '404 - Page Not Found | Task Manager',
+      description: 'The page you are looking for was not found. Check the address or go back to the homepage.',
+      ogTitle: 'Page Not Found (404) | Task Manager',
+      ogDescription: 'Oops! The page you tried to access does not exist. Check the URL or navigate back to the homepage.',
+    },
+    title: '404 - Page Not Found',
   },
 };

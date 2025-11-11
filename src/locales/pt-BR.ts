@@ -44,6 +44,9 @@ export const ptBR = {
   homePage: {
     meta: {
       title: "Task Manager | Organize suas tarefas com prioridade inteligente",
+      description: "Organize suas tarefas com um design simples e prioridade inteligente. Crie, gerencie e priorize seus projetos com o Task Manager.",
+      ogTitle: "Task Manager: Organize suas tarefas com prioridade inteligente",
+      ogDescription: "Crie, gerencie e priorize seus projetos e rotinas diárias com o Task Manager. Uma ferramenta simples, bonita e inteligente.",
     },
     heroSection: {
       title: "Task Manager",
@@ -133,6 +136,12 @@ export const ptBR = {
 
   // Página de Dashboard
   dashboard: {
+    meta: {
+      title: "Meu Painel | Task Manager",
+      description: "Gerencie suas tarefas de forma fácil e intuitiva com o painel do Task Manager. Arraste e solte tarefas entre colunas e filtre por prioridade.",
+      ogTitle: "Meu Painel de Tarefas | Task Manager",
+      ogDescription: "Acesse seu painel personalizado para gerenciar todas as suas tarefas. Visualize o progresso e mantenha-se organizado com o Task Manager.",
+    },
     title: "Meu Painel de Tarefas",
     refreshButtonLabel: "Atualizar tarefas",
     newTaskButtonLabel: "Criar Nova Tarefa",
@@ -238,6 +247,9 @@ export const ptBR = {
   loginPage: {
     meta: {
       title: "Task Manager | Login",
+      ogTitle: "Login | Task Manager",
+      ogDescription: "Acesse sua conta no Task Manager para começar a gerenciar suas tarefas e projetos de forma eficiente.",
+      description: "Acesse sua conta no Task Manager para começar a gerenciar suas tarefas e projetos de forma eficiente.",
     },
     form: {
       title: "Login",
@@ -260,6 +272,9 @@ export const ptBR = {
   registerPage: {
     meta: {
       title: "Task Manager | Registrar",
+      ogTitle: "Registre-se | Task Manager",
+      ogDescription: "Crie sua conta gratuitamente no Task Manager e comece a organizar seus projetos e rotinas diárias hoje mesmo.",
+      description: "Crie sua conta gratuitamente no Task Manager e comece a organizar seus projetos e rotinas diárias hoje mesmo.",
     },
   },
 
@@ -352,6 +367,9 @@ export const ptBR = {
   userSettingsPage: {
     meta: {
       title: "Task Manager | Configurações",
+      ogTitle: "Configurações do Usuário | Task Manager",
+      ogDescription: "Personalize suas configurações de perfil, segurança e preferências de tema e idioma no Task Manager.",
+      description: "Personalize suas configurações de perfil, segurança e preferências de tema e idioma no Task Manager.",
     },
     profileSection: {
       title: "Perfil Público de {{name}}",
@@ -427,6 +445,9 @@ export const ptBR = {
   resetPasswordPage: {
     meta: {
       title: "Task Manager | Redefinir Senha",
+      ogTitle: "Redefinir Senha | Task Manager",
+      ogDescription: "Redefina sua senha para recuperar o acesso à sua conta no Task Manager de forma segura.",
+      description: "Redefina sua senha para recuperar o acesso à sua conta no Task Manager de forma segura.",
     },
     form: {
       title: "Redefinir Senha",
@@ -445,4 +466,14 @@ export const ptBR = {
     },
   },
 
+  // Página Não Encontrada (404)
+  notFoundPage: {
+    meta: {
+      title: "404 - Página Não Encontrada | Task Manager",
+      ogTitle: "Página Não Encontrada (404) | Task Manager",
+      ogDescription: "Ops! A página que você tentou acessar não existe. Verifique o URL ou navegue de volta para a página inicial.",
+      description: "A página que você está procurando não foi encontrada. Verifique o endereço ou volte para a página inicial.",
+    },
+    title: "404 - Página Não Encontrada",
+  },
 };

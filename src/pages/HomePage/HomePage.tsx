@@ -1,17 +1,20 @@
 import DemoSection from "./DemoSection";
 import AboutSection from "./AboutSection";
 import CTA from "./CTA";
-import { useEffect} from "react";
 import HeroSection from "./HeroSection";
 import FeaturesSection from "./FeaturesSection";
 import { useTranslation } from "react-i18next";
+import usePageMetadata from "../../hooks/usePageMetadata";
 
 const HomePage = () => {
   const { t } = useTranslation();
 
-  useEffect(() => {
-    document.title = t("homePage.meta.title");
-  }, [t]);
+  usePageMetadata({
+    title: t("homePage.meta.title"),
+    description: t("homePage.meta.description"),
+    ogTitle: t("homePage.meta.ogTitle"),
+    ogDescription: t("homePage.meta.ogDescription"),
+  });
 
   return (
     <>

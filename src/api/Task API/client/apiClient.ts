@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { baseURL } from "../../../utils/urlApi";
 import type { APIErrorType } from "../APITypes";
 import { requestRefresh } from "../services/accountService";
 import { dispatchAuthEvent } from "./authEvent";
@@ -50,7 +49,7 @@ const apiFetch = async (endpoint: string, options: RequestInit = {}): Promise<an
 
 
 
-	const response = await fetch(`${baseURL}${endpoint}`, {
+	const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}${endpoint}`, {
 
 		credentials: 'include', 
 		...options,

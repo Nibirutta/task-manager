@@ -12,6 +12,7 @@ import { requestNewPassword } from "../api/Task API/services/accountService";
 import Spinner from "../components/Spinner/Spinner";
 import { useTranslation } from "react-i18next";
 import type { TFunction } from "i18next";
+import usePageMetadata from "../hooks/usePageMetadata";
 
 // Schema de validação para o formulário
 const createResetPasswordSchema = (t: TFunction) => z
@@ -57,7 +58,7 @@ const ResetPasswordPage = () => {
   });
 
   useEffect(() => {
-    document.title = t("resetPasswordPage.meta.title");
+    // O título já é definido pelo hook abaixo
     const tokenFromUrl = searchParams.get("token");
 
     if (!tokenFromUrl) {
@@ -67,7 +68,14 @@ const ResetPasswordPage = () => {
       setToken(tokenFromUrl);
     }
     setIsValidatingToken(false);
-  }, [navigate, searchParams, t]);
+  }, [navigate, searchParams, t]); // Mantemos o 't' aqui por causa do toast.error
+
+  usePageMetadata({
+    title: t("resetPasswordPage.meta.title"),
+    description: t("resetPasswordPage.meta.description"),
+    ogTitle: t("resetPasswordPage.meta.ogTitle"),
+    ogDescription: t("resetPasswordPage.meta.ogDescription"),
+  });
 
   const onSubmit = async (data: ResetPasswordFormData) => {
     if (!token) return;
