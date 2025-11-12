@@ -1,0 +1,15 @@
+# Regras para todos os robôs de busca
+User-agent: *
+
+# Proíbe o rastreamento de páginas que exigem login
+Disallow: /dashboard
+Disallow: /settings
+
+# Permite o rastreamento das páginas públicas principais
+Allow: /
+Allow: /login
+Allow: /register
+Allow: /forgot-password
+
+# Aponta para a localização do mapa do site
+Sitemap: https://URL_DO_SEU_SITE.com/sitemap.xml

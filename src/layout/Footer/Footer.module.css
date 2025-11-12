@@ -1,0 +1,192 @@
+
+
+.footer {
+  width: 100%;
+  margin-top: auto;
+  background-color: var(--footer-bg-color);
+  padding: 2rem 1rem; 
+}
+
+.content {
+  width: 100%;
+  max-width: 1024px; 
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+hr {
+  width: 100%;
+  border: none;
+  display: inline-block;
+  background-color: var(--footer-line-color);
+  height: 5px;
+}
+
+.upcontainer {
+  display: flex;
+  justify-content: space-around; 
+  align-items: flex-start;
+  flex-wrap: wrap; 
+  gap: 2rem;
+  width: 100%;
+}
+
+.upcontainer h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: var(--footer-title-font);
+  color: var(--footer-title-color);
+  margin-bottom: 1rem; 
+}
+
+.navegation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navegation nav {
+  align-self: flex-start;
+}
+
+.navegation nav ul {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  gap: 0.8rem; 
+}
+
+.navegation nav ul li {
+  padding: 0.5rem;
+  cursor: pointer;
+  position: relative;
+  width: 100%;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 1px;
+    transition: all 400ms;
+    background: var(--footer-info-hover);
+    transform: scaleX(0);
+    transform-origin: 0% 50%;
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+  }
+}
+
+.navegation nav ul li a {
+  font: 500 1.4rem/1 var(--footer-info-font);
+  color: var(--footer-info-color);
+}
+
+.navegation nav ul li:hover a,
+.navegation nav ul li:focus-visible a,
+.navegation nav ul li:active a,
+.navegation nav ul li:visited a {
+  color: var(--footer-info-hover);
+}
+
+.repositories {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.repositories ul {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  gap: 1rem;
+}
+
+.repositories ul li {
+  padding: 0.5rem; 
+  cursor: pointer;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0; 
+    width: 100%;
+    height: 1px;
+    transition: all 400ms;
+    background: var(--footer-info-hover);
+    transform: scaleX(0);
+    transform-origin: 0% 50%;
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+  }
+}
+
+.repositories ul li a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.repositories ul li a span {
+  color: var(--footer-info-color);
+  font: 500 1.4rem/1 var(--footer-info-font);
+}
+
+.repositories ul li:hover a span,
+.repositories ul li:focus-visible a span,
+.repositories ul li:active a span,
+.repositories ul li:visited a span {
+  color: var(--footer-info-hover);
+}
+
+.react {
+  color: #61dafb;
+}
+
+.node {
+  color: #5fa04e;
+}
+
+.react svg,
+.node svg {
+  width: 24px;
+  height: 24px;
+}
+
+.copyright {
+  text-align: center;
+  padding: 1rem;
+  color: var(--footer-title-color);
+  font: 700 1.2rem/1.2 var(--footer-info-font);
+}
+
+
+@media screen and (max-width: 640px) {
+  .content {
+    padding: 0 1rem;
+  }
+  .upcontainer {
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center;
+    gap: 3rem;
+  }
+
+  .navegation nav ul, .repositories ul {
+    align-items: center; 
+  }
+
+  .upcontainer h3 {
+    font-size: 1.3rem;
+  }
+  .copyright {
+    font-size: 1rem;
+  }
+}

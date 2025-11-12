@@ -1,0 +1,32 @@
+@import './styles/reset.css';
+@import './styles/globals.css';
+@import './styles/themes.css';
+@import 'tailwindcss';
+
+@import 'tw-animate-css';
+@import './styles/animations.css';
+@import './styles/fonts.css';
+
+
+body {
+  background-color: var(--body-bg-color);
+}
+
+
+
+/** Scrollbar  */
+html {
+  scroll-behavior: smooth;
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+}
+* {
+  scrollbar-width: thin;
+}

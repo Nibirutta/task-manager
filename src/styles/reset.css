@@ -1,0 +1,27 @@
+/* Ajustes extras que o Preflight não cobre ou que você quer reforçar */
+
+/* Se quiser garantir que links e botões nunca tenham sublinhado */
+a, button {
+  text-decoration: none;
+}
+
+/* Se quiser garantir que botões e links não tenham outline ao focar (cuidado com acessibilidade) */
+a:focus, button:focus {
+  outline: none;
+}
+
+/* Se quiser manter variáveis globais */
+:root {
+  box-sizing: border-box;
+  font-size: 62.5%;
+
+  /* media queries */
+  --small-mobile: 320px;
+  --mobile: 480px;
+  --small-tablet: 600px;
+  --tablet: 768px;
+  --large-tablet: 964px;
+  --laptop: 1024px;
+  --desktop: 1280px;
+  --large-desktop: 1440px;
+}

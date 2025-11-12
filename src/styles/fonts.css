@@ -1,0 +1,136 @@
+
+@font-face {
+    font-family: 'Tech';
+    src: url('../assets/fonts/Share_Tech_Mono/ShareTechMono-Regular.ttf');
+}
+
+@font-face{
+    font-family: 'Playfair';
+    src: url('../assets/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf');
+}
+
+@font-face {
+    font-family: 'IBM';
+    src: url('../assets/fonts/IBM_Plex_Sans/IBMPlexSans-Italic-VariableFont_wdth,wght.ttf');
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('../assets/fonts/Lato/Lato-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../assets/fonts/Poppins/Poppins-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'RedHat';
+    src: url('../assets/fonts/Red_Hat_Mono/RedHatMono-VariableFont_wght.ttf');
+}
+
+@font-face {
+    font-family: 'Orbitron';
+    src: url('../assets/fonts/Orbitron/Orbitron-VariableFont_wght.ttf');
+}
+
+@font-face {
+    font-family: 'Electrolize';
+    src: url('../assets/fonts/Electrolize/Electrolize-Regular.ttf');
+}
+
+
+:root{
+  /* header */
+  --navbar-logo-font: 'Electrolize', sans-serif;
+  --navbar-link-font: 'IBM', sans-serif;
+  --greetings-font: 'Lato', sans-serif;
+  --user-menu-item--text-font: 'IBM', sans-serif;
+
+  /* home page */
+
+  --hero-title-font: "Orbitron", sans-serif;
+  --hero-subtitle-font: 'IBM', sans-serif;
+  --hero-developed-font: 'Lato', sans-serif;
+  --cta-btn-font: 'Poppins', sans-serif;
+
+  --features-title-font: 'Poppins', sans-serif;
+  --features-subtitle-font: 'IBM', sans-serif;
+  --featcard-title-font: 'Poppins', sans-serif;
+  --featcard-description-font: 'Lato', sans-serif;
+
+  --demo-title-font: 'Poppins', sans-serif;
+  --demo-subtitle-font: 'IBM', sans-serif;
+  --demo-figcaption-font: 'Lato', sans-serif;
+  --about-title-font: 'Poppins', sans-serif;
+  --about-text-font: 'Lato', sans-serif;
+  --dev-card-role-font: 'IBM', sans-serif;
+  --dev-card-title-font: 'Poppins', sans-serif;
+  --dev-card-tech-font: 'RedHat', monospace;
+  --dev-card-description-font: 'Lato', sans-serif;
+  --dev-card-stack-font: 'RedHat', monospace; /* Assumindo que é para listar tecnologias */
+  --dev-card-contact-font: 'IBM', sans-serif;
+
+  --cta-title-font: 'Poppins', sans-serif;
+  --footer-title-font: 'IBM', sans-serif;
+  --footer-info-font: 'Lato', sans-serif;
+
+  /* login page*/
+
+  --input-field-label-font: 'IBM', sans-serif;
+  --input-field-placeholder-font: 'Lato', sans-serif;
+  --input-field-input-font: 'IBM', sans-serif;
+  --input-field-error-font: 'Lato', sans-serif;
+
+  --sb-text-font: 'Lato', sans-serif; /* Assumindo que é para texto secundário */
+
+  --login-title-font: 'Poppins', sans-serif;
+  --fpd-description-font: 'Lato', sans-serif; /* Forgot Password Description */
+  --fpd-title-font: 'Poppins', sans-serif; /* Forgot Password Title */
+  --register-title-font: 'Poppins', sans-serif;
+
+  /* * dashboard */
+
+  --card-title-font: 'Poppins', sans-serif;
+  --card-priority-font: 'IBM', sans-serif;
+  --card-subtitle-font: 'Lato', sans-serif;
+  --card-description-font: 'Lato', sans-serif;
+  --card-badges-label-font: 'IBM', sans-serif;
+  --card-badges-value-font: 'IBM', sans-serif;
+  --card-footer-btn-font: 'Poppins', sans-serif;
+
+  
+  --column-title-font: 'Poppins', sans-serif;
+  --dashboard-page-title-font: 'Poppins', sans-serif;
+  --task-filter-trigger-text-font: 'IBM', sans-serif;
+  --task-filter-item-text-font: 'Lato', sans-serif;
+
+  --task-form-dialog-title-font: 'Poppins', sans-serif;
+  --task-form-dialog-description-font: 'Lato', sans-serif;
+  --task-form-input-text-font: 'IBM', sans-serif;
+  --task-form-item-label-font: 'IBM', sans-serif;
+  --task-form-select-trigger-text-font: 'IBM', sans-serif;
+  --task-form-select-item-text-font: 'Lato', sans-serif;
+  --task-form-dialog-datepicker-trigger-font: 'IBM', sans-serif;
+  --task-form-dialog-cancel-button-text-font: 'Poppins', sans-serif;
+  --task-form-dialog-submit-button-text-font: 'Poppins', sans-serif;
+  --delete-dialog-description-font: 'Lato', sans-serif;
+  --delete-dialog-title-font: 'Poppins', sans-serif;
+  --delete-dialog-confirm-btn-font: 'Poppins', sans-serif;
+  --delete-dialog-cancel-btn-text-font: 'Poppins', sans-serif;
+
+  /** settings page */
+
+  --profile-title-font: 'Poppins', sans-serif;
+  --profile-subtitle-font: 'IBM', sans-serif;
+  --preferences-title-font: 'Poppins', sans-serif;
+  --preferences-subtitle-font: 'IBM', sans-serif;
+  --preferences-theme-title-font: 'IBM', sans-serif;
+  --preferences-theme-btn-text-font: 'Poppins', sans-serif;
+  --security-title-font: 'Poppins', sans-serif;
+  --security-subtitle-font: 'IBM', sans-serif;
+  --danger-zone-title-font: 'Orbitron', sans-serif; /* Para um toque de alerta tecnológico */
+  --danger-zone-subtitle-font: 'IBM', sans-serif;
+  --reset-form-title-font: 'Poppins', sans-serif;
+
+}

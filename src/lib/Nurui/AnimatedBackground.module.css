@@ -1,0 +1,32 @@
+.animatedBackgroundContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Fica atrás do conteúdo */
+
+
+}
+
+.blob1 {
+    position: absolute;
+    left: 0;
+    top: 25%;
+    height: 24rem; /* 384px */
+    width: 24rem; /* 384px */
+    border-radius: 9999px; /* rounded-full */
+    background-color: var(--blob-color-1); /* Usando a variável CSS */
+    filter: blur(72px); /* blur-3xl */
+}
+
+.blob2 {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    height: 24rem; /* 384px */
+    width: 24rem; /* 384px */
+    border-radius: 9999px; /* rounded-full */
+    background-color: var(--blob-color-2); /* Usando a variável CSS */
+    filter: blur(72px); /* blur-3xl */
+}

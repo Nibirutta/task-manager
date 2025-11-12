@@ -1,0 +1,110 @@
+.dialogContent{
+    background-color: var(--delete-dialog-bg);
+    border: 1px solid var(--delete-dialog-border-color);
+    border-radius: 2rem;
+    padding: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+
+    z-index: 100;
+}
+
+.dialogHeader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+    border-radius: 1rem;
+    background-color: var(--delete-dialog-header-bg);
+    padding: 1rem 2rem;
+}
+
+.dialogTitle {
+    font-family: var(--delete-dialog-title-font);
+    font-size: 2.4rem;
+    color: var(--delete-dialog-title-color);
+    font-weight: 800;
+    text-align: center;
+    padding: 1rem;
+}
+
+.dialogDescription {
+    font-family: var(--delete-dialog-description-font);
+    font-size: 1.8rem;
+    padding: 1rem 2.4rem;
+    color: var(--delete-dialog-description-color);
+    line-height: 1.5;
+}
+
+.dialogFooter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 1rem 2rem;
+    gap: 2rem;
+}
+
+.cancelButton {
+    padding: 0.8rem 1.5rem;
+    border-radius: 1rem;
+    background-color: var(--delete-dialog-cancel-btn-bg);
+    color: var(--delete-dialog-cancel-btn-color);
+    border: 1px solid var(--delete-dialog-cancel-btn-border);
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+    font-weight: 500;
+    font-size: 1.6rem;
+    font-family: var(--delete-dialog-cancel-btn-font);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+
+    &:hover, &:focus {
+        background-color: var(--delete-dialog-cancel-btn-bg-hover);
+        box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+        color: var(--delete-dialog-cancel-btn-color-hover);
+        border-color: var(--delete-dialog-cancel-btn-border-hover);
+    }
+
+}
+
+
+
+.confirmButton {
+    padding: 0.8rem 1.5rem;
+    border-radius: 1rem;
+    background-color: var(--delete-dialog-confirm-btn-bg);
+    color: var(--delete-dialog-confirm-btn-color);
+    border: 1px solid var(--delete-dialog-confirm-btn-border);
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+    font-weight: 600;
+    font-size: 1.6rem;
+    font-family: var(--delete-dialog-confirm-btn-font);
+
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    &:hover, &:focus {
+        background-color: var(--delete-dialog-confirm-btn-hover-bg);
+        color: var(--delete-dialog-confirm-btn-hover-color);
+        box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+        border-color: var(--delete-dialog-confirm-btn-hover-border);
+    }
+}
+
+
+@media screen and (min-width: 768px) {
+    .dialogContent{
+        width: 480px;
+        max-width: none;
+    }
+}
