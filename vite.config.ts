@@ -20,7 +20,7 @@ export default defineConfig({
     tailwindcss(),
     svgr(),
     sitemap({
-      hostname: 'https://URL_DO_SEU_SITE.com', // <-- IMPORTANTE: Substitua pelo seu domínio real
+      hostname: 'https://task-manager-delta-jade-75.vercel.app/', 
       dynamicRoutes,
       robots: [
         {
