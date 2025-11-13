@@ -1,10 +1,8 @@
-import { useMemo } from 'react';
-import getTaskStatus from '../utils/getTaskStatus';
-
-
+import { useMemo } from "react";
+import { getTaskExpirationStatus } from "../utils/getTaskStatus";
 
 export const useTaskStatus = (dueDate: string) => {
-  const status = useMemo(() => getTaskStatus(dueDate), [dueDate]);
+  const status = useMemo(() => getTaskExpirationStatus(dueDate), [dueDate]);
 
   return status;
 };
