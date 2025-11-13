@@ -22,6 +22,7 @@ export default defineConfig({
     sitemap({
       hostname: 'https://URL_DO_SEU_SITE.com', // <-- IMPORTANTE: Substitua pelo seu domínio real
       dynamicRoutes,
+      robots: []
     }),
   ],
 })
