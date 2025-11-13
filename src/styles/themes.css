@@ -2276,9 +2276,9 @@
   }
 }
 
-@custom-variant solar-bloom (&:where([data-theme=solar-bloom], [data-theme=solar-bloom] *));
+@custom-variant mars-colony (&:where([data-theme=mars-colony], [data-theme=mars-colony] *));
 
-[data-theme=solar-bloom]{
+[data-theme=mars-colony]{
   --body-bg-color: var(--color-sandstone-950);
   
   /* Header  */
