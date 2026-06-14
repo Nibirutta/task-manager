@@ -17,8 +17,8 @@ const processQueue = (error: any) => {
 		if (error) {
 			prom.reject(error);
 		} else {
-			// Apenas resolve a promessa, o callback se encarregará de refazer a chamada.
-			prom.resolve(true);
+			// Resolve a promessa para que a chamada original possa ser refeita.
+			prom.resolve(undefined);
 		}
 	});
 
@@ -96,10 +96,9 @@ const apiFetch = async (endpoint: string, options: RequestInit = {}): Promise<an
 			// ou rejeitada quando o refresh terminar.
 			return new Promise((resolve, reject) => {
 				failedQueue.push({
-					resolve, reject
-				});
-			}).then(() => {
-				// Quando a promessa da fila for resolvida, refaz a chamada original.
+					resolve, reject // Adiciona a chamada à fila
+				}); // A promessa aguardará a chamada de processQueue
+			}).then(() => { // Quando a promessa da fila for resolvida pelo processQueue
 				return apiFetch(endpoint, options);
 			});
 		}

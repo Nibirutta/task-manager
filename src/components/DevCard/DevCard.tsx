@@ -1,17 +1,18 @@
-import { type CSSProperties } from "react";
+import { type CSSProperties, type ImgHTMLAttributes } from "react";
 import style from "./DevCard.module.css";
 import { useTranslation } from "react-i18next";
-
-type DevCardProps = {
+import linkedinimg from "../../assets/imgs/icons/linkedin.png"
+import githubimg from "../../assets/imgs/icons/github.png"
+export type DevCardProps = {
   name: string;
-  avatar: string;
+  avatar: ImgHTMLAttributes<HTMLImageElement>['src'];
   linkedin: string;
   github: string;
   portfolio: string;
   role: string;
   description?: string;
   stacks?: string[];
-  portfolioImage?: string;
+  portfolioImage?: ImgHTMLAttributes<HTMLImageElement>['src'];
   color1: string;
   color2: string;
   color3: string;
@@ -85,7 +86,7 @@ const DevCard = ({
               aria-label={t('homePage.aboutSection.devCard.socialAlt.linkedin', { name })}
             >
               <img
-                src="/src/assets/imgs/icons/linkedin.png"
+                src={linkedinimg}
                 alt="logo do linkedin"
               />
             </a>
@@ -98,7 +99,7 @@ const DevCard = ({
               aria-label={t('homePage.aboutSection.devCard.socialAlt.github', { name })}
             >
               <img
-                src="/src/assets/imgs/icons/github.png"
+                src={githubimg}
                 alt="logo do github"
               />
             </a>

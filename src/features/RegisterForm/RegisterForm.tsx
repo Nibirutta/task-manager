@@ -87,7 +87,7 @@ function Registerform() {
     const onSubmit = async (data: RegisterformInputs) => {
         try {
             await  toast.promise(
-              requestRegister(data),
+              requestRegister({ name: data.name, email: data.email, username: data.username, password: data.password }),
               
               {
                 pending: t('registerForm.toast.pending'),

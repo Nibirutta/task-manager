@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import Footer from "./Footer/Footer";
-import style from "./Layout.module.css";
+import style from "./layout.module.css";
 import Header from "./Header/Header";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

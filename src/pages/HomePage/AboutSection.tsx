@@ -1,18 +1,27 @@
-import DevCard from "../../components/DevCard/DevCard";
+import DevCard, { type DevCardProps } from "../../components/DevCard/DevCard";
 import { motion,type  Variants } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
-const devsData = [
+import lucino from "../../assets/imgs/avatar/20250123_165309.jpg";
+import lucinopf from "../../assets/imgs/icons/ALucin4do-logo.png"
+import lucas from "../../assets/imgs/avatar/FotoPerfilLucas.jpg";
+import lucaspf from "../../assets/imgs/icons/NibiruttaPNG.png"
+
+
+
+const devsData: DevCardProps[] = [
   {
-    avatar: "/src/assets/imgs/avatar/20250123_165309.jpg",
+    avatar: lucino ,
     name: "Lucino Campos",
-    portfolioImage: "/src/assets/imgs/icons/ALucin4do-logo.png",
+    portfolioImage: lucinopf,
     portfolio: "https://alucinado-dev.vercel.app/",
     github: "https://github.com/Alucinado-dev",
     linkedin: "https://www.linkedin.com/in/lucino-de-campos/",
     color1: "#05f2db",
     color2: "#00ff00",
     color3: "#d9048e",
+    role: "FrontEnd",
+
     stacks: [
       "React",
       "Tailwind",
@@ -24,12 +33,13 @@ const devsData = [
     ],
   },
   {
-    avatar: "/src/assets/imgs/avatar/FotoPerfilLucas.jpg",
+    avatar:  lucas ,
     name: "Lucas Silva",
     github: "https://github.com/Nibirutta",
     linkedin: "https://www.linkedin.com/in/lucasaugustodev/",
-    portfolioImage: "/src/assets/imgs/icons/NibiruttaPNG.png",
+    portfolioImage: lucaspf,
     portfolio: "https://www.artstation.com/lucasaugust",
+    role: "BackEnd",
     color1: "#D9E1E4",
     color2: "#F0D264",
     color3: "#2A4D8C",
