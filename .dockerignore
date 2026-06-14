@@ -1,0 +1,27 @@
+# environment variables
+.env
+
+# github
+.github/
+.git
+.gitignore
+
+# docs
+README.md
+LICENSE
+
+# IDE files
+.vscode
+
+# production
+-p/
+dist/
+
+# node_modules
+node_modules/
+
+# docker
+Dockerfile*
+docker-compose
+.dockerignore
+
